@@ -188,7 +188,7 @@ class AGSSampler:
             # If no guidance at this step, use standard p_sample
             if w_t <= 0:
                 out = self.diffusion.p_mean_variance(
-                    self.model, img, t,
+                    self.model.forward_with_cfg, img, t,
                     clip_denoised=False, model_kwargs=model_kwargs,
                 )
                 noise = torch.randn_like(img)
@@ -198,7 +198,7 @@ class AGSSampler:
 
             # Compute p_mean_variance (predicts x_start and mean/variance)
             out = self.diffusion.p_mean_variance(
-                self.model, img, t,
+                self.model.forward_with_cfg, img, t,
                 clip_denoised=False, model_kwargs=model_kwargs,
             )
 

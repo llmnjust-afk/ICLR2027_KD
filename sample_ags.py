@@ -212,6 +212,10 @@ def compute_clusters(args, vae, class_labels, sel_classes):
         global_batch_size=1,
         use_vae=True,
         finetune_ipc=-1,
+        nclass=args.nclass,
+        spec=args.spec,
+        phase=args.phase,
+        image_size=args.image_size,
     )
 
     original_loader = get_loader(args_eval, return_path=True)

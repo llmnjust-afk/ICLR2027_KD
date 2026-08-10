@@ -8,17 +8,16 @@ dist/
 build/
 .eggs/
 
-# Data and models
+# Data and models (keep out of git)
 *.pt
 *.pth
 *.ckpt
-*.pkl
 *.npy
 *.npz
+pretrained_models/
+
+# Generated images too large for git, but keep logs and configs
 generated/
-results/
-ablation/
-logs/
 
 # IDE
 .vscode/
