@@ -387,3 +387,12 @@ GPU 0 (nette) experiments completed!
 [06:09:04] 
 Uploading to GitHub...
 [06:09:04] Uploading results to GitHub...
+[06:09:05] Commit: [main 3726154] experiment: AGS-DD full results 2026-08-10 06:09:04
+ 5 files changed, 463 insertions(+), 1 deletion(-)
+ create mode 100644 results/nette_cluster_cache.pkl
+ create mode 100644 results/nette_results_summary.json
+[06:09:06] Push:  To https://github.com/llmnjust-afk/ICLR2027_KD.git
+   1f46552..3726154  main -> main
+[06:09:06] Push exit code: 0
+[06:09:06] GitHub upload successful!
+[06:09:06] Done at 2026-08-10 06:09:06
