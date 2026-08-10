@@ -1,4 +1,35 @@
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Data and models
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.npy
+*.npz
+generated/
 results/
-*.pyc
-*.pyo
+ablation/
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
