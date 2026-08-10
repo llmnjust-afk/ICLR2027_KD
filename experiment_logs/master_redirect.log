@@ -4,3 +4,10 @@
 [06:38:11] ######################################################################
 [06:38:11] Started GPU 0: nette (PID 341358)
 [06:38:11] Started GPU 1: woof (PID 341359)
+[12:45:05] GPU 0 (nette) finished with exit code 0
+[12:46:35] GPU 1 (woof) finished with exit code 0
+[12:46:35] 
+All experiments completed!
+[12:46:35] 
+Uploading to GitHub...
+[12:46:35] Uploading results to GitHub...

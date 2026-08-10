@@ -1,0 +1,90 @@
+{
+  "spec": "nette",
+  "timestamp": "2026-08-10T12:45:04.301783",
+  "experiments": {
+    "ags_full_ipc10": {
+      "exit_code": 0,
+      "time": 1506.4037063121796,
+      "save_dir": "./results/nette_ags_full_ipc10",
+      "ipc": 10,
+      "num_datasets": 3
+    },
+    "ags_full_ipc50": {
+      "exit_code": 0,
+      "time": 7394.20720911026,
+      "save_dir": "./results/nette_ags_full_ipc50",
+      "ipc": 50,
+      "num_datasets": 3
+    },
+    "baseline_ipc10": {
+      "exit_code": 0,
+      "time": 1517.710557937622,
+      "save_dir": "./results/nette_baseline_ipc10",
+      "ipc": 10,
+      "num_datasets": 3
+    },
+    "baseline_ipc50": {
+      "exit_code": 0,
+      "time": 7416.895803689957,
+      "save_dir": "./results/nette_baseline_ipc50",
+      "ipc": 50,
+      "num_datasets": 3
+    },
+    "cags_only_ipc10": {
+      "exit_code": 0,
+      "time": 498.013742685318,
+      "save_dir": "./results/nette_cags_only_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "iast_only_ipc10": {
+      "exit_code": 0,
+      "time": 499.7929632663727,
+      "save_dir": "./results/nette_iast_only_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "tags_only_ipc10": {
+      "exit_code": 0,
+      "time": 501.82809591293335,
+      "save_dir": "./results/nette_tags_only_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "cags_iast_ipc10": {
+      "exit_code": 0,
+      "time": 499.8112699985504,
+      "save_dir": "./results/nette_cags_iast_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "cags_tags_ipc10": {
+      "exit_code": 0,
+      "time": 499.22143292427063,
+      "save_dir": "./results/nette_cags_tags_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "iast_tags_ipc10": {
+      "exit_code": 0,
+      "time": 499.3989095687866,
+      "save_dir": "./results/nette_iast_tags_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "tags_linear_ipc10": {
+      "exit_code": 0,
+      "time": 499.9293987751007,
+      "save_dir": "./results/nette_tags_linear_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "tags_exp_ipc10": {
+      "exit_code": 0,
+      "time": 441.7304496765137,
+      "save_dir": "./results/nette_tags_exp_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    }
+  }
+}
