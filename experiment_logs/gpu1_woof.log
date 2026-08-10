@@ -387,3 +387,17 @@ GPU 1 (woof) experiments completed!
 [06:08:55] 
 Uploading to GitHub...
 [06:08:55] Uploading results to GitHub...
+[06:08:55] Commit: [main 1f46552] experiment: AGS-DD full results 2026-08-10 06:08:55
+ 10 files changed, 932 insertions(+), 7 deletions(-)
+ create mode 100644 experiment_logs/gpu0_nette.log
+ create mode 100644 experiment_logs/gpu1_woof.log
+ create mode 100644 experiment_logs/master.log
+ create mode 100644 experiment_logs/master_redirect.log
+ create mode 100644 results/woof_cluster_cache.pkl
+ create mode 100644 results/woof_results_summary.json
+ create mode 100644 run_all_experiments.py
+[06:08:56] Push:  To https://github.com/llmnjust-afk/ICLR2027_KD.git
+   951cb41..1f46552  main -> main
+[06:08:56] Push exit code: 0
+[06:08:56] GitHub upload successful!
+[06:08:56] Done at 2026-08-10 06:08:56
