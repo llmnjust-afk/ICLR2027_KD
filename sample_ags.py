@@ -314,7 +314,10 @@ def main():
     sampler.default_stop_t = args.default_stop_t
 
     # Get cluster centers for generation
-    clusters_centers = complexity_analyzer.cluster_centers
+    # CAGS uses optimal K for complexity scoring, but generation needs IPC centers
+    clusters_centers = complexity_analyzer.compute_clusters_for_ipc(
+        args.num_samples, use_pca=True, closest_point=True
+    )
 
     # Generate dataset
     print(f"\nGenerating {args.num_datasets} datasets with {args.num_samples} IPC...")

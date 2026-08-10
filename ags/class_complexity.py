@@ -184,6 +184,7 @@ class ClassComplexityAnalyzer:
             mode_counts: dict {class_id: int}
             cluster_centers: dict {class_id: numpy array}
         """
+        self.features_per_class = features_per_class
         for class_id in tqdm(features_per_class.keys(), desc="Computing class complexity"):
             start_time = time.time()
             features = features_per_class[class_id]
@@ -255,3 +256,40 @@ class ClassComplexityAnalyzer:
         }
         self.cluster_centers_path = data.get("cluster_centers_path", {})
         self.mode_id_per_class = data.get("mode_id_per_class", {})
+
+    def compute_clusters_for_ipc(self, ipc, use_pca=True, closest_point=True):
+        """Compute cluster centers with K=IPC for generation.
+
+        CAGS uses optimal K for complexity scoring, but generation needs
+        exactly IPC mode centers to guide each of the IPC generated images.
+        """
+        from sklearn.cluster import KMeans
+        from sklearn.decomposition import PCA
+
+        ipc_clusters = {}
+        for seq_idx, (class_label, features) in enumerate(self.features_per_class.items()):
+            X = np.stack(features)
+            if len(X) < ipc:
+                indices = np.random.choice(len(X), ipc, replace=True)
+                ipc_clusters[seq_idx] = X[indices]
+                continue
+
+            if use_pca and X.shape[1] > 4:
+                pca = PCA(n_components=4)
+                X_pca = pca.fit_transform(X)
+                kmeans = KMeans(n_clusters=ipc, random_state=0, n_init="auto").fit(X_pca)
+            else:
+                X_pca = X
+                kmeans = KMeans(n_clusters=ipc, random_state=0, n_init="auto").fit(X)
+
+            if closest_point:
+                centers = kmeans.cluster_centers_
+                closest = []
+                for center in centers:
+                    idx = np.argmin(np.sum((X_pca - center) ** 2, axis=1))
+                    closest.append(X[idx])
+                ipc_clusters[seq_idx] = np.stack(closest)
+            else:
+                ipc_clusters[seq_idx] = kmeans.cluster_centers_
+
+        return ipc_clusters

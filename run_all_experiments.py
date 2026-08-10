@@ -155,12 +155,16 @@ def run_single_experiment(
         num_datasets=num_datasets,
     )
     
+    # Compute IPC-specific cluster centers (CAGS uses optimal K for complexity,
+    # but generation needs exactly IPC mode centers per class)
+    ipc_clusters = analyzer.compute_clusters_for_ipc(ipc, use_pca=True, closest_point=True)
+    
     start_time = time.time()
     sampler.generate_dataset(
         args=args,
         class_labels=class_labels,
         sel_classes=sel_classes,
-        clusters_centers=clusters_centers,
+        clusters_centers=ipc_clusters,
         save_dir=save_dir,
         num_datasets=num_datasets,
         use_same_noise=False,
