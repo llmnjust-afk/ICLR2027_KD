@@ -27,15 +27,20 @@ class AdaptiveStopTiming:
     (mode guidance active) to unguided diffusion (prior takes over for detail
     refinement).
 
-    t_stop(c, IPC) = t_max * (1 - exp(-lambda * IPC / K(c)))
+    t_stop(c, IPC) = t_max * (1 - exp(-lambda * sqrt(IPC) / K(c)))
 
     where K(c) is the number of modes in class c.
+
+    Uses sqrt(IPC) scaling instead of linear IPC to prevent overly aggressive
+    late stopping at high IPC values. This ensures that the stop timing
+    increases gently with IPC, preserving image representativeness on harder
+    datasets while still allowing some diversity increase.
     """
 
     def __init__(
         self,
         t_max=50,
-        lam=0.1,
+        lam=0.316,
         min_stop=5,
         max_stop_ratio=0.9,
         use_complexity=True,
@@ -44,7 +49,9 @@ class AdaptiveStopTiming:
         """
         Args:
             t_max: Maximum number of diffusion timesteps (e.g., 50 for DDIM)
-            lam: Lambda parameter controlling the exponential decay rate
+            lam: Lambda parameter controlling the exponential decay rate.
+                 Adjusted to 0.316 for sqrt scaling (preserves t_stop at IPC=10
+                 compared to the original linear formula with lam=0.1).
             min_stop: Minimum stop timestep (never stop before this)
             max_stop_ratio: Maximum ratio of t_max for stop (e.g., 0.9 means
                            never guide beyond 90% of timesteps)
@@ -72,10 +79,10 @@ class AdaptiveStopTiming:
         Returns:
             t_stop: int - the timestep at which to stop guidance
         """
-        # Base formula: exponential saturation with respect to IPC/modes
+        # Base formula: exponential saturation with respect to sqrt(IPC)/modes
         # More modes → need more guidance time to cover them all
-        # Higher IPC → can afford longer guidance for diversity
-        ratio = 1.0 - np.exp(-self.lam * ipc / max(n_modes, 1))
+        # Higher IPC → can afford longer guidance for diversity (gentle sqrt scaling)
+        ratio = 1.0 - np.exp(-self.lam * np.sqrt(ipc) / max(n_modes, 1))
         t_stop = int(self.t_max * ratio)
 
         # Incorporate complexity: more complex classes benefit from longer guidance
