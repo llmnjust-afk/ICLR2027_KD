@@ -205,23 +205,19 @@ class AGSSampler:
             noise = torch.randn_like(img)
             nonzero_mask = (t != 0).float().view(-1, *([1] * (len(img.shape) - 1)))
 
-            # Extract predicted x_start
+            # Extract predicted x_start (conditional part only)
             xstart = out["pred_xstart"]
             xstart_cond, _ = xstart.chunk(2, dim=0)
 
             # AGS guidance: steer x_start toward mode features with adaptive weight
-            # Guidance score: - (xstart - mode_features) * w_t * exp(0.5 * log_var)
+            # Guidance score broadcasts from [1,...] to [2,...] matching log_variance
             guidance_score = -(
                 xstart_cond - mode_features
-            ) * w_t * torch.exp(0.5 * out["log_variance"][: xstart_cond.shape[0]])
-
-            # Apply guidance only to conditional part
-            full_guidance = torch.zeros_like(out["mean"])
-            full_guidance[: xstart_cond.shape[0]] = guidance_score
+            ) * w_t * torch.exp(0.5 * out["log_variance"])
 
             img = (
                 out["mean"]
-                + full_guidance
+                + guidance_score
                 + nonzero_mask * torch.exp(0.5 * out["log_variance"]) * noise
             )
 
@@ -300,8 +296,6 @@ class AGSSampler:
                         mode_feat.reshape(1, 4, self.latent_size, self.latent_size),
                         device=self.device,
                     )
-                    # Double for CFG
-                    mode_features = torch.cat([mode_features, mode_features], 0)
 
                     # Sample with AGS guidance
                     samples = self.sample_with_ags_guidance(
