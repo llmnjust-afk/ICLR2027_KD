@@ -1,0 +1,90 @@
+{
+  "spec": "woof",
+  "timestamp": "2026-08-10T12:44:18.420832",
+  "experiments": {
+    "ags_full_ipc10": {
+      "exit_code": 0,
+      "time": 1491.3174097537994,
+      "save_dir": "./results/woof_ags_full_ipc10",
+      "ipc": 10,
+      "num_datasets": 3
+    },
+    "ags_full_ipc50": {
+      "exit_code": 0,
+      "time": 7370.530361413956,
+      "save_dir": "./results/woof_ags_full_ipc50",
+      "ipc": 50,
+      "num_datasets": 3
+    },
+    "baseline_ipc10": {
+      "exit_code": 0,
+      "time": 1512.7248539924622,
+      "save_dir": "./results/woof_baseline_ipc10",
+      "ipc": 10,
+      "num_datasets": 3
+    },
+    "baseline_ipc50": {
+      "exit_code": 0,
+      "time": 7396.814502477646,
+      "save_dir": "./results/woof_baseline_ipc50",
+      "ipc": 50,
+      "num_datasets": 3
+    },
+    "cags_only_ipc10": {
+      "exit_code": 0,
+      "time": 499.59017992019653,
+      "save_dir": "./results/woof_cags_only_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "iast_only_ipc10": {
+      "exit_code": 0,
+      "time": 498.0035786628723,
+      "save_dir": "./results/woof_iast_only_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "tags_only_ipc10": {
+      "exit_code": 0,
+      "time": 497.30684661865234,
+      "save_dir": "./results/woof_tags_only_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "cags_iast_ipc10": {
+      "exit_code": 0,
+      "time": 498.5121910572052,
+      "save_dir": "./results/woof_cags_iast_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "cags_tags_ipc10": {
+      "exit_code": 0,
+      "time": 496.00847911834717,
+      "save_dir": "./results/woof_cags_tags_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "iast_tags_ipc10": {
+      "exit_code": 0,
+      "time": 499.5269150733948,
+      "save_dir": "./results/woof_iast_tags_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "tags_linear_ipc10": {
+      "exit_code": 0,
+      "time": 497.32816338539124,
+      "save_dir": "./results/woof_tags_linear_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    },
+    "tags_exp_ipc10": {
+      "exit_code": 0,
+      "time": 500.2284014225006,
+      "save_dir": "./results/woof_tags_exp_ipc10",
+      "ipc": 10,
+      "num_datasets": 1
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "use_cags": true,
+  "use_iast": true,
+  "use_tags": false,
+  "guidance_scale_range": [
+    0.05,
+    0.3
+  ],
+  "num_sampling_steps": 50,
+  "cfg_scale": 4.0,
+  "schedule_type": "cosine",
+  "iast_lambda": 0.1,
+  "cags_alpha": 0.5,
+  "cags_beta": 0.5,
+  "exp_name": "cags_iast_ipc10",
+  "spec": "woof",
+  "ipc": 10,
+  "num_datasets": 1,
+  "total_time": 498.5121910572052
+}
