@@ -69,8 +69,8 @@ class TimestepAdaptiveSchedule:
 
         Args:
             t: Current timestep (0 = lowest noise, t_max = highest noise)
-            t_start: Start of guidance (typically 0 or warmup_steps)
-            t_stop: Stop of guidance (from IAST)
+            t_start: Low-noise boundary of guidance window (IAST stop point)
+            t_stop: High-noise boundary of guidance window (typically t_max)
             w_max: Maximum weight (from CAGS, overrides self.w_max if provided)
 
         Returns:
@@ -86,8 +86,9 @@ class TimestepAdaptiveSchedule:
         if t_stop == t_start:
             return w_max
 
-        # Progress: 0 at t_start, 1 at t_stop
-        progress = (t - t_start) / (t_stop - t_start)
+        # Progress: 0 at high-noise end (t_stop, strongest guidance),
+        #           1 at low-noise end (t_start, weakest guidance)
+        progress = (t_stop - t) / (t_stop - t_start)
 
         if self.schedule_type == "cosine":
             weight = w_max * math.cos(math.pi / 2 * progress) + self.w_min
@@ -167,7 +168,7 @@ class TimestepAdaptiveSchedule:
         if w_max is None:
             w_max = self.w_max
 
-        timesteps = np.linspace(0, max(t_stop, 1), n_points)
+        timesteps = np.linspace(t_start, max(t_stop, 1), n_points)
         weights = np.array([
             self.get_weight(t, t_start, t_stop, w_max) for t in timesteps
         ])

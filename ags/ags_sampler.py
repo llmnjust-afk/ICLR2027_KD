@@ -172,6 +172,7 @@ class AGSSampler:
 
         img = z
         indices = list(range(self.diffusion.num_timesteps))[::-1]
+        t_max = self.num_sampling_steps - 1
 
         for i in indices:
             t = torch.tensor([i] * z.shape[0], device=self.device)
@@ -179,7 +180,7 @@ class AGSSampler:
             # TAGS: Compute adaptive guidance weight for this timestep
             if self.use_tags:
                 w_t = self.guidance_schedule.get_weight(
-                    t=i, t_start=0, t_stop=t_stop, w_max=guidance_strength
+                    t=i, t_start=t_stop, t_stop=t_max, w_max=guidance_strength
                 )
             else:
                 # Constant guidance (like MGD3)
