@@ -306,8 +306,9 @@ class Trainer:
         test_transform = self.get_test_transform(img_size)
 
         train_dataset = GeneratedDataset(train_data_dir, class_names, train_transform)
-        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True,
-                                   num_workers=4, drop_last=True)
+        eval_batch_size = min(batch_size, len(train_dataset))
+        train_loader = DataLoader(train_dataset, batch_size=eval_batch_size, shuffle=True,
+                                   num_workers=4, drop_last=False)
 
         test_dataset = datasets.ImageFolder(test_data_dir, transform=test_transform)
         test_loader = DataLoader(test_dataset, batch_size=128, shuffle=False, num_workers=4)
