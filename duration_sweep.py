@@ -215,8 +215,8 @@ def evaluate_dataset(train_dir, test_dir, class_names, num_classes, device,
     ])
 
     train_ds = GeneratedDataset(train_dir, class_names, train_transform)
-    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True,
-                             num_workers=4, drop_last=True)
+    train_loader = DataLoader(train_ds, batch_size=32, shuffle=True,
+                             num_workers=4, drop_last=False)
     test_ds = datasets.ImageFolder(test_dir, transform=test_transform)
     test_loader = DataLoader(test_ds, batch_size=128, shuffle=False, num_workers=4)
 
@@ -318,11 +318,22 @@ def main():
         print(f"  Window: {args.window}, Duration: {duration} steps")
         print(f"{'='*60}")
 
-        gen_time = generate_config(
-            model, vae, diffusion, latent_size, device,
-            analyzer, class_labels, sel_classes, args.ipc,
-            args.window, duration, args.num_datasets, save_dir,
-        )
+        ds0_path = os.path.join(save_dir, "dataset_0")
+        existing = 0
+        if os.path.isdir(ds0_path):
+            for d in os.listdir(ds0_path):
+                cls_dir = os.path.join(ds0_path, d)
+                if os.path.isdir(cls_dir):
+                    existing += len([f for f in os.listdir(cls_dir) if f.endswith(".png")])
+        if existing >= args.ipc * len(sel_classes):
+            print(f"  Already generated ({existing} images in dataset_0), skipping generation")
+            gen_time = 0
+        else:
+            gen_time = generate_config(
+                model, vae, diffusion, latent_size, device,
+                analyzer, class_labels, sel_classes, args.ipc,
+                args.window, duration, args.num_datasets, save_dir,
+            )
 
         print(f"\nEvaluating {config_name}...")
         test_dir = os.path.join(args.imagenet_dir, "val")
