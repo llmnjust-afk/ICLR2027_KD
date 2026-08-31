@@ -1,0 +1,378 @@
+#!/usr/bin/env python3
+"""
+Duration sweep: constant guidance × {low_noise, high_noise} × {10, 15, 25, 35} steps.
+
+Isolates guidance window position from cumulative guidance duration.
+ImageNette, IPC=10, 10 classes, 5 datasets per config, ConvNet7 20-epoch eval.
+
+Usage (dual GPU):
+  CUDA_VISIBLE_DEVICES=0 python duration_sweep.py --window low_noise  &
+  CUDA_VISIBLE_DEVICES=1 python duration_sweep.py --window high_noise &
+"""
+
+import os
+import sys
+import time
+import json
+import argparse
+import pickle
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, Dataset
+from torchvision import transforms, datasets
+from tqdm import tqdm
+from collections import defaultdict
+
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
+
+from diffusers.models import AutoencoderKL
+from diffusion import create_diffusion
+from download import find_model
+from models import DiT_models
+from tsne_plots import get_loader, get_features_per_class
+from ags import (
+    ClassComplexityAnalyzer,
+    AdaptiveStopTiming,
+    TimestepAdaptiveSchedule,
+    AGSSampler,
+)
+
+
+def load_model_and_vae(device, image_size=256):
+    latent_size = image_size // 8
+    model = DiT_models["DiT-XL/2"](
+        input_size=latent_size, num_classes=1000
+    ).to(device)
+    state_dict = find_model(f"DiT-XL-2-{image_size}x{image_size}.pt")
+    model.load_state_dict(state_dict, strict=False)
+    model.eval()
+    vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse").to(device)
+    diffusion = create_diffusion("50")
+    return model, vae, diffusion, latent_size
+
+
+def setup_classes(spec="nette", nclass=10):
+    with open("./misc/class_indices.txt", "r") as fp:
+        all_classes = [c.strip() for c in fp.readlines()]
+    file_map = {
+        "woof": "./misc/class_woof.txt",
+        "nette": "./misc/class_nette.txt",
+        "imagenet100": "./misc/class100.txt",
+        "imagenet1k": "./misc/class_indices.txt",
+    }
+    with open(file_map[spec], "r") as fp:
+        sel_classes = [c.strip() for c in fp.readlines()]
+    sel_classes = sel_classes[:nclass]
+    class_labels = [all_classes.index(c) for c in sel_classes]
+    return class_labels, sel_classes
+
+
+def compute_clusters(spec, imagenet_dir, vae, device, nclass=10):
+    import argparse as ap
+    args_eval = ap.Namespace(
+        dataset="imagenet", net_type="resnet_ap", depth=10, width=1.0,
+        norm_type="instance", nch=3,
+        data_path=os.path.join(imagenet_dir, "train"),
+        size=224, aug_type="color_crop_cutout", augment=True,
+        dseed=0, global_batch_size=1, use_vae=True, finetune_ipc=-1,
+        nclass=nclass, spec=spec, phase=0, image_size=256,
+    )
+    loader = get_loader(args_eval, return_path=True)
+    features_per_class, paths_per_class = get_features_per_class(args_eval, loader, vae)
+
+    analyzer = ClassComplexityAnalyzer(
+        n_clusters_range=(2, 20), alpha=0.5, beta=0.5, use_pca=True,
+    )
+    analyzer.analyze_all_classes(features_per_class, paths_per_class)
+    return analyzer
+
+
+def generate_config(
+    model, vae, diffusion, latent_size, device,
+    analyzer, class_labels, sel_classes, ipc,
+    window, guidance_steps, num_datasets, save_dir,
+):
+    t_max = 49
+    if window == "high_noise":
+        default_stop_t = t_max - guidance_steps
+    else:
+        default_stop_t = guidance_steps
+
+    adaptive_stop = AdaptiveStopTiming(t_max=50, lam=0.316, window=window)
+    guidance_schedule = TimestepAdaptiveSchedule(
+        w_max=0.3, schedule_type="cosine",
+    )
+    sampler = AGSSampler(
+        model=model, vae=vae, diffusion=diffusion,
+        complexity_analyzer=analyzer,
+        adaptive_stop=adaptive_stop,
+        guidance_schedule=guidance_schedule,
+        device=device, num_sampling_steps=50,
+        cfg_scale=4.0, latent_size=latent_size,
+        use_cags=True, use_iast=False, use_tags=False,
+        guidance_scale_range=(0.05, 0.3),
+        guidance_window=window,
+    )
+    sampler.default_guidance_scale = 0.1
+    sampler.default_stop_t = default_stop_t
+
+    clusters_centers = analyzer.compute_clusters_for_ipc(
+        ipc, use_pca=True, closest_point=True
+    )
+
+    args = argparse.Namespace(num_samples=ipc, num_datasets=num_datasets)
+    os.makedirs(save_dir, exist_ok=True)
+    start = time.time()
+    sampler.generate_dataset(
+        args=args,
+        class_labels=class_labels,
+        sel_classes=sel_classes,
+        clusters_centers=clusters_centers,
+        save_dir=save_dir,
+        num_datasets=num_datasets,
+        use_same_noise=False,
+        total_shift=0,
+    )
+    elapsed = time.time() - start
+    print(f"  Generated {num_datasets} datasets in {elapsed:.1f}s ({elapsed/60:.1f} min)")
+    return elapsed
+
+
+class GeneratedDataset(Dataset):
+    def __init__(self, root, class_names, transform=None):
+        self.samples = []
+        self.labels = []
+        self.transform = transform
+        for idx, cls_name in enumerate(class_names):
+            cls_dir = os.path.join(root, cls_name)
+            if not os.path.isdir(cls_dir):
+                continue
+            for fname in sorted(os.listdir(cls_dir)):
+                if fname.endswith((".png", ".jpg", ".jpeg")):
+                    self.samples.append(os.path.join(cls_dir, fname))
+                    self.labels.append(idx)
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, idx):
+        from PIL import Image
+        img = Image.open(self.samples[idx]).convert("RGB")
+        if self.transform:
+            img = self.transform(img)
+        return img, self.labels[idx]
+
+
+class ConvNet(nn.Module):
+    def __init__(self, channel=128, num_classes=10, depth=7, norm="instance"):
+        super().__init__()
+        self.features = nn.ModuleList()
+        in_ch = 3
+        for i in range(depth):
+            out_ch = channel
+            conv = nn.Conv2d(in_ch, out_ch, 3, padding=1)
+            if norm == "instance":
+                norm_layer = nn.InstanceNorm2d(out_ch)
+            elif norm == "batch":
+                norm_layer = nn.BatchNorm2d(out_ch)
+            else:
+                norm_layer = nn.Identity()
+            block = nn.Sequential(
+                conv, norm_layer, nn.ReLU(inplace=True), nn.AvgPool2d(2),
+            )
+            self.features.append(block)
+            in_ch = out_ch
+        self.classifier = nn.Linear(in_ch, num_classes)
+
+    def forward(self, x):
+        for block in self.features:
+            x = block(x)
+        x = x.mean(dim=[2, 3])
+        return self.classifier(x)
+
+
+def evaluate_dataset(train_dir, test_dir, class_names, num_classes, device,
+                     img_size=224, epochs=20, batch_size=128, seed=0):
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+
+    model = ConvNet(num_classes=num_classes, depth=7).to(device)
+    train_transform = transforms.Compose([
+        transforms.Resize((img_size, img_size)),
+        transforms.RandomCrop(img_size, padding=int(img_size * 0.125)),
+        transforms.RandomHorizontalFlip(),
+        transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ])
+    test_transform = transforms.Compose([
+        transforms.Resize((img_size, img_size)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ])
+
+    train_ds = GeneratedDataset(train_dir, class_names, train_transform)
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True,
+                             num_workers=4, drop_last=True)
+    test_ds = datasets.ImageFolder(test_dir, transform=test_transform)
+    test_loader = DataLoader(test_ds, batch_size=128, shuffle=False, num_workers=4)
+
+    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9,
+                          weight_decay=5e-4, nesterov=True)
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
+    criterion = nn.CrossEntropyLoss()
+
+    def mixup_fn(x, y):
+        if np.random.rand() > 0.5:
+            return x, y
+        lam = np.random.beta(1.0, 1.0)
+        idx = torch.randperm(x.size(0), device=x.device)
+        mixed_x = lam * x + (1 - lam) * x[idx]
+        return mixed_x, (y, y[idx], lam)
+
+    for epoch in range(epochs):
+        model.train()
+        for images, targets in train_loader:
+            images, targets = images.to(device), targets.to(device)
+            mixed_images, mixed_targets = mixup_fn(images, targets)
+            if isinstance(mixed_targets, tuple):
+                y_a, y_b, lam = mixed_targets
+                outputs = model(mixed_images)
+                loss = lam * criterion(outputs, y_a) + (1 - lam) * criterion(outputs, y_b)
+            else:
+                outputs = model(mixed_images)
+                loss = criterion(outputs, mixed_targets)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+        scheduler.step()
+
+    model.eval()
+    correct = 0
+    total = 0
+    top5_correct = 0
+    with torch.no_grad():
+        for images, targets in test_loader:
+            images, targets = images.to(device), targets.to(device)
+            outputs = model(images)
+            _, predicted = outputs.max(1)
+            total += targets.size(0)
+            correct += predicted.eq(targets).sum().item()
+            if outputs.size(1) >= 5:
+                _, pred5 = outputs.topk(5, 1, True, True)
+                top5_correct += pred5.eq(targets.view(-1, 1)).any(dim=1).sum().item()
+
+    top1 = 100.0 * correct / total
+    top5 = 100.0 * top5_correct / total if total > 0 else 0
+    del model
+    torch.cuda.empty_cache()
+    return top1, top5
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Duration sweep experiment")
+    parser.add_argument("--window", type=str, default="low_noise",
+                        choices=["low_noise", "high_noise"])
+    parser.add_argument("--imagenet-dir", type=str, default="/root/data/imagenette2/")
+    parser.add_argument("--save-base", type=str, default="./results/sweep")
+    parser.add_argument("--ipc", type=int, default=10)
+    parser.add_argument("--num-datasets", type=int, default=5)
+    parser.add_argument("--epochs", type=int, default=20)
+    parser.add_argument("--durations", type=int, nargs="+", default=[10, 15, 25, 35])
+    args = parser.parse_args()
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Device: {device}, Window: {args.window}")
+    print(f"Durations: {args.durations}")
+    print(f"ImageNette dir: {args.imagenet_dir}")
+
+    class_labels, sel_classes = setup_classes(spec="nette", nclass=10)
+    print(f"Classes: {sel_classes}")
+
+    print("\nLoading DiT model and VAE...")
+    model, vae, diffusion, latent_size = load_model_and_vae(device)
+    print("Model loaded.")
+
+    print("\nComputing CAGS clusters...")
+    analyzer = compute_clusters("nette", args.imagenet_dir, vae, device)
+    for c in analyzer.complexity_scores:
+        print(f"  Class {c}: complexity={analyzer.complexity_scores[c]:.4f}, "
+              f"modes={analyzer.mode_counts[c]}")
+
+    cluster_cache = os.path.join(args.save_base, "cluster_cache.pkl")
+    os.makedirs(args.save_base, exist_ok=True)
+    with open(cluster_cache, "wb") as f:
+        pickle.dump(analyzer, f)
+    print(f"Cluster cache saved to {cluster_cache}")
+
+    all_results = {}
+
+    for duration in args.durations:
+        config_name = f"{args.window}_const_d{duration}"
+        save_dir = os.path.join(args.save_base, config_name)
+        print(f"\n{'='*60}")
+        print(f"Config: {config_name}")
+        print(f"  Window: {args.window}, Duration: {duration} steps")
+        print(f"{'='*60}")
+
+        gen_time = generate_config(
+            model, vae, diffusion, latent_size, device,
+            analyzer, class_labels, sel_classes, args.ipc,
+            args.window, duration, args.num_datasets, save_dir,
+        )
+
+        print(f"\nEvaluating {config_name}...")
+        test_dir = os.path.join(args.imagenet_dir, "val")
+        ds0_dir = os.path.join(save_dir, "dataset_0")
+        class_names = sorted([d for d in os.listdir(ds0_dir)
+                            if os.path.isdir(os.path.join(ds0_dir, d))
+                            and d.startswith("n")])
+
+        dataset_results = []
+        for ds_idx in range(args.num_datasets):
+            train_dir = os.path.join(save_dir, f"dataset_{ds_idx}")
+            if not os.path.isdir(train_dir):
+                print(f"  Dataset {ds_idx}: NOT FOUND, skipping")
+                continue
+            top1, top5 = evaluate_dataset(
+                train_dir, test_dir, class_names, 10, device,
+                epochs=args.epochs, seed=0,
+            )
+            print(f"  Dataset {ds_idx}: Top-1={top1:.2f}%, Top-5={top5:.2f}%")
+            dataset_results.append({"dataset": ds_idx, "top1": top1, "top5": top5})
+
+        top1s = [r["top1"] for r in dataset_results]
+        mean_top1 = np.mean(top1s) if top1s else 0
+        std_top1 = np.std(top1s) if top1s else 0
+
+        all_results[config_name] = {
+            "window": args.window,
+            "duration": duration,
+            "guidance_steps": duration,
+            "gen_time_s": gen_time,
+            "datasets": dataset_results,
+            "top1_mean": mean_top1,
+            "top1_std": std_top1,
+        }
+        print(f"\n  {config_name}: Top-1 = {mean_top1:.2f} ± {std_top1:.2f}%")
+
+    results_path = os.path.join(args.save_base, f"sweep_{args.window}_results.json")
+    with open(results_path, "w") as f:
+        json.dump(all_results, f, indent=2)
+    print(f"\nResults saved to {results_path}")
+
+    print(f"\n{'='*60}")
+    print(f"SUMMARY ({args.window})")
+    print(f"{'='*60}")
+    for name, res in all_results.items():
+        print(f"  {name}: {res['top1_mean']:.2f} ± {res['top1_std']:.2f}%")
+
+    del model, vae
+    torch.cuda.empty_cache()
+
+
+if __name__ == "__main__":
+    main()
