@@ -30,7 +30,7 @@ python sample_ags.py \
     --cags-kmax 20 \
     --guidance-scale-min 0.05 \
     --guidance-scale-max 0.5 \
-    --iast-lambda 0.1 \
+    --iast-lambda 0.316 \
     --iast-min-stop 5 \
     --iast-max-stop-ratio 0.9 \
     --tags-schedule cosine \

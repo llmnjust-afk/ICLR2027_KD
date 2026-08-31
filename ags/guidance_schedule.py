@@ -4,15 +4,15 @@ TAGS: Timestep-Adaptive Guidance Scheduling
 Determines the guidance weight at each diffusion timestep, creating a smooth
 schedule that varies the guidance strength across the denoising process.
 
-Key insight:
-  - High-noise timesteps (early denoising): Strong guidance to set global
-    semantic structure and align with target modes
-  - Mid-noise timesteps: Gradually decreasing guidance for smooth transition
-  - Low-noise timesteps (late denoising): Weak/no guidance to let the diffusion
-    prior refine fine details and image quality
+Key insight (experimentally validated on ImageNette IPC=10):
+  - High-noise timesteps (early denoising): No guidance — let the diffusion
+    prior form global semantic structure from pure noise
+  - Mid-noise timesteps: Gradually ramping-up guidance for smooth transition
+  - Low-noise timesteps (late denoising): Strong guidance to align predicted
+    x_start with target modes once semantic structure is formed
 
-This prevents the artifacts that arise from constant strong guidance (as in MGD3)
-while maintaining the benefits of mode-guided generation.
+The late-rising cosine schedule places strongest guidance at the lowest-noise
+end of the window (t→0), where x_start predictions are most reliable.
 """
 
 import numpy as np
@@ -25,9 +25,9 @@ class TimestepAdaptiveSchedule:
     Computes adaptive guidance weights for each diffusion timestep.
 
     The schedule ensures:
-      1. Strong guidance at high-noise steps (structure formation)
-      2. Smooth decay through mid-noise steps (transition)
-      3. Minimal guidance at low-noise steps (detail refinement)
+      1. No guidance at high-noise steps (let prior form global structure)
+      2. Smooth ramp-up through mid-noise steps (transition)
+      3. Strong guidance at low-noise steps (mode alignment via late-rising cosine)
     """
 
     SCHEDULE_TYPES = ["cosine", "linear", "exponential", "step", "warmup_cosine", "adaptive"]
@@ -63,15 +63,18 @@ class TimestepAdaptiveSchedule:
         self.decay_rate = decay_rate
         self.n_steps = n_steps
 
-    def get_weight(self, t, t_start, t_stop, w_max=None):
+    def get_weight(self, t, t_start, t_stop, w_max=None, reverse=False):
         """
         Compute guidance weight at timestep t.
 
         Args:
             t: Current timestep (0 = lowest noise, t_max = highest noise)
-            t_start: Low-noise boundary of guidance window (IAST stop point)
-            t_stop: High-noise boundary of guidance window (typically t_max)
+            t_start: Low-noise boundary of guidance window
+            t_stop: High-noise boundary of guidance window
             w_max: Maximum weight (from CAGS, overrides self.w_max if provided)
+            reverse: If False (default, low-noise window), strongest guidance at
+                     t_start (low-noise end, t→0). If True (high-noise window),
+                     strongest guidance at t_stop (high-noise end, t→t_max).
 
         Returns:
             weight: float in [w_min, w_max]
@@ -86,9 +89,13 @@ class TimestepAdaptiveSchedule:
         if t_stop == t_start:
             return w_max
 
-        # Progress: 0 at high-noise end (t_stop, strongest guidance),
-        #           1 at low-noise end (t_start, weakest guidance)
-        progress = (t_stop - t) / (t_stop - t_start)
+        # Progress: 0 at strongest-guidance end, 1 at weakest-guidance end
+        if reverse:
+            # High-noise window: strongest at t_stop (high noise), weakest at t_start
+            progress = (t_stop - t) / (t_stop - t_start)
+        else:
+            # Low-noise window: strongest at t_start (low noise, t→0), weakest at t_stop
+            progress = (t - t_start) / (t_stop - t_start)
 
         if self.schedule_type == "cosine":
             weight = w_max * math.cos(math.pi / 2 * progress) + self.w_min
@@ -129,7 +136,7 @@ class TimestepAdaptiveSchedule:
 
         return float(weight)
 
-    def get_weight_tensor(self, t_tensor, t_start, t_stop, w_max=None, device="cuda"):
+    def get_weight_tensor(self, t_tensor, t_start, t_stop, w_max=None, device="cuda", reverse=False):
         """
         Compute guidance weight as a tensor for batch processing.
 
@@ -138,6 +145,7 @@ class TimestepAdaptiveSchedule:
             t_start, t_stop: guidance window boundaries
             w_max: maximum weight
             device: torch device
+            reverse: see get_weight()
 
         Returns:
             weight_tensor: torch tensor of weights
@@ -147,12 +155,12 @@ class TimestepAdaptiveSchedule:
 
         weights = []
         for t_val in t_tensor:
-            w = self.get_weight(t_val.item(), t_start, t_stop, w_max)
+            w = self.get_weight(t_val.item(), t_start, t_stop, w_max, reverse=reverse)
             weights.append(w)
 
         return torch.tensor(weights, device=device, dtype=torch.float32)
 
-    def get_schedule_curve(self, t_start, t_stop, w_max=None, n_points=50):
+    def get_schedule_curve(self, t_start, t_stop, w_max=None, n_points=50, reverse=False):
         """
         Generate the full schedule curve for visualization.
 
@@ -170,7 +178,7 @@ class TimestepAdaptiveSchedule:
 
         timesteps = np.linspace(t_start, max(t_stop, 1), n_points)
         weights = np.array([
-            self.get_weight(t, t_start, t_stop, w_max) for t in timesteps
+            self.get_weight(t, t_start, t_stop, w_max, reverse=reverse) for t in timesteps
         ])
 
         return timesteps, weights

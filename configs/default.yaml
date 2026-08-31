@@ -31,7 +31,7 @@ cags:
 # IAST: IPC-Adaptive Stop Timing
 iast:
   enabled: true
-  lambda: 0.1
+  lambda: 0.316
   min_stop: 5
   max_stop_ratio: 0.9
   use_complexity: true
@@ -46,6 +46,7 @@ tags:
   w_min: 0.0
   warmup_steps: 0
   decay_rate: 3.0
+  guidance_window: "low_noise"
 
 # Evaluation
 evaluation:

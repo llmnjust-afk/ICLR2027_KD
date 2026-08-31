@@ -10,3 +10,7 @@ transformers>=4.30.0
 pyyaml>=6.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
+timm>=0.9.0
+efficientnet_pytorch>=0.7.1
+scikit-image>=0.20.0
+pandas>=2.0.0

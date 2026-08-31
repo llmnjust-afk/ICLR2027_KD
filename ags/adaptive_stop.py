@@ -45,6 +45,7 @@ class AdaptiveStopTiming:
         max_stop_ratio=0.9,
         use_complexity=True,
         complexity_weight=0.3,
+        window="low_noise",
     ):
         """
         Args:
@@ -52,11 +53,14 @@ class AdaptiveStopTiming:
             lam: Lambda parameter controlling the exponential decay rate.
                  Adjusted to 0.316 for sqrt scaling (preserves t_stop at IPC=10
                  compared to the original linear formula with lam=0.1).
-            min_stop: Minimum stop timestep (never stop before this)
-            max_stop_ratio: Maximum ratio of t_max for stop (e.g., 0.9 means
+            min_stop: Minimum guidance steps (never guide fewer than this)
+            max_stop_ratio: Maximum ratio of t_max for guidance (e.g., 0.9 means
                            never guide beyond 90% of timesteps)
             use_complexity: Whether to incorporate class complexity into stop timing
             complexity_weight: Weight of complexity in stop timing adjustment
+            window: "low_noise" (default) — guidance in [0, t_stop], t_stop =
+                    guidance_steps. "high_noise" — guidance in [t_stop, t_max],
+                    t_stop = t_max - 1 - guidance_steps.
         """
         self.t_max = t_max
         self.lam = lam
@@ -64,12 +68,17 @@ class AdaptiveStopTiming:
         self.max_stop_ratio = max_stop_ratio
         self.use_complexity = use_complexity
         self.complexity_weight = complexity_weight
+        self.window = window
 
         self.stop_timings = {}
 
-    def compute_stop(self, ipc, n_modes, complexity_score=None):
+    def compute_guidance_steps(self, ipc, n_modes, complexity_score=None):
         """
-        Compute adaptive stop timing for a specific class and IPC setting.
+        Compute the number of guidance steps for a specific class and IPC setting.
+
+        This is the primary quantity: it is monotonically non-decreasing with
+        IPC, n_modes, and complexity_score. The t_stop used by the sampler is
+        derived from this value based on the guidance window direction.
 
         Args:
             ipc: Images Per Class
@@ -77,21 +86,41 @@ class AdaptiveStopTiming:
             complexity_score: Optional complexity score from CAGS [0, 1]
 
         Returns:
-            t_stop: int - the timestep at which to stop guidance
+            guidance_steps: int — number of timesteps with active guidance
         """
-        # Base formula: exponential saturation with respect to sqrt(IPC)/modes
-        # More modes → need more guidance time to cover them all
-        # Higher IPC → can afford longer guidance for diversity (gentle sqrt scaling)
         ratio = 1.0 - np.exp(-self.lam * np.sqrt(ipc) / max(n_modes, 1))
-        t_stop = int(self.t_max * ratio)
+        guidance_steps = int(self.t_max * ratio)
 
-        # Incorporate complexity: more complex classes benefit from longer guidance
         if self.use_complexity and complexity_score is not None:
             complexity_adjustment = self.complexity_weight * complexity_score * self.t_max
-            t_stop += int(complexity_adjustment)
+            guidance_steps += int(complexity_adjustment)
 
-        # Clamp to valid range
-        t_stop = int(np.clip(t_stop, self.min_stop, int(self.t_max * self.max_stop_ratio)))
+        guidance_steps = int(np.clip(guidance_steps, self.min_stop, int(self.t_max * self.max_stop_ratio)))
+
+        return guidance_steps
+
+    def compute_stop(self, ipc, n_modes, complexity_score=None):
+        """
+        Compute the t_stop cutoff for the sampler, derived from guidance_steps.
+
+        For low_noise window: guidance in [0, t_stop], so t_stop = guidance_steps.
+        For high_noise window: guidance in [t_stop, t_max-1], so
+        t_stop = t_max - 1 - guidance_steps.
+
+        Args:
+            ipc: Images Per Class
+            n_modes: Number of detected modes in this class
+            complexity_score: Optional complexity score from CAGS [0, 1]
+
+        Returns:
+            t_stop: int — the timestep cutoff used by the sampler
+        """
+        guidance_steps = self.compute_guidance_steps(ipc, n_modes, complexity_score)
+
+        if self.window == "high_noise":
+            t_stop = self.t_max - 1 - guidance_steps
+        else:
+            t_stop = guidance_steps
 
         return t_stop
 
@@ -130,10 +159,12 @@ class AdaptiveStopTiming:
         for ipc in ipc_range:
             for n_modes in n_modes_range:
                 key = f"ipc{ipc}_modes{n_modes}"
+                guidance_steps = self.compute_guidance_steps(ipc, n_modes, complexity_score=0.5)
                 t_stop = self.compute_stop(ipc, n_modes, complexity_score=0.5)
                 results[key] = {
                     "ipc": ipc,
                     "n_modes": n_modes,
+                    "guidance_steps": guidance_steps,
                     "t_stop": t_stop,
                     "stop_ratio": t_stop / self.t_max,
                 }

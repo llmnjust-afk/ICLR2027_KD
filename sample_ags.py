@@ -112,7 +112,7 @@ def get_args():
     # IAST
     parser.add_argument("--no-iast", action="store_true", default=False,
                         help="Disable IAST (use fixed stop_t)")
-    parser.add_argument("--iast-lambda", type=float, default=0.1,
+    parser.add_argument("--iast-lambda", type=float, default=0.316,
                         help="Lambda for IAST stop timing")
     parser.add_argument("--iast-min-stop", type=int, default=5,
                         help="Min stop timestep")
@@ -126,6 +126,9 @@ def get_args():
     # TAGS
     parser.add_argument("--no-tags", action="store_true", default=False,
                         help="Disable TAGS (use constant guidance weight)")
+    parser.add_argument("--guidance-window", type=str, default="low_noise",
+                        choices=["low_noise", "high_noise"],
+                        help="Guidance window: low_noise (default, best) or high_noise")
     parser.add_argument("--tags-schedule", type=str, default="cosine",
                         choices=["cosine", "linear", "exponential", "step",
                                  "warmup_cosine", "adaptive"],
@@ -307,6 +310,7 @@ def main():
         use_iast=not args.no_iast,
         use_tags=not args.no_tags,
         guidance_scale_range=(args.guidance_scale_min, args.guidance_scale_max),
+        guidance_window=args.guidance_window,
     )
 
     # Override defaults for ablation

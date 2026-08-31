@@ -51,6 +51,7 @@ class AGSSampler:
         use_iast=True,
         use_tags=True,
         guidance_scale_range=(0.05, 0.5),
+        guidance_window="low_noise",
     ):
         """
         Args:
@@ -68,6 +69,9 @@ class AGSSampler:
             use_iast: Enable/disable IAST module (for ablation)
             use_tags: Enable/disable TAGS module (for ablation)
             guidance_scale_range: (min, max) range for CAGS output
+            guidance_window: "low_noise" (default, experimentally best) or
+                            "high_noise" — controls which end of the denoising
+                            process receives mode guidance
         """
         self.model = model
         self.vae = vae
@@ -77,11 +81,12 @@ class AGSSampler:
         self.cfg_scale = cfg_scale
         self.latent_size = latent_size
         self.guidance_scale_range = guidance_scale_range
+        self.guidance_window = guidance_window
 
         # AGS modules
         self.complexity_analyzer = complexity_analyzer or ClassComplexityAnalyzer()
         self.adaptive_stop = adaptive_stop or AdaptiveStopTiming(
-            t_max=num_sampling_steps, lam=0.1
+            t_max=num_sampling_steps, lam=0.316, window=guidance_window
         )
         self.guidance_schedule = guidance_schedule or TimestepAdaptiveSchedule(
             w_max=0.3, schedule_type="cosine"
@@ -131,6 +136,7 @@ class AGSSampler:
             self.per_class_params[class_label] = {
                 "guidance_strength": guidance_strength,
                 "t_stop": t_stop,
+                "guidance_window": self.guidance_window,
                 "n_modes": self.complexity_analyzer.mode_counts.get(class_idx, 5),
                 "complexity": self.complexity_analyzer.complexity_scores.get(class_idx, 0.5),
             }
@@ -179,12 +185,22 @@ class AGSSampler:
 
             # TAGS: Compute adaptive guidance weight for this timestep
             if self.use_tags:
-                w_t = self.guidance_schedule.get_weight(
-                    t=i, t_start=t_stop, t_stop=t_max, w_max=guidance_strength
-                )
+                if self.guidance_window == "high_noise":
+                    w_t = self.guidance_schedule.get_weight(
+                        t=i, t_start=t_stop, t_stop=t_max,
+                        w_max=guidance_strength, reverse=True,
+                    )
+                else:
+                    w_t = self.guidance_schedule.get_weight(
+                        t=i, t_start=0, t_stop=t_stop,
+                        w_max=guidance_strength, reverse=False,
+                    )
             else:
                 # Constant guidance (like MGD3)
-                w_t = guidance_strength if i > t_stop else 0.0
+                if self.guidance_window == "high_noise":
+                    w_t = guidance_strength if i > t_stop else 0.0
+                else:
+                    w_t = guidance_strength if i <= t_stop else 0.0
 
             # If no guidance at this step, use standard p_sample
             if w_t <= 0:
@@ -326,6 +342,7 @@ class AGSSampler:
             "use_cags": self.use_cags,
             "use_iast": self.use_iast,
             "use_tags": self.use_tags,
+            "guidance_window": self.guidance_window,
             "guidance_scale_range": self.guidance_scale_range,
             "num_sampling_steps": self.num_sampling_steps,
             "cfg_scale": self.cfg_scale,
