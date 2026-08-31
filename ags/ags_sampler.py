@@ -200,7 +200,7 @@ class AGSSampler:
                 if self.guidance_window == "high_noise":
                     w_t = guidance_strength if i > t_stop else 0.0
                 else:
-                    w_t = guidance_strength if i <= t_stop else 0.0
+                    w_t = guidance_strength if i < t_stop else 0.0
 
             # If no guidance at this step, use standard p_sample
             if w_t <= 0:
