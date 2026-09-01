@@ -267,11 +267,11 @@ class ClassComplexityAnalyzer:
         from sklearn.decomposition import PCA
 
         ipc_clusters = {}
-        for seq_idx, (class_label, features) in enumerate(self.features_per_class.items()):
+        for class_label, features in self.features_per_class.items():
             X = np.stack(features)
             if len(X) < ipc:
                 indices = np.random.choice(len(X), ipc, replace=True)
-                ipc_clusters[seq_idx] = X[indices]
+                ipc_clusters[class_label] = X[indices]
                 continue
 
             if use_pca and X.shape[1] > 4:
@@ -288,8 +288,8 @@ class ClassComplexityAnalyzer:
                 for center in centers:
                     idx = np.argmin(np.sum((X_pca - center) ** 2, axis=1))
                     closest.append(X[idx])
-                ipc_clusters[seq_idx] = np.stack(closest)
+                ipc_clusters[class_label] = np.stack(closest)
             else:
-                ipc_clusters[seq_idx] = kmeans.cluster_centers_
+                ipc_clusters[class_label] = kmeans.cluster_centers_
 
         return ipc_clusters

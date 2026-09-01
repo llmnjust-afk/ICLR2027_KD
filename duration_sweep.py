@@ -95,12 +95,16 @@ def generate_config(
     analyzer, class_labels, sel_classes, ipc,
     window, guidance_steps, num_datasets, save_dir,
     schedule="constant",
+    no_cags=False, fixed_scale=0.1, fixed_stop_t=None,
 ):
     t_max = 49
     if window == "high_noise":
         default_stop_t = t_max - guidance_steps
     else:
         default_stop_t = guidance_steps
+
+    if fixed_stop_t is not None:
+        default_stop_t = fixed_stop_t
 
     use_tags = schedule != "constant"
     sched_type = "cosine" if schedule == "constant" else schedule
@@ -109,6 +113,7 @@ def generate_config(
     guidance_schedule = TimestepAdaptiveSchedule(
         w_max=0.3, schedule_type=sched_type,
     )
+    use_cags = not no_cags
     sampler = AGSSampler(
         model=model, vae=vae, diffusion=diffusion,
         complexity_analyzer=analyzer,
@@ -116,15 +121,15 @@ def generate_config(
         guidance_schedule=guidance_schedule,
         device=device, num_sampling_steps=50,
         cfg_scale=4.0, latent_size=latent_size,
-        use_cags=True, use_iast=False, use_tags=use_tags,
+        use_cags=use_cags, use_iast=False, use_tags=use_tags,
         guidance_scale_range=(0.05, 0.3),
         guidance_window=window,
     )
-    sampler.default_guidance_scale = 0.1
+    sampler.default_guidance_scale = fixed_scale
     sampler.default_stop_t = default_stop_t
 
     clusters_centers = analyzer.compute_clusters_for_ipc(
-        ipc, use_pca=True, closest_point=True
+        ipc, use_pca=False, closest_point=False
     )
 
     args = argparse.Namespace(num_samples=ipc, num_datasets=num_datasets)
@@ -198,20 +203,40 @@ class ConvNet(nn.Module):
         return self.classifier(x)
 
 
+def rand_bbox(size, lam):
+    W = size[2]
+    H = size[3]
+    cut_rat = np.sqrt(1. - lam)
+    cut_w = int(W * cut_rat)
+    cut_h = int(H * cut_rat)
+    cx = np.random.randint(W)
+    cy = np.random.randint(H)
+    bbx1 = np.clip(cx - cut_w // 2, 0, W)
+    bby1 = np.clip(cy - cut_h // 2, 0, H)
+    bbx2 = np.clip(cx + cut_w // 2, 0, W)
+    bby2 = np.clip(cy + cut_h // 2, 0, H)
+    return bbx1, bby1, bbx2, bby2
+
+
 def evaluate_dataset(train_dir, test_dir, class_names, num_classes, device,
-                     img_size=224, epochs=20, batch_size=128, seed=0):
+                     img_size=224, epochs=20, batch_size=64, seed=0,
+                     depth=6, use_cutmix=True, use_rrc=True):
     torch.manual_seed(seed)
     np.random.seed(seed)
 
-    model = ConvNet(num_classes=num_classes, depth=7).to(device)
-    train_transform = transforms.Compose([
-        transforms.Resize((img_size, img_size)),
-        transforms.RandomCrop(img_size, padding=int(img_size * 0.125)),
+    model = ConvNet(num_classes=num_classes, depth=depth).to(device)
+    aug_list = []
+    if use_rrc:
+        aug_list.append(transforms.RandomResizedCrop(img_size, scale=(0.5, 1.0)))
+    else:
+        aug_list.append(transforms.Resize((img_size, img_size)))
+    aug_list.extend([
         transforms.RandomHorizontalFlip(),
         transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
+    train_transform = transforms.Compose(aug_list)
     test_transform = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.ToTensor(),
@@ -219,36 +244,33 @@ def evaluate_dataset(train_dir, test_dir, class_names, num_classes, device,
     ])
 
     train_ds = GeneratedDataset(train_dir, class_names, train_transform)
-    train_loader = DataLoader(train_ds, batch_size=32, shuffle=True,
-                             num_workers=4, drop_last=False)
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True,
+                             num_workers=4, drop_last=False,
+                             persistent_workers=True, pin_memory=True)
     test_ds = datasets.ImageFolder(test_dir, transform=test_transform)
     test_loader = DataLoader(test_ds, batch_size=128, shuffle=False, num_workers=4)
 
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9,
-                          weight_decay=5e-4, nesterov=True)
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
+                          weight_decay=5e-4)
+    scheduler = optim.lr_scheduler.MultiStepLR(
+        optimizer, milestones=[2 * epochs // 3, 5 * epochs // 6], gamma=0.2)
     criterion = nn.CrossEntropyLoss()
-
-    def mixup_fn(x, y):
-        if np.random.rand() > 0.5:
-            return x, y
-        lam = np.random.beta(1.0, 1.0)
-        idx = torch.randperm(x.size(0), device=x.device)
-        mixed_x = lam * x + (1 - lam) * x[idx]
-        return mixed_x, (y, y[idx], lam)
 
     for epoch in range(epochs):
         model.train()
         for images, targets in train_loader:
             images, targets = images.to(device), targets.to(device)
-            mixed_images, mixed_targets = mixup_fn(images, targets)
-            if isinstance(mixed_targets, tuple):
-                y_a, y_b, lam = mixed_targets
-                outputs = model(mixed_images)
-                loss = lam * criterion(outputs, y_a) + (1 - lam) * criterion(outputs, y_b)
+            if use_cutmix and np.random.rand() < 1.0:
+                lam = np.random.beta(1.0, 1.0)
+                idx = torch.randperm(images.size(0), device=device)
+                bbx1, bby1, bbx2, bby2 = rand_bbox(images.size(), lam)
+                images[:, :, bbx1:bbx2, bby1:bby2] = images[idx, :, bbx1:bbx2, bby1:bby2]
+                ratio = 1 - ((bbx2 - bbx1) * (bby2 - bby1) / (images.size(-1) * images.size(-2)))
+                outputs = model(images)
+                loss = criterion(outputs, targets) * ratio + criterion(outputs, targets[idx]) * (1. - ratio)
             else:
-                outputs = model(mixed_images)
-                loss = criterion(outputs, mixed_targets)
+                outputs = model(images)
+                loss = criterion(outputs, targets)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -295,6 +317,19 @@ def main():
                         help="Override config-name suffix (default derived from schedule)")
     parser.add_argument("--eval-only", action="store_true", default=False,
                         help="Skip generation entirely; only evaluate existing images")
+    parser.add_argument("--spec", type=str, default="nette",
+                        choices=["nette", "woof", "imagenet100", "imagenet1k"],
+                        help="Dataset spec for class selection")
+    parser.add_argument("--nclass", type=int, default=10,
+                        help="Number of classes (use 100 for imagenet100)")
+    parser.add_argument("--depth", type=int, default=6,
+                        help="ConvNet depth (MGD3 default=6)")
+    parser.add_argument("--no-cags", action="store_true", default=False,
+                        help="Disable CAGS; use fixed guidance scale (MGD3 mode)")
+    parser.add_argument("--fixed-scale", type=float, default=0.1,
+                        help="Fixed guidance scale when CAGS disabled (MGD3 default=0.1)")
+    parser.add_argument("--fixed-stop-t", type=int, default=None,
+                        help="Override IAST/duration with a fixed stop_t (MGD3 default=25)")
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -302,9 +337,9 @@ def main():
     print(f"Device: {device}, Window: {args.window}")
     print(f"Durations: {args.durations}, Schedule: {args.schedule} (tag={sched_tag})")
     print(f"Seeds: {args.seeds}, Eval-only: {args.eval_only}")
-    print(f"ImageNette dir: {args.imagenet_dir}")
+    print(f"Data dir: {args.imagenet_dir}, Spec: {args.spec}, Nclass: {args.nclass}")
 
-    class_labels, sel_classes = setup_classes(spec="nette", nclass=10)
+    class_labels, sel_classes = setup_classes(spec=args.spec, nclass=args.nclass)
     print(f"Classes: {sel_classes}")
 
     os.makedirs(args.save_base, exist_ok=True)
@@ -325,7 +360,7 @@ def main():
                 analyzer = pickle.load(f)
         else:
             print("\nComputing CAGS clusters...")
-            analyzer = compute_clusters("nette", args.imagenet_dir, vae, device)
+            analyzer = compute_clusters(args.spec, args.imagenet_dir, vae, device, nclass=args.nclass)
             with open(cluster_cache, "wb") as f:
                 pickle.dump(analyzer, f)
             print(f"Cluster cache saved to {cluster_cache}")
@@ -363,6 +398,9 @@ def main():
                 analyzer, class_labels, sel_classes, args.ipc,
                 args.window, duration, args.num_datasets, save_dir,
                 schedule=args.schedule,
+                no_cags=args.no_cags,
+                fixed_scale=args.fixed_scale,
+                fixed_stop_t=args.fixed_stop_t,
             )
 
         print(f"\nEvaluating {config_name} over seeds {args.seeds}...")
@@ -380,8 +418,8 @@ def main():
                 continue
             for seed in args.seeds:
                 top1, top5 = evaluate_dataset(
-                    train_dir, test_dir, class_names, 10, device,
-                    epochs=args.epochs, seed=seed,
+                    train_dir, test_dir, class_names, args.nclass, device,
+                    epochs=args.epochs, seed=seed, depth=args.depth,
                 )
                 print(f"  Dataset {ds_idx} seed {seed}: "
                       f"Top-1={top1:.2f}%, Top-5={top5:.2f}%")
