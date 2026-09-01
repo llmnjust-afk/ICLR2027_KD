@@ -33,3 +33,7 @@ Thumbs.db
 .ipynb_checkpoints/
 *.ipynb
 *.pkl
+
+# Sweep artifacts (images/cache too large; JSON results are tracked)
+results/sweep/*/
+results/sweep/cluster_cache.pkl

@@ -94,6 +94,7 @@ def generate_config(
     model, vae, diffusion, latent_size, device,
     analyzer, class_labels, sel_classes, ipc,
     window, guidance_steps, num_datasets, save_dir,
+    schedule="constant",
 ):
     t_max = 49
     if window == "high_noise":
@@ -101,9 +102,12 @@ def generate_config(
     else:
         default_stop_t = guidance_steps
 
+    use_tags = schedule != "constant"
+    sched_type = "cosine" if schedule == "constant" else schedule
+
     adaptive_stop = AdaptiveStopTiming(t_max=50, lam=0.316, window=window)
     guidance_schedule = TimestepAdaptiveSchedule(
-        w_max=0.3, schedule_type="cosine",
+        w_max=0.3, schedule_type=sched_type,
     )
     sampler = AGSSampler(
         model=model, vae=vae, diffusion=diffusion,
@@ -112,7 +116,7 @@ def generate_config(
         guidance_schedule=guidance_schedule,
         device=device, num_sampling_steps=50,
         cfg_scale=4.0, latent_size=latent_size,
-        use_cags=True, use_iast=False, use_tags=False,
+        use_cags=True, use_iast=False, use_tags=use_tags,
         guidance_scale_range=(0.05, 0.3),
         guidance_window=window,
     )
@@ -282,40 +286,62 @@ def main():
     parser.add_argument("--num-datasets", type=int, default=5)
     parser.add_argument("--epochs", type=int, default=20)
     parser.add_argument("--durations", type=int, nargs="+", default=[10, 15, 25, 35])
+    parser.add_argument("--schedule", type=str, default="constant",
+                        choices=["constant", "cosine", "linear", "exponential"],
+                        help="Weight profile inside the guidance window")
+    parser.add_argument("--seeds", type=int, nargs="+", default=[0],
+                        help="Classifier training seeds to average over")
+    parser.add_argument("--tag", type=str, default=None,
+                        help="Override config-name suffix (default derived from schedule)")
+    parser.add_argument("--eval-only", action="store_true", default=False,
+                        help="Skip generation entirely; only evaluate existing images")
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    sched_tag = args.tag or ("const" if args.schedule == "constant" else args.schedule)
     print(f"Device: {device}, Window: {args.window}")
-    print(f"Durations: {args.durations}")
+    print(f"Durations: {args.durations}, Schedule: {args.schedule} (tag={sched_tag})")
+    print(f"Seeds: {args.seeds}, Eval-only: {args.eval_only}")
     print(f"ImageNette dir: {args.imagenet_dir}")
 
     class_labels, sel_classes = setup_classes(spec="nette", nclass=10)
     print(f"Classes: {sel_classes}")
 
-    print("\nLoading DiT model and VAE...")
-    model, vae, diffusion, latent_size = load_model_and_vae(device)
-    print("Model loaded.")
-
-    print("\nComputing CAGS clusters...")
-    analyzer = compute_clusters("nette", args.imagenet_dir, vae, device)
-    for c in analyzer.complexity_scores:
-        print(f"  Class {c}: complexity={analyzer.complexity_scores[c]:.4f}, "
-              f"modes={analyzer.mode_counts[c]}")
-
-    cluster_cache = os.path.join(args.save_base, "cluster_cache.pkl")
     os.makedirs(args.save_base, exist_ok=True)
-    with open(cluster_cache, "wb") as f:
-        pickle.dump(analyzer, f)
-    print(f"Cluster cache saved to {cluster_cache}")
+    cluster_cache = os.path.join(args.save_base, "cluster_cache.pkl")
+
+    if args.eval_only:
+        print("\n[eval-only] Skipping DiT/VAE load and CAGS clustering.")
+        model = vae = diffusion = analyzer = None
+        latent_size = 32
+    else:
+        print("\nLoading DiT model and VAE...")
+        model, vae, diffusion, latent_size = load_model_and_vae(device)
+        print("Model loaded.")
+
+        if os.path.isfile(cluster_cache):
+            print(f"\nLoading cached CAGS clusters from {cluster_cache}")
+            with open(cluster_cache, "rb") as f:
+                analyzer = pickle.load(f)
+        else:
+            print("\nComputing CAGS clusters...")
+            analyzer = compute_clusters("nette", args.imagenet_dir, vae, device)
+            with open(cluster_cache, "wb") as f:
+                pickle.dump(analyzer, f)
+            print(f"Cluster cache saved to {cluster_cache}")
+        for c in analyzer.complexity_scores:
+            print(f"  Class {c}: complexity={analyzer.complexity_scores[c]:.4f}, "
+                  f"modes={analyzer.mode_counts[c]}")
 
     all_results = {}
 
     for duration in args.durations:
-        config_name = f"{args.window}_const_d{duration}"
+        config_name = f"{args.window}_{sched_tag}_d{duration}"
         save_dir = os.path.join(args.save_base, config_name)
         print(f"\n{'='*60}")
         print(f"Config: {config_name}")
-        print(f"  Window: {args.window}, Duration: {duration} steps")
+        print(f"  Window: {args.window}, Duration: {duration} steps, "
+              f"Schedule: {args.schedule}")
         print(f"{'='*60}")
 
         ds0_path = os.path.join(save_dir, "dataset_0")
@@ -328,14 +354,18 @@ def main():
         if existing >= args.ipc * len(sel_classes):
             print(f"  Already generated ({existing} images in dataset_0), skipping generation")
             gen_time = 0
+        elif args.eval_only:
+            print(f"  [eval-only] No images found for {config_name}, skipping config")
+            continue
         else:
             gen_time = generate_config(
                 model, vae, diffusion, latent_size, device,
                 analyzer, class_labels, sel_classes, args.ipc,
                 args.window, duration, args.num_datasets, save_dir,
+                schedule=args.schedule,
             )
 
-        print(f"\nEvaluating {config_name}...")
+        print(f"\nEvaluating {config_name} over seeds {args.seeds}...")
         test_dir = os.path.join(args.imagenet_dir, "val")
         ds0_dir = os.path.join(save_dir, "dataset_0")
         class_names = sorted([d for d in os.listdir(ds0_dir)
@@ -348,38 +378,68 @@ def main():
             if not os.path.isdir(train_dir):
                 print(f"  Dataset {ds_idx}: NOT FOUND, skipping")
                 continue
-            top1, top5 = evaluate_dataset(
-                train_dir, test_dir, class_names, 10, device,
-                epochs=args.epochs, seed=0,
-            )
-            print(f"  Dataset {ds_idx}: Top-1={top1:.2f}%, Top-5={top5:.2f}%")
-            dataset_results.append({"dataset": ds_idx, "top1": top1, "top5": top5})
+            for seed in args.seeds:
+                top1, top5 = evaluate_dataset(
+                    train_dir, test_dir, class_names, 10, device,
+                    epochs=args.epochs, seed=seed,
+                )
+                print(f"  Dataset {ds_idx} seed {seed}: "
+                      f"Top-1={top1:.2f}%, Top-5={top5:.2f}%")
+                dataset_results.append({
+                    "dataset": ds_idx, "seed": seed, "top1": top1, "top5": top5,
+                })
 
         top1s = [r["top1"] for r in dataset_results]
-        mean_top1 = np.mean(top1s) if top1s else 0
-        std_top1 = np.std(top1s) if top1s else 0
+        mean_top1 = float(np.mean(top1s)) if top1s else 0.0
+        std_top1 = float(np.std(top1s)) if top1s else 0.0
+
+        per_seed = {}
+        for seed in args.seeds:
+            vals = [r["top1"] for r in dataset_results if r["seed"] == seed]
+            if vals:
+                per_seed[str(seed)] = {
+                    "mean": float(np.mean(vals)), "std": float(np.std(vals)),
+                }
 
         all_results[config_name] = {
             "window": args.window,
+            "schedule": args.schedule,
             "duration": duration,
             "guidance_steps": duration,
             "gen_time_s": gen_time,
-            "datasets": dataset_results,
+            "seeds": args.seeds,
+            "runs": dataset_results,
+            "per_seed": per_seed,
             "top1_mean": mean_top1,
             "top1_std": std_top1,
         }
-        print(f"\n  {config_name}: Top-1 = {mean_top1:.2f} ± {std_top1:.2f}%")
+        print(f"\n  {config_name}: Top-1 = {mean_top1:.2f} ± {std_top1:.2f}% "
+              f"({len(top1s)} runs)")
 
-    results_path = os.path.join(args.save_base, f"sweep_{args.window}_results.json")
+    results_path = os.path.join(
+        args.save_base, f"sweep_{args.window}_{sched_tag}_results.json")
+    merged = {}
+    if os.path.isfile(results_path):
+        try:
+            with open(results_path) as f:
+                merged = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            merged = {}
+    merged.update(all_results)
     with open(results_path, "w") as f:
-        json.dump(all_results, f, indent=2)
-    print(f"\nResults saved to {results_path}")
+        json.dump(merged, f, indent=2)
+    print(f"\nResults saved to {results_path} "
+          f"({len(all_results)} new, {len(merged)} total configs)")
 
     print(f"\n{'='*60}")
-    print(f"SUMMARY ({args.window})")
+    print(f"SUMMARY ({args.window}, {args.schedule})")
     print(f"{'='*60}")
     for name, res in all_results.items():
-        print(f"  {name}: {res['top1_mean']:.2f} ± {res['top1_std']:.2f}%")
+        line = f"  {name}: {res['top1_mean']:.2f} ± {res['top1_std']:.2f}%"
+        if len(res.get("per_seed", {})) > 1:
+            parts = [f"s{s}={v['mean']:.2f}" for s, v in res["per_seed"].items()]
+            line += "  [" + ", ".join(parts) + "]"
+        print(line)
 
     del model, vae
     torch.cuda.empty_cache()
