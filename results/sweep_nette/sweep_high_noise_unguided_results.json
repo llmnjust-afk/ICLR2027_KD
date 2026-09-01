@@ -1,0 +1,32 @@
+{
+  "high_noise_unguided_d25": {
+    "window": "high_noise",
+    "schedule": "constant",
+    "duration": 25,
+    "guidance_steps": 25,
+    "gen_time_s": 101.38513612747192,
+    "seeds": [
+      0
+    ],
+    "runs": [
+      {
+        "dataset": 0,
+        "seed": 0,
+        "top1": 10.318471337579618,
+        "top5": 50.64968152866242
+      }
+    ],
+    "per_seed": {
+      "0": {
+        "mean": 10.318471337579618,
+        "std": 0.0
+      }
+    },
+    "top1_mean": 10.318471337579618,
+    "top1_std": 0.0,
+    "cags_min_scale": 0.05,
+    "cags_max_scale": 0.3,
+    "no_cags": false,
+    "fixed_scale": 0.1
+  }
+}

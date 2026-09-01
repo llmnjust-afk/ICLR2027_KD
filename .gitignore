@@ -37,3 +37,16 @@ Thumbs.db
 # Sweep artifacts (images/cache too large; JSON results are tracked)
 results/sweep/*/
 results/sweep/cluster_cache.pkl
+
+# New sweep results (exclude images and caches, keep JSONs)
+results/sweep_in10/*/dataset_*/
+results/sweep_in100/*/dataset_*/
+results/sweep_in10/cluster_cache.pkl
+results/sweep_in100/cluster_cache.pkl
+*.pkl
+
+# Phase 2 dataset images (keep JSONs, exclude images)
+results/sweep_nette/*/dataset_*/
+results/sweep_woof/*/dataset_*/
+
+# Phase 2 logs (keep)

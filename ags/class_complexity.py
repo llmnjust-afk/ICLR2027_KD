@@ -7,6 +7,7 @@ Key improvements over v1:
      - Intra-class feature variance (compactness)
      - Inter-class separability (how distinguishable this class is)
   3. Calibrated mode: centers guidance strength around a known-good λ
+  4. Uses K=IPC for complexity computation (consistent with mode features)
 
 Complexity(c) = α·mode_count + β·entropy + γ·intra_variance + δ·(1−separability)
 guidance_strength(c) = min_s + sigmoid(slope·(complexity − center)) · (max_s − min_s)
@@ -51,6 +52,7 @@ class ClassComplexityAnalyzer:
         max_k_method="silhouette",
         sigmoid_slope=3.0,
         sigmoid_center=0.6,
+        complexity_k_mode="silhouette",
     ):
         self.feature_extractor = feature_extractor
         self.n_clusters_range = n_clusters_range
@@ -65,6 +67,7 @@ class ClassComplexityAnalyzer:
         self.max_k = n_clusters_range[1]
         self.sigmoid_slope = sigmoid_slope
         self.sigmoid_center = sigmoid_center
+        self.complexity_k_mode = complexity_k_mode
 
         self.complexity_scores = {}
         self.mode_counts = {}
@@ -116,7 +119,8 @@ class ClassComplexityAnalyzer:
             kmeans = KMeans(n_clusters=best_k, random_state=0, n_init=10)
             return best_k, kmeans.fit_predict(X_pca)
 
-    def compute_complexity(self, features, class_id, all_class_features=None, class_ids_list=None):
+    def compute_complexity(self, features, class_id, all_class_features=None, class_ids_list=None,
+                           fixed_k=None):
         """
         Compute complexity score for a single class.
 
@@ -125,12 +129,28 @@ class ClassComplexityAnalyzer:
             class_id: class identifier
             all_class_features: dict {class_id: features} for separability computation
             class_ids_list: list of all class ids (for separability)
+            fixed_k: if set, use this K instead of silhouette selection
         """
         X = np.stack(features) if isinstance(features, list) else features
 
-        optimal_k, labels = self._find_optimal_k(
-            X, k_min=self.n_clusters_range[0], k_max=self.n_clusters_range[1]
-        )
+        if fixed_k is not None:
+            optimal_k = min(fixed_k, len(X))
+            if self.use_pca and X.shape[1] > self.pca_components:
+                pca = PCA(n_components=self.pca_components)
+                X_pca = pca.fit_transform(X)
+            else:
+                X_pca = X
+            kmeans = KMeans(n_clusters=optimal_k, random_state=0, n_init=10)
+            labels = kmeans.fit_predict(X_pca)
+        else:
+            optimal_k, labels = self._find_optimal_k(
+                X, k_min=self.n_clusters_range[0], k_max=self.n_clusters_range[1]
+            )
+            if self.use_pca and X.shape[1] > self.pca_components:
+                pca = PCA(n_components=self.pca_components)
+                X_pca = pca.fit_transform(X)
+            else:
+                X_pca = X
 
         kmeans = KMeans(n_clusters=optimal_k, random_state=0, n_init=10)
         kmeans.fit(X)
@@ -155,19 +175,16 @@ class ClassComplexityAnalyzer:
         centroid = np.mean(X, axis=0)
         intra_var = np.mean(np.sqrt(np.sum((X - centroid) ** 2, axis=1)))
         self.intra_variances[class_id] = float(intra_var)
-        # Normalize later across all classes
 
         # Factor 4: Inter-class separability (computed in analyze_all_classes)
-        # Placeholder here, filled later
         self.separabilities[class_id] = 0.5
 
-        # Store for later normalization
         self.all_centroids[class_id] = centroid
 
         # Base complexity (without separability, will be updated)
         complexity_score = self.alpha * mode_count_score + self.beta * normalized_entropy
 
-        self.complexity_scores[class_id] = float(complexity_score)  # temporary
+        self.complexity_scores[class_id] = float(complexity_score)
         self.mode_counts[class_id] = optimal_k
         self.cluster_centers[class_id] = cluster_centers
         self.mode_id_per_class[class_id] = labels
@@ -191,12 +208,10 @@ class ClassComplexityAnalyzer:
         centroids = np.stack([self.all_centroids[cid] for cid in class_ids])
 
         for i, class_id in enumerate(class_ids):
-            # Mean distance to own centroid
             own_features = np.stack(self.features_per_class[class_id])
             own_centroid = self.all_centroids[class_id]
             own_dist = np.mean(np.sqrt(np.sum((own_features - own_centroid) ** 2, axis=1)))
 
-            # Mean distance to other centroids
             other_dists = []
             for j, other_id in enumerate(class_ids):
                 if j == i:
@@ -207,9 +222,8 @@ class ClassComplexityAnalyzer:
             mean_other_dist = np.mean(other_dists) if other_dists else own_dist
 
             # Separability: ratio of inter-class distance to intra-class distance
-            # Higher = more separable = easier class = less guidance needed
             separability = mean_other_dist / (own_dist + 1e-8)
-            # Normalize to [0, 1] using sigmoid
+            # Normalize to [0, 1] using sigmoid centered at 2.0
             separability_norm = 1.0 / (1.0 + np.exp(-(separability - 2.0)))
             self.separabilities[class_id] = float(separability_norm)
 
@@ -234,7 +248,7 @@ class ClassComplexityAnalyzer:
                 + self.delta * (1.0 - separability_norm)
             )
 
-            # Sigmoid normalization
+            # Sigmoid normalization to [0, 1]
             complexity_score = 1.0 / (1.0 + np.exp(-self.sigmoid_slope * (raw_complexity - self.sigmoid_center)))
 
             self.complexity_scores[class_id] = float(complexity_score)
@@ -245,12 +259,12 @@ class ClassComplexityAnalyzer:
                 f"intra_var={intra_var_norm:.3f}, sep={separability_norm:.3f}"
             )
 
-    def analyze_all_classes(self, features_per_class, paths_per_class=None):
+    def analyze_all_classes(self, features_per_class, paths_per_class=None, fixed_k=None):
         self.features_per_class = features_per_class
         for class_id in tqdm(features_per_class.keys(), desc="Computing class complexity"):
             start_time = time.time()
             features = features_per_class[class_id]
-            complexity, n_modes, centers = self.compute_complexity(features, class_id)
+            complexity, n_modes, centers = self.compute_complexity(features, class_id, fixed_k=fixed_k)
 
             if paths_per_class is not None and class_id in paths_per_class:
                 self.cluster_centers_path[class_id] = [
@@ -267,13 +281,19 @@ class ClassComplexityAnalyzer:
                 f"Class {class_id}: modes={n_modes}, time={end_time - start_time:.2f}s"
             )
 
-        # Compute separability and finalize
         print("\nComputing inter-class separability and finalizing complexity scores...")
         self._compute_separability_and_finalize()
 
         return self.complexity_scores, self.mode_counts, self.cluster_centers
 
     def get_guidance_strength(self, class_id, scale_range=(0.05, 0.15)):
+        """
+        Map complexity score to guidance strength using sigmoid.
+
+        The complexity score is already sigmoid-normalized to [0, 1] in
+        _compute_separability_and_finalize. We apply a second sigmoid here
+        to increase spread when scores are clustered around the center.
+        """
         if class_id not in self.complexity_scores:
             return (scale_range[0] + scale_range[1]) / 2
         complexity = self.complexity_scores[class_id]
@@ -297,6 +317,10 @@ class ClassComplexityAnalyzer:
             "separabilities": self.separabilities,
             "sigmoid_slope": self.sigmoid_slope,
             "sigmoid_center": self.sigmoid_center,
+            "alpha": self.alpha,
+            "beta": self.beta,
+            "gamma": self.gamma,
+            "delta": self.delta,
         }
         with open(path, "wb") as f:
             pickle.dump(data, f)
@@ -313,6 +337,10 @@ class ClassComplexityAnalyzer:
         self.separabilities = data.get("separabilities", {})
         self.sigmoid_slope = data.get("sigmoid_slope", 3.0)
         self.sigmoid_center = data.get("sigmoid_center", 0.6)
+        self.alpha = data.get("alpha", 0.3)
+        self.beta = data.get("beta", 0.3)
+        self.gamma = data.get("gamma", 0.2)
+        self.delta = data.get("delta", 0.2)
 
     def compute_clusters_for_ipc(self, ipc, use_pca=True, closest_point=True):
         from sklearn.cluster import KMeans

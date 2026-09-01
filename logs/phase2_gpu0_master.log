@@ -1,0 +1,172 @@
+========================================
+  Phase 2: ImageNette + ImageWoof on GPU 0
+  Started: Tue Sep  1 23:33:08 UTC 2026
+========================================
+
+================================================
+  imagenette_9cls_ipc10_unguided lambda=unguided (GPU 0)
+  Tue Sep  1 23:33:08 UTC 2026
+================================================
+  Generating 90 images...
+usage: duration_sweep.py [-h] [--window {low_noise,high_noise}]
+                         [--imagenet-dir IMAGENET_DIR] [--save-base SAVE_BASE]
+                         [--ipc IPC] [--num-datasets NUM_DATASETS]
+                         [--epochs EPOCHS]
+                         [--durations DURATIONS [DURATIONS ...]]
+                         [--schedule {constant,cosine,linear,exponential}]
+                         [--seeds SEEDS [SEEDS ...]] [--tag TAG] [--eval-only]
+                         [--spec {nette,woof,imagenet100,imagenet1k}]
+                         [--nclass NCLASS] [--depth DEPTH] [--no-cags]
+                         [--fixed-scale FIXED_SCALE] [--use-iast]
+                         [--fixed-stop-t FIXED_STOP_T]
+                         [--cags-min-scale CAGS_MIN_SCALE]
+                         [--cags-max-scale CAGS_MAX_SCALE]
+                         [--sigmoid-slope SIGMOID_SLOPE]
+                         [--sigmoid-center SIGMOID_CENTER] [--regen-cache]
+                         [--complexity-k COMPLEXITY_K] [--alpha ALPHA]
+                         [--beta BETA] [--gamma GAMMA] [--delta DELTA]
+duration_sweep.py: error: argument --spec: invalid choice: 'imagenette' (choose from 'nette', 'woof', 'imagenet100', 'imagenet1k')
+  Evaluating (3 seeds, 1000 epochs, ConvNet-6)...
+Arch: convnet, Norm: instance
+Classes (9): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245']
+
+Seed 0:
+  Loading training images from results/sweep_nette/high_noise_unguided_d25/dataset_0...
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 233, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 216, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 106, in evaluate_fast
+    train_images, train_labels = load_images_to_tensor(train_dir, class_names, img_size)
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 74, in load_images_to_tensor
+    raise RuntimeError(f"No images found in {data_dir}")
+RuntimeError: No images found in results/sweep_nette/high_noise_unguided_d25/dataset_0
+  imagenette_9cls_ipc10_unguided done — Tue Sep  1 23:33:17 UTC 2026
+
+================================================
+  imagenette_9cls_ipc10_lambda005 lambda=0.05 (GPU 0)
+  Tue Sep  1 23:33:17 UTC 2026
+================================================
+  Generating 90 images...
+usage: duration_sweep.py [-h] [--window {low_noise,high_noise}]
+                         [--imagenet-dir IMAGENET_DIR] [--save-base SAVE_BASE]
+                         [--ipc IPC] [--num-datasets NUM_DATASETS]
+                         [--epochs EPOCHS]
+                         [--durations DURATIONS [DURATIONS ...]]
+                         [--schedule {constant,cosine,linear,exponential}]
+                         [--seeds SEEDS [SEEDS ...]] [--tag TAG] [--eval-only]
+                         [--spec {nette,woof,imagenet100,imagenet1k}]
+                         [--nclass NCLASS] [--depth DEPTH] [--no-cags]
+                         [--fixed-scale FIXED_SCALE] [--use-iast]
+                         [--fixed-stop-t FIXED_STOP_T]
+                         [--cags-min-scale CAGS_MIN_SCALE]
+                         [--cags-max-scale CAGS_MAX_SCALE]
+                         [--sigmoid-slope SIGMOID_SLOPE]
+                         [--sigmoid-center SIGMOID_CENTER] [--regen-cache]
+                         [--complexity-k COMPLEXITY_K] [--alpha ALPHA]
+                         [--beta BETA] [--gamma GAMMA] [--delta DELTA]
+duration_sweep.py: error: argument --spec: invalid choice: 'imagenette' (choose from 'nette', 'woof', 'imagenet100', 'imagenet1k')
+  Evaluating (3 seeds, 1000 epochs, ConvNet-6)...
+Arch: convnet, Norm: instance
+Classes (9): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245']
+
+Seed 0:
+  Loading training images from results/sweep_nette/high_noise_lambda005_d25/dataset_0...
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 233, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 216, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 106, in evaluate_fast
+    train_images, train_labels = load_images_to_tensor(train_dir, class_names, img_size)
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 74, in load_images_to_tensor
+    raise RuntimeError(f"No images found in {data_dir}")
+RuntimeError: No images found in results/sweep_nette/high_noise_lambda005_d25/dataset_0
+  imagenette_9cls_ipc10_lambda005 done — Tue Sep  1 23:33:27 UTC 2026
+
+================================================
+  imagewoof_9cls_ipc10_unguided lambda=unguided (GPU 0)
+  Tue Sep  1 23:33:27 UTC 2026
+================================================
+  Generating 90 images...
+usage: duration_sweep.py [-h] [--window {low_noise,high_noise}]
+                         [--imagenet-dir IMAGENET_DIR] [--save-base SAVE_BASE]
+                         [--ipc IPC] [--num-datasets NUM_DATASETS]
+                         [--epochs EPOCHS]
+                         [--durations DURATIONS [DURATIONS ...]]
+                         [--schedule {constant,cosine,linear,exponential}]
+                         [--seeds SEEDS [SEEDS ...]] [--tag TAG] [--eval-only]
+                         [--spec {nette,woof,imagenet100,imagenet1k}]
+                         [--nclass NCLASS] [--depth DEPTH] [--no-cags]
+                         [--fixed-scale FIXED_SCALE] [--use-iast]
+                         [--fixed-stop-t FIXED_STOP_T]
+                         [--cags-min-scale CAGS_MIN_SCALE]
+                         [--cags-max-scale CAGS_MAX_SCALE]
+                         [--sigmoid-slope SIGMOID_SLOPE]
+                         [--sigmoid-center SIGMOID_CENTER] [--regen-cache]
+                         [--complexity-k COMPLEXITY_K] [--alpha ALPHA]
+                         [--beta BETA] [--gamma GAMMA] [--delta DELTA]
+duration_sweep.py: error: argument --spec: invalid choice: 'imagewoof' (choose from 'nette', 'woof', 'imagenet100', 'imagenet1k')
+  Evaluating (3 seeds, 1000 epochs, ConvNet-6)...
+Arch: convnet, Norm: instance
+Classes (9): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245']
+
+Seed 0:
+  Loading training images from results/sweep_woof/high_noise_unguided_d25/dataset_0...
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 233, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 216, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 106, in evaluate_fast
+    train_images, train_labels = load_images_to_tensor(train_dir, class_names, img_size)
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 74, in load_images_to_tensor
+    raise RuntimeError(f"No images found in {data_dir}")
+RuntimeError: No images found in results/sweep_woof/high_noise_unguided_d25/dataset_0
+  imagewoof_9cls_ipc10_unguided done — Tue Sep  1 23:33:37 UTC 2026
+
+================================================
+  imagewoof_9cls_ipc10_lambda005 lambda=0.05 (GPU 0)
+  Tue Sep  1 23:33:37 UTC 2026
+================================================
+  Generating 90 images...
+usage: duration_sweep.py [-h] [--window {low_noise,high_noise}]
+                         [--imagenet-dir IMAGENET_DIR] [--save-base SAVE_BASE]
+                         [--ipc IPC] [--num-datasets NUM_DATASETS]
+                         [--epochs EPOCHS]
+                         [--durations DURATIONS [DURATIONS ...]]
+                         [--schedule {constant,cosine,linear,exponential}]
+                         [--seeds SEEDS [SEEDS ...]] [--tag TAG] [--eval-only]
+                         [--spec {nette,woof,imagenet100,imagenet1k}]
+                         [--nclass NCLASS] [--depth DEPTH] [--no-cags]
+                         [--fixed-scale FIXED_SCALE] [--use-iast]
+                         [--fixed-stop-t FIXED_STOP_T]
+                         [--cags-min-scale CAGS_MIN_SCALE]
+                         [--cags-max-scale CAGS_MAX_SCALE]
+                         [--sigmoid-slope SIGMOID_SLOPE]
+                         [--sigmoid-center SIGMOID_CENTER] [--regen-cache]
+                         [--complexity-k COMPLEXITY_K] [--alpha ALPHA]
+                         [--beta BETA] [--gamma GAMMA] [--delta DELTA]
+duration_sweep.py: error: argument --spec: invalid choice: 'imagewoof' (choose from 'nette', 'woof', 'imagenet100', 'imagenet1k')
+  Evaluating (3 seeds, 1000 epochs, ConvNet-6)...
+Arch: convnet, Norm: instance
+Classes (9): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245']
+
+Seed 0:
+  Loading training images from results/sweep_woof/high_noise_lambda005_d25/dataset_0...
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 233, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 216, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 106, in evaluate_fast
+    train_images, train_labels = load_images_to_tensor(train_dir, class_names, img_size)
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 74, in load_images_to_tensor
+    raise RuntimeError(f"No images found in {data_dir}")
+RuntimeError: No images found in results/sweep_woof/high_noise_lambda005_d25/dataset_0
+  imagewoof_9cls_ipc10_lambda005 done — Tue Sep  1 23:33:46 UTC 2026
+
+========================================
+  Phase 2 (GPU 0) ALL DONE — Tue Sep  1 23:33:46 UTC 2026
+========================================

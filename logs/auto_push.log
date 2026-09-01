@@ -15,3 +15,90 @@
 ?? run_all_experiments.sh
 ?? run_phase2_experiments.sh
 === Adding result files ===
+=== Committing ===
+[main 3c1fb95] experiment: AGS-DD CAGS tuning + fixed lambda search results (2026-09-01 21:31:22)
+ 59 files changed, 11338 insertions(+), 84 deletions(-)
+ create mode 100644 ags/class_complexity_v1_backup.py
+ create mode 100644 ags/class_complexity_v2.py
+ create mode 100755 auto_push.sh
+ create mode 100644 collect_results.py
+ create mode 100644 logs/100class_cags_0.05_0.12_eval.log
+ create mode 100644 logs/100class_cags_0.05_0.12_gen.log
+ create mode 100644 logs/100class_cags_0.05_0.15_eval.log
+ create mode 100644 logs/100class_cags_0.05_0.15_gen.log
+ create mode 100644 logs/100class_fixed_l0.1_eval.log
+ create mode 100644 logs/100class_fixed_l0.1_gen.log
+ create mode 100644 logs/100class_unguided_eval.log
+ create mode 100644 logs/100class_unguided_gen.log
+ create mode 100644 logs/10class_cags_0.05_0.12_eval.log
+ create mode 100644 logs/10class_cags_0.05_0.12_gen.log
+ create mode 100644 logs/10class_cags_0.05_0.15_eval.log
+ create mode 100644 logs/10class_cags_0.05_0.15_gen.log
+ create mode 100644 logs/10class_cags_0.08_0.12_eval.log
+ create mode 100644 logs/10class_cags_0.08_0.12_gen.log
+ create mode 100644 logs/10class_fixed_l0.05_eval.log
+ create mode 100644 logs/10class_fixed_l0.05_gen.log
+ create mode 100644 logs/10class_fixed_l0.08_eval.log
+ create mode 100644 logs/10class_fixed_l0.08_gen.log
+ create mode 100644 logs/10class_fixed_l0.0_eval.log
+ create mode 100644 logs/10class_fixed_l0.0_gen.log
+ create mode 100644 logs/10class_fixed_l0.12_eval.log
+ create mode 100644 logs/10class_fixed_l0.12_gen.log
+ create mode 100644 logs/10class_fixed_l0.15_eval.log
+ create mode 100644 logs/10class_fixed_l0.15_gen.log
+ create mode 100644 logs/10class_fixed_l0.1_eval.log
+ create mode 100644 logs/10class_fixed_l0.1_gen.log
+ create mode 100644 logs/10class_tags_cosine_l0.1_eval.log
+ create mode 100644 logs/10class_tags_cosine_l0.1_gen.log
+ create mode 100644 logs/10class_tags_exp_l0.1_eval.log
+ create mode 100644 logs/10class_tags_exp_l0.1_gen.log
+ create mode 100644 logs/10class_tags_linear_l0.1_eval.log
+ create mode 100644 logs/10class_tags_linear_l0.1_gen.log
+ create mode 100644 logs/auto_push.log
+ create mode 100644 logs/collect_results.log
+ create mode 100644 logs/master.log
+ create mode 100644 results/experiment_summary.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_cags_0.05_0.12_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_cags_0.05_0.15_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_cags_0.08_0.12_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_fixed_l0.05_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_fixed_l0.08_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_fixed_l0.0_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_fixed_l0.12_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_fixed_l0.15_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_fixed_l0.1_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_tags_cosine_l0.1_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_tags_exp_l0.1_results.json
+ create mode 100644 results/sweep_in10/sweep_high_noise_tags_linear_l0.1_results.json
+ create mode 100644 results/sweep_in100/sweep_high_noise_cags_0.05_0.12_results.json
+ create mode 100644 results/sweep_in100/sweep_high_noise_cags_0.05_0.15_results.json
+ create mode 100644 results/sweep_in100/sweep_high_noise_fixed_l0.1_results.json
+ create mode 100644 results/sweep_in100/sweep_high_noise_unguided_results.json
+ create mode 100755 run_all_experiments.sh
+=== Pushing to GitHub ===
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:             
+remote:       —— GitHub Personal Access Token ——————————————————————        
+remote:        locations:        
+remote:          - commit: 3c1fb95716b4db783e09dd6e253ab7d88557dcdd        
+remote:            path: auto_push.sh:14        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/llmnjust-afk/ICLR2027_KD/security/secret-scanning/unblock-secret/3IkAe46C6XBY6UFmPI26jR1f8fV        
+remote:             
+remote: 
+remote: 
+To https://github.com/llmnjust-afk/ICLR2027_KD.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/llmnjust-afk/ICLR2027_KD.git'

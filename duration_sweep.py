@@ -70,7 +70,9 @@ def setup_classes(spec="nette", nclass=10):
     return class_labels, sel_classes
 
 
-def compute_clusters(spec, imagenet_dir, vae, device, nclass=10):
+def compute_clusters(spec, imagenet_dir, vae, device, nclass=10,
+                        sigmoid_slope=3.0, sigmoid_center=0.6, complexity_k=None,
+                        alpha=0.3, beta=0.3, gamma=0.2, delta=0.2):
     import argparse as ap
     args_eval = ap.Namespace(
         dataset="imagenet", net_type="resnet_ap", depth=10, width=1.0,
@@ -84,10 +86,10 @@ def compute_clusters(spec, imagenet_dir, vae, device, nclass=10):
     features_per_class, paths_per_class = get_features_per_class(args_eval, loader, vae)
 
     analyzer = ClassComplexityAnalyzer(
-        n_clusters_range=(2, 20), alpha=0.3, beta=0.3, gamma=0.2, delta=0.2,
-        use_pca=True, sigmoid_slope=3.0, sigmoid_center=0.6,
+        n_clusters_range=(2, 20), alpha=alpha, beta=beta, gamma=gamma, delta=delta,
+        use_pca=True, sigmoid_slope=sigmoid_slope, sigmoid_center=sigmoid_center,
     )
-    analyzer.analyze_all_classes(features_per_class, paths_per_class)
+    analyzer.analyze_all_classes(features_per_class, paths_per_class, fixed_k=complexity_k)
     return analyzer
 
 
@@ -344,6 +346,18 @@ def main():
                         help="Sigmoid slope for CAGS complexity mapping (default 3.0)")
     parser.add_argument("--sigmoid-center", type=float, default=0.6,
                         help="Sigmoid center for CAGS complexity mapping (default 0.6)")
+    parser.add_argument("--regen-cache", action="store_true", default=False,
+                        help="Delete existing cluster_cache.pkl and regenerate")
+    parser.add_argument("--complexity-k", type=int, default=None,
+                        help="Fixed K for complexity computation (default: silhouette selection)")
+    parser.add_argument("--alpha", type=float, default=0.3,
+                        help="Weight for mode_count in complexity (default 0.3)")
+    parser.add_argument("--beta", type=float, default=0.3,
+                        help="Weight for entropy in complexity (default 0.3)")
+    parser.add_argument("--gamma", type=float, default=0.2,
+                        help="Weight for intra-class variance in complexity (default 0.2)")
+    parser.add_argument("--delta", type=float, default=0.2,
+                        help="Weight for 1-separability in complexity (default 0.2)")
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -368,13 +382,23 @@ def main():
         model, vae, diffusion, latent_size = load_model_and_vae(device)
         print("Model loaded.")
 
-        if os.path.isfile(cluster_cache):
+        if args.regen_cache and os.path.isfile(cluster_cache):
+            print(f"\n[regen-cache] Deleting {cluster_cache}")
+            os.remove(cluster_cache)
+
+        if os.path.isfile(cluster_cache) and not args.regen_cache:
             print(f"\nLoading cached CAGS clusters from {cluster_cache}")
             with open(cluster_cache, "rb") as f:
                 analyzer = pickle.load(f)
         else:
             print("\nComputing CAGS clusters...")
-            analyzer = compute_clusters(args.spec, args.imagenet_dir, vae, device, nclass=args.nclass)
+            analyzer = compute_clusters(args.spec, args.imagenet_dir, vae, device,
+                                        nclass=args.nclass,
+                                        sigmoid_slope=args.sigmoid_slope,
+                                        sigmoid_center=args.sigmoid_center,
+                                        complexity_k=args.complexity_k,
+                                        alpha=args.alpha, beta=args.beta,
+                                        gamma=args.gamma, delta=args.delta)
             with open(cluster_cache, "wb") as f:
                 pickle.dump(analyzer, f)
             print(f"Cluster cache saved to {cluster_cache}")

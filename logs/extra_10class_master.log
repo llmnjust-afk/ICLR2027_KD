@@ -1,0 +1,11 @@
+=== Extra 10-class CAGS v2 — Tue Sep  1 22:57:46 UTC 2026 ===
+  [10-class] cagsv2_0.02_0.08: range=[0.02, 0.08] — Tue Sep  1 22:57:46 UTC 2026
+    cagsv2_0.02_0.08 done — Tue Sep  1 23:03:25 UTC 2026
+Mean Top-1: 33.67 ± 1.75%
+  [10-class] cagsv2_inv_0.0_0.08: range=[0.08, 0.0] — Tue Sep  1 23:03:25 UTC 2026
+    cagsv2_inv_0.0_0.08 done — Tue Sep  1 23:09:35 UTC 2026
+Mean Top-1: 37.60 ± 2.14%
+  [10-class] cagsv2_0.0_0.10: range=[0.0, 0.10] — Tue Sep  1 23:09:35 UTC 2026
+    cagsv2_0.0_0.10 done — Tue Sep  1 23:15:07 UTC 2026
+Mean Top-1: 33.60 ± 1.02%
+=== Extra 10-class done — Tue Sep  1 23:15:07 UTC 2026 ===

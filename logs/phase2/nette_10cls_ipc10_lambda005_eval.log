@@ -1,0 +1,15 @@
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from results/sweep_nette/high_noise_lambda005_d25/dataset_0...
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 233, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 216, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 106, in evaluate_fast
+    train_images, train_labels = load_images_to_tensor(train_dir, class_names, img_size)
+  File "/root/ICLR2027_KD/quick_eval_v2.py", line 74, in load_images_to_tensor
+    raise RuntimeError(f"No images found in {data_dir}")
+RuntimeError: No images found in results/sweep_nette/high_noise_lambda005_d25/dataset_0

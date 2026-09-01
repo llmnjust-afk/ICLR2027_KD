@@ -1,0 +1,25 @@
+========================================
+========================================
+GPU 0: 10-class CAGS v2 — Tue Sep  1 22:36:34 UTC 2026
+========================================
+GPU 1: Regenerating 100-class cache — Tue Sep  1 22:36:34 UTC 2026
+========================================
+  [10-class] cagsv2_0.0_0.06: range=[0.0, 0.06] — Tue Sep  1 22:36:34 UTC 2026
+    cagsv2_0.0_0.06 done — Tue Sep  1 22:42:10 UTC 2026
+Mean Top-1: 36.53 ± 1.16%
+  [10-class] cagsv2_0.02_0.06: range=[0.02, 0.06] — Tue Sep  1 22:42:10 UTC 2026
+    cagsv2_0.02_0.06 done — Tue Sep  1 22:47:44 UTC 2026
+Mean Top-1: 39.80 ± 0.59%
+  [10-class] cagsv2_0.0_0.08: range=[0.0, 0.08] — Tue Sep  1 22:47:44 UTC 2026
+    cagsv2_0.0_0.08 done — Tue Sep  1 22:53:24 UTC 2026
+Mean Top-1: 40.60 ± 0.71%
+GPU 0: All 10-class CAGS v2 complete! — Tue Sep  1 22:53:24 UTC 2026
+GPU 1: 100-class cache regenerated — Tue Sep  1 22:55:37 UTC 2026
+100-class complexity: [0.5241, 0.8660], std=0.0823
+Mode counts: unique K=[10]
+Intra-var: [50.9726, 61.6668], std=2.4677
+Separability: [0.1408, 0.1953], std=0.0085
+  [100-class] cagsv2_0.0_0.06: range=[0.0, 0.06] — Tue Sep  1 22:55:43 UTC 2026
+    cagsv2_0.0_0.06 done — Tue Sep  1 23:47:43 UTC 2026
+Mean Top-1: 12.57 ± 0.22%
+  [100-class] cagsv2_0.02_0.06: range=[0.02, 0.06] — Tue Sep  1 23:47:43 UTC 2026
