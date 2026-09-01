@@ -1,0 +1,17 @@
+=== Git status ===
+ M .gitignore
+ M ags/class_complexity.py
+ M duration_sweep.py
+?? ags/class_complexity_v1_backup.py
+?? ags/class_complexity_v2.py
+?? auto_push.sh
+?? collect_results.py
+?? compute_fid.py
+?? logs/
+?? quick_eval_v2.py
+?? results/experiment_summary.json
+?? results/sweep_in10/
+?? results/sweep_in100/
+?? run_all_experiments.sh
+?? run_phase2_experiments.sh
+=== Adding result files ===

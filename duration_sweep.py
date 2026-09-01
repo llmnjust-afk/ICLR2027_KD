@@ -84,7 +84,8 @@ def compute_clusters(spec, imagenet_dir, vae, device, nclass=10):
     features_per_class, paths_per_class = get_features_per_class(args_eval, loader, vae)
 
     analyzer = ClassComplexityAnalyzer(
-        n_clusters_range=(2, 20), alpha=0.5, beta=0.5, use_pca=True,
+        n_clusters_range=(2, 20), alpha=0.3, beta=0.3, gamma=0.2, delta=0.2,
+        use_pca=True, sigmoid_slope=3.0, sigmoid_center=0.6,
     )
     analyzer.analyze_all_classes(features_per_class, paths_per_class)
     return analyzer
@@ -96,6 +97,9 @@ def generate_config(
     window, guidance_steps, num_datasets, save_dir,
     schedule="constant",
     no_cags=False, fixed_scale=0.1, fixed_stop_t=None,
+    cags_min_scale=0.05, cags_max_scale=0.3,
+    sigmoid_slope=3.0, sigmoid_center=0.6,
+    use_iast=False,
 ):
     t_max = 49
     if window == "high_noise":
@@ -121,8 +125,8 @@ def generate_config(
         guidance_schedule=guidance_schedule,
         device=device, num_sampling_steps=50,
         cfg_scale=4.0, latent_size=latent_size,
-        use_cags=use_cags, use_iast=False, use_tags=use_tags,
-        guidance_scale_range=(0.05, 0.3),
+        use_cags=use_cags, use_iast=use_iast, use_tags=use_tags,
+        guidance_scale_range=(cags_min_scale, cags_max_scale),
         guidance_window=window,
     )
     sampler.default_guidance_scale = fixed_scale
@@ -328,8 +332,18 @@ def main():
                         help="Disable CAGS; use fixed guidance scale (MGD3 mode)")
     parser.add_argument("--fixed-scale", type=float, default=0.1,
                         help="Fixed guidance scale when CAGS disabled (MGD3 default=0.1)")
+    parser.add_argument("--use-iast", action="store_true", default=False,
+                        help="Enable IAST adaptive stop timing (ablation)")
     parser.add_argument("--fixed-stop-t", type=int, default=None,
                         help="Override IAST/duration with a fixed stop_t (MGD3 default=25)")
+    parser.add_argument("--cags-min-scale", type=float, default=0.05,
+                        help="Minimum CAGS guidance scale (default 0.05)")
+    parser.add_argument("--cags-max-scale", type=float, default=0.3,
+                        help="Maximum CAGS guidance scale (default 0.3, lower to 0.12-0.15 for tuning)")
+    parser.add_argument("--sigmoid-slope", type=float, default=3.0,
+                        help="Sigmoid slope for CAGS complexity mapping (default 3.0)")
+    parser.add_argument("--sigmoid-center", type=float, default=0.6,
+                        help="Sigmoid center for CAGS complexity mapping (default 0.6)")
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -401,6 +415,11 @@ def main():
                 no_cags=args.no_cags,
                 fixed_scale=args.fixed_scale,
                 fixed_stop_t=args.fixed_stop_t,
+                cags_min_scale=args.cags_min_scale,
+                cags_max_scale=args.cags_max_scale,
+                sigmoid_slope=args.sigmoid_slope,
+                sigmoid_center=args.sigmoid_center,
+                use_iast=args.use_iast,
             )
 
         print(f"\nEvaluating {config_name} over seeds {args.seeds}...")
@@ -450,6 +469,10 @@ def main():
             "per_seed": per_seed,
             "top1_mean": mean_top1,
             "top1_std": std_top1,
+            "cags_min_scale": args.cags_min_scale,
+            "cags_max_scale": args.cags_max_scale,
+            "no_cags": args.no_cags,
+            "fixed_scale": args.fixed_scale,
         }
         print(f"\n  {config_name}: Top-1 = {mean_top1:.2f} ± {std_top1:.2f}% "
               f"({len(top1s)} runs)")
