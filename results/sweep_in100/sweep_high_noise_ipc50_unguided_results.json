@@ -1,0 +1,32 @@
+{
+  "high_noise_ipc50_unguided_d25": {
+    "window": "high_noise",
+    "schedule": "constant",
+    "duration": 25,
+    "guidance_steps": 25,
+    "gen_time_s": 3330.7724640369415,
+    "seeds": [
+      0
+    ],
+    "runs": [
+      {
+        "dataset": 0,
+        "seed": 0,
+        "top1": 0.96,
+        "top5": 4.94
+      }
+    ],
+    "per_seed": {
+      "0": {
+        "mean": 0.96,
+        "std": 0.0
+      }
+    },
+    "top1_mean": 0.96,
+    "top1_std": 0.0,
+    "cags_min_scale": 0.05,
+    "cags_max_scale": 0.3,
+    "no_cags": true,
+    "fixed_scale": 0.0
+  }
+}

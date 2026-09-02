@@ -24,3 +24,9 @@ Mean Top-1: 10.74 ± 0.10%
 Mean Top-1: 11.35 ± 0.42%
 === ResNet-50 (instance norm) on 100-class ===
   [reeval unguided_resnet50_inst] — Wed Sep  2 06:09:52 UTC 2026
+Mean Top-1: 6.67 ± 0.39%
+  [reeval cagsv2_0.0_0.06_resnet50_inst] — Wed Sep  2 06:55:04 UTC 2026
+Mean Top-1: 6.94 ± 0.41%
+========================================
+ResNet Re-evals ALL DONE — Wed Sep  2 07:40:26 UTC 2026
+========================================
