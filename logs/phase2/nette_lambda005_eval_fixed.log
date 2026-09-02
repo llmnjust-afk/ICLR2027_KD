@@ -2,20 +2,20 @@ Arch: convnet, Norm: instance
 Classes (10): ['n01440764', 'n02102040', 'n02979186', 'n03000684', 'n03028079', 'n03394916', 'n03417042', 'n03425413', 'n03445777', 'n03888257']
 
 Seed 0:
-  Loading training images from results/sweep_nette/high_noise_unguided_d25/dataset_0...
+  Loading training images from results/sweep_nette/high_noise_lambda005_d25/dataset_0...
   Loaded 100 training images
   Loading validation images from /root/data/imagenette2/val...
   Loaded 3925 validation images
-    Epoch 200/1000 (15.1s)
-    Epoch 400/1000 (30.0s)
-    Epoch 600/1000 (44.8s)
-    Epoch 800/1000 (59.7s)
-    Epoch 1000/1000 (74.5s)
-  Training done in 75.8s
-  Seed 0: Top-1=37.12%, Top-5=81.50%
+    Epoch 200/1000 (15.3s)
+    Epoch 400/1000 (30.1s)
+    Epoch 600/1000 (45.0s)
+    Epoch 800/1000 (59.9s)
+    Epoch 1000/1000 (74.7s)
+  Training done in 76.0s
+  Seed 0: Top-1=36.74%, Top-5=80.84%
 
 Seed 1:
-  Loading training images from results/sweep_nette/high_noise_unguided_d25/dataset_0...
+  Loading training images from results/sweep_nette/high_noise_lambda005_d25/dataset_0...
   Loaded 100 training images
   Loading validation images from /root/data/imagenette2/val...
   Loaded 3925 validation images
@@ -24,11 +24,11 @@ Seed 1:
     Epoch 600/1000 (44.4s)
     Epoch 800/1000 (59.3s)
     Epoch 1000/1000 (74.1s)
-  Training done in 75.4s
-  Seed 1: Top-1=39.24%, Top-5=81.71%
+  Training done in 75.3s
+  Seed 1: Top-1=36.69%, Top-5=79.69%
 
 Seed 2:
-  Loading training images from results/sweep_nette/high_noise_unguided_d25/dataset_0...
+  Loading training images from results/sweep_nette/high_noise_lambda005_d25/dataset_0...
   Loaded 100 training images
   Loading validation images from /root/data/imagenette2/val...
   Loaded 3925 validation images
@@ -38,9 +38,9 @@ Seed 2:
     Epoch 800/1000 (59.3s)
     Epoch 1000/1000 (74.1s)
   Training done in 75.4s
-  Seed 2: Top-1=38.24%, Top-5=82.47%
+  Seed 2: Top-1=37.50%, Top-5=79.80%
 
 ============================================================
 Arch: convnet, Depth: 6
-Mean Top-1: 38.20 ± 0.86%
-Mean Top-5: 81.89 ± 0.42%
+Mean Top-1: 36.98 ± 0.37%
+Mean Top-5: 80.11 ± 0.52%
