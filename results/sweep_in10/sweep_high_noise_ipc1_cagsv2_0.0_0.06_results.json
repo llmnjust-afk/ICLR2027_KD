@@ -1,0 +1,32 @@
+{
+  "high_noise_ipc1_cagsv2_0.0_0.06_d25": {
+    "window": "high_noise",
+    "schedule": "constant",
+    "duration": 25,
+    "guidance_steps": 25,
+    "gen_time_s": 7.111152172088623,
+    "seeds": [
+      0
+    ],
+    "runs": [
+      {
+        "dataset": 0,
+        "seed": 0,
+        "top1": 0.98,
+        "top5": 5.02
+      }
+    ],
+    "per_seed": {
+      "0": {
+        "mean": 0.98,
+        "std": 0.0
+      }
+    },
+    "top1_mean": 0.98,
+    "top1_std": 0.0,
+    "cags_min_scale": 0.0,
+    "cags_max_scale": 0.06,
+    "no_cags": false,
+    "fixed_scale": 0.1
+  }
+}

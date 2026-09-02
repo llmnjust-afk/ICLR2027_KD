@@ -1,0 +1,32 @@
+{
+  "high_noise_cagsv2_0.0_0.06_d25": {
+    "window": "high_noise",
+    "schedule": "constant",
+    "duration": 25,
+    "guidance_steps": 25,
+    "gen_time_s": 99.37203192710876,
+    "seeds": [
+      0
+    ],
+    "runs": [
+      {
+        "dataset": 0,
+        "seed": 0,
+        "top1": 9.977093407991855,
+        "top5": 51.794349707304654
+      }
+    ],
+    "per_seed": {
+      "0": {
+        "mean": 9.977093407991855,
+        "std": 0.0
+      }
+    },
+    "top1_mean": 9.977093407991855,
+    "top1_std": 0.0,
+    "cags_min_scale": 0.0,
+    "cags_max_scale": 0.06,
+    "no_cags": false,
+    "fixed_scale": 0.1
+  }
+}

@@ -1,0 +1,8 @@
+========================================
+Phase 3 GPU 1 — Wed Sep  2 00:59:00 UTC 2026
+========================================
+=== BATCH 1: TAGS + CAGS v2 on 100-class ===
+  [100-class tags_linear_cagsv2_0.0_0.06] gen — Wed Sep  2 00:59:00 UTC 2026
+  [100-class tags_linear_cagsv2_0.0_0.06] eval — Wed Sep  2 01:14:02 UTC 2026
+Mean Top-1: 12.82 ± 0.27%
+  [100-class tags_exp_cagsv2_0.0_0.06] gen — Wed Sep  2 01:55:10 UTC 2026

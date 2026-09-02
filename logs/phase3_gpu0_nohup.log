@@ -1,0 +1,50 @@
+========================================
+Phase 3 GPU 0 — Wed Sep  2 00:58:49 UTC 2026
+========================================
+=== BATCH 1: CAGS on ImageNette/ImageWoof ===
+  [nette cagsv2_0.0_0.06] gen — Wed Sep  2 00:58:49 UTC 2026
+  [nette cagsv2_0.0_0.06] eval — Wed Sep  2 01:02:27 UTC 2026
+Mean Top-1: 46.99 ± 0.44%
+  [woof cagsv2_0.0_0.06] gen — Wed Sep  2 01:08:49 UTC 2026
+  [woof cagsv2_0.0_0.06] eval — Wed Sep  2 01:12:23 UTC 2026
+Mean Top-1: 24.44 ± 0.35%
+=== BATCH 2: ResNet-18 on 10-class ===
+  [reeval fixed_l0.0_resnet18] — Wed Sep  2 01:19:57 UTC 2026
+Mean Top-1: 14.33 ± 2.00%
+  [reeval fixed_l0.05_resnet18] — Wed Sep  2 01:21:42 UTC 2026
+Mean Top-1: 17.33 ± 3.30%
+  [reeval cagsv2_0.0_0.08_resnet18] — Wed Sep  2 01:23:28 UTC 2026
+Mean Top-1: 13.33 ± 2.48%
+=== BATCH 3: ResNet-50 on 10-class ===
+  [reeval fixed_l0.0_resnet50] — Wed Sep  2 01:25:16 UTC 2026
+Mean Top-1: 13.07 ± 0.90%
+  [reeval fixed_l0.05_resnet50] — Wed Sep  2 01:29:47 UTC 2026
+Mean Top-1: 9.60 ± 0.59%
+  [reeval cagsv2_0.0_0.08_resnet50] — Wed Sep  2 01:34:12 UTC 2026
+Mean Top-1: 9.27 ± 0.93%
+=== BATCH 4: IPC=1 on 10-class ===
+  [ipc1_unguided] gen — Wed Sep  2 01:38:38 UTC 2026
+  [ipc1_unguided] eval — Wed Sep  2 01:39:10 UTC 2026
+Mean Top-1: 20.00 ± 1.70%
+  [ipc1_fixed_l0.05] gen — Wed Sep  2 01:39:47 UTC 2026
+  [ipc1_fixed_l0.05] eval — Wed Sep  2 01:40:18 UTC 2026
+Mean Top-1: 20.00 ± 0.33%
+  [ipc1_cagsv2_0.0_0.06] gen — Wed Sep  2 01:40:54 UTC 2026
+  [ipc1_cagsv2_0.0_0.06] eval — Wed Sep  2 01:41:24 UTC 2026
+Mean Top-1: 19.73 ± 0.50%
+=== BATCH 5: TAGS lambda=0.05 on 10-class ===
+  [tags_linear_l0.05] gen — Wed Sep  2 01:42:27 UTC 2026
+  [tags_linear_l0.05] eval — Wed Sep  2 01:44:08 UTC 2026
+Mean Top-1: 36.60 ± 1.02%
+  [tags_exp_l0.05] gen — Wed Sep  2 01:48:09 UTC 2026
+  [tags_exp_l0.05] eval — Wed Sep  2 01:49:45 UTC 2026
+Mean Top-1: 38.40 ± 1.18%
+  [tags_cosine_l0.05] gen — Wed Sep  2 01:53:45 UTC 2026
+  [tags_cosine_l0.05] eval — Wed Sep  2 01:55:21 UTC 2026
+Mean Top-1: 36.47 ± 1.64%
+=== BATCH 6: IAST + CAGS on 10-class ===
+  [iast_cagsv2_0.0_0.08] gen — Wed Sep  2 01:59:22 UTC 2026
+  [iast_cagsv2_0.0_0.08] eval — Wed Sep  2 02:00:59 UTC 2026
+Mean Top-1: 38.40 ± 1.96%
+=== BATCH 7: IPC=50 on 10-class ===
+  [ipc50_unguided] gen — Wed Sep  2 02:05:00 UTC 2026

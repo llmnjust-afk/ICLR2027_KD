@@ -1,0 +1,94 @@
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Device: cuda, Window: high_noise
+Durations: [25], Schedule: constant (tag=ipc1_fixed_l0.05)
+Seeds: [0], Eval-only: False
+Data dir: /root/data/imagenet100_10class, Spec: imagenet100, Nclass: 10
+Classes: ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Loading DiT model and VAE...
+Model loaded.
+
+Loading cached CAGS clusters from ./results/sweep_in10/cluster_cache.pkl
+  Class 1: complexity=0.7059, modes=10
+  Class 9: complexity=0.6157, modes=10
+  Class 5: complexity=0.6493, modes=10
+  Class 3: complexity=0.7793, modes=10
+  Class 2: complexity=0.6207, modes=10
+  Class 0: complexity=0.7760, modes=10
+  Class 8: complexity=0.8627, modes=10
+  Class 6: complexity=0.7813, modes=10
+  Class 7: complexity=0.6262, modes=10
+  Class 4: complexity=0.5208, modes=10
+
+============================================================
+Config: high_noise_ipc1_fixed_l0.05_d25
+  Window: high_noise, Duration: 25 steps, Schedule: constant
+============================================================
+  Class n02869837 (label=452): guidance=0.0500, stop_t=24, modes=10, complexity=0.7760
+  Class n01749939 (label=64): guidance=0.0500, stop_t=24, modes=10, complexity=0.7059
+  Class n02488291 (label=374): guidance=0.0500, stop_t=24, modes=10, complexity=0.6207
+  Class n02107142 (label=236): guidance=0.0500, stop_t=24, modes=10, complexity=0.7793
+  Class n13037406 (label=993): guidance=0.0500, stop_t=24, modes=10, complexity=0.5208
+  Class n02091831 (label=176): guidance=0.0500, stop_t=24, modes=10, complexity=0.6493
+  Class n04517823 (label=882): guidance=0.0500, stop_t=24, modes=10, complexity=0.7813
+  Class n04589890 (label=904): guidance=0.0500, stop_t=24, modes=10, complexity=0.6262
+  Class n03062245 (label=503): guidance=0.0500, stop_t=24, modes=10, complexity=0.8627
+  Class n01773797 (label=74): guidance=0.0500, stop_t=24, modes=10, complexity=0.6157
+
+Generating class: n02869837 (label=452)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.10s/it]100%|██████████| 1/1 [00:01<00:00,  1.10s/it]
+  Time: 1.1s
+
+Generating class: n01749939 (label=64)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]
+  Time: 0.7s
+
+Generating class: n02488291 (label=374)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.46it/s]100%|██████████| 1/1 [00:00<00:00,  1.46it/s]
+  Time: 0.7s
+
+Generating class: n02107142 (label=236)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]
+  Time: 0.7s
+
+Generating class: n13037406 (label=993)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.47it/s]100%|██████████| 1/1 [00:00<00:00,  1.47it/s]
+  Time: 0.7s
+
+Generating class: n02091831 (label=176)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.44it/s]100%|██████████| 1/1 [00:00<00:00,  1.44it/s]
+  Time: 0.7s
+
+Generating class: n04517823 (label=882)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]
+  Time: 0.7s
+
+Generating class: n04589890 (label=904)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]100%|██████████| 1/1 [00:00<00:00,  1.45it/s]
+  Time: 0.7s
+
+Generating class: n03062245 (label=503)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.43it/s]100%|██████████| 1/1 [00:00<00:00,  1.43it/s]
+  Time: 0.7s
+
+Generating class: n01773797 (label=74)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.42it/s]100%|██████████| 1/1 [00:00<00:00,  1.42it/s]
+  Time: 0.7s
+  Generated 1 datasets in 7.3s (0.1 min)
+
+Evaluating high_noise_ipc1_fixed_l0.05_d25 over seeds [0]...
+  Dataset 0 seed 0: Top-1=0.98%, Top-5=5.02%
+
+  high_noise_ipc1_fixed_l0.05_d25: Top-1 = 0.98 ± 0.00% (1 runs)
+
+Results saved to ./results/sweep_in10/sweep_high_noise_ipc1_fixed_l0.05_results.json (1 new, 1 total configs)
+
+============================================================
+SUMMARY (high_noise, constant)
+============================================================
+  high_noise_ipc1_fixed_l0.05_d25: 0.98 ± 0.00%
