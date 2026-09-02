@@ -6,3 +6,30 @@ Phase 3 GPU 1 — Wed Sep  2 00:59:00 UTC 2026
   [100-class tags_linear_cagsv2_0.0_0.06] eval — Wed Sep  2 01:14:02 UTC 2026
 Mean Top-1: 12.82 ± 0.27%
   [100-class tags_exp_cagsv2_0.0_0.06] gen — Wed Sep  2 01:55:10 UTC 2026
+  [100-class tags_exp_cagsv2_0.0_0.06] eval — Wed Sep  2 02:07:01 UTC 2026
+Mean Top-1: 12.61 ± 0.45%
+=== BATCH 2: ResNet-18 on 100-class ===
+  [reeval 100-class unguided_resnet18] — Wed Sep  2 02:46:36 UTC 2026
+Mean Top-1: 4.51 ± 0.80%
+  [reeval 100-class fixed_l0.1_resnet18] — Wed Sep  2 03:03:30 UTC 2026
+Mean Top-1: 4.11 ± 0.34%
+  [reeval 100-class cagsv2_0.0_0.06_resnet18] — Wed Sep  2 03:20:30 UTC 2026
+Mean Top-1: 4.24 ± 0.24%
+=== BATCH 3: IPC=1 on 100-class ===
+  [100-class ipc1_unguided] gen — Wed Sep  2 03:37:22 UTC 2026
+  [100-class ipc1_unguided] eval — Wed Sep  2 03:39:05 UTC 2026
+Mean Top-1: 4.22 ± 0.02%
+  [100-class ipc1_cagsv2_0.0_0.06] gen — Wed Sep  2 03:44:23 UTC 2026
+  [100-class ipc1_cagsv2_0.0_0.06] eval — Wed Sep  2 03:46:05 UTC 2026
+Mean Top-1: 3.62 ± 0.17%
+=== BATCH 4: IAST + CAGS v2 on 100-class ===
+  [100-class iast_cagsv2_0.0_0.06] gen — Wed Sep  2 03:51:14 UTC 2026
+  [100-class iast_cagsv2_0.0_0.06] eval — Wed Sep  2 04:03:07 UTC 2026
+Mean Top-1: 12.77 ± 0.46%
+=== BATCH 5: ResNet-50 on 100-class ===
+  [reeval 100-class unguided_resnet50] — Wed Sep  2 04:42:35 UTC 2026
+Mean Top-1: 1.98 ± 0.58%
+  [reeval 100-class cagsv2_0.0_0.06_resnet50] — Wed Sep  2 05:26:42 UTC 2026
+Mean Top-1: 2.24 ± 0.30%
+=== BATCH 6: IPC=50 on 100-class ===
+  [100-class ipc50_unguided] gen — Wed Sep  2 06:10:40 UTC 2026

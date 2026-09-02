@@ -1,0 +1,46 @@
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100_10class/val...
+  Loaded 500 validation images
+    Epoch 200/1000 (74.4s)
+    Epoch 400/1000 (148.4s)
+    Epoch 600/1000 (222.4s)
+    Epoch 800/1000 (296.4s)
+    Epoch 1000/1000 (370.4s)
+  Training done in 370.9s
+  Seed 0: Top-1=47.40%, Top-5=88.40%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100_10class/val...
+  Loaded 500 validation images
+    Epoch 200/1000 (73.8s)
+    Epoch 400/1000 (147.8s)
+    Epoch 600/1000 (221.8s)
+    Epoch 800/1000 (295.7s)
+    Epoch 1000/1000 (369.6s)
+  Training done in 370.0s
+  Seed 1: Top-1=49.00%, Top-5=86.00%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100_10class/val...
+  Loaded 500 validation images
+    Epoch 200/1000 (73.7s)
+    Epoch 400/1000 (147.7s)
+    Epoch 600/1000 (221.7s)
+    Epoch 800/1000 (295.7s)
+    Epoch 1000/1000 (369.6s)
+  Training done in 369.9s
+  Seed 2: Top-1=45.20%, Top-5=86.60%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Top-1: 47.20 ± 1.56%
+Mean Top-5: 87.00 ± 1.02%

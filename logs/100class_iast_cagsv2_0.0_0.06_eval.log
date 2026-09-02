@@ -1,0 +1,46 @@
+Arch: convnet, Norm: instance
+Classes (100): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Seed 0:
+  Loading training images from ./results/sweep_in100/high_noise_iast_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images
+    Epoch 200/1000 (150.3s)
+    Epoch 400/1000 (300.3s)
+    Epoch 600/1000 (450.2s)
+    Epoch 800/1000 (600.1s)
+    Epoch 1000/1000 (750.1s)
+  Training done in 751.8s
+  Seed 0: Top-1=13.04%, Top-5=30.98%
+
+Seed 1:
+  Loading training images from ./results/sweep_in100/high_noise_iast_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images
+    Epoch 200/1000 (149.8s)
+    Epoch 400/1000 (299.7s)
+    Epoch 600/1000 (449.7s)
+    Epoch 800/1000 (599.6s)
+    Epoch 1000/1000 (749.6s)
+  Training done in 751.2s
+  Seed 1: Top-1=13.16%, Top-5=31.52%
+
+Seed 2:
+  Loading training images from ./results/sweep_in100/high_noise_iast_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images
+    Epoch 200/1000 (149.8s)
+    Epoch 400/1000 (299.8s)
+    Epoch 600/1000 (449.8s)
+    Epoch 800/1000 (599.7s)
+    Epoch 1000/1000 (749.7s)
+  Training done in 751.3s
+  Seed 2: Top-1=12.12%, Top-5=29.80%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Top-1: 12.77 ± 0.46%
+Mean Top-5: 30.77 ± 0.72%

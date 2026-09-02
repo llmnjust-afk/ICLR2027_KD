@@ -1,0 +1,26 @@
+========================================
+ResNet Instance-Norm Re-evals — Wed Sep  2 05:00:47 UTC 2026
+========================================
+=== ResNet-18 (instance norm) on 10-class ===
+  [reeval fixed_l0.0_resnet18_inst] — Wed Sep  2 05:00:47 UTC 2026
+Mean Top-1: 35.80 ± 2.29%
+  [reeval fixed_l0.05_resnet18_inst] — Wed Sep  2 05:02:31 UTC 2026
+Mean Top-1: 39.20 ± 1.80%
+  [reeval cagsv2_0.0_0.08_resnet18_inst] — Wed Sep  2 05:04:19 UTC 2026
+Mean Top-1: 39.07 ± 0.50%
+=== ResNet-50 (instance norm) on 10-class ===
+  [reeval fixed_l0.0_resnet50_inst] — Wed Sep  2 05:06:06 UTC 2026
+Mean Top-1: 20.13 ± 0.90%
+  [reeval fixed_l0.05_resnet50_inst] — Wed Sep  2 05:10:44 UTC 2026
+Mean Top-1: 18.20 ± 1.77%
+  [reeval cagsv2_0.0_0.08_resnet50_inst] — Wed Sep  2 05:15:41 UTC 2026
+Mean Top-1: 15.40 ± 0.75%
+=== ResNet-18 (instance norm) on 100-class ===
+  [reeval unguided_resnet18_inst] — Wed Sep  2 05:20:19 UTC 2026
+Mean Top-1: 10.26 ± 0.37%
+  [reeval fixed_l0.1_resnet18_inst] — Wed Sep  2 05:36:51 UTC 2026
+Mean Top-1: 10.74 ± 0.10%
+  [reeval cagsv2_0.0_0.06_resnet18_inst] — Wed Sep  2 05:53:25 UTC 2026
+Mean Top-1: 11.35 ± 0.42%
+=== ResNet-50 (instance norm) on 100-class ===
+  [reeval unguided_resnet50_inst] — Wed Sep  2 06:09:52 UTC 2026
