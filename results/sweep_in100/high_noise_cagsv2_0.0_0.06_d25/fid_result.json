@@ -1,0 +1,7 @@
+{
+  "fid": 85.25861459120489,
+  "gen_dir": "./results/sweep_in100/high_noise_cagsv2_0.0_0.06_d25/dataset_0",
+  "real_dir": "/root/data/imagenet100/val",
+  "n_gen": 1000,
+  "n_real": 5000
+}

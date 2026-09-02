@@ -1,0 +1,22 @@
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_fixed_l0.0_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v3_norm.py", line 259, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v3_norm.py", line 241, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v3_norm.py", line 169, in evaluate_fast
+    loss.backward()
+  File "/usr/local/lib/python3.10/dist-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.39 GiB. GPU 0 has a total capacity of 31.36 GiB of which 2.21 GiB is free. Process 827999 has 20.85 GiB memory in use. Including non-PyTorch memory, this process has 8.28 GiB memory in use. Of the allocated memory 7.59 GiB is allocated by PyTorch, and 82.89 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

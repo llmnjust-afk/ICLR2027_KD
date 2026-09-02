@@ -1,0 +1,221 @@
+========================================
+FID Computation - Wed Sep  2 14:36:10 UTC 2026
+========================================
+=== 100-class unguided ===
+Device: cuda
+Classes: ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Loading InceptionV3 model...
+Downloading: "https://download.pytorch.org/models/inception_v3_google-0cc3c7bd.pth" to /root/.cache/torch/hub/checkpoints/inception_v3_google-0cc3c7bd.pth
+  0%|          | 0.00/104M [00:00<?, ?B/s]  0%|          | 384k/104M [00:00<00:34, 3.11MB/s]  3%|▎         | 3.62M/104M [00:00<00:05, 19.5MB/s]  8%|▊         | 8.00M/104M [00:00<00:03, 28.6MB/s] 10%|█         | 10.9M/104M [00:00<00:04, 22.8MB/s] 13%|█▎        | 13.2M/104M [00:00<00:04, 21.3MB/s] 17%|█▋        | 17.5M/104M [00:00<00:03, 23.2MB/s] 19%|█▉        | 19.8M/104M [00:00<00:04, 22.0MB/s] 23%|██▎       | 24.1M/104M [00:01<00:03, 27.8MB/s] 26%|██▌       | 27.0M/104M [00:01<00:03, 26.3MB/s] 29%|██▊       | 29.6M/104M [00:01<00:03, 25.4MB/s] 31%|███       | 32.1M/104M [00:01<00:03, 24.7MB/s] 33%|███▎      | 34.6M/104M [00:01<00:02, 24.3MB/s] 36%|███▌      | 37.0M/104M [00:01<00:02, 23.9MB/s] 38%|███▊      | 39.4M/104M [00:01<00:02, 23.7MB/s] 40%|████      | 41.8M/104M [00:01<00:02, 23.5MB/s] 42%|████▏     | 44.0M/104M [00:01<00:02, 23.4MB/s] 45%|████▍     | 46.2M/104M [00:02<00:02, 23.3MB/s] 47%|████▋     | 48.5M/104M [00:02<00:02, 23.2MB/s] 49%|████▉     | 50.8M/104M [00:02<00:02, 23.2MB/s] 51%|█████     | 53.0M/104M [00:02<00:02, 23.2MB/s] 53%|█████▎    | 55.2M/104M [00:02<00:02, 23.1MB/s] 55%|█████▌    | 57.5M/104M [00:02<00:02, 23.2MB/s] 58%|█████▊    | 59.8M/104M [00:02<00:02, 23.1MB/s] 60%|█████▉    | 62.0M/104M [00:02<00:01, 23.0MB/s] 62%|██████▏   | 64.2M/104M [00:02<00:01, 23.1MB/s] 64%|██████▍   | 66.5M/104M [00:02<00:01, 23.1MB/s] 66%|██████▌   | 68.8M/104M [00:03<00:01, 23.1MB/s] 68%|██████▊   | 71.0M/104M [00:03<00:01, 23.1MB/s] 70%|███████   | 73.2M/104M [00:03<00:01, 23.1MB/s] 73%|███████▎  | 75.5M/104M [00:03<00:01, 23.1MB/s] 75%|███████▍  | 77.8M/104M [00:03<00:01, 23.1MB/s] 77%|███████▋  | 80.0M/104M [00:03<00:01, 23.1MB/s] 79%|███████▉  | 82.2M/104M [00:03<00:00, 23.1MB/s] 81%|████████▏ | 84.5M/104M [00:03<00:00, 23.1MB/s] 83%|████████▎ | 86.8M/104M [00:03<00:00, 23.1MB/s] 86%|████████▌ | 89.0M/104M [00:03<00:00, 23.1MB/s] 88%|████████▊ | 91.2M/104M [00:04<00:00, 23.1MB/s] 90%|████████▉ | 93.5M/104M [00:04<00:00, 23.1MB/s] 92%|█████████▏| 95.8M/104M [00:04<00:00, 23.1MB/s] 94%|█████████▍| 98.0M/104M [00:04<00:00, 23.1MB/s] 96%|█████████▋| 100M/104M [00:04<00:00, 23.1MB/s]  99%|█████████▊| 102M/104M [00:04<00:00, 23.1MB/s]100%|██████████| 104M/104M [00:04<00:00, 23.3MB/s]
+
+Extracting features from generated images (./results/sweep_in100/high_noise_unguided_d25/dataset_0)...
+  Extracting features from 1000 images...
+  Generated features: (1000, 2048)
+
+Extracting features from real images (/root/data/imagenet100/val)...
+  Extracting features from 5000 images...
+  Real features: (5000, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 88.6635
+==================================================
+Generated: 1000 images from ./results/sweep_in100/high_noise_unguided_d25/dataset_0
+Real: 5000 images from /root/data/imagenet100/val
+Saved to ./results/sweep_in100/high_noise_unguided_d25/fid_result.json
+=== 100-class CAGS v2 [0.0, 0.06] ===
+Device: cuda
+Classes: ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_in100/high_noise_cagsv2_0.0_0.06_d25/dataset_0)...
+  Extracting features from 1000 images...
+  Generated features: (1000, 2048)
+
+Extracting features from real images (/root/data/imagenet100/val)...
+  Extracting features from 5000 images...
+  Real features: (5000, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 85.2586
+==================================================
+Generated: 1000 images from ./results/sweep_in100/high_noise_cagsv2_0.0_0.06_d25/dataset_0
+Real: 5000 images from /root/data/imagenet100/val
+Saved to ./results/sweep_in100/high_noise_cagsv2_0.0_0.06_d25/fid_result.json
+=== 100-class IPC=50 unguided ===
+Device: cuda
+Classes: ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_in100/high_noise_ipc50_unguided_d25/dataset_0)...
+  Extracting features from 5000 images...
+  Generated features: (5000, 2048)
+
+Extracting features from real images (/root/data/imagenet100/val)...
+  Extracting features from 5000 images...
+  Real features: (5000, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 71.0571
+==================================================
+Generated: 5000 images from ./results/sweep_in100/high_noise_ipc50_unguided_d25/dataset_0
+Real: 5000 images from /root/data/imagenet100/val
+Saved to ./results/sweep_in100/high_noise_ipc50_unguided_d25/fid_result.json
+=== 100-class IPC=50 CAGS v2 [0.0, 0.06] ===
+Device: cuda
+Classes: ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_in100/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0)...
+  Extracting features from 5000 images...
+  Generated features: (5000, 2048)
+
+Extracting features from real images (/root/data/imagenet100/val)...
+  Extracting features from 5000 images...
+  Real features: (5000, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 59.2844
+==================================================
+Generated: 5000 images from ./results/sweep_in100/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0
+Real: 5000 images from /root/data/imagenet100/val
+Saved to ./results/sweep_in100/high_noise_ipc50_cagsv2_0.0_0.06_d25/fid_result.json
+=== ImageNette unguided ===
+Device: cuda
+Classes: ['n01440764', 'n02102040', 'n02979186', 'n03000684', 'n03028079', 'n03394916', 'n03417042', 'n03425413', 'n03445777', 'n03888257']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_nette/high_noise_unguided_d25/dataset_0)...
+  Extracting features from 100 images...
+  Generated features: (100, 2048)
+
+Extracting features from real images (/root/data/imagenette2/val)...
+  Extracting features from 3925 images...
+  Real features: (3925, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 105.2077
+==================================================
+Generated: 100 images from ./results/sweep_nette/high_noise_unguided_d25/dataset_0
+Real: 3925 images from /root/data/imagenette2/val
+Saved to ./results/sweep_nette/high_noise_unguided_d25/fid_result.json
+=== ImageNette CAGS v2 [0.0, 0.06] ===
+Device: cuda
+Classes: ['n01440764', 'n02102040', 'n02979186', 'n03000684', 'n03028079', 'n03394916', 'n03417042', 'n03425413', 'n03445777', 'n03888257']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_nette/high_noise_cagsv2_0.0_0.06_d25/dataset_0)...
+  Extracting features from 100 images...
+  Generated features: (100, 2048)
+
+Extracting features from real images (/root/data/imagenette2/val)...
+  Extracting features from 3925 images...
+  Real features: (3925, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 108.5885
+==================================================
+Generated: 100 images from ./results/sweep_nette/high_noise_cagsv2_0.0_0.06_d25/dataset_0
+Real: 3925 images from /root/data/imagenette2/val
+Saved to ./results/sweep_nette/high_noise_cagsv2_0.0_0.06_d25/fid_result.json
+=== ImageWoof unguided ===
+Device: cuda
+Classes: ['n02096294', 'n02093754', 'n02111889', 'n02088364', 'n02086240', 'n02089973', 'n02087394', 'n02115641', 'n02099601', 'n02105641']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_woof/high_noise_unguided_d25/dataset_0)...
+  Extracting features from 100 images...
+  Generated features: (100, 2048)
+
+Extracting features from real images (/root/data/imagewoof2/val)...
+  Extracting features from 3929 images...
+  Real features: (3929, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 86.2719
+==================================================
+Generated: 100 images from ./results/sweep_woof/high_noise_unguided_d25/dataset_0
+Real: 3929 images from /root/data/imagewoof2/val
+Saved to ./results/sweep_woof/high_noise_unguided_d25/fid_result.json
+=== ImageWoof CAGS v2 [0.0, 0.06] ===
+Device: cuda
+Classes: ['n02096294', 'n02093754', 'n02111889', 'n02088364', 'n02086240', 'n02089973', 'n02087394', 'n02115641', 'n02099601', 'n02105641']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0)...
+  Extracting features from 100 images...
+  Generated features: (100, 2048)
+
+Extracting features from real images (/root/data/imagewoof2/val)...
+  Extracting features from 3929 images...
+  Real features: (3929, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 94.6957
+==================================================
+Generated: 100 images from ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0
+Real: 3929 images from /root/data/imagewoof2/val
+Saved to ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/fid_result.json
+=== 10-class unguided ===
+Device: cuda
+Classes: ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_in10/high_noise_unguided_d25/dataset_0)...
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/compute_fid.py", line 155, in <module>
+    main()
+  File "/root/ICLR2027_KD/compute_fid.py", line 121, in main
+    gen_features = extract_features(model, args.gen_dir, class_names, device, max_images=args.max_images)
+  File "/root/ICLR2027_KD/compute_fid.py", line 61, in extract_features
+    raise RuntimeError(f"No images found in {image_dir}")
+RuntimeError: No images found in ./results/sweep_in10/high_noise_unguided_d25/dataset_0
+=== 10-class CAGS v2 [0.0, 0.08] ===
+Device: cuda
+Classes: ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Loading InceptionV3 model...
+
+Extracting features from generated images (./results/sweep_in10/high_noise_cagsv2_0.0_0.08_d25/dataset_0)...
+  Extracting features from 100 images...
+  Generated features: (100, 2048)
+
+Extracting features from real images (/root/data/imagenet100/val)...
+  Extracting features from 500 images...
+  Real features: (500, 2048)
+
+Computing FID...
+
+==================================================
+FID Score: 132.0591
+==================================================
+Generated: 100 images from ./results/sweep_in10/high_noise_cagsv2_0.0_0.08_d25/dataset_0
+Real: 500 images from /root/data/imagenet100/val
+Saved to ./results/sweep_in10/high_noise_cagsv2_0.0_0.08_d25/fid_result.json
+========================================
+FID ALL DONE - Wed Sep  2 14:51:07 UTC 2026
+========================================

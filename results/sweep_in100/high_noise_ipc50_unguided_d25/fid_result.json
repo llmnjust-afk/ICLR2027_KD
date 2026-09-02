@@ -1,0 +1,7 @@
+{
+  "fid": 71.05708110388514,
+  "gen_dir": "./results/sweep_in100/high_noise_ipc50_unguided_d25/dataset_0",
+  "real_dir": "/root/data/imagenet100/val",
+  "n_gen": 5000,
+  "n_real": 5000
+}

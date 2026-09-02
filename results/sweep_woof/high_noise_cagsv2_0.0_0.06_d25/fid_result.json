@@ -1,0 +1,7 @@
+{
+  "fid": 94.69569124474953,
+  "gen_dir": "./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0",
+  "real_dir": "/root/data/imagewoof2/val",
+  "n_gen": 100,
+  "n_real": 3929
+}

@@ -1,0 +1,7 @@
+{
+  "fid": 105.20765404799783,
+  "gen_dir": "./results/sweep_nette/high_noise_unguided_d25/dataset_0",
+  "real_dir": "/root/data/imagenette2/val",
+  "n_gen": 100,
+  "n_real": 3925
+}
