@@ -197,3 +197,369 @@ Seed 0:
   Loading validation images from /root/data/imagenet100/val...
   Loaded 500 validation images
     Epoch 600/1500 (234.8s) best=46.00%@ep540
+    Epoch 1200/1500 (469.0s) best=47.80%@ep945
+  Training done in 586.2s, best Top-1=47.80% @ epoch 945
+  Seed 0: Best Top-1=47.80%, Best Top-5=86.20%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 600/1500 (234.7s) best=45.80%@ep465
+    Epoch 1200/1500 (468.9s) best=49.80%@ep1005
+  Training done in 586.0s, best Top-1=49.80% @ epoch 1005
+  Seed 1: Best Top-1=49.80%, Best Top-5=86.00%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 600/1500 (234.2s) best=46.80%@ep510
+    Epoch 1200/1500 (468.3s) best=48.40%@ep855
+  Training done in 585.4s, best Top-1=48.80% @ epoch 1230
+  Seed 2: Best Top-1=48.80%, Best Top-5=86.60%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 48.80 ± 0.82%
+Mean Best Top-5: 86.27 ± 0.25%
+=== 10-class IPC=50 CAGS v2 (3 seeds, 1500 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 600/1500 (236.5s) best=50.00%@ep600
+    Epoch 1200/1500 (470.6s) best=52.40%@ep1140
+  Training done in 587.7s, best Top-1=52.40% @ epoch 1140
+  Seed 0: Best Top-1=52.40%, Best Top-5=88.00%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 600/1500 (234.2s) best=50.00%@ep585
+    Epoch 1200/1500 (468.4s) best=54.00%@ep1035
+  Training done in 585.4s, best Top-1=54.40% @ epoch 1245
+  Seed 1: Best Top-1=54.40%, Best Top-5=88.40%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 600/1500 (234.7s) best=49.80%@ep600
+    Epoch 1200/1500 (468.9s) best=51.40%@ep1140
+  Training done in 585.9s, best Top-1=53.60% @ epoch 1380
+  Seed 2: Best Top-1=53.60%, Best Top-5=87.80%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 53.47 ± 0.82%
+Mean Best Top-5: 88.07 ± 0.25%
+=== 10-class IPC=1 unguided (3 seeds, 2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc1_unguided_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 200/2000 (3.6s) best=15.40%@ep60
+    Epoch 400/2000 (6.5s) best=17.80%@ep360
+    Epoch 600/2000 (9.4s) best=18.60%@ep580
+    Epoch 800/2000 (12.4s) best=18.60%@ep580
+    Epoch 1000/2000 (15.3s) best=18.60%@ep580
+    Epoch 1200/2000 (18.2s) best=19.20%@ep1200
+    Epoch 1400/2000 (21.2s) best=19.20%@ep1200
+    Epoch 1600/2000 (24.1s) best=19.20%@ep1200
+    Epoch 1800/2000 (27.0s) best=19.20%@ep1200
+    Epoch 2000/2000 (30.0s) best=19.20%@ep1200
+  Training done in 30.0s, best Top-1=19.20% @ epoch 1200
+  Seed 0: Best Top-1=19.20%, Best Top-5=53.80%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_ipc1_unguided_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 200/2000 (2.9s) best=17.80%@ep20
+    Epoch 400/2000 (5.9s) best=18.60%@ep320
+    Epoch 600/2000 (8.8s) best=18.60%@ep320
+    Epoch 800/2000 (11.7s) best=18.60%@ep320
+    Epoch 1000/2000 (14.7s) best=18.60%@ep320
+    Epoch 1200/2000 (17.6s) best=18.60%@ep320
+    Epoch 1400/2000 (20.5s) best=18.60%@ep320
+    Epoch 1600/2000 (23.5s) best=18.60%@ep320
+    Epoch 1800/2000 (26.4s) best=18.60%@ep320
+    Epoch 2000/2000 (29.3s) best=18.60%@ep320
+  Training done in 29.3s, best Top-1=18.60% @ epoch 320
+  Seed 1: Best Top-1=18.60%, Best Top-5=55.60%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_ipc1_unguided_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 200/2000 (2.9s) best=19.20%@ep100
+    Epoch 400/2000 (5.9s) best=19.20%@ep100
+    Epoch 600/2000 (8.8s) best=19.80%@ep520
+    Epoch 800/2000 (11.7s) best=19.80%@ep520
+    Epoch 1000/2000 (14.6s) best=19.80%@ep520
+    Epoch 1200/2000 (17.6s) best=19.80%@ep520
+    Epoch 1400/2000 (20.5s) best=19.80%@ep520
+    Epoch 1600/2000 (23.4s) best=19.80%@ep520
+    Epoch 1800/2000 (26.3s) best=19.80%@ep520
+    Epoch 2000/2000 (29.3s) best=19.80%@ep520
+  Training done in 29.3s, best Top-1=19.80% @ epoch 520
+  Seed 2: Best Top-1=19.80%, Best Top-5=58.00%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 19.20 ± 0.49%
+Mean Best Top-5: 55.80 ± 1.72%
+=== 10-class IPC=1 CAGS v2 (3 seeds, 2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc1_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 200/2000 (3.6s) best=15.60%@ep120
+    Epoch 400/2000 (6.5s) best=17.20%@ep260
+    Epoch 600/2000 (9.4s) best=18.80%@ep460
+    Epoch 800/2000 (12.4s) best=19.00%@ep780
+    Epoch 1000/2000 (15.3s) best=20.40%@ep900
+    Epoch 1200/2000 (18.2s) best=20.40%@ep900
+    Epoch 1400/2000 (21.2s) best=20.40%@ep900
+    Epoch 1600/2000 (24.1s) best=20.60%@ep1520
+    Epoch 1800/2000 (27.0s) best=20.60%@ep1520
+    Epoch 2000/2000 (30.0s) best=20.60%@ep1520
+  Training done in 30.0s, best Top-1=20.60% @ epoch 1520
+  Seed 0: Best Top-1=20.60%, Best Top-5=60.80%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_ipc1_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 200/2000 (2.9s) best=15.00%@ep160
+    Epoch 400/2000 (5.9s) best=19.00%@ep380
+    Epoch 600/2000 (8.8s) best=20.60%@ep560
+    Epoch 800/2000 (11.7s) best=20.60%@ep560
+    Epoch 1000/2000 (14.6s) best=21.20%@ep960
+    Epoch 1200/2000 (17.6s) best=23.80%@ep1100
+    Epoch 1400/2000 (20.5s) best=23.80%@ep1100
+    Epoch 1600/2000 (23.5s) best=23.80%@ep1100
+    Epoch 1800/2000 (26.4s) best=23.80%@ep1100
+    Epoch 2000/2000 (29.3s) best=23.80%@ep1100
+  Training done in 29.3s, best Top-1=23.80% @ epoch 1100
+  Seed 1: Best Top-1=23.80%, Best Top-5=63.20%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_ipc1_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images
+    Epoch 200/2000 (2.9s) best=15.40%@ep120
+    Epoch 400/2000 (5.9s) best=16.80%@ep300
+    Epoch 600/2000 (8.8s) best=18.00%@ep480
+    Epoch 800/2000 (11.7s) best=18.00%@ep480
+    Epoch 1000/2000 (14.7s) best=18.00%@ep480
+    Epoch 1200/2000 (17.6s) best=19.40%@ep1140
+    Epoch 1400/2000 (20.5s) best=19.40%@ep1140
+    Epoch 1600/2000 (23.5s) best=19.40%@ep1140
+    Epoch 1800/2000 (26.4s) best=20.00%@ep1680
+    Epoch 2000/2000 (29.3s) best=20.00%@ep1680
+  Training done in 29.3s, best Top-1=20.00% @ epoch 1680
+  Seed 2: Best Top-1=20.00%, Best Top-5=60.00%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 21.47 ± 1.67%
+Mean Best Top-5: 61.33 ± 1.36%
+=== ImageNette unguided (3 seeds, 2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n01440764', 'n02102040', 'n02979186', 'n03000684', 'n03028079', 'n03394916', 'n03417042', 'n03425413', 'n03445777', 'n03888257']
+
+Seed 0:
+  Loading training images from ./results/sweep_nette/high_noise_unguided_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenette2/val...
+  Loaded 3925 validation images
+    Epoch 200/2000 (26.3s) best=27.57%@ep200
+    Epoch 400/2000 (51.9s) best=30.83%@ep380
+    Epoch 600/2000 (77.5s) best=33.38%@ep520
+    Epoch 800/2000 (103.1s) best=34.98%@ep700
+    Epoch 1000/2000 (128.7s) best=35.75%@ep1000
+    Epoch 1200/2000 (154.3s) best=36.51%@ep1180
+    Epoch 1400/2000 (179.9s) best=38.29%@ep1380
+    Epoch 1600/2000 (205.6s) best=38.37%@ep1420
+    Epoch 1800/2000 (231.2s) best=38.37%@ep1420
+    Epoch 2000/2000 (257.8s) best=38.37%@ep1420
+  Training done in 257.8s, best Top-1=38.37% @ epoch 1420
+  Seed 0: Best Top-1=38.37%, Best Top-5=81.10%
+
+Seed 1:
+  Loading training images from ./results/sweep_nette/high_noise_unguided_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenette2/val...
+  Loaded 3925 validation images
+    Epoch 200/2000 (27.1s) best=29.94%@ep180
+    Epoch 400/2000 (52.7s) best=32.79%@ep380
+    Epoch 600/2000 (78.3s) best=35.44%@ep440
+    Epoch 800/2000 (103.9s) best=35.44%@ep440
+    Epoch 1000/2000 (129.5s) best=35.44%@ep440
+    Epoch 1200/2000 (155.1s) best=35.97%@ep1200
+    Epoch 1400/2000 (180.7s) best=38.78%@ep1400
+    Epoch 1600/2000 (206.3s) best=39.21%@ep1460
+    Epoch 1800/2000 (231.9s) best=39.21%@ep1460
+    Epoch 2000/2000 (257.5s) best=39.21%@ep1460
+  Training done in 257.5s, best Top-1=39.21% @ epoch 1460
+  Seed 1: Best Top-1=39.21%, Best Top-5=80.79%
+
+Seed 2:
+  Loading training images from ./results/sweep_nette/high_noise_unguided_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenette2/val...
+  Loaded 3925 validation images
+    Epoch 200/2000 (25.6s) best=29.04%@ep200
+    Epoch 400/2000 (51.2s) best=31.18%@ep380
+    Epoch 600/2000 (76.8s) best=33.55%@ep460
+    Epoch 800/2000 (102.4s) best=36.41%@ep760
+    Epoch 1000/2000 (128.0s) best=36.61%@ep860
+    Epoch 1200/2000 (153.6s) best=37.63%@ep1180
+    Epoch 1400/2000 (179.2s) best=38.22%@ep1400
+    Epoch 1600/2000 (204.8s) best=38.70%@ep1520
+    Epoch 1800/2000 (230.4s) best=39.08%@ep1760
+    Epoch 2000/2000 (256.0s) best=39.39%@ep1920
+  Training done in 256.0s, best Top-1=39.39% @ epoch 1920
+  Seed 2: Best Top-1=39.39%, Best Top-5=81.22%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 38.99 ± 0.44%
+Mean Best Top-5: 81.04 ± 0.18%
+=== ImageNette CAGS v2 [0.0,0.06] (3 seeds, 2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n01440764', 'n02102040', 'n02979186', 'n03000684', 'n03028079', 'n03394916', 'n03417042', 'n03425413', 'n03445777', 'n03888257']
+
+Seed 0:
+  Loading training images from ./results/sweep_nette/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenette2/val...
+  Loaded 3925 validation images (7.7s)
+    Epoch 200/2000 (26.2s) best=36.87%@ep180
+    Epoch 400/2000 (51.8s) best=39.97%@ep340
+    Epoch 600/2000 (77.4s) best=41.61%@ep600
+    Epoch 800/2000 (103.0s) best=43.34%@ep780
+    Epoch 1000/2000 (128.6s) best=43.49%@ep960
+    Epoch 1200/2000 (154.3s) best=44.94%@ep1060
+    Epoch 1400/2000 (179.9s) best=45.96%@ep1340
+    Epoch 1600/2000 (205.5s) best=46.78%@ep1480
+    Epoch 1800/2000 (231.1s) best=46.78%@ep1480
+    Epoch 2000/2000 (256.7s) best=46.78%@ep1480
+  Training done in 256.7s, best Top-1=46.78% @ epoch 1480
+  Seed 0: Best Top-1=46.78%, Best Top-5=87.18%
+
+Seed 1:
+  Loading training images from ./results/sweep_nette/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenette2/val...
+  Loaded 3925 validation images (8.0s)
+    Epoch 200/2000 (25.6s) best=39.03%@ep180
+    Epoch 400/2000 (51.3s) best=42.47%@ep380
+    Epoch 600/2000 (76.9s) best=42.96%@ep580
+    Epoch 800/2000 (102.5s) best=44.25%@ep680
+    Epoch 1000/2000 (128.1s) best=44.59%@ep900
+    Epoch 1200/2000 (153.7s) best=46.37%@ep1120
+    Epoch 1400/2000 (179.4s) best=46.52%@ep1360
+    Epoch 1600/2000 (205.0s) best=47.77%@ep1560
+    Epoch 1800/2000 (230.6s) best=47.77%@ep1560
+    Epoch 2000/2000 (256.2s) best=47.77%@ep1560
+  Training done in 256.2s, best Top-1=47.77% @ epoch 1560
+  Seed 1: Best Top-1=47.77%, Best Top-5=87.06%
+
+Seed 2:
+  Loading training images from ./results/sweep_nette/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenette2/val...
+  Loaded 3925 validation images (8.5s)
+    Epoch 200/2000 (26.6s) best=38.29%@ep180
+    Epoch 400/2000 (52.3s) best=39.92%@ep320
+    Epoch 600/2000 (77.9s) best=40.59%@ep520
+    Epoch 800/2000 (103.5s) best=43.08%@ep700
+    Epoch 1000/2000 (129.1s) best=44.25%@ep960
+    Epoch 1200/2000 (154.7s) best=46.27%@ep1140
+    Epoch 1400/2000 (180.3s) best=46.52%@ep1220
+    Epoch 1600/2000 (206.0s) best=46.52%@ep1220
+    Epoch 1800/2000 (231.6s) best=46.90%@ep1700
+    Epoch 2000/2000 (257.2s) best=46.90%@ep1700
+  Training done in 257.2s, best Top-1=46.90% @ epoch 1700
+  Seed 2: Best Top-1=46.90%, Best Top-5=87.67%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 47.15 ± 0.44%
+Mean Best Top-5: 87.30 ± 0.26%
+=== ImageWoof unguided (3 seeds, 2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02096294', 'n02093754', 'n02111889', 'n02088364', 'n02086240', 'n02089973', 'n02087394', 'n02115641', 'n02099601', 'n02105641']
+
+Seed 0:
+  Loading training images from ./results/sweep_woof/high_noise_unguided_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (8.5s)
+    Epoch 200/2000 (26.4s) best=20.31%@ep80
+    Epoch 400/2000 (52.0s) best=20.31%@ep80
+    Epoch 600/2000 (77.7s) best=21.74%@ep600
+    Epoch 800/2000 (103.3s) best=21.74%@ep600
+    Epoch 1000/2000 (128.9s) best=21.74%@ep600
+    Epoch 1200/2000 (154.6s) best=21.74%@ep600
+    Epoch 1400/2000 (180.2s) best=21.74%@ep600
+    Epoch 1600/2000 (205.9s) best=21.94%@ep1540
+    Epoch 1800/2000 (231.5s) best=21.94%@ep1540
+    Epoch 2000/2000 (257.1s) best=21.94%@ep1540
+  Training done in 257.1s, best Top-1=21.94% @ epoch 1540
+  Seed 0: Best Top-1=21.94%, Best Top-5=66.79%
+
+Seed 1:
+  Loading training images from ./results/sweep_woof/high_noise_unguided_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (7.9s)
+    Epoch 200/2000 (25.7s) best=20.36%@ep200
+    Epoch 400/2000 (51.3s) best=20.36%@ep200
+    Epoch 600/2000 (76.9s) best=21.05%@ep500
+    Epoch 800/2000 (102.5s) best=21.05%@ep500
+    Epoch 1000/2000 (128.2s) best=21.56%@ep880
+    Epoch 1200/2000 (153.8s) best=22.14%@ep1200
+    Epoch 1400/2000 (179.4s) best=22.14%@ep1200
+    Epoch 1600/2000 (205.0s) best=22.14%@ep1200
+    Epoch 1800/2000 (230.7s) best=22.14%@ep1200
+    Epoch 2000/2000 (256.3s) best=22.14%@ep1200
+  Training done in 256.3s, best Top-1=22.14% @ epoch 1200
+  Seed 1: Best Top-1=22.14%, Best Top-5=66.84%
+
+Seed 2:
+  Loading training images from ./results/sweep_woof/high_noise_unguided_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (7.7s)
+    Epoch 200/2000 (25.6s) best=19.73%@ep160
+    Epoch 400/2000 (51.3s) best=20.59%@ep240
+    Epoch 600/2000 (76.9s) best=21.10%@ep520
+    Epoch 800/2000 (102.5s) best=21.35%@ep660
+    Epoch 1000/2000 (128.1s) best=21.79%@ep860
+    Epoch 1200/2000 (153.7s) best=21.91%@ep1040
+    Epoch 1400/2000 (179.4s) best=21.91%@ep1040

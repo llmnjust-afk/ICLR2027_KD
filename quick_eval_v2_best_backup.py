@@ -9,9 +9,6 @@ from PIL import Image
 import glob
 import argparse
 import time
-from concurrent.futures import ThreadPoolExecutor
-
-torch.set_num_threads(4)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import train_models.resnet as RN
@@ -84,26 +81,19 @@ def load_val_data(val_dir, class_names, img_size=224, batch_size=128):
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
-
-    all_files = []
-    all_labels = []
+    images = []
+    labels = []
     for idx, cls in enumerate(class_names):
         cls_dir = os.path.join(val_dir, cls)
         if not os.path.isdir(cls_dir):
             continue
         files = sorted(glob.glob(os.path.join(cls_dir, "*.JPEG")) + glob.glob(os.path.join(cls_dir, "*.jpg")))
         for f in files:
-            all_files.append(f)
-            all_labels.append(idx)
-
-    def load_one(f):
-        img = Image.open(f).convert("RGB")
-        return transform(img)
-
-    with ThreadPoolExecutor(max_workers=16) as executor:
-        images = list(executor.map(load_one, all_files))
-
-    return torch.stack(images), torch.tensor(all_labels)
+            img = Image.open(f).convert("RGB")
+            img = transform(img)
+            images.append(img)
+            labels.append(idx)
+    return torch.stack(images), torch.tensor(labels)
 
 
 def evaluate_fast(train_dir, val_dir, class_names, num_classes, device,
@@ -118,12 +108,11 @@ def evaluate_fast(train_dir, val_dir, class_names, num_classes, device,
     train_labels = train_labels.to(device)
     print(f"  Loaded {len(train_images)} training images")
 
-    t_val_start = time.time()
     print(f"  Loading validation images from {val_dir}...")
     val_images, val_labels = load_val_data(val_dir, class_names, img_size)
     val_images = val_images.to(device)
     val_labels = val_labels.to(device)
-    print(f"  Loaded {len(val_images)} validation images ({time.time()-t_val_start:.1f}s)")
+    print(f"  Loaded {len(val_images)} validation images")
 
     model = create_model(arch, num_classes, depth=depth, norm_type=norm_type, img_size=img_size)
     model = model.to(device)
