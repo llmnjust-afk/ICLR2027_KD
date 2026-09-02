@@ -34,3 +34,10 @@ Mean Top-1: 2.24 ± 0.30%
 === BATCH 6: IPC=50 on 100-class ===
   [100-class ipc50_unguided] gen — Wed Sep  2 06:10:40 UTC 2026
   [100-class ipc50_unguided] eval — Wed Sep  2 07:07:32 UTC 2026
+Mean Top-1: 18.13 ± 0.51%
+  [100-class ipc50_cagsv2_0.0_0.06] gen — Wed Sep  2 10:19:22 UTC 2026
+  [100-class ipc50_cagsv2_0.0_0.06] eval — Wed Sep  2 11:16:19 UTC 2026
+Mean Top-1: 22.35 ± 0.39%
+========================================
+Phase 3 GPU 1 ALL DONE — Wed Sep  2 14:28:05 UTC 2026
+========================================
