@@ -114,18 +114,36 @@ class AGSSampler:
         """
         self.per_class_params = {}
 
+        # IAST: IPC-adaptive guidance range scaling
+        # When IPC is low, the per-class complexity estimates are noisy and
+        # the guidance range should be shrunk to avoid over-sharpening.
+        # range_scale = min(1.0, log(IPC+1) / log(IPC_ref+1))
+        iast_range_scale = 1.0
+        if self.use_iast:
+            ipc_ref = 10  # full CAGS range at IPC>=10
+            iast_range_scale = min(1.0, np.log(ipc + 1) / np.log(ipc_ref + 1))
+            scaled_range = (
+                self.guidance_scale_range[0] * iast_range_scale,
+                self.guidance_scale_range[1] * iast_range_scale,
+            )
+            print(f"  IAST range scaling: IPC={ipc}, scale={iast_range_scale:.4f}, "
+                  f"range {self.guidance_scale_range} -> {scaled_range}")
+        else:
+            scaled_range = self.guidance_scale_range
+
         for class_label, sel_class in zip(class_labels, sel_classes):
             class_idx = sel_classes.index(sel_class)
 
-            # CAGS: Class-adaptive guidance strength
+            # CAGS: Class-adaptive guidance strength (with IAST range scaling)
             if self.use_cags:
                 guidance_strength = self.complexity_analyzer.get_guidance_strength(
-                    class_idx, self.guidance_scale_range
+                    class_idx, scaled_range
                 )
             else:
                 guidance_strength = self.default_guidance_scale
 
-            # IAST: IPC-adaptive stop timing
+            # IAST: stop timing (kept for backward compat, but primary effect
+            # is now via range scaling above)
             if self.use_iast:
                 n_modes = self.complexity_analyzer.mode_counts.get(class_idx, 5)
                 complexity = self.complexity_analyzer.complexity_scores.get(class_idx, 0.5)
