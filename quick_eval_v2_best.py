@@ -57,11 +57,31 @@ def rand_bbox(size, lam):
     return bbx1, bby1, bbx2, bby2
 
 
+class Lighting:
+    """AlexNet-style PCA lighting noise."""
+    def __init__(self, alphastd=0.1,
+                 eigval=[0.2175, 0.0188, 0.0045],
+                 eigvec=[[ -0.5675,  0.7192,  0.4009],
+                         [-0.5808, -0.0045, -0.8140],
+                         [-0.5836, -0.6948,  0.4203]]):
+        self.alphastd = alphastd
+        self.eigval = torch.tensor(eigval)
+        self.eigvec = torch.tensor(eigvec)
+
+    def __call__(self, imgs):
+        if self.alphastd == 0:
+            return imgs
+        eigval = self.eigval.to(imgs.device)
+        eigvec = self.eigvec.to(imgs.device)
+        alpha = imgs.new_empty(imgs.size(0), 3).normal_(0, self.alphastd)
+        rgb = torch.einsum('bi,ij->bj', alpha, eigvec) * eigval.unsqueeze(0)
+        return imgs + rgb.unsqueeze(-1).unsqueeze(-1)
+
+
 def load_images_to_tensor(data_dir, class_names, img_size=224):
     transform = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
     images = []
     labels = []
@@ -138,6 +158,7 @@ def evaluate_fast(train_dir, val_dir, class_names, num_classes, device,
     rrc = transforms.RandomResizedCrop(img_size, scale=(0.5, 1.0), antialias=True)
     hflip = transforms.RandomHorizontalFlip(p=0.5)
     color_jitter = transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4)
+    lighting = Lighting(alphastd=0.1)
 
     t0 = time.time()
     best_top1 = 0.0
@@ -157,6 +178,9 @@ def evaluate_fast(train_dir, val_dir, class_names, num_classes, device,
             imgs = rrc(imgs)
             imgs = hflip(imgs)
             imgs = color_jitter(imgs)
+            imgs = lighting(imgs)
+            imgs = transforms.functional.normalize(
+                imgs, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
             lam = np.random.beta(1.0, 1.0)
             rand_idx = torch.randperm(imgs.size(0), device=device)
