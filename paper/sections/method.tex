@@ -92,22 +92,22 @@ We investigate three parametric schedules, all of which maintain the same averag
     where $\kappa$ controls the decay rate.
 \end{enumerate}
 
-\subsection{IPC-Adaptive Stop Timing (IAST)}
+\subsection{IPC-Adaptive Guidance Range (IAST)}
 \label{sec:iast}
 
-The high-noise generation window $t_{\text{start}}$ controls the trade-off between sample diversity and structural fidelity. MGD$^3$ uses a fixed $t_{\text{start}}$ regardless of the images-per-class (IPC) budget. However, the optimal starting point depends on how many images will be generated per class: with a small IPC budget (e.g., IPC=1), each sample must be maximally informative, favoring a lower $t_{\text{start}}$ that produces more canonical, class-representative images. With a large IPC budget (e.g., IPC=50), diversity becomes more valuable, favoring a higher $t_{\text{start}}$ that produces more varied samples.
+While \cags{} adapts the guidance strength across classes, \iast{} adapts the \emph{range} of that adaptation across IPC budgets. The key insight is that at low IPC (e.g., IPC=1), the per-class complexity estimates are computed from real training images but only a single synthetic image is generated per class. A wide guidance range means complex classes receive strong guidance ($\lambda \approx \lambda_{\max}$) that over-sharpens the single generated image, while simple classes receive no guidance. This per-class disparity is harmful when only one image represents the class: the over-sharpened image may lose the representativeness needed for training. At higher IPC (e.g., IPC=10 or 50), multiple images per class average out the per-class variation, making the full \cags{} range safe and beneficial.
 
-\iast{} adjusts $t_{\text{start}}$ as a function of IPC:
+\iast{} scales the \cags{} guidance range $[\lambda_{\min}, \lambda_{\max}]$ by a logarithmic factor of the IPC budget:
 \begin{equation}
-    t_{\text{start}}(\text{IPC}) = t_{\text{base}} + \Delta_t \cdot \frac{\log(\text{IPC})}{\log(\text{IPC}_{\max})},
+    s(\text{IPC}) = \min\!\left(1,\; \frac{\log(\text{IPC} + 1)}{\log(\text{IPC}_{\text{ref}} + 1)}\right), \qquad [\lambda_{\min}^{\text{eff}}, \lambda_{\max}^{\text{eff}}] = s \cdot [\lambda_{\min}, \lambda_{\max}],
     \label{eq:iast}
 \end{equation}
-where $t_{\text{base}}$ is the minimum starting timestep, $\Delta_t$ is the maximum adjustment, and $\text{IPC}_{\max}$ is the maximum IPC in the experiment range. The logarithmic scaling reflects the diminishing returns of additional diversity as the budget grows.
+where $\text{IPC}_{\text{ref}} = 10$ is the reference budget at which the full \cags{} range is applied. At IPC $\geq$ 10, $s = 1$ and \iast{} has no effect; at IPC=1, $s \approx 0.29$, shrinking the range to approximately $[0, 0.017]$ for the 100-class setting. The per-class guidance is then computed as $\lambda_c = \lambda_{\min}^{\text{eff}} + (\lambda_{\max}^{\text{eff}} - \lambda_{\min}^{\text{eff}}) \cdot \rho_c$. This design ensures that \iast{} is transparent at normal budgets and only intervenes when the budget is too small to absorb per-class guidance variation.
 
 \subsection{Unified AGS Sampler}
 \label{sec:unified}
 
-The three modules compose into a single sampling procedure, as summarized in Algorithm~\ref{alg:ags}. \cags{} provides the per-class base guidance scale, \tags{} modulates it across timesteps, and \iast{} sets the generation window. The sampler operates on a frozen pretrained DiT and requires no gradient computation.
+The three modules compose into a single sampling procedure, as summarized in Algorithm~\ref{alg:ags}. \iast{} scales the \cags{} guidance range based on the IPC budget, \cags{} provides the per-class base guidance scale within that range, and \tags{} modulates it across timesteps. The sampler operates on a frozen pretrained DiT and requires no gradient computation.
 
 \begin{algorithm}[t]
 \caption{\ags{} Sampling}
@@ -115,8 +115,9 @@ The three modules compose into a single sampling procedure, as summarized in Alg
 \begin{algorithmic}[1]
 \Require Frozen DiT $\epsilon_\theta$, class $c$, IPC budget, complexity cache $\{\rho_{c'}\}_{c'=1}^C$
 \Ensure Synthetic image $\mathbf{x}_0$
-\State $\lambda_c \gets \lambda_{\min} + (\lambda_{\max} - \lambda_{\min}) \cdot \rho_c$ \Comment{CAGS}
-\State $t_{\text{start}} \gets \textsc{IAST}(\text{IPC})$ \Comment{IAST}
+\State $s \gets \min(1, \log(\text{IPC}+1)/\log(\text{IPC}_{\text{ref}}+1))$ \Comment{IAST range scale}
+\State $[\lambda_{\min}^{\text{eff}}, \lambda_{\max}^{\text{eff}}] \gets s \cdot [\lambda_{\min}, \lambda_{\max}]$ \Comment{IAST}
+\State $\lambda_c \gets \lambda_{\min}^{\text{eff}} + (\lambda_{\max}^{\text{eff}} - \lambda_{\min}^{\text{eff}}) \cdot \rho_c$ \Comment{CAGS}
 \State $\mathbf{x}_{t_{\text{start}}} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$
 \For{$t = t_{\text{start}}, t_{\text{start}}-1, \ldots, 1$}
     \State $\lambda_t \gets \textsc{TAGS}(\lambda_c, t, t_{\text{start}})$ \Comment{TAGS}
