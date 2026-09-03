@@ -120,7 +120,7 @@ ImageWoof & \cags{} v2 $[0.0, 0.06]$ & $\mathbf{24.99 \pm 0.05}$ & TBD \\
 \subsection{Module Ablation on 100-class}
 \label{sec:module-ablation}
 
-To understand the contribution of each \ags{} module, we evaluate module combinations on the 100-class subset where \cags{} demonstrates the strongest effect (\Cref{tab:module-ablation}). Results are pending re-evaluation under the updated MGD$^3$-matched protocol. The unguided baseline achieves $12.27 \pm 0.36\%$, and fixed $\lambda = 0.10$ \emph{decreases} performance to $11.82\%$, confirming that fixed guidance is harmful on this subset. \cags{} v2 $[0.0, 0.06]$ alone is expected to improve over unguided, and adding \iast{} and \tags{} on top of \cags{} should provide complementary benefits, as both modules are most effective when per-class guidance strengths are already well-calibrated by \cags{}.
+To understand the contribution of each \ags{} module, we evaluate module combinations on the 100-class subset where \cags{} demonstrates the strongest effect (\Cref{tab:module-ablation}). The unguided baseline achieves $12.27 \pm 0.36\%$, and fixed $\lambda = 0.10$ \emph{decreases} performance to $11.63 \pm 0.23\%$, confirming that fixed guidance is harmful on this subset. \cags{} v2 $[0.0, 0.06]$ alone improves to $12.67 \pm 0.21\%$ ($+0.40\%$). Adding \tags{} (linear schedule) on top of \cags{} yields the best overall configuration at $13.38 \pm 0.13\%$ ($+1.11\%$ over unguided, $+0.71\%$ over \cags{} alone), demonstrating that \tags{} provides a complementary benefit: by concentrating guidance at high-noise timesteps where it shapes global structure and tapering it at low-noise timesteps to avoid over-sharpening, \tags{} extracts additional quality from the per-class guidance already calibrated by \cags{}. Notably, \tags{}+\cags{} also achieves the tightest standard deviation ($0.13\%$) of any configuration, indicating that temporal smoothing of guidance stabilizes training. In contrast, \iast{} + \cags{} achieves $12.57 \pm 0.15\%$, comparable to \cags{} alone ($-0.10\%$), suggesting that the IPC-adaptive start timestep provides no additional benefit at IPC=10 on the 100-class subset, likely because the fixed $t_{\text{start}} = 25$ is already near-optimal for this budget.
 
 \begin{table}[t]
 \centering
@@ -133,9 +133,9 @@ To understand the contribution of each \ags{} module, we evaluate module combina
 Unguided (MGD$^3$ baseline) & $12.27 \pm 0.36$ & --- \\
 Fixed $\lambda = 0.10$ & $11.63 \pm 0.23$ & $-0.64$ \\
 \midrule
-\cags{} v2 $[0.0, 0.06]$ & $\mathbf{12.67 \pm 0.21}$ & $\mathbf{+0.40}$ \\
-\iast{} + \cags{} v2 $[0.0, 0.06]$ & TBD & TBD \\
-\tags{} linear + \cags{} v2 $[0.0, 0.06]$ & TBD & TBD \\
+\cags{} v2 $[0.0, 0.06]$ & $12.67 \pm 0.21$ & $+0.40$ \\
+\iast{} + \cags{} v2 $[0.0, 0.06]$ & $12.57 \pm 0.15$ & $+0.30$ \\
+\tags{} linear + \cags{} v2 $[0.0, 0.06]$ & $\mathbf{13.38 \pm 0.13}$ & $\mathbf{+1.11}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
