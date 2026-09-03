@@ -67,7 +67,9 @@ def load_images_to_tensor(data_dir, class_names, img_size=224):
     labels = []
     for idx, cls in enumerate(class_names):
         cls_dir = os.path.join(data_dir, cls)
-        files = sorted(glob.glob(os.path.join(cls_dir, "*.png")))
+        files = sorted(glob.glob(os.path.join(cls_dir, "*.png")) +
+                       glob.glob(os.path.join(cls_dir, "*.JPEG")) +
+                       glob.glob(os.path.join(cls_dir, "*.jpg")))
         for f in files:
             img = Image.open(f).convert("RGB")
             img = transform(img)

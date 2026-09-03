@@ -563,3 +563,78 @@ Seed 2:
     Epoch 1000/2000 (128.1s) best=21.79%@ep860
     Epoch 1200/2000 (153.7s) best=21.91%@ep1040
     Epoch 1400/2000 (179.4s) best=21.91%@ep1040
+    Epoch 1600/2000 (205.0s) best=21.91%@ep1040
+    Epoch 1800/2000 (230.6s) best=21.91%@ep1040
+    Epoch 2000/2000 (256.2s) best=21.91%@ep1040
+  Training done in 256.2s, best Top-1=21.91% @ epoch 1040
+  Seed 2: Best Top-1=21.91%, Best Top-5=66.33%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 22.00 ± 0.10%
+Mean Best Top-5: 66.65 ± 0.23%
+=== ImageWoof CAGS v2 [0.0,0.06] (3 seeds, 2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02096294', 'n02093754', 'n02111889', 'n02088364', 'n02086240', 'n02089973', 'n02087394', 'n02115641', 'n02099601', 'n02105641']
+
+Seed 0:
+  Loading training images from ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (7.7s)
+    Epoch 200/2000 (26.3s) best=21.28%@ep180
+    Epoch 400/2000 (51.9s) best=23.39%@ep320
+    Epoch 600/2000 (78.4s) best=23.39%@ep320
+    Epoch 800/2000 (104.1s) best=23.47%@ep620
+    Epoch 1000/2000 (129.7s) best=23.59%@ep820
+    Epoch 1200/2000 (155.3s) best=23.59%@ep820
+    Epoch 1400/2000 (180.9s) best=24.51%@ep1320
+    Epoch 1600/2000 (206.5s) best=25.04%@ep1540
+    Epoch 1800/2000 (232.1s) best=25.04%@ep1540
+    Epoch 2000/2000 (257.8s) best=25.04%@ep1540
+  Training done in 257.8s, best Top-1=25.04% @ epoch 1540
+  Seed 0: Best Top-1=25.04%, Best Top-5=69.28%
+
+Seed 1:
+  Loading training images from ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (8.0s)
+    Epoch 200/2000 (25.7s) best=22.98%@ep200
+    Epoch 400/2000 (51.3s) best=22.98%@ep200
+    Epoch 600/2000 (76.9s) best=24.61%@ep480
+    Epoch 800/2000 (102.5s) best=24.61%@ep480
+    Epoch 1000/2000 (128.2s) best=24.61%@ep480
+    Epoch 1200/2000 (153.8s) best=24.61%@ep480
+    Epoch 1400/2000 (179.4s) best=24.61%@ep480
+    Epoch 1600/2000 (205.0s) best=24.82%@ep1500
+    Epoch 1800/2000 (230.7s) best=24.92%@ep1720
+    Epoch 2000/2000 (256.3s) best=24.92%@ep1720
+  Training done in 256.3s, best Top-1=24.92% @ epoch 1720
+  Seed 1: Best Top-1=24.92%, Best Top-5=69.94%
+
+Seed 2:
+  Loading training images from ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (7.8s)
+    Epoch 200/2000 (25.6s) best=22.14%@ep180
+    Epoch 400/2000 (51.2s) best=23.47%@ep320
+    Epoch 600/2000 (76.9s) best=23.47%@ep320
+    Epoch 800/2000 (102.5s) best=23.47%@ep320
+    Epoch 1000/2000 (128.1s) best=24.26%@ep1000
+    Epoch 1200/2000 (153.7s) best=24.99%@ep1160
+    Epoch 1400/2000 (179.3s) best=24.99%@ep1160
+    Epoch 1600/2000 (205.0s) best=24.99%@ep1160
+    Epoch 1800/2000 (230.6s) best=24.99%@ep1160
+    Epoch 2000/2000 (256.2s) best=24.99%@ep1160
+  Training done in 256.2s, best Top-1=24.99% @ epoch 1160
+  Seed 2: Best Top-1=24.99%, Best Top-5=70.65%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 24.99 ± 0.05%
+Mean Best Top-5: 69.96 ± 0.56%
+========================================
+GPU 1 ALL DONE - Thu Sep  3 00:11:30 UTC 2026
+========================================

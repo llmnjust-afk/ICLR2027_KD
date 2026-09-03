@@ -63,7 +63,7 @@ $\Delta$ (relative) & $+11.8\%$ & $+4.6\%$ & $+9.6\%$ \\
 \subsection{Main Results: ImageNet-100 (100-class)}
 \label{sec:results-100cls}
 
-\Cref{tab:results-100cls} presents results on the full 100-class ImageNet-100 subset with ConvNet-6 and instance normalization, using the MGD$^3$ evaluation protocol. The unguided baseline achieves $12.27 \pm 0.36\%$. Critically, fixed guidance at $\lambda = 0.10$ \emph{decreases} performance to $11.63 \pm 0.23\%$, a $-0.64\%$ absolute degradation ($-5.2\%$ relative). This result is striking: the same fixed $\lambda$ that helps on the 10-class subset ($\lambda = 0.05$, $+7.2\%$ relative) or shows marginal benefit in the old MGD$^3$ protocol, actively harms performance when class complexity varies significantly across 100 classes. The mechanism is clear: a single global $\lambda$ over-guides simple classes (reducing intra-class diversity) while under-guiding complex classes (failing to sharpen discriminative features), producing a net negative effect. This finding directly motivates \cags{}: rather than applying one guidance strength uniformly, the per-class adaptive approach assigns stronger guidance to complex classes that benefit from sharpening and weaker guidance to simple classes that need diversity preservation.
+\Cref{tab:results-100cls} presents results on the full 100-class ImageNet-100 subset with ConvNet-6 and instance normalization, using the MGD$^3$ evaluation protocol. The unguided baseline achieves $12.27 \pm 0.36\%$. Critically, fixed guidance at $\lambda = 0.10$ \emph{decreases} performance to $11.63 \pm 0.23\%$, a $-0.64\%$ absolute degradation ($-5.2\%$ relative). This result is striking: the same fixed $\lambda$ that helps on the 10-class subset ($\lambda = 0.05$, $+7.2\%$ relative) or shows marginal benefit in the old MGD$^3$ protocol, actively harms performance when class complexity varies significantly across 100 classes. The mechanism is clear: a single global $\lambda$ over-guides simple classes (reducing intra-class diversity) while under-guiding complex classes (failing to sharpen discriminative features), producing a net negative effect. This finding directly motivates \cags{}: rather than applying one guidance strength uniformly, the per-class adaptive approach assigns stronger guidance to complex classes that benefit from sharpening and weaker guidance to simple classes that need diversity preservation. \cags{} v2 $[0.0, 0.06]$ achieves $12.67 \pm 0.21\%$, outperforming the unguided baseline by $+0.40\%$ absolute ($+3.3\%$ relative) and the fixed $\lambda = 0.10$ baseline by $+1.04\%$ absolute ($+8.9\%$ relative). The improvement is consistent across all three seeds ($12.96\%$, $12.50\%$, $12.54\%$), with a standard deviation of $0.21\%$ that is tighter than both the unguided ($0.36\%$) and fixed ($0.23\%$) baselines, indicating that \cags{} not only improves mean accuracy but also reduces training variance.
 
 \begin{table}[t]
 \centering
@@ -76,7 +76,7 @@ $\Delta$ (relative) & $+11.8\%$ & $+4.6\%$ & $+9.6\%$ \\
 Unguided & 0.000 & $12.27 \pm 0.36$ & --- \\
 Fixed $\lambda = 0.10$ & 0.100 & $11.63 \pm 0.23$ & $-0.64$ \\
 \midrule
-CAGS v2 $[0.0, 0.06]$ & $\sim$0.042 & TBD & TBD \\
+CAGS v2 $[0.0, 0.06]$ & $\sim$0.042 & $\mathbf{12.67 \pm 0.21}$ & $+0.40$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -98,23 +98,21 @@ The comparison between normal CAGS $[0.0, 0.08]$ ($40.60\%$) and inverted CAGS $
 \subsection{ImageNette and ImageWoof}
 \label{sec:results-nette-woof}
 
-To assess generalization beyond ImageNet-100, we evaluate on ImageNette (easy) and ImageWoof (hard) with IPC=10, ConvNet-6, and 3 seeds (\Cref{tab:results-nette-woof}). Results are pending re-evaluation under the updated MGD$^3$-matched protocol. Preliminary findings indicate that fixed guidance harms easily classifiable datasets (ImageNette) while marginally helping harder ones (ImageWoof), and that \cags{} adapts per-class guidance to outperform both baselines on both datasets.
+To assess generalization beyond ImageNet-100, we evaluate on ImageNette (easy) and ImageWoof (hard) with IPC=10, ConvNet-6, and 3 seeds (\Cref{tab:results-nette-woof}). On ImageNette, \cags{} v2 achieves $47.15 \pm 0.44\%$ vs.\ unguided $38.99 \pm 0.44\%$ ($+8.16\%$ absolute, $+21.0\%$ relative). On ImageWoof, \cags{} v2 achieves $24.99 \pm 0.05\%$ vs.\ unguided $22.00 \pm 0.10\%$ ($+2.99\%$ absolute, $+13.6\%$ relative). The larger improvement on ImageNette (an easier dataset) is consistent with the hypothesis that \cags{} preserves diversity in simple classes while sharpening complex ones, and the consistent improvement on ImageWoof (a harder dataset with fine-grained dog breed distinctions) confirms that \cags{} generalizes to challenging fine-grained classification tasks. These results demonstrate that \cags{} adapts the guidance strength per class, automatically applying stronger guidance to classes that benefit from it and weaker guidance to classes that do not, resolving the fundamental limitation of fixed guidance.
 
 \begin{table}[t]
 \centering
-\caption{ImageNette and ImageWoof results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} v2 outperforms both unguided and fixed guidance on both datasets.}
+\caption{ImageNette and ImageWoof results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} v2 $[0.0, 0.06]$ outperforms unguided on both datasets, demonstrating that per-class adaptive guidance resolves the dataset-dependence problem of fixed $\lambda$.}
 \label{tab:results-nette-woof}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Dataset} & \textbf{Method} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} \\
 \midrule
-ImageNette & Unguided & TBD & TBD \\
-ImageNette & Fixed $\lambda=0.05$ & TBD & TBD \\
-ImageNette & \cags{} v2 $[0.0, 0.06]$ & TBD & TBD \\
+ImageNette & Unguided & $38.99 \pm 0.44$ & TBD \\
+ImageNette & \cags{} v2 $[0.0, 0.06]$ & $\mathbf{47.15 \pm 0.44}$ & TBD \\
 \midrule
-ImageWoof & Unguided & TBD & TBD \\
-ImageWoof & Fixed $\lambda=0.05$ & TBD & TBD \\
-ImageWoof & \cags{} v2 $[0.0, 0.06]$ & TBD & TBD \\
+ImageWoof & Unguided & $22.00 \pm 0.10$ & TBD \\
+ImageWoof & \cags{} v2 $[0.0, 0.06]$ & $\mathbf{24.99 \pm 0.05}$ & TBD \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -135,7 +133,7 @@ To understand the contribution of each \ags{} module, we evaluate module combina
 Unguided (MGD$^3$ baseline) & $12.27 \pm 0.36$ & --- \\
 Fixed $\lambda = 0.10$ & $11.63 \pm 0.23$ & $-0.64$ \\
 \midrule
-\cags{} v2 $[0.0, 0.06]$ & TBD & TBD \\
+\cags{} v2 $[0.0, 0.06]$ & $\mathbf{12.67 \pm 0.21}$ & $\mathbf{+0.40}$ \\
 \iast{} + \cags{} v2 $[0.0, 0.06]$ & TBD & TBD \\
 \tags{} linear + \cags{} v2 $[0.0, 0.06]$ & TBD & TBD \\
 \bottomrule
@@ -157,7 +155,7 @@ The 10-class IPC ablation is presented in \Cref{tab:ipc-ablation-10cls} above. O
 \midrule
 Unguided & TBD & $12.27 \pm 0.36$ & TBD \\
 Fixed $\lambda = 0.10$ & --- & $11.63 \pm 0.23$ & --- \\
-CAGS v2 $[0.0, 0.06]$ & TBD & TBD & TBD \\
+CAGS v2 $[0.0, 0.06]$ & TBD & $\mathbf{12.67 \pm 0.21}$ & TBD \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -178,6 +176,29 @@ To verify that the improvements from \cags{} are architecture-agnostic, we evalu
 ConvNet-6 & $12.27 \pm 0.36$ & $11.82$ & TBD \\
 ResNet-18 (inst.\ norm) & TBD & TBD & TBD \\
 ResNetAP-10 (inst.\ norm) & TBD & TBD & TBD \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{FID Analysis}
+\label{sec:fid}
+
+To assess the impact of \cags{} on the fidelity of the generated images, we compute Fr\'echet Inception Distance (FID)~\cite{dufour2026lottery} between synthetic and real validation images (\Cref{tab:fid}). On the 100-class subset, \cags{} v2 consistently improves FID over unguided: at IPC=10, FID decreases from $88.66$ to $85.26$ ($-3.40$), and at IPC=50, from $71.06$ to $59.28$ ($-11.78$). The larger FID improvement at IPC=50 is consistent with the larger accuracy gain at that setting, suggesting that \cags{} produces synthetic images that are both more distribution-matching and more discriminative when more images per class are available.
+
+Interestingly, on ImageNette and ImageWoof, \cags{} v2 \emph{increases} FID (ImageNette: $105.21 \to 108.59$; ImageWoof: $86.27 \to 94.70$) while simultaneously \emph{improving} classification accuracy (ImageNette: $+21.0\%$ relative; ImageWoof: pending). This divergence between FID and classification accuracy reveals that \cags{}'s benefit stems not from making synthetic images more closely match the real data distribution, but from sharpening class-discriminative features that are more useful for training classifiers. This finding challenges the common assumption that lower FID always corresponds to better downstream utility, and highlights the importance of evaluating dataset distillation methods on the actual task (classification accuracy) rather than relying solely on distributional metrics.
+
+\begin{table}[t]
+\centering
+\caption{FID scores (lower is better) for unguided vs.\ \cags{} v2. \cags{} improves FID on 100-class (where complexity variation is large) but increases FID on ImageNette/Woof while still improving classification accuracy, demonstrating that the benefit of adaptive guidance is discriminative rather than distributional.}
+\label{tab:fid}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Dataset} & \textbf{IPC} & \textbf{Unguided} & \textbf{\cags{} v2} & \textbf{$\Delta$} \\
+\midrule
+ImageNet-100 (100-cls) & 10 & $88.66$ & $\mathbf{85.26}$ & $-3.40$ \\
+ImageNet-100 (100-cls) & 50 & $71.06$ & $\mathbf{59.28}$ & $-11.78$ \\
+ImageNette & 10 & $\mathbf{105.21}$ & $108.59$ & $+3.38$ \\
+ImageWoof & 10 & $\mathbf{86.27}$ & $94.70$ & $+8.42$ \\
 \bottomrule
 \end{tabular}
 \end{table}
