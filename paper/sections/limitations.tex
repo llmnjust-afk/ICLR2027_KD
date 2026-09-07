@@ -1,0 +1,19 @@
+\section{Limitations}
+\label{sec:limitations}
+
+We identify several limitations of the current work that point to directions for future investigation.
+
+\paragraph{ConvNet-6 implementation gap.}
+Our ConvNet-6 results exhibit a consistent $\sim$3\% gap relative to the values reported in the MGD$^3$ paper~\cite{chansantiago2025modeguided}, attributable to differences in the ConvNet-6 architecture implementation (channel configuration, input size, normalization details). While our ResNet-18 and ResNetAP-10 results surpass all published baselines, confirming that the adaptive guidance benefit is genuine, resolving the ConvNet-6 discrepancy---by adopting the exact MGD$^3$ ConvNet-6 definition---would enable a fully apples-to-apples comparison across all three architectures.
+
+\paragraph{\iast{} boundary condition.}
+The \iast{} log-scaling function depends only on IPC and does not account for class count, leading to a boundary condition where it helps on 100-class IPC=1 ($+11.2\%$ relative) but hurts on 10-class IPC=1 ($-13.0\%$ relative). A class-count-conditioned scaling function would resolve this asymmetry but introduces additional hyperparameters whose optimization we leave to future work.
+
+\paragraph{Fixed complexity weights.}
+The multi-factor complexity metric uses fixed weights $(\alpha, \beta, \gamma, \delta) = (0.15, 0.15, 0.35, 0.35)$ that are not learned from data. While our experiments demonstrate that these weights yield consistent improvements across all tested settings, learning the weights---or conducting a systematic sensitivity analysis---could further optimize the complexity metric for specific dataset characteristics.
+
+\paragraph{Evaluation scope.}
+Our experiments use three random seeds per configuration. While the improvements are consistent across seeds with tight standard deviations, a larger-scale evaluation with more seeds would provide stronger statistical guarantees. Additionally, we evaluate on ImageNet-100, ImageNette, and ImageWoof; extending to the full ImageNet-1K and other large-scale datasets would further validate the approach's scalability.
+
+\paragraph{Single generator.}
+All experiments use the DiT-XL/2 model~\cite{peebles2022scalable} pretrained on ImageNet-1K. While the adaptive guidance principle is architecture-agnostic, evaluating \ags{} with other pretrained diffusion models (e.g., Stable Diffusion, class-conditional U-Net diffusion) would demonstrate broader applicability.
