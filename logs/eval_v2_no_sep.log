@@ -6,3 +6,56 @@ Seed 0:
   Loaded 1000 training images
   Loading validation images from /root/data/imagenet100/val...
   Loaded 5000 validation images (12.3s)
+    Epoch 200/2000 (266.2s) best=15.66%@ep180
+    Epoch 400/2000 (531.8s) best=17.32%@ep360
+    Epoch 600/2000 (797.5s) best=19.66%@ep600
+    Epoch 800/2000 (1063.1s) best=20.10%@ep800
+    Epoch 1000/2000 (1328.8s) best=21.26%@ep920
+    Epoch 1200/2000 (1594.4s) best=21.80%@ep1200
+    Epoch 1400/2000 (1860.0s) best=23.88%@ep1360
+    Epoch 1600/2000 (2125.6s) best=24.06%@ep1540
+    Epoch 1800/2000 (2391.3s) best=25.00%@ep1760
+    Epoch 2000/2000 (2656.9s) best=25.00%@ep1760
+  Training done in 2656.9s, best Top-1=25.00% @ epoch 1760
+  Seed 0: Best Top-1=25.00%, Best Top-5=46.08%
+
+Seed 1:
+  Loading training images from results/sweep_in100/factor_ablation_v2_no_separability/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.2s)
+    Epoch 200/2000 (265.6s) best=16.54%@ep180
+    Epoch 400/2000 (531.2s) best=18.56%@ep400
+    Epoch 600/2000 (796.9s) best=20.06%@ep520
+    Epoch 800/2000 (1062.5s) best=20.84%@ep760
+    Epoch 1000/2000 (1328.2s) best=21.74%@ep980
+    Epoch 1200/2000 (1593.8s) best=22.42%@ep1180
+    Epoch 1400/2000 (1859.4s) best=23.64%@ep1340
+    Epoch 1600/2000 (2125.1s) best=24.64%@ep1600
+    Epoch 1800/2000 (2390.7s) best=24.64%@ep1600
+    Epoch 2000/2000 (2656.4s) best=24.84%@ep1840
+  Training done in 2656.4s, best Top-1=24.84% @ epoch 1840
+  Seed 1: Best Top-1=24.84%, Best Top-5=47.34%
+
+Seed 2:
+  Loading training images from results/sweep_in100/factor_ablation_v2_no_separability/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.3s)
+    Epoch 200/2000 (265.4s) best=15.96%@ep160
+    Epoch 400/2000 (530.7s) best=18.06%@ep380
+    Epoch 600/2000 (796.0s) best=19.02%@ep540
+    Epoch 800/2000 (1061.3s) best=19.98%@ep760
+    Epoch 1000/2000 (1326.7s) best=21.22%@ep940
+    Epoch 1200/2000 (1592.0s) best=22.46%@ep1160
+    Epoch 1400/2000 (1857.3s) best=24.00%@ep1400
+    Epoch 1600/2000 (2122.6s) best=24.00%@ep1400
+    Epoch 1800/2000 (2388.0s) best=24.00%@ep1400
+    Epoch 2000/2000 (2653.3s) best=24.00%@ep1400
+  Training done in 2653.3s, best Top-1=24.00% @ epoch 1400
+  Seed 2: Best Top-1=24.00%, Best Top-5=46.44%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 24.61 ± 0.44%
+Mean Best Top-5: 46.62 ± 0.53%
