@@ -44,3 +44,18 @@ Seed 2:
   Loaded 5000 validation images (7.8s)
     Epoch 200/2000 (265.4s) best=15.00%@ep180
     Epoch 400/2000 (530.7s) best=18.02%@ep400
+    Epoch 600/2000 (796.0s) best=18.56%@ep540
+    Epoch 800/2000 (1061.3s) best=20.28%@ep720
+    Epoch 1000/2000 (1326.6s) best=20.88%@ep940
+    Epoch 1200/2000 (1591.9s) best=21.56%@ep1160
+    Epoch 1400/2000 (1857.2s) best=22.98%@ep1380
+    Epoch 1600/2000 (2122.5s) best=23.64%@ep1440
+    Epoch 1800/2000 (2387.9s) best=23.80%@ep1780
+    Epoch 2000/2000 (2653.2s) best=23.82%@ep1900
+  Training done in 2653.2s, best Top-1=23.82% @ epoch 1900
+  Seed 2: Best Top-1=23.82%, Best Top-5=45.62%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 23.75 ± 0.09%
+Mean Best Top-5: 46.09 ± 0.33%
