@@ -92,11 +92,11 @@ The 100-class setting exhibits substantially more complexity variation than the 
 \subsection{Module Ablation on 100-class}
 \label{sec:module-ablation}
 
-To understand the contribution of each \ags{} module, we evaluate module combinations on the 100-class subset where \cags{} demonstrates the strongest effect (\Cref{tab:module-ablation}). The unguided baseline achieves $21.63 \pm 0.16\%$, and fixed $\lambda = 0.10$ slightly decreases performance to $21.31 \pm 0.42\%$, confirming that fixed guidance is harmful on this subset. \cags{} v2 $[0.0, 0.06]$ alone improves to $23.27 \pm 0.47\%$ ($+7.6\%$ relative). Adding \tags{} (linear schedule) on top of \cags{} yields $20.31 \pm 0.44\%$, which \emph{underperforms} both \cags{}-alone by $2.96\%$ and even unguided by $1.32\%$. This result indicates that temporal modulation of guidance actively interferes with the carefully calibrated per-class guidance strengths; the class axis is the primary axis of variation, and \tags{}'s temporal smoothing disrupts the per-class adaptation. By design, \iast{} has no effect at IPC=10 (the range scale equals 1.0), so \iast{}+\cags{} is equivalent to \cags{}-alone at this budget.
+To understand the contribution of each \ags{} module, we evaluate module combinations on the 100-class subset where \cags{} demonstrates the strongest effect (\Cref{tab:module-ablation}). The unguided baseline achieves $21.63 \pm 0.16\%$, and fixed $\lambda = 0.10$ slightly decreases performance to $21.31 \pm 0.42\%$, confirming that fixed guidance is harmful on this subset. \cags{} v2 $[0.0, 0.06]$ alone improves to $23.27 \pm 0.47\%$ ($+7.6\%$ relative). Adding \tags{} (linear schedule) on top of \cags{} yields $22.73 \pm 0.15\%$, which improves over unguided by $+1.10\%$ ($+5.1\%$ relative) but \emph{underperforms} \cags{}-alone by $0.54\%$. This result indicates that temporal modulation provides some benefit over no guidance but is less effective than per-class adaptation alone; the class axis is the primary axis of variation, and \tags{}'s temporal smoothing partially disrupts the carefully calibrated per-class guidance strengths. By design, \iast{} has no effect at IPC=10 (the range scale equals 1.0), so \iast{}+\cags{} is equivalent to \cags{}-alone at this budget.
 
 \begin{table}[t]
 \centering
-\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides the dominant single-module gain; \tags{} actively \emph{hurts} when combined with \cags{}, and \iast{} is transparent at IPC=10 by design (scale = 1.0).}
+\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides the dominant single-module gain; \tags{} improves over unguided but underperforms \cags{}-alone, and \iast{} is transparent at IPC=10 by design (scale = 1.0).}
 \label{tab:module-ablation}
 \begin{tabular}{lcc}
 \toprule
@@ -107,7 +107,7 @@ Fixed $\lambda = 0.10$ & $21.31 \pm 0.42$ & $-0.32$ \\
 \midrule
 \cags{} v2 $[0.0, 0.06]$ & $\mathbf{23.27 \pm 0.47}$ & $\mathbf{+1.64}$ \\
 \iast{} + \cags{} v2 (IPC=10, equiv.\ to \cags{}) & $23.27 \pm 0.47$ & $+1.64$ \\
-\tags{} linear + \cags{} v2 $[0.0, 0.06]$ & $20.31 \pm 0.44$ & $-1.32$ \\
+\tags{} linear + \cags{} v2 $[0.0, 0.06]$ & $22.73 \pm 0.15$ & $+1.10$ \\
 \bottomrule
 \end{tabular}
 \end{table}
