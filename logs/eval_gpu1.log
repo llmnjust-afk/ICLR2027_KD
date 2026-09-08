@@ -1,0 +1,177 @@
+========================================
+V3 Rerun GPU1 - Mon Sep  7 13:49:14 UTC 2026
+========================================
+=== 100-class IPC=50 CAGS v2 (1000 ep) ===
+Arch: convnet, Norm: instance
+Classes (100): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Seed 0:
+  Loading training images from ./results/sweep_in100/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 5000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.9s)
+    Epoch 200/1000 (1259.4s) best=32.04%@ep170
+    Epoch 400/1000 (2517.9s) best=35.34%@ep370
+    Epoch 600/1000 (3776.4s) best=35.96%@ep600
+    Epoch 800/1000 (5034.8s) best=39.24%@ep730
+    Epoch 1000/1000 (6293.2s) best=40.04%@ep890
+  Training done in 6293.2s, best Top-1=40.04% @ epoch 890
+  Seed 0: Best Top-1=40.04%, Best Top-5=64.06%
+
+Seed 1:
+  Loading training images from ./results/sweep_in100/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 5000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.2s)
+    Epoch 200/1000 (1258.7s) best=33.02%@ep190
+    Epoch 400/1000 (2517.3s) best=34.50%@ep350
+    Epoch 600/1000 (3775.7s) best=35.98%@ep410
+    Epoch 800/1000 (5034.2s) best=38.98%@ep740
+    Epoch 1000/1000 (6292.7s) best=39.68%@ep840
+  Training done in 6292.7s, best Top-1=39.68% @ epoch 840
+  Seed 1: Best Top-1=39.68%, Best Top-5=64.14%
+
+Seed 2:
+  Loading training images from ./results/sweep_in100/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 5000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.9s)
+    Epoch 200/1000 (1258.9s) best=31.96%@ep200
+    Epoch 400/1000 (2517.6s) best=33.96%@ep360
+    Epoch 600/1000 (3776.2s) best=37.60%@ep590
+    Epoch 800/1000 (5034.8s) best=39.36%@ep750
+    Epoch 1000/1000 (6293.4s) best=39.84%@ep860
+  Training done in 6293.4s, best Top-1=39.84% @ epoch 860
+  Seed 2: Best Top-1=39.84%, Best Top-5=64.54%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 39.85 ± 0.15%
+Mean Best Top-5: 64.25 ± 0.21%
+=== 100-class IPC=10 unguided (1300 ep) ===
+Arch: convnet, Norm: instance
+Classes (100): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Seed 0:
+  Loading training images from ./results/sweep_in100/high_noise_unguided_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.6s)
+  Training done in 1800.3s, best Top-1=21.86% @ epoch 1274
+  Seed 0: Best Top-1=21.86%, Best Top-5=42.44%
+
+Seed 1:
+  Loading training images from ./results/sweep_in100/high_noise_unguided_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.2s)
+  Training done in 1799.8s, best Top-1=21.56% @ epoch 1027
+  Seed 1: Best Top-1=21.56%, Best Top-5=41.68%
+
+Seed 2:
+  Loading training images from ./results/sweep_in100/high_noise_unguided_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (8.5s)
+  Training done in 1799.7s, best Top-1=21.48% @ epoch 1066
+  Seed 2: Best Top-1=21.48%, Best Top-5=41.86%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 21.63 ± 0.16%
+Mean Best Top-5: 41.99 ± 0.32%
+=== 100-class IPC=10 fixed lambda=0.10 (1300 ep) ===
+Arch: convnet, Norm: instance
+Classes (100): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Seed 0:
+  Loading training images from ./results/sweep_in100/high_noise_fixed_l0.1_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.0s)
+  Training done in 1800.6s, best Top-1=20.78% @ epoch 1131
+  Seed 0: Best Top-1=20.78%, Best Top-5=41.62%
+
+Seed 1:
+  Loading training images from ./results/sweep_in100/high_noise_fixed_l0.1_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.9s)
+  Training done in 1800.0s, best Top-1=21.80% @ epoch 1027
+  Seed 1: Best Top-1=21.80%, Best Top-5=41.92%
+
+Seed 2:
+  Loading training images from ./results/sweep_in100/high_noise_fixed_l0.1_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.2s)
+  Training done in 1799.8s, best Top-1=21.34% @ epoch 1183
+  Seed 2: Best Top-1=21.34%, Best Top-5=42.42%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 21.31 ± 0.42%
+Mean Best Top-5: 41.99 ± 0.33%
+=== 100-class IPC=10 TAGS linear + CAGS (1300 ep) ===
+Arch: convnet, Norm: instance
+Classes (100): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Seed 0:
+  Loading training images from ./results/sweep_in100/high_noise_tags_linear_cagsv2_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.3s)
+=== 100-class ResNetAP-10 unguided (1300 ep) ===
+Arch: resnet_ap, Norm: instance
+Classes (100): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Seed 0:
+  Loading training images from ./results/sweep_in100/high_noise_unguided_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.3s)
+  Training done in 920.0s, best Top-1=25.40% @ epoch 1287
+  Seed 0: Best Top-1=25.40%, Best Top-5=46.84%
+
+Seed 1:
+  Loading training images from ./results/sweep_in100/high_noise_unguided_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (6.8s)
+  Training done in 919.1s, best Top-1=25.24% @ epoch 1196
+  Seed 1: Best Top-1=25.24%, Best Top-5=46.90%
+
+Seed 2:
+  Loading training images from ./results/sweep_in100/high_noise_unguided_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (7.5s)
+  Training done in 919.6s, best Top-1=24.86% @ epoch 923
+  Seed 2: Best Top-1=24.86%, Best Top-5=46.22%
+
+============================================================
+Arch: resnet_ap, Depth: 10
+Mean Best Top-1: 25.17 ± 0.23%
+Mean Best Top-5: 46.65 ± 0.31%
+=== 100-class ResNetAP-10 CAGS v2 (1300 ep) ===
+Arch: resnet_ap, Norm: instance
+Classes (100): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797', 'n01735189', 'n07831146', 'n07753275', 'n03085013', 'n04485082', 'n02105505', 'n01983481', 'n02788148', 'n03530642', 'n04435653', 'n02086910', 'n02859443', 'n13040303', 'n03594734', 'n02085620', 'n02099849', 'n01558993', 'n04493381', 'n02109047', 'n04111531', 'n02877765', 'n04429376', 'n02009229', 'n01978455', 'n02106550', 'n01820546', 'n01692333', 'n07714571', 'n02974003', 'n02114855', 'n03785016', 'n03764736', 'n03775546', 'n02087046', 'n07836838', 'n04099969', 'n04592741', 'n03891251', 'n02701002', 'n03379051', 'n02259212', 'n07715103', 'n03947888', 'n04026417', 'n02326432', 'n03637318', 'n01980166', 'n02113799', 'n02086240', 'n03903868', 'n02483362', 'n04127249', 'n02089973', 'n03017168', 'n02093428', 'n02804414', 'n02396427', 'n04418357', 'n02172182', 'n01729322', 'n02113978', 'n03787032', 'n02089867', 'n02119022', 'n03777754', 'n04238763', 'n02231487', 'n03032252', 'n02138441', 'n02104029', 'n03837869', 'n03494278', 'n04136333', 'n03794056', 'n03492542', 'n02018207', 'n04067472', 'n03930630', 'n03584829', 'n02123045', 'n04229816', 'n02100583', 'n03642806', 'n04336792', 'n03259280', 'n02116738', 'n02108089', 'n03424325', 'n01855672', 'n02090622']
+
+Seed 0:
+  Loading training images from ./results/sweep_in100/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (8.2s)
+=== 10-class IPC=50 CAGS v2 (1500 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.8s)
+    Epoch 600/1500 (373.8s) best=62.20%@ep495
+========================================
+GPU1 V3 RERUN DONE - Mon Sep  7 23:10:32 UTC 2026
+========================================

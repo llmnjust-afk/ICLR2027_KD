@@ -1,0 +1,31 @@
+========================================
+GPU2 Reassign (GPU1 task: IN10 IPC=50 CAGS) - Mon Sep  7 21:22:12 UTC 2026
+========================================
+Waiting for GPU2 memory to be free...
+GPU2 free (mem=455MiB). Starting reassigned task - Mon Sep  7 21:54:54 UTC 2026
+=== 10-class IPC=50 CAGS v2 (1500 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v3.py", line 300, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v3.py", line 282, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v3.py", line 211, in evaluate_fast
+    loss.backward()
+  File "/usr/local/lib/python3.10/dist-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.06 GiB. GPU 0 has a total capacity of 23.52 GiB of which 1.14 GiB is free. Process 3705127 has 8.95 GiB memory in use. Process 3705579 has 13.41 GiB memory in use. Of the allocated memory 9.85 GiB is allocated by PyTorch, and 3.10 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+========================================
+GPU2 REASSIGN DONE - Mon Sep  7 21:55:04 UTC 2026
+========================================

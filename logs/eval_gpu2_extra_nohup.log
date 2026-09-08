@@ -1,0 +1,322 @@
+========================================
+GPU2 Extra Eval - Mon Sep  7 19:17:22 UTC 2026
+========================================
+=== 10-class IPC=50 unguided (1500 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.8s)
+    Epoch 600/1500 (374.4s) best=57.00%@ep525
+    Epoch 1200/1500 (748.4s) best=61.40%@ep1050
+  Training done in 935.4s, best Top-1=62.80% @ epoch 1410
+  Seed 0: Best Top-1=62.80%, Best Top-5=90.80%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.7s)
+    Epoch 600/1500 (373.6s) best=58.80%@ep555
+    Epoch 1200/1500 (747.3s) best=65.60%@ep1050
+  Training done in 934.0s, best Top-1=65.60% @ epoch 1050
+  Seed 1: Best Top-1=65.60%, Best Top-5=90.00%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_unguided_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.8s)
+    Epoch 600/1500 (373.6s) best=57.00%@ep585
+    Epoch 1200/1500 (747.3s) best=63.20%@ep1140
+  Training done in 934.2s, best Top-1=63.20% @ epoch 1140
+  Seed 2: Best Top-1=63.20%, Best Top-5=90.20%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 63.87 ± 1.24%
+Mean Best Top-5: 90.33 ± 0.34%
+=== 10-class IPC=50 CAGS v2 (1500 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.8s)
+    Epoch 600/1500 (374.3s) best=62.60%@ep510
+    Epoch 1200/1500 (747.8s) best=70.00%@ep1200
+  Training done in 934.6s, best Top-1=71.80% @ epoch 1500
+  Seed 0: Best Top-1=71.80%, Best Top-5=94.00%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.8s)
+    Epoch 600/1500 (374.1s) best=63.80%@ep555
+    Epoch 1200/1500 (748.0s) best=67.60%@ep1110
+  Training done in 935.0s, best Top-1=68.40% @ epoch 1350
+  Seed 1: Best Top-1=68.40%, Best Top-5=94.60%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+    Epoch 600/1500 (373.8s) best=64.00%@ep585
+    Epoch 1200/1500 (747.4s) best=68.80%@ep1140
+  Training done in 934.2s, best Top-1=69.40% @ epoch 1500
+  Seed 2: Best Top-1=69.40%, Best Top-5=95.20%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 69.87 ± 1.43%
+Mean Best Top-5: 94.60 ± 0.49%
+=== 10-class IPC=1 Random Herding (3000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc1_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (1.0s)
+    Epoch 600/3000 (13.0s) best=15.00%@ep450
+    Epoch 1200/3000 (25.3s) best=15.00%@ep450
+    Epoch 1800/3000 (37.5s) best=15.80%@ep1470
+    Epoch 2400/3000 (49.7s) best=16.20%@ep2250
+    Epoch 3000/3000 (61.9s) best=16.20%@ep2250
+  Training done in 61.9s, best Top-1=16.20% @ epoch 2250
+  Seed 0: Best Top-1=16.20%, Best Top-5=53.80%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc1_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.8s)
+    Epoch 600/3000 (12.2s) best=14.80%@ep150
+    Epoch 1200/3000 (24.4s) best=15.20%@ep1170
+    Epoch 1800/3000 (36.6s) best=15.80%@ep1530
+    Epoch 2400/3000 (48.8s) best=16.40%@ep2340
+    Epoch 3000/3000 (61.0s) best=16.40%@ep2340
+  Training done in 61.0s, best Top-1=16.40% @ epoch 2340
+  Seed 1: Best Top-1=16.40%, Best Top-5=56.80%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc1_d25/dataset_0...
+  Loaded 10 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+    Epoch 600/3000 (12.2s) best=13.20%@ep300
+    Epoch 1200/3000 (24.4s) best=13.80%@ep1170
+    Epoch 1800/3000 (36.6s) best=14.40%@ep1560
+    Epoch 2400/3000 (48.8s) best=15.80%@ep1920
+    Epoch 3000/3000 (61.0s) best=16.00%@ep2970
+  Training done in 61.0s, best Top-1=16.00% @ epoch 2970
+  Seed 2: Best Top-1=16.00%, Best Top-5=55.80%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 16.20 ± 0.16%
+Mean Best Top-5: 55.47 ± 1.25%
+=== 10-class IPC=10 Random Herding (2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc10_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+    Epoch 200/2000 (27.6s) best=25.80%@ep160
+    Epoch 400/2000 (54.1s) best=28.60%@ep320
+    Epoch 600/2000 (80.6s) best=31.60%@ep480
+    Epoch 800/2000 (107.1s) best=33.00%@ep740
+    Epoch 1000/2000 (133.6s) best=34.60%@ep900
+    Epoch 1200/2000 (160.1s) best=35.40%@ep1200
+    Epoch 1400/2000 (186.6s) best=35.40%@ep1200
+    Epoch 1600/2000 (213.1s) best=36.00%@ep1580
+    Epoch 1800/2000 (239.6s) best=36.80%@ep1740
+    Epoch 2000/2000 (266.1s) best=36.80%@ep1740
+  Training done in 266.1s, best Top-1=36.80% @ epoch 1740
+  Seed 0: Best Top-1=36.80%, Best Top-5=81.00%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc10_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+    Epoch 200/2000 (26.5s) best=25.60%@ep120
+    Epoch 400/2000 (53.0s) best=31.60%@ep400
+    Epoch 600/2000 (79.5s) best=34.80%@ep600
+    Epoch 800/2000 (106.0s) best=34.80%@ep600
+    Epoch 1000/2000 (132.5s) best=34.80%@ep600
+    Epoch 1200/2000 (159.0s) best=37.00%@ep1200
+    Epoch 1400/2000 (185.5s) best=37.80%@ep1260
+    Epoch 1600/2000 (212.1s) best=38.60%@ep1500
+    Epoch 1800/2000 (238.6s) best=40.00%@ep1680
+    Epoch 2000/2000 (265.1s) best=40.00%@ep1680
+  Training done in 265.1s, best Top-1=40.00% @ epoch 1680
+  Seed 1: Best Top-1=40.00%, Best Top-5=80.60%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc10_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.8s)
+    Epoch 200/2000 (26.5s) best=26.80%@ep200
+    Epoch 400/2000 (53.0s) best=29.00%@ep360
+    Epoch 600/2000 (79.6s) best=32.20%@ep500
+    Epoch 800/2000 (106.1s) best=33.00%@ep680
+    Epoch 1000/2000 (132.6s) best=34.60%@ep860
+    Epoch 1200/2000 (159.1s) best=36.00%@ep1200
+    Epoch 1400/2000 (185.6s) best=37.20%@ep1220
+    Epoch 1600/2000 (212.1s) best=38.60%@ep1580
+    Epoch 1800/2000 (238.6s) best=39.60%@ep1720
+    Epoch 2000/2000 (265.1s) best=39.60%@ep1720
+  Training done in 265.1s, best Top-1=39.60% @ epoch 1720
+  Seed 2: Best Top-1=39.60%, Best Top-5=82.60%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 38.80 ± 1.42%
+Mean Best Top-5: 81.40 ± 0.86%
+=== 10-class IPC=50 Random Herding (1500 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc50_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+    Epoch 600/1500 (374.2s) best=60.40%@ep585
+    Epoch 1200/1500 (747.8s) best=63.20%@ep1110
+  Training done in 934.6s, best Top-1=64.00% @ epoch 1425
+  Seed 0: Best Top-1=64.00%, Best Top-5=93.20%
+
+Seed 1:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc50_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+    Epoch 600/1500 (373.6s) best=58.80%@ep600
+    Epoch 1200/1500 (747.3s) best=65.80%@ep1185
+  Training done in 934.1s, best Top-1=65.80% @ epoch 1185
+  Seed 1: Best Top-1=65.80%, Best Top-5=93.20%
+
+Seed 2:
+  Loading training images from ./results/sweep_in10/high_noise_random_herding_ipc50_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+    Epoch 600/1500 (373.6s) best=59.60%@ep510
+    Epoch 1200/1500 (747.1s) best=63.20%@ep1140
+  Training done in 933.9s, best Top-1=64.40% @ epoch 1245
+  Seed 2: Best Top-1=64.40%, Best Top-5=92.80%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 64.73 ± 0.77%
+Mean Best Top-5: 93.07 ± 0.19%
+=== Nette Random Herding (2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n01440764', 'n02102040', 'n02979186', 'n03000684', 'n03028079', 'n03394916', 'n03417042', 'n03425413', 'n03445777', 'n03888257']
+
+Seed 0:
+  Loading training images from ./results/sweep_nette/high_noise_random_herding_ipc10_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagenette2/val...
+  Loaded 3925 validation images (8.9s)
+Traceback (most recent call last):
+  File "/root/ICLR2027_KD/quick_eval_v3.py", line 300, in <module>
+    main()
+  File "/root/ICLR2027_KD/quick_eval_v3.py", line 282, in main
+    top1, top5 = evaluate_fast(
+  File "/root/ICLR2027_KD/quick_eval_v3.py", line 207, in evaluate_fast
+    outputs = model(imgs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/ICLR2027_KD/train_models/convnet.py", line 49, in forward
+    x = self.layers['act'][d](x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 143, in forward
+    return F.relu(input, inplace=self.inplace)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/functional.py", line 1723, in relu
+    result = torch.relu(input)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.39 GiB. GPU 0 has a total capacity of 23.52 GiB of which 1.14 GiB is free. Process 3705127 has 8.95 GiB memory in use. Process 3705579 has 13.41 GiB memory in use. Of the allocated memory 7.12 GiB is allocated by PyTorch, and 1.37 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+=== Woof CAGS v2 (2000 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02096294', 'n02093754', 'n02111889', 'n02088364', 'n02086240', 'n02089973', 'n02087394', 'n02115641', 'n02099601', 'n02105641']
+
+Seed 0:
+  Loading training images from ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (9.9s)
+    Epoch 200/2000 (42.3s) best=22.73%@ep200
+    Epoch 400/2000 (84.1s) best=24.61%@ep320
+    Epoch 600/2000 (125.9s) best=27.62%@ep540
+    Epoch 800/2000 (167.7s) best=28.05%@ep760
+    Epoch 1000/2000 (209.5s) best=28.43%@ep1000
+    Epoch 1200/2000 (251.3s) best=28.43%@ep1000
+    Epoch 1400/2000 (293.1s) best=29.17%@ep1380
+    Epoch 1600/2000 (334.9s) best=29.55%@ep1600
+    Epoch 1800/2000 (376.7s) best=29.98%@ep1760
+    Epoch 2000/2000 (418.5s) best=29.98%@ep1760
+  Training done in 418.5s, best Top-1=29.98% @ epoch 1760
+  Seed 0: Best Top-1=29.98%, Best Top-5=74.88%
+
+Seed 1:
+  Loading training images from ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (7.4s)
+    Epoch 200/2000 (41.8s) best=24.33%@ep200
+    Epoch 400/2000 (83.6s) best=25.55%@ep400
+    Epoch 600/2000 (125.3s) best=26.47%@ep580
+    Epoch 800/2000 (167.1s) best=27.18%@ep660
+    Epoch 1000/2000 (208.9s) best=28.25%@ep980
+    Epoch 1200/2000 (250.7s) best=29.09%@ep1200
+    Epoch 1400/2000 (292.5s) best=29.24%@ep1400
+    Epoch 1600/2000 (334.3s) best=29.65%@ep1500
+    Epoch 1800/2000 (376.1s) best=29.70%@ep1700
+    Epoch 2000/2000 (417.8s) best=30.11%@ep1960
+  Training done in 417.8s, best Top-1=30.11% @ epoch 1960
+  Seed 1: Best Top-1=30.11%, Best Top-5=75.24%
+
+Seed 2:
+  Loading training images from ./results/sweep_woof/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 100 training images
+  Loading validation images from /root/data/imagewoof2/val...
+  Loaded 3929 validation images (6.5s)
+    Epoch 200/2000 (41.8s) best=24.18%@ep200
+    Epoch 400/2000 (83.5s) best=26.44%@ep320
+    Epoch 600/2000 (125.3s) best=26.70%@ep560
+    Epoch 800/2000 (167.0s) best=26.78%@ep760
+    Epoch 1000/2000 (208.8s) best=27.82%@ep840
+    Epoch 1200/2000 (250.5s) best=28.99%@ep1200
+    Epoch 1400/2000 (292.3s) best=29.37%@ep1360
+    Epoch 1600/2000 (334.0s) best=29.40%@ep1480
+    Epoch 1800/2000 (375.7s) best=29.70%@ep1800
+    Epoch 2000/2000 (417.5s) best=30.11%@ep1940
+  Training done in 417.5s, best Top-1=30.11% @ epoch 1940
+  Seed 2: Best Top-1=30.11%, Best Top-5=73.86%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 30.07 ± 0.06%
+Mean Best Top-5: 74.66 ± 0.58%
+========================================
+GPU2 EXTRA EVAL DONE - Mon Sep  7 22:16:29 UTC 2026
+========================================

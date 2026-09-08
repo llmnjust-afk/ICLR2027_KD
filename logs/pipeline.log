@@ -1,0 +1,23 @@
+============================================
+Phase 2: Dataset Generation - Mon Sep  7 11:52:38 UTC 2026
+============================================
+GPU0 gen PID: 3128359
+GPU1 gen PID: 3128362
+GPU2 gen PID: 3128365
+GPU3 gen PID: 3128368
+Waiting for generation to complete...
+GPU0 gen DONE
+GPU1 gen DONE
+GPU2 gen DONE
+GPU3 gen DONE
+
+============================================
+Phase 3: Evaluation - Mon Sep  7 13:49:14 UTC 2026
+============================================
+GPU0 eval PID: 3251871
+GPU1 eval PID: 3251874
+GPU2 eval PID: 3251879
+GPU3 eval PID: 3251887
+Evaluation launched on 4 GPUs.
+Monitor: tail -f /root/ICLR2027_KD/logs/eval_gpu*.log
+============================================

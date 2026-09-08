@@ -1,0 +1,17 @@
+========================================
+GPU2 Reassign (GPU1 task: IN10 IPC=50 CAGS) - Mon Sep  7 21:22:12 UTC 2026
+========================================
+Waiting for GPU2 memory to be free...
+GPU2 free (mem=455MiB). Starting reassigned task - Mon Sep  7 21:54:54 UTC 2026
+=== 10-class IPC=50 CAGS v2 (1500 ep) ===
+Arch: convnet, Norm: instance
+Classes (10): ['n02869837', 'n01749939', 'n02488291', 'n02107142', 'n13037406', 'n02091831', 'n04517823', 'n04589890', 'n03062245', 'n01773797']
+
+Seed 0:
+  Loading training images from ./results/sweep_in10/high_noise_ipc50_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 500 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 500 validation images (0.9s)
+========================================
+GPU2 REASSIGN DONE - Mon Sep  7 21:55:04 UTC 2026
+========================================

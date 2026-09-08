@@ -1,0 +1,37 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Classes: 100
+Downloading validation parquet...
+  Downloaded: /root/.cache/huggingface/hub/datasets--clane9--imagenet-100/snapshots/0519dc2f402a3a18c6e57f7913db059215eee25b/data/validation-00000-of-00001.parquet
+Extracting validation images...
+  Val rows: 5000
+  Columns: ['image', 'label']
+  Saved 1000/5000
+  Saved 2000/5000
+  Saved 3000/5000
+  Saved 4000/5000
+  Saved 5000/5000
+Validation: 5000 images extracted to /root/data/imagenet100/val
+
+Downloading train parquet files (for CAGS clustering)...
+  Shard 0: total 7453 images
+  Shard 1: total 14906 images
+  Shard 2: total 22359 images
+  Shard 3: total 29812 images
+  Shard 4: total 37265 images
+  Shard 5: total 44717 images
+  Shard 6: total 52169 images
+  Shard 7: total 59621 images
+  Shard 8: total 67073 images
+  Shard 9: total 74525 images
+  Shard 10: total 81977 images
+  Shard 11: total 89429 images
+  Shard 12: total 96881 images
+  Shard 13: total 104333 images
+  Shard 14: total 111785 images
+  Shard 15: total 119237 images
+  Shard 16: total 126689 images
+
+Train: 126689 images extracted to /root/data/imagenet100/train
+Val: 5000 images extracted to /root/data/imagenet100/val
+
+Done!

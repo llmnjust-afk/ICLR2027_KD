@@ -22,95 +22,92 @@ For \cags{} v2, we use the complexity weighting $(\alpha, \beta, \gamma, \delta)
 \subsection{Main Results: ImageNet-100 (10-class)}
 \label{sec:results-10cls}
 
-\Cref{tab:results-10cls} presents results on the 10-class ImageNet-100 subset with ConvNet-6 and instance normalization, using the MGD$^3$ evaluation protocol (best top-1 accuracy across all training epochs). The unguided baseline achieves $45.40 \pm 0.75\%$, confirming that the pretrained DiT generates class-conditional images of sufficient quality for dataset distillation even without guidance. Fixed guidance at $\lambda = 0.05$ yields $48.47 \pm 0.25\%$, a $+3.07\%$ absolute improvement ($+6.8\%$ relative) over unguided, demonstrating that a moderate global guidance strength can sharpen synthetic samples on this subset. Critically, \cags{} v2 at the matching average guidance range $[0.0, 0.08]$ achieves $50.13 \pm 0.74\%$, outperforming both unguided by $+4.73\%$ absolute ($+10.4\%$ relative) and the best fixed $\lambda$ by $+1.66\%$ absolute ($+3.4\%$ relative). This result is particularly notable because it demonstrates that even with only 10 classes---where the per-class complexity scores exhibit limited variation (standard deviation $0.099$)---per-class adaptive guidance still provides a meaningful advantage over the best globally tuned fixed $\lambda$. The improvement is consistent across all three seeds ($50.20\%$, $51.00\%$, $49.20\%$), confirming that \cags{} is not relying on a single favorable random draw.
+\Cref{tab:results-10cls} presents results on the 10-class ImageNet-100 subset with ConvNet-6 and instance normalization, using the MGD$^3$ evaluation protocol (best top-1 accuracy across all training epochs). The unguided baseline achieves $49.73 \pm 1.20\%$, confirming that the pretrained DiT generates class-conditional images of sufficient quality for dataset distillation even without guidance. Fixed guidance at $\lambda = 0.05$ yields $49.00 \pm 0.71\%$, a $-0.73\%$ absolute change that falls within the standard deviation, indicating that a moderate global guidance strength provides no measurable benefit on this subset. \cags{} v2 at the matching average guidance range $[0.0, 0.08]$ achieves $49.40 \pm 0.28\%$, which is statistically indistinguishable from unguided ($-0.33\%$ absolute, within one standard deviation). However, \cags{} v2 does improve top-5 accuracy: $84.87 \pm 0.19\%$ vs.\ unguided $83.20 \pm 0.65\%$ ($+1.67\%$ absolute), suggesting that per-class adaptive guidance improves the model's ability to rank the correct class among its top predictions even when top-1 accuracy is unaffected. The neutral top-1 result on 10-class IPC=10 contrasts sharply with the strong gains observed on the 100-class subset (\Cref{sec:results-100cls}), and we attribute this to the limited class complexity variation when only 10 classes are present---a hypothesis we validate in \Cref{sec:ipc-ablation-10cls}.
 
 \begin{table}[t]
 \centering
-\caption{ImageNet-100 (10-class) results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} v2 outperforms both unguided and the best fixed $\lambda$, demonstrating that per-class adaptive guidance provides meaningful advantages even with limited class count.}
+\caption{ImageNet-100 (10-class) results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. On this subset, neither fixed guidance nor \cags{} provides a statistically significant top-1 improvement, though \cags{} improves top-5 accuracy. The limited class complexity variation with only 10 classes restricts the benefit of per-class adaptation.}
 \label{tab:results-10cls}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Method} & \textbf{Avg. $\lambda$} & \textbf{Top-1 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
+\textbf{Method} & \textbf{Avg. $\lambda$} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} & \textbf{$\Delta$ top-1} \\
 \midrule
-Unguided & 0.000 & $45.40 \pm 0.75$ & --- \\
-Fixed $\lambda = 0.05$ & 0.050 & $48.47 \pm 0.25$ & $+3.07$ \\
+Unguided & 0.000 & $49.73 \pm 1.20$ & $83.20 \pm 0.65$ & --- \\
+Fixed $\lambda = 0.05$ & 0.050 & $49.00 \pm 0.71$ & $83.60 \pm 0.98$ & $-0.73$ \\
 \midrule
-\cags{} v2 $[0.0, 0.08]$ & $\sim$0.055 & $\mathbf{50.13 \pm 0.74}$ & $\mathbf{+4.73}$ \\
+\cags{} v2 $[0.0, 0.08]$ & $\sim$0.055 & $49.40 \pm 0.28$ & $\mathbf{84.87 \pm 0.19}$ & $-0.33$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\paragraph{\cags{} improves at all IPC settings.}
-\Cref{tab:ipc-ablation-10cls} presents the full IPC ablation on the 10-class subset. At IPC=1, \cags{} v2 achieves $24.53 \pm 0.68\%$ vs.\ unguided $24.00 \pm 0.28\%$ ($+0.53\%$ absolute, $+2.2\%$ relative), a modest but consistent improvement. At IPC=50, \cags{} v2 achieves $68.07 \pm 1.27\%$ vs.\ unguided $58.93 \pm 0.94\%$ ($+9.14\%$ absolute, $+15.5\%$ relative), the largest gain in this setting. The improvement increases monotonically with IPC, from $+2.2\%$ relative at IPC=1 to $+15.5\%$ at IPC=50, suggesting that the multi-factor complexity metric provides stronger signal as more images per class enable more reliable estimation of intra-class variance and inter-class separability. Notably, \cags{} also surpasses the best fixed $\lambda$ at IPC=10 ($50.13\%$ vs.\ $48.47\%$), confirming that per-class adaptation is beneficial even when global guidance is well-tuned.
+\paragraph{IPC ablation reveals boundary conditions.}
+\Cref{tab:ipc-ablation-10cls} presents the full IPC ablation on the 10-class subset. At IPC=50, \cags{} v2 achieves $69.87 \pm 1.43\%$ vs.\ unguided $64.13 \pm 0.09\%$ ($+5.74\%$ absolute, $+9.0\%$ relative), demonstrating that per-class adaptive guidance provides substantial benefit when sufficient images per class enable reliable complexity estimation. At IPC=10, as discussed above, \cags{} is neutral. Critically, at IPC=1, \cags{} v2 \emph{degrades} performance to $19.87 \pm 0.90\%$ vs.\ unguided $22.80 \pm 0.16\%$ ($-2.93\%$ absolute, $-12.8\%$ relative). With only one image per class, the guidance sharpening reduces the diversity of the single synthetic sample, harming classifier training. \iast{} partially mitigates this degradation ($21.13 \pm 0.09\%$, $+1.26\%$ over \cags{}-alone) by compressing the guidance range, but both \cags{} and \iast{}+\cags{} remain below unguided, indicating that adaptive guidance is fundamentally counterproductive at 10-class IPC=1.
 
-An important finding concerns \iast{} on this subset. At IPC=1, \iast{}+\cags{} achieves only $20.87 \pm 0.62\%$, \emph{underperforming} both unguided ($-13.0\%$ relative) and \cags{}-alone ($-14.9\%$ relative). The \iast{} log-scaling factor for IPC=1 is $0.289$, which shrinks the guidance range from $[0, 0.08]$ to $[0, 0.023]$. On the 10-class subset, where per-class complexity variation is already limited, this aggressive range compression removes most of the adaptive signal, rendering the guidance effectively negligible. This stands in sharp contrast to the 100-class IPC=1 setting (\Cref{sec:ipc-ablation}), where the same scaling factor is beneficial. We discuss this asymmetry in detail in \Cref{sec:ipc-ablation}.
-
-Random Herding is outperformed by unguided diffusion generation at IPC=1 and IPC=10 ($16.00\%$ vs.\ $24.00\%$ and $39.60\%$ vs.\ $45.40\%$), but \emph{exceeds} unguided at IPC=50 ($64.73\%$ vs.\ $58.93\%$, $+9.8\%$ relative). This crossover occurs because at higher budgets, the diversity of real images becomes increasingly valuable, while unguided synthetic images suffer from mode collapse. However, \cags{} closes this gap entirely, surpassing Random Herding at IPC=50 by $+3.34\%$ absolute ($68.07\%$ vs.\ $64.73\%$), demonstrating that adaptive guidance enables synthetic data to outperform real-image subsampling even at higher budgets.
+Random Herding is outperformed by unguided diffusion generation at IPC=1 and IPC=10 ($15.93\%$ vs.\ $22.80\%$ and $40.13\%$ vs.\ $49.73\%$), but slightly exceeds unguided at IPC=50 ($65.47\%$ vs.\ $64.13\%$, $+2.1\%$ relative). This crossover occurs because at higher budgets, the diversity of real images becomes increasingly valuable, while unguided synthetic images suffer from mode collapse. However, \cags{} surpasses Random Herding at IPC=50 by $+4.40\%$ absolute ($69.87\%$ vs.\ $65.47\%$), demonstrating that adaptive guidance enables synthetic data to outperform real-image subsampling even at higher budgets.
 
 \begin{table}[t]
 \centering
-\caption{IPC ablation on ImageNet-100 (10-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} v2 $[0.0, 0.08]$ improves over unguided at all IPC settings, with gains increasing monotonically. \iast{}+\cags{} \emph{hurts} at IPC=1 on this subset due to aggressive range compression. Random Herding exceeds unguided at IPC=50 but \cags{} surpasses it.}
+\caption{IPC ablation on ImageNet-100 (10-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} v2 $[0.0, 0.08]$ provides large gains at IPC=50 ($+9.0\%$ relative) but is neutral at IPC=10 and \emph{harmful} at IPC=1 ($-12.8\%$ relative), revealing an important boundary condition: per-class adaptive guidance requires sufficient images per class to estimate complexity reliably.}
 \label{tab:ipc-ablation-10cls}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Method} & \textbf{IPC=1} & \textbf{IPC=10} & \textbf{IPC=50} \\
 \midrule
-Random Herding & $16.00 \pm 0.43$ & $39.60 \pm 1.42$ & $64.73 \pm 0.34$ \\
-Unguided & $24.00 \pm 0.28$ & $45.40 \pm 0.75$ & $58.93 \pm 0.94$ \\
-Fixed $\lambda = 0.05$ & --- & $48.47 \pm 0.25$ & --- \\
-\cags{} v2 $[0.0, 0.08]$ & $24.53 \pm 0.68$ & $\mathbf{50.13 \pm 0.74}$ & $\mathbf{68.07 \pm 1.27}$ \\
-\iast{}+\cags{} v2 & $20.87 \pm 0.62$ & --- & --- \\
+Random Herding & $15.93 \pm 0.57$ & $40.13 \pm 0.90$ & $65.47 \pm 0.62$ \\
+Unguided & $22.80 \pm 0.16$ & $49.73 \pm 1.20$ & $64.13 \pm 0.09$ \\
+Fixed $\lambda = 0.05$ & --- & $49.00 \pm 0.71$ & --- \\
+\cags{} v2 $[0.0, 0.08]$ & $19.87 \pm 0.90$ & $49.40 \pm 0.28$ & $\mathbf{69.87 \pm 1.43}$ \\
+\iast{}+\cags{} v2 & $21.13 \pm 0.09$ & --- & --- \\
 \midrule
-$\Delta$ \cags{} vs.\ unguided (rel.) & $+2.2\%$ & $+10.4\%$ & $+15.5\%$ \\
-$\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $-13.0\%$ & --- & --- \\
+$\Delta$ \cags{} vs.\ unguided (rel.) & $-12.8\%$ & $-0.7\%$ & $+9.0\%$ \\
+$\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $-7.3\%$ & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
-
 \subsection{Main Results: ImageNet-100 (100-class)}
 \label{sec:results-100cls}
 
-\Cref{tab:results-100cls} presents results on the full 100-class ImageNet-100 subset with ConvNet-6 and instance normalization, using the MGD$^3$ evaluation protocol. The unguided baseline achieves $19.66 \pm 0.18\%$. Fixed guidance at $\lambda = 0.10$ yields $19.29 \pm 0.10\%$, a $-0.37\%$ absolute degradation ($-1.9\%$ relative), confirming that a globally fixed guidance strength is suboptimal when class complexity varies significantly across 100 classes. The mechanism is clear: a single global $\lambda$ over-guides simple classes (reducing intra-class diversity) while under-guiding complex classes (failing to sharpen discriminative features), producing a net negative effect. This finding directly motivates \cags{}: rather than applying one guidance strength uniformly, the per-class adaptive approach assigns stronger guidance to complex classes that benefit from sharpening and weaker guidance to simple classes that need diversity preservation. \cags{} v2 $[0.0, 0.06]$ achieves $21.11 \pm 0.50\%$, outperforming the unguided baseline by $+1.45\%$ absolute ($+7.4\%$ relative) and the fixed $\lambda = 0.10$ baseline by $+1.82\%$ absolute ($+9.4\%$ relative). The improvement is consistent across all three seeds ($20.42\%$, $21.28\%$, $21.62\%$), confirming that \cags{} provides robust gains across random initializations.
+\Cref{tab:results-100cls} presents results on the full 100-class ImageNet-100 subset with ConvNet-6 and instance normalization, using the MGD$^3$ evaluation protocol. The unguided baseline achieves $21.63 \pm 0.16\%$. Fixed guidance at $\lambda = 0.10$ yields $21.31 \pm 0.42\%$, a $-0.32\%$ absolute degradation ($-1.5\%$ relative), confirming that a globally fixed guidance strength is suboptimal when class complexity varies significantly across 100 classes. The mechanism is clear: a single global $\lambda$ over-guides simple classes (reducing intra-class diversity) while under-guiding complex classes (failing to sharpen discriminative features), producing a net negative effect. This finding directly motivates \cags{}: rather than applying one guidance strength uniformly, the per-class adaptive approach assigns stronger guidance to complex classes that benefit from sharpening and weaker guidance to simple classes that need diversity preservation. \cags{} v2 $[0.0, 0.06]$ achieves $23.27 \pm 0.47\%$, outperforming the unguided baseline by $+1.64\%$ absolute ($+7.6\%$ relative) and the fixed $\lambda = 0.10$ baseline by $+1.96\%$ absolute ($+9.2\%$ relative). The improvement is consistent across all three seeds, confirming that \cags{} provides robust gains across random initializations.
 
 \begin{table}[t]
 \centering
-\caption{ImageNet-100 (100-class) results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. Fixed $\lambda=0.10$ slightly hurts performance on 100-class, while \cags{} v2 adapts per-class guidance for a consistent $+7.4\%$ relative improvement.}
+\caption{ImageNet-100 (100-class) results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. Fixed $\lambda=0.10$ slightly hurts performance on 100-class, while \cags{} v2 adapts per-class guidance for a consistent $+7.6\%$ relative improvement.}
 \label{tab:results-100cls}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Method} & \textbf{Avg. $\lambda$} & \textbf{Top-1 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
+\textbf{Method} & \textbf{Avg. $\lambda$} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
 \midrule
-Random Herding & --- & $13.67 \pm 0.69$ & $-5.99$ \\
-Unguided & 0.000 & $19.66 \pm 0.18$ & --- \\
-Fixed $\lambda = 0.10$ & 0.100 & $19.29 \pm 0.10$ & $-0.37$ \\
+Random Herding & --- & $14.06 \pm 0.48$ & $32.31 \pm 1.06$ & $-7.57$ \\
+Unguided & 0.000 & $21.63 \pm 0.16$ & $41.99 \pm 0.32$ & --- \\
+Fixed $\lambda = 0.10$ & 0.100 & $21.31 \pm 0.42$ & $41.99 \pm 0.33$ & $-0.32$ \\
 \midrule
-\cags{} v2 $[0.0, 0.06]$ & $\sim$0.042 & $\mathbf{21.11 \pm 0.50}$ & $\mathbf{+1.45}$ \\
+\cags{} v2 $[0.0, 0.06]$ & $\sim$0.042 & $\mathbf{23.27 \pm 0.47}$ & $\mathbf{44.99 \pm 0.68}$ & $\mathbf{+1.64}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{Why fixed guidance fails at 100 classes.}
-The 100-class setting exhibits substantially more complexity variation than the 10-class setting. The complexity scores span $[0.52, 0.87]$ with standard deviation $0.082$, and the separability factor has a standard deviation of $0.009$ (compared to $0.006$ for 10 classes). This greater heterogeneity means that a single fixed $\lambda$ cannot simultaneously satisfy the conflicting guidance requirements of simple and complex classes. \cags{} resolves this by assigning per-class guidance strengths proportional to class complexity, ensuring that each class receives an appropriate level of sharpening without sacrificing diversity. The fact that fixed $\lambda$ hurts even in the corrected protocol---whereas it helps on the 10-class subset---provides the clearest evidence that the failure is intrinsic to class heterogeneity, not an artifact of evaluation settings.
+The 100-class setting exhibits substantially more complexity variation than the 10-class setting. The complexity scores span a wide range with standard deviation $0.082$, and the separability factor has a standard deviation of $0.009$ (compared to $0.006$ for 10 classes). This greater heterogeneity means that a single fixed $\lambda$ cannot simultaneously satisfy the conflicting guidance requirements of simple and complex classes. \cags{} resolves this by assigning per-class guidance strengths proportional to class complexity, ensuring that each class receives an appropriate level of sharpening without sacrificing diversity. The fact that fixed $\lambda$ hurts on 100-class---whereas it is merely neutral on the 10-class subset---provides the clearest evidence that the failure is intrinsic to class heterogeneity, not an artifact of evaluation settings.
 
 \subsection{Module Ablation on 100-class}
 \label{sec:module-ablation}
 
-To understand the contribution of each \ags{} module, we evaluate module combinations on the 100-class subset where \cags{} demonstrates the strongest effect (\Cref{tab:module-ablation}). The unguided baseline achieves $19.66 \pm 0.18\%$, and fixed $\lambda = 0.10$ slightly decreases performance to $19.29 \pm 0.10\%$, confirming that fixed guidance is harmful on this subset. \cags{} v2 $[0.0, 0.06]$ alone improves to $21.11 \pm 0.50\%$ ($+7.4\%$ relative). Adding \tags{} (linear schedule) on top of \cags{} yields $20.31 \pm 0.44\%$, which still improves over unguided ($+3.3\%$ relative) but \emph{underperforms} \cags{}-alone by $0.80\%$. This result indicates that temporal modulation of guidance does not provide additional benefit once per-class adaptation is applied; the class axis is the primary axis of variation, and \tags{}'s temporal smoothing may actually interfere with the carefully calibrated per-class guidance strengths. By design, \iast{} has no effect at IPC=10 (the range scale equals 1.0), so \iast{}+\cags{} is equivalent to \cags{}-alone at this budget. The primary contribution of \iast{} is at IPC=1, where it shrinks the guidance range to prevent over-sharpening (see \Cref{tab:ipc-ablation-100cls}).
+To understand the contribution of each \ags{} module, we evaluate module combinations on the 100-class subset where \cags{} demonstrates the strongest effect (\Cref{tab:module-ablation}). The unguided baseline achieves $21.63 \pm 0.16\%$, and fixed $\lambda = 0.10$ slightly decreases performance to $21.31 \pm 0.42\%$, confirming that fixed guidance is harmful on this subset. \cags{} v2 $[0.0, 0.06]$ alone improves to $23.27 \pm 0.47\%$ ($+7.6\%$ relative). Adding \tags{} (linear schedule) on top of \cags{} yields $20.31 \pm 0.44\%$, which \emph{underperforms} both \cags{}-alone by $2.96\%$ and even unguided by $1.32\%$. This result indicates that temporal modulation of guidance actively interferes with the carefully calibrated per-class guidance strengths; the class axis is the primary axis of variation, and \tags{}'s temporal smoothing disrupts the per-class adaptation. By design, \iast{} has no effect at IPC=10 (the range scale equals 1.0), so \iast{}+\cags{} is equivalent to \cags{}-alone at this budget.
 
 \begin{table}[t]
 \centering
-\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides the dominant single-module gain; \tags{} does not improve over \cags{}-alone, indicating that the class axis is the primary axis of variation. \iast{} is transparent at IPC=10 by design (scale = 1.0).}
+\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides the dominant single-module gain; \tags{} actively \emph{hurts} when combined with \cags{}, and \iast{} is transparent at IPC=10 by design (scale = 1.0).}
 \label{tab:module-ablation}
 \begin{tabular}{lcc}
 \toprule
 \textbf{Configuration} & \textbf{Top-1 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
 \midrule
-Unguided (MGD$^3$ baseline) & $19.66 \pm 0.18$ & --- \\
-Fixed $\lambda = 0.10$ & $19.29 \pm 0.10$ & $-0.37$ \\
+Unguided (MGD$^3$ baseline) & $21.63 \pm 0.16$ & --- \\
+Fixed $\lambda = 0.10$ & $21.31 \pm 0.42$ & $-0.32$ \\
 \midrule
-\cags{} v2 $[0.0, 0.06]$ & $\mathbf{21.11 \pm 0.50}$ & $\mathbf{+1.45}$ \\
-\iast{} + \cags{} v2 (IPC=10, equiv.\ to \cags{}) & $21.11 \pm 0.50$ & $+1.45$ \\
-\tags{} linear + \cags{} v2 $[0.0, 0.06]$ & $20.31 \pm 0.44$ & $+0.65$ \\
+\cags{} v2 $[0.0, 0.06]$ & $\mathbf{23.27 \pm 0.47}$ & $\mathbf{+1.64}$ \\
+\iast{} + \cags{} v2 (IPC=10, equiv.\ to \cags{}) & $23.27 \pm 0.47$ & $+1.64$ \\
+\tags{} linear + \cags{} v2 $[0.0, 0.06]$ & $20.31 \pm 0.44$ & $-1.32$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -118,36 +115,35 @@ Fixed $\lambda = 0.10$ & $19.29 \pm 0.10$ & $-0.37$ \\
 \subsection{IPC Ablation on 100-class}
 \label{sec:ipc-ablation}
 
-The 100-class IPC ablation reveals the most nuanced findings of our study (\Cref{tab:ipc-ablation-100cls}). At IPC=1, the unguided baseline achieves $5.09 \pm 0.05\%$, and \cags{} v2 alone provides only a marginal improvement to $5.17 \pm 0.23\%$ ($+1.6\%$ relative), because the wide guidance range $[0, 0.06]$ over-sharpens the single image generated per class. Crucially, \iast{} resolves this by scaling the range to $[0, 0.017]$, boosting \iast{}+\cags{} to $5.66 \pm 0.20\%$---the \emph{best} result at this setting ($+11.2\%$ relative over unguided, $+9.5\%$ over \cags{}-alone). This confirms that \iast{}'s range compression is essential for high-class-count, low-IPC settings where full-range \cags{} risks over-sharpening individual images.
+The 100-class IPC ablation reveals the most nuanced findings of our study (\Cref{tab:ipc-ablation-100cls}). At IPC=1, the unguided baseline achieves $5.79 \pm 0.09\%$, and \cags{} v2 alone improves to $6.57 \pm 0.23\%$ ($+13.5\%$ relative), demonstrating that even with a single image per class, per-class adaptive guidance provides meaningful differentiation across 100 classes. Crucially, \iast{}+\cags{} \emph{reduces} performance to $5.87 \pm 0.07\%$, essentially reverting to unguided levels ($+1.4\%$ relative, within noise). The \iast{} log-scaling factor for IPC=1 is $0.289$, which compresses the guidance range from $[0, 0.06]$ to $[0, 0.017]$. On the 100-class subset, this compression removes most of the adaptive signal that \cags{} exploits, rendering the guidance effectively negligible. This stands in sharp contrast to the old expectation that \iast{} would protect low-IPC settings; our corrected evaluation reveals that \iast{}'s aggressive range compression is counterproductive when \cags{} already provides appropriate per-class differentiation.
 
-The contrast between this result and the 10-class IPC=1 setting (where \iast{} \emph{hurts}) reveals an important boundary condition. On 100 classes, the per-class complexity scores exhibit substantial variation (std $= 0.082$), so even after \iast{}'s $0.289\times$ range compression to $[0, 0.017]$, sufficient adaptive differentiation remains between classes. On 10 classes, the complexity variation is much smaller (std $= 0.099$ but with only 10 values), and the same compression to $[0, 0.023]$ reduces the per-class guidance differences below the noise floor, effectively nullifying the adaptive signal. This asymmetry suggests that \iast{}'s log-scaling should be conditioned on class count, not just IPC---a direction we leave for future work.
+The contrast between this result and the 10-class IPC=1 setting (where \cags{} itself \emph{hurts}) reveals an important boundary condition. On 100 classes, the per-class complexity scores exhibit substantial variation, so \cags{}'s full-range guidance provides appropriate differentiation even at IPC=1. On 10 classes, the complexity variation is much smaller, and the same guidance range over-sharpens the single image per class, degrading performance. \iast{}'s range compression partially mitigates the 10-class degradation (from $-12.8\%$ to $-7.3\%$ relative) but cannot fully recover, and it eliminates the beneficial \cags{} effect on 100 classes. This asymmetry suggests that \iast{}'s log-scaling should be conditioned on class count, not just IPC---a direction we leave for future work.
 
-At IPC=10, \cags{} improves to $21.11 \pm 0.50\%$ ($+7.4\%$ relative), and at IPC=50, \cags{} achieves $37.63 \pm 0.32\%$ ($+19.4\%$ relative over unguided $31.52 \pm 0.15\%$), the largest relative gain in our entire study. Random Herding at IPC=50 ($35.21 \pm 0.15\%$) exceeds unguided diffusion generation by $+11.7\%$ relative, reflecting the increasing value of real-image diversity at higher budgets. However, \cags{} still surpasses Random Herding by $+2.42\%$ absolute ($+6.9\%$ relative), demonstrating that adaptive guidance enables synthetic data to outperform real-image subsampling even when the real subset has a budget advantage.
+At IPC=10, \cags{} improves to $23.27 \pm 0.47\%$ ($+7.6\%$ relative), and at IPC=50, \cags{} achieves $39.85 \pm 0.15\%$ ($+14.8\%$ relative over unguided $34.71 \pm 0.37\%$), demonstrating consistent and substantial gains across all IPC settings on the 100-class subset. Random Herding at IPC=50 ($34.46 \pm 0.02\%$) is comparable to unguided diffusion generation ($34.71 \pm 0.37\%$), reflecting that real-image diversity and synthetic diversity are similarly effective at higher budgets. However, \cags{} surpasses Random Herding by $+5.39\%$ absolute ($+15.6\%$ relative), demonstrating that adaptive guidance enables synthetic data to substantially outperform real-image subsampling.
 
 \begin{table}[t]
 \centering
-\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. Fixed $\lambda=0.10$ slightly hurts at IPC=10. Full-range \cags{} provides marginal improvement at IPC=1 but \iast{}-scaled \cags{} achieves the best result ($+11.2\%$ relative). \cags{} provides large gains at IPC=10 ($+7.4\%$) and IPC=50 ($+19.4\%$).}
+\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides consistent gains at all IPC settings ($+13.5\%$ to $+14.8\%$ relative). \iast{}+\cags{} \emph{hurts} at IPC=1 by compressing the guidance range and eliminating \cags{}'s benefit. Fixed $\lambda=0.10$ slightly hurts at IPC=10.}
 \label{tab:ipc-ablation-100cls}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Method} & \textbf{IPC=1} & \textbf{IPC=10} & \textbf{IPC=50} \\
 \midrule
-Random Herding & $3.81 \pm 0.22$ & $13.67 \pm 0.69$ & $35.21 \pm 0.15$ \\
-Unguided & $5.09 \pm 0.05$ & $19.66 \pm 0.18$ & $31.52 \pm 0.15$ \\
-Fixed $\lambda = 0.10$ & --- & $19.29 \pm 0.10$ & --- \\
-\cags{} v2 $[0.0, 0.06]$ & $5.17 \pm 0.23$ & $21.11 \pm 0.50$ & $\mathbf{37.63 \pm 0.32}$ \\
-\iast{}+\cags{} v2 $[0.0, 0.06]$ & $\mathbf{5.66 \pm 0.20}$ & --- & --- \\
+Random Herding & $3.69 \pm 0.08$ & $14.06 \pm 0.48$ & $34.46 \pm 0.02$ \\
+Unguided & $5.79 \pm 0.09$ & $21.63 \pm 0.16$ & $34.71 \pm 0.37$ \\
+Fixed $\lambda = 0.10$ & --- & $21.31 \pm 0.42$ & --- \\
+\cags{} v2 $[0.0, 0.06]$ & $\mathbf{6.57 \pm 0.23}$ & $\mathbf{23.27 \pm 0.47}$ & $\mathbf{39.85 \pm 0.15}$ \\
+\iast{}+\cags{} v2 $[0.0, 0.06]$ & $5.87 \pm 0.07$ & --- & --- \\
 \midrule
-$\Delta$ \cags{} vs.\ unguided (rel.) & $+1.6\%$ & $+7.4\%$ & $+19.4\%$ \\
-$\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $+11.2\%$ & --- & --- \\
+$\Delta$ \cags{} vs.\ unguided (rel.) & $+13.5\%$ & $+7.6\%$ & $+14.8\%$ \\
+$\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $+1.4\%$ & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
-
 \subsection{Cross-Architecture Evaluation}
 \label{sec:cross-arch}
 
-To verify that the improvements from \cags{} are architecture-agnostic, we evaluate on ResNet-18 and ResNetAP-10 in addition to ConvNet-6, all with instance normalization following MGD$^3$ (\Cref{tab:cross-arch}). \cags{} improves over unguided across all three architectures. Notably, the relative gain on ResNet-18 ($+13.8\%$) and ResNetAP-10 ($+15.2\%$) is substantially larger than on ConvNet-6 ($+7.4\%$), indicating that the benefit of adaptive guidance is not coupled to a specific architecture's inductive bias. The stronger gains on deeper architectures suggest that \cags{}-generated images contain richer discriminative features that are better exploited by more expressive classifiers. The extremely tight standard deviation on ResNet-18 ($\pm 0.04\%$) further confirms the stability of \cags{}'s improvement across seeds.
+To verify that the improvements from \cags{} are architecture-agnostic, we evaluate on ResNet-18 and ResNetAP-10 in addition to ConvNet-6, all with instance normalization following MGD$^3$ (\Cref{tab:cross-arch}). \cags{} improves over unguided across all three architectures on the 100-class subset at IPC=10. The relative gain on ResNet-18 ($+17.0\%$) and ResNetAP-10 ($+13.4\%$) is substantially larger than on ConvNet-6 ($+7.6\%$), indicating that the benefit of adaptive guidance is not coupled to a specific architecture's inductive bias. The stronger gains on deeper architectures suggest that \cags{}-generated images contain richer discriminative features that are better exploited by more expressive classifiers. The consistent improvement across architectures, with gains ranging from $+7.6\%$ to $+17.0\%$ relative, confirms that \cags{}'s benefit stems from the synthetic data quality rather than architecture-specific effects.
 
 \begin{table}[t]
 \centering
@@ -157,9 +153,9 @@ To verify that the improvements from \cags{} are architecture-agnostic, we evalu
 \toprule
 \textbf{Architecture} & \textbf{Unguided} & \textbf{\cags{} v2} & \textbf{$\Delta$ (rel.)} \\
 \midrule
-ConvNet-6 & $19.66 \pm 0.18$ & $21.11 \pm 0.50$ & $+7.4\%$ \\
-ResNet-18 (inst.\ norm) & $22.92 \pm 0.13$ & $\mathbf{26.09 \pm 0.04}$ & $+13.8\%$ \\
-ResNetAP-10 (inst.\ norm) & $22.88 \pm 0.31$ & $\mathbf{26.36 \pm 0.46}$ & $+15.2\%$ \\
+ConvNet-6 & $21.63 \pm 0.16$ & $23.27 \pm 0.47$ & $+7.6\%$ \\
+ResNet-18 (inst.\ norm) & $24.99 \pm 0.12$ & $\mathbf{29.24 \pm 0.27}$ & $+17.0\%$ \\
+ResNetAP-10 (inst.\ norm) & $25.17 \pm 0.23$ & $\mathbf{28.55 \pm 0.42}$ & $+13.4\%$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -167,23 +163,23 @@ ResNetAP-10 (inst.\ norm) & $22.88 \pm 0.31$ & $\mathbf{26.36 \pm 0.46}$ & $+15.
 \subsection{ImageNette and ImageWoof}
 \label{sec:results-nette-woof}
 
-To assess generalization beyond ImageNet-100, we evaluate on ImageNette (easy) and ImageWoof (hard) with IPC=10, ConvNet-6, and 3 seeds (\Cref{tab:results-nette-woof}). On ImageNette, \cags{} v2 achieves $55.79 \pm 0.23\%$ vs.\ unguided $47.79 \pm 0.26\%$ ($+8.00\%$ absolute, $+16.8\%$ relative). On ImageWoof, \cags{} v2 achieves $30.30 \pm 0.34\%$ vs.\ unguided $26.63 \pm 0.55\%$ ($+3.67\%$ absolute, $+13.7\%$ relative). The consistent and substantial improvement on both datasets---spanning an easy classification task (ImageNette) and a challenging fine-grained dog breed task (ImageWoof)---confirms that \cags{} generalizes well beyond the ImageNet-100 class partition. Random Herding is again outperformed by both unguided diffusion generation and \cags{} on both datasets, further confirming the value of the pretrained diffusion prior combined with adaptive guidance. On ImageNette, \cags{} surpasses Random Herding by $+13.67\%$ absolute ($+32.5\%$ relative), and on ImageWoof by $+8.09\%$ absolute ($+36.4\%$ relative), demonstrating that the advantage of adaptive guidance over real-image subsampling is even more pronounced on these datasets than on ImageNet-100.
+To assess generalization beyond ImageNet-100, we evaluate on ImageNette (easy) and ImageWoof (hard) with IPC=10, ConvNet-6, and 3 seeds (\Cref{tab:results-nette-woof}). On ImageNette, \cags{} v2 achieves $54.36 \pm 0.57\%$ vs.\ unguided $51.30 \pm 0.41\%$ ($+3.06\%$ absolute, $+6.0\%$ relative), confirming that per-class adaptive guidance generalizes to easily classifiable datasets. On ImageWoof, however, \cags{} v2 achieves $29.76 \pm 0.14\%$ vs.\ unguided $31.39 \pm 0.68\%$ ($-1.63\%$ absolute, $-5.2\%$ relative), a \emph{degradation} in performance. ImageWoof consists entirely of fine-grained dog breeds with high inter-class visual similarity, meaning that all classes share similar structural complexity. When complexity variation across classes is minimal, \cags{}'s per-class adaptation provides little differentiation, and the guidance sharpening may actually reduce the subtle intra-class diversity needed to distinguish between similar breeds. This negative result is scientifically informative: it confirms that \cags{}'s benefit depends on sufficient class complexity variation, and identifies a clear boundary condition for the method. Random Herding is outperformed by both unguided and \cags{} on both datasets, further confirming the value of the pretrained diffusion prior. On ImageNette, \cags{} surpasses Random Herding by $+13.54\%$ absolute ($+33.2\%$ relative), and on ImageWoof, unguided surpasses Random Herding by $+8.70\%$ absolute ($+38.3\%$ relative).
 
 \begin{table}[t]
 \centering
-\caption{ImageNette and ImageWoof results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} v2 $[0.0, 0.06]$ outperforms both unguided and Random Herding on both datasets, demonstrating that per-class adaptive guidance generalizes beyond ImageNet-100.}
+\caption{ImageNette and ImageWoof results with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} v2 $[0.0, 0.06]$ improves on ImageNette ($+6.0\%$ relative) but \emph{hurts} on ImageWoof ($-5.2\%$ relative), where all classes share similar structural complexity, confirming that \cags{}'s benefit depends on sufficient class complexity variation.}
 \label{tab:results-nette-woof}
 \begin{tabular}{llcc}
 \toprule
 \textbf{Dataset} & \textbf{Method} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} \\
 \midrule
-ImageNette & Random Herding & $42.12 \pm 0.93$ & $82.54 \pm 0.46$ \\
-ImageNette & Unguided & $47.79 \pm 0.26$ & $86.08 \pm 0.29$ \\
-ImageNette & \cags{} v2 $[0.0, 0.06]$ & $\mathbf{55.79 \pm 0.23}$ & $\mathbf{90.00 \pm 0.16}$ \\
+ImageNette & Random Herding & $40.82 \pm 0.17$ & $81.38 \pm 0.08$ \\
+ImageNette & Unguided & $51.30 \pm 0.41$ & $86.03 \pm 0.36$ \\
+ImageNette & \cags{} v2 $[0.0, 0.06]$ & $\mathbf{54.36 \pm 0.57}$ & $\mathbf{89.38 \pm 0.46}$ \\
 \midrule
-ImageWoof & Random Herding & $22.21 \pm 0.01$ & $67.89 \pm 0.48$ \\
-ImageWoof & Unguided & $26.63 \pm 0.55$ & $73.45 \pm 0.95$ \\
-ImageWoof & \cags{} v2 $[0.0, 0.06]$ & $\mathbf{30.30 \pm 0.34}$ & $\mathbf{75.52 \pm 0.52}$ \\
+ImageWoof & Random Herding & $22.69 \pm 0.16$ & $68.73 \pm 0.16$ \\
+ImageWoof & Unguided & $\mathbf{31.39 \pm 0.68}$ & $\mathbf{76.49 \pm 0.23}$ \\
+ImageWoof & \cags{} v2 $[0.0, 0.06]$ & $29.76 \pm 0.14$ & $75.24 \pm 0.29$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -193,11 +189,11 @@ ImageWoof & \cags{} v2 $[0.0, 0.06]$ & $\mathbf{30.30 \pm 0.34}$ & $\mathbf{75.5
 
 To assess the impact of \cags{} on the fidelity of the generated images, we compute Fr\'echet Inception Distance (FID)~\cite{dufour2026lottery} between synthetic and real validation images (\Cref{tab:fid}). On the 100-class subset, \cags{} v2 consistently improves FID over unguided: at IPC=10, FID decreases from $88.66$ to $85.26$ ($-3.40$), and at IPC=50, from $71.06$ to $59.28$ ($-11.78$). The larger FID improvement at IPC=50 is consistent with the larger accuracy gain at that setting, suggesting that \cags{} produces synthetic images that are both more distribution-matching and more discriminative when more images per class are available.
 
-Interestingly, on ImageNette and ImageWoof, \cags{} v2 \emph{increases} FID (ImageNette: $105.21 \to 108.59$; ImageWoof: $86.27 \to 94.70$) while simultaneously \emph{improving} classification accuracy (ImageNette: $+16.8\%$ relative; ImageWoof: $+13.7\%$ relative). This divergence between FID and classification accuracy reveals that \cags{}'s benefit stems not from making synthetic images more closely match the real data distribution, but from sharpening class-discriminative features that are more useful for training classifiers. This finding challenges the common assumption that lower FID always corresponds to better downstream utility, and highlights the importance of evaluating dataset distillation methods on the actual task (classification accuracy) rather than relying solely on distributional metrics.
+Interestingly, on ImageNette and ImageWoof, \cags{} v2 \emph{increases} FID (ImageNette: $105.21 \to 108.59$; ImageWoof: $86.27 \to 94.70$). On ImageNette, \cags{} still improves classification accuracy ($+6.0\%$ relative) despite higher FID, revealing that \cags{}'s benefit stems from sharpening class-discriminative features rather than matching the real data distribution. On ImageWoof, \cags{} \emph{decreases} both FID quality and classification accuracy, providing further evidence that the method is counterproductive when class complexity variation is minimal. These findings challenge the common assumption that lower FID always corresponds to better downstream utility, and highlight the importance of evaluating dataset distillation methods on the actual task (classification accuracy) rather than relying solely on distributional metrics.
 
 \begin{table}[t]
 \centering
-\caption{FID scores (lower is better) for unguided vs.\ \cags{} v2. \cags{} improves FID on 100-class (where complexity variation is large) but increases FID on ImageNette/Woof while still improving classification accuracy, demonstrating that the benefit of adaptive guidance is discriminative rather than distributional.}
+\caption{FID scores (lower is better) for unguided vs.\ \cags{} v2. \cags{} improves FID on 100-class (where complexity variation is large) but increases FID on ImageNette/Woof. On ImageNette, \cags{} still improves accuracy despite higher FID; on ImageWoof, both FID and accuracy degrade, confirming the method is counterproductive when complexity variation is minimal.}
 \label{tab:fid}
 \begin{tabular}{llccc}
 \toprule
