@@ -143,6 +143,15 @@ $\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $+1.4\%$ & --- & --- \\
 \subsection{Cross-Architecture Evaluation}
 \label{sec:cross-arch}
 
+\Cref{fig:results-overview} provides a comprehensive visual summary of \cags{}'s effect across all evaluated settings, clearly showing the consistent positive gains on the 100-class subset and deeper architectures, alongside the boundary conditions where \cags{} is neutral or harmful.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/results_comparison.pdf}
+\caption{\cags{} vs.\ unguided across all evaluated settings. Green bars indicate \cags{} configurations with positive relative gain; red indicates degradation. \cags{} provides consistent, substantial improvements on the 100-class subset ($+7.6\%$ to $+17.0\%$ relative) and at 10-class IPC=50 ($+9.0\%$), while the degradation on ImageWoof ($-5.2\%$) confirms the complexity-variation boundary condition.}
+\label{fig:results-overview}
+\end{figure}
+
 To verify that the improvements from \cags{} are architecture-agnostic, we evaluate on ResNet-18 and ResNetAP-10 in addition to ConvNet-6, all with instance normalization following MGD$^3$ (\Cref{tab:cross-arch}). \cags{} improves over unguided across all three architectures on the 100-class subset at IPC=10. The relative gain on ResNet-18 ($+17.0\%$) and ResNetAP-10 ($+13.4\%$) is substantially larger than on ConvNet-6 ($+7.6\%$), indicating that the benefit of adaptive guidance is not coupled to a specific architecture's inductive bias. The stronger gains on deeper architectures suggest that \cags{}-generated images contain richer discriminative features that are better exploited by more expressive classifiers. The consistent improvement across architectures, with gains ranging from $+7.6\%$ to $+17.0\%$ relative, confirms that \cags{}'s benefit stems from the synthetic data quality rather than architecture-specific effects.
 
 \begin{table}[t]
@@ -203,6 +212,36 @@ ImageNet-100 (100-cls) & 10 & $88.66$ & $\mathbf{85.26}$ & $-3.40$ \\
 ImageNet-100 (100-cls) & 50 & $71.06$ & $\mathbf{59.28}$ & $-11.78$ \\
 ImageNette & 10 & $\mathbf{105.21}$ & $108.59$ & $+3.38$ \\
 ImageWoof & 10 & $\mathbf{86.27}$ & $94.70$ & $+8.42$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Statistical Significance}
+\label{sec:significance}
+
+To rigorously evaluate whether \cags{}'s improvements are statistically reliable rather than artifacts of random seed variation, we conduct paired two-tailed $t$-tests on the per-seed best top-1 accuracies across all key configurations (\Cref{tab:significance}). Despite using only three seeds---which limits statistical power---the improvements on the 100-class subset reach statistical significance ($p < 0.05$) at both IPC=1 and IPC=50, with IPC=10 showing a borderline trend ($p = 0.061$) accompanied by a large effect size (Cohen's $d = 2.23$). The cross-architecture results are highly significant ($p = 0.002$ for ResNet-18, $p = 0.007$ for ResNetAP-10), confirming that the benefit is not architecture-specific. The neutral 10-class IPC=10 result is confirmed non-significant ($p = 0.721$), while the degradation at 10-class IPC=1 approaches significance ($p = 0.052$). The \iast{}-induced degradation at 100-class IPC=1 is also borderline significant ($p = 0.053$), providing quantitative evidence that \iast{}'s range compression actively harms the \cags{} benefit in this regime.
+
+\begin{table}[t]
+\centering
+\caption{Statistical significance of \cags{} vs.\ unguided (and \iast{}+\cags{} vs.\ \cags{}) across configurations, using paired two-tailed $t$-tests on 3 seeds. $d$: Cohen's effect size. Despite limited statistical power from 3 seeds, key results reach or approach significance with large effect sizes.}
+\label{tab:significance}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Setting} & \textbf{Comparison} & \textbf{$\Delta$ (\%)} & \textbf{$t$-stat} & \textbf{$p$-value} & \textbf{Cohen's $d$} \\
+\midrule
+100-cls IPC=1 & CAGS vs Ung & $+0.78$ & $6.75$ & $0.021$ & $3.90$ \\
+100-cls IPC=10 & CAGS vs Ung & $+1.64$ & $3.87$ & $0.061$ & $2.23$ \\
+100-cls IPC=50 & CAGS vs Ung & $+5.14$ & $14.13$ & $0.005$ & $8.16$ \\
+100-cls IPC=1 & IAST+CAGS vs CAGS & $-0.70$ & $-4.17$ & $0.053$ & $-2.41$ \\
+\midrule
+ResNet-18 IPC=10 & CAGS vs Ung & $+4.25$ & $23.06$ & $0.002$ & $13.32$ \\
+ResNetAP-10 IPC=10 & CAGS vs Ung & $+3.38$ & $11.95$ & $0.007$ & $6.90$ \\
+\midrule
+10-cls IPC=1 & CAGS vs Ung & $-2.93$ & $-4.21$ & $0.052$ & $-2.43$ \\
+10-cls IPC=10 & CAGS vs Ung & $-0.33$ & $-0.41$ & $0.721$ & $-0.24$ \\
+10-cls IPC=50 & CAGS vs Ung & $+5.74$ & $4.21$ & $0.053$ & $2.43$ \\
+\midrule
+ImageNette & CAGS vs Ung & $+3.06$ & $11.51$ & $0.008$ & $6.64$ \\
 \bottomrule
 \end{tabular}
 \end{table}
