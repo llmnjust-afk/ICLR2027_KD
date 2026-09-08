@@ -22,3 +22,10 @@ Seed 2:
   Loaded 1000 training images
   Loading validation images from /root/data/imagenet100/val...
   Loaded 5000 validation images (6.7s)
+  Training done in 1810.8s, best Top-1=23.12% @ epoch 1287
+  Seed 2: Best Top-1=23.12%, Best Top-5=44.06%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 23.20 ± 0.16%
+Mean Best Top-5: 44.37 ± 0.24%
