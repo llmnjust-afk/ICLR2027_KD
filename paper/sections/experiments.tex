@@ -264,7 +264,7 @@ To understand the contribution of each complexity factor and the sensitivity to 
 
 \begin{table}[t]
 \centering
-\caption{Complexity factor ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. All variants improve over unguided, confirming that any per-class adaptive guidance is beneficial. Inter-class separability alone is the strongest single factor ($23.45\%$), matching full \cags{} ($23.27\%$). Removing separability (``No separability'') yields the worst variant, confirming separability is the most important factor.}
+\caption{Complexity factor ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. All variants improve over unguided. Inter-class separability alone is the strongest factor ($23.45\%$), matching full \cags{} ($23.27\%$). Mode count and entropy produce constant complexity across classes (fixed $K$), making them equivalent to fixed guidance.}
 \label{tab:factor-ablation}
 \begin{tabular}{lccccc}
 \toprule
@@ -272,8 +272,11 @@ To understand the contribution of each complexity factor and the sensitivity to 
 \midrule
 Unguided & --- & --- & --- & --- & $21.63 \pm 0.16$ \\
 \midrule
+Mode count only$^\dagger$ & 1.0 & 0.0 & 0.0 & 0.0 & $22.94 \pm 0.20$ \\
+Entropy only$^\dagger$ & 0.0 & 1.0 & 0.0 & 0.0 & $23.13 \pm 0.17$ \\
 Intra-var only & 0.0 & 0.0 & 1.0 & 0.0 & $22.88 \pm 0.18$ \\
 Separability only & 0.0 & 0.0 & 0.0 & 1.0 & $\mathbf{23.45 \pm 0.33}$ \\
+\midrule
 No separability & 0.25 & 0.25 & 0.50 & 0.0 & $22.57 \pm 0.12$ \\
 Equal weights & 0.25 & 0.25 & 0.25 & 0.25 & $22.77 \pm 0.23$ \\
 Variance-dominated & 0.10 & 0.10 & 0.40 & 0.40 & $22.75 \pm 0.18$ \\
@@ -283,9 +286,11 @@ Full \cags{} & 0.15 & 0.15 & 0.35 & 0.35 & $23.27 \pm 0.47$ \\
 \end{tabular}
 \end{table}
 
-The most striking finding is that \emph{inter-class separability alone} ($\delta{=}1.0$, all other weights zero) achieves $23.45 \pm 0.33\%$---slightly \emph{outperforming} full \cags{} ($23.27 \pm 0.47\%$), though the difference is within the standard deviation. This reveals that separability is the dominant complexity signal: classes that are harder to distinguish from their neighbors benefit most from guidance sharpening, while classes that are well-separated need less. Conversely, the ``No separability'' configuration ($\delta{=}0$) produces the weakest variant ($22.57\%$), confirming that removing the separability term degrades performance more than removing any other factor.
+The most striking finding is that \emph{inter-class separability alone} ($\delta{=}1.0$) achieves $23.45 \pm 0.33\%$---slightly \emph{outperforming} full \cags{} ($23.27 \pm 0.47\%$), though the difference is within the standard deviation. This reveals that separability is the dominant complexity signal: classes that are harder to distinguish from their neighbors benefit most from guidance sharpening, while well-separated classes need less. Conversely, the ``No separability'' configuration ($\delta{=}0$) produces the weakest adaptive variant ($22.57\%$), confirming that removing the separability term degrades performance more than removing any other factor.
 
-Intra-class variance alone ($22.88\%$) is the second strongest single factor, providing a $+5.8\%$ relative improvement over unguided. The weight sensitivity variants---equal weights ($22.77\%$), variance-dominated ($22.75\%$), and no-separability ($22.57\%$)---all cluster within a narrow band of $22.5$--$22.8\%$, suggesting that the specific weight allocation matters less than \emph{including} separability in the metric. Full \cags{} ($23.27\%$) benefits from its high separability weight ($\delta{=}0.35$), which explains its strong performance despite also incorporating the weaker mode-count and entropy factors.
+An important methodological note: since the cluster count $K$ is fixed at $\text{IPC}=10$ for all classes, the mode-count and entropy factors produce \emph{identical} complexity scores across all classes, making them equivalent to fixed guidance rather than adaptive guidance. The ``Mode count only'' ($22.94\%$) and ``Entropy only'' ($23.13\%$) results thus reflect the effect of a uniform guidance strength at different levels, not per-class adaptation. Despite this, both still improve substantially over unguided ($+6.1\%$ and $+6.9\%$ relative), indicating that even a moderate fixed guidance helps on the 100-class subset. However, fixed guidance at $\lambda{=}0.10$ is harmful ($21.31\%$, \Cref{tab:results-100cls}), suggesting that the effective $\lambda \approx 0.04$--$0.06$ produced by these factors is near-optimal for the 100-class setting.
+
+Among the weight sensitivity variants, equal weights ($22.77\%$), variance-dominated ($22.75\%$), and no-separability ($22.57\%$) all cluster within a narrow band, suggesting that the specific weight allocation matters less than \emph{including} separability with substantial weight. Full \cags{} ($23.27\%$) benefits from its high separability weight ($\delta{=}0.35$), which explains its strong performance despite also incorporating the mode-count and entropy factors that individually produce only constant guidance.
 
 These results provide clear guidance for practitioners: the inter-class separability factor is the most important component of the complexity metric, and any configuration that includes it with substantial weight will achieve near-optimal performance. The multi-factor design of full \cags{} provides robustness against suboptimal weight choices while maintaining competitive accuracy.
 
