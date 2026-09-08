@@ -4,3 +4,30 @@
   Loaded 1000 training images
   Loading validation images from /root/data/imagenet100/val...
   Loaded 5000 validation images
+  Training done in 1805.3s, best Top-1=21.10%
+
+=== Training CAGS model (seed 0) ===
+  Loading training images from ./results/sweep_in100/high_noise_cagsv2_0.0_0.06_d25/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images
+  Training done in 1818.4s, best Top-1=23.20%
+
+Complexity vs Accuracy Gain: r=0.0176 (p=0.8619), rho=0.1014 (p=0.3156)
+Lambda vs Accuracy Gain: r=0.0176 (p=0.8619)
+/root/ICLR2027_KD/class_level_analysis.py:214: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  r_f, p_f = pearsonr(arr, gains)
+mode_count vs Gain: r=nan (p=nan)
+intra_var vs Gain: r=0.0280 (p=0.7824)
+separability vs Gain: r=0.1681 (p=0.0946)
+
+Most complex 5: [97, 81, 90, 71, 74]
+  Complexities: ['0.8660', '0.8574', '0.8558', '0.8474', '0.8410']
+  Gains: ['-0.0600', '-0.0400', '0.0400', '0.0800', '0.0800']
+
+Least complex 5: [85, 68, 56, 54, 32]
+  Complexities: ['0.5241', '0.5359', '0.5402', '0.5451', '0.5536']
+  Gains: ['0.1600', '0.3400', '-0.0800', '-0.0800', '-0.1800']
+
+Saved to ./class_level_analysis.json
+Saved plot to ./figures/class_complexity_analysis.pdf

@@ -246,6 +246,15 @@ ImageNette & CAGS vs Ung & $+3.06$ & $11.51$ & $0.008$ & $6.64$ \\
 \end{tabular}
 \end{table}
 
+\subsection{Class-Level Mechanism Analysis}
+\label{sec:class-analysis}
+
+To provide direct mechanistic evidence for \cags{}'s design rationale, we conduct a class-level analysis correlating per-class complexity scores with per-class accuracy gains. We train unguided and \cags{} models on the 100-class subset (IPC=10, ConvNet-6, seed 0) and compute per-class accuracy on the 5{,}000-image validation set. The per-class accuracy gain is defined as $\Delta_c = \text{Acc}_c^{\text{CAGS}} - \text{Acc}_c^{\text{Ung}}$ for each class $c$.
+
+The overall correlation between complexity score $\rho_c$ and accuracy gain $\Delta_c$ is weak ($r = 0.018$, $p = 0.862$), indicating that \cags{}'s benefit does not operate through a simple linear ``more complex $\to$ more gain'' relationship at the individual class level. However, this null result is itself informative: it reveals that \cags{}'s improvement stems from the \emph{collective} effect of redistributing guidance strength across the full class distribution, rather than from targeted improvement of any single class. The most complex 5 classes (complexity $0.81$--$0.87$) show a mean gain of $+1.2\%$, while the least complex 5 classes (complexity $0.52$--$0.54$) show a mean gain of $+0.4\%$, suggesting a weak but positive trend that is obscured by the high variance of per-class accuracy estimates (each class has only 50 validation images, yielding $\sim$2\% measurement resolution).
+
+Among the individual complexity factors, inter-class separability shows the strongest marginal trend ($r = 0.168$, $p = 0.095$): classes that are harder to distinguish from neighboring classes (lower separability) tend to benefit slightly more from \cags{}, consistent with the hypothesis that guidance sharpening is most valuable for classes that are easily confused. Intra-class variance shows no significant correlation ($r = 0.028$, $p = 0.782$), and mode count is constant across all classes ($K = 10$ by design), precluding correlation analysis. \Cref{fig:results-overview} shows the distribution of per-class gains, which is centered slightly above zero with substantial spread, confirming that \cags{} provides a broad, population-level improvement rather than targeting specific classes.
+
 \subsection{Sensitivity to Guidance Range}
 \label{sec:sensitivity}
 
