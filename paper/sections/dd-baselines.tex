@@ -5,7 +5,7 @@ To contextualize \cags{} within the broader dataset distillation landscape, \Cre
 
 \begin{table}[t]
 \centering
-\caption{Comparison with published DD methods on ImageNet-100 (100-class, IPC=10). Published baselines (Random through MGD$^3$) are drawn from the MGD$^3$ paper~\cite{chansantiago2025modeguided}. Our results (Unguided, \cags{} v2) use the same evaluation protocol (best-accuracy tracking, instance normalization, 3 seeds). \cags{} surpasses all published baselines on all three architectures, including MGD$^3$ itself.}
+\caption{Comparison with published DD methods on ImageNet-100 (100-class, IPC=10). Published baselines (Random through MGD$^3$) are drawn from the MGD$^3$ paper~\cite{chansantiago2025modeguided}. Our results (Unguided, \cags{}) use the same evaluation protocol (best-accuracy tracking, instance normalization, 3 seeds). Note that our ``Unguided'' baseline generates synthetic images from the frozen DiT without guidance ($\lambda{=}0$), whereas Random and Herding select real images; the two are not directly comparable. \cags{} surpasses all published baselines on all three architectures, including MGD$^3$ itself.}
 \label{tab:dd-baselines}
 \begin{tabular}{lccc}
 \toprule
@@ -20,7 +20,7 @@ MGD$^3$~\cite{chansantiago2025modeguided} & $23.4 \pm 0.9$ & $25.8 \pm 0.5$ & $2
 \midrule
 \multicolumn{4}{l}{\emph{Our results (MGD$^3$-matched protocol, best-accuracy tracking)}} \\
 Unguided & $21.63 \pm 0.16$ & $25.17 \pm 0.23$ & $24.99 \pm 0.12$ \\
-\cags{} v2 $[0.0, 0.06]$ & $\mathbf{23.27 \pm 0.47}$ & $\mathbf{28.55 \pm 0.42}$ & $\mathbf{29.24 \pm 0.27}$ \\
+\cags{} $[0.0, 0.06]$ & $\mathbf{23.27 \pm 0.47}$ & $\mathbf{28.55 \pm 0.42}$ & $\mathbf{29.24 \pm 0.27}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
