@@ -6,3 +6,26 @@ Seed 0:
   Loaded 1000 training images
   Loading validation images from /root/data/imagenet100/val...
   Loaded 5000 validation images (7.8s)
+  Training done in 1803.7s, best Top-1=23.50% @ epoch 1183
+  Seed 0: Best Top-1=23.50%, Best Top-5=44.08%
+
+Seed 1:
+  Loading training images from ./results/sweep_in100/factor_ablation_factor_separability_only/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (9.6s)
+  Training done in 1804.4s, best Top-1=23.02% @ epoch 1248
+  Seed 1: Best Top-1=23.02%, Best Top-5=44.70%
+
+Seed 2:
+  Loading training images from ./results/sweep_in100/factor_ablation_factor_separability_only/dataset_0...
+  Loaded 1000 training images
+  Loading validation images from /root/data/imagenet100/val...
+  Loaded 5000 validation images (6.7s)
+  Training done in 1803.7s, best Top-1=23.82% @ epoch 1196
+  Seed 2: Best Top-1=23.82%, Best Top-5=44.22%
+
+============================================================
+Arch: convnet, Depth: 6
+Mean Best Top-1: 23.45 ± 0.33%
+Mean Best Top-5: 44.33 ± 0.27%
