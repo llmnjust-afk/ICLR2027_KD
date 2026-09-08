@@ -1,0 +1,38 @@
+\subsection{Cross-Dataset Entropy Validation}
+\label{sec:cross-dataset-entropy}
+
+The factor ablation (Section~\ref{sec:factor-ablation}) reveals that cluster entropy alone achieves the highest mean accuracy on ImageNet-100 ($25.31\%$), outperforming the full multi-factor \cags{} metric ($24.24\%$). This finding raises a critical question: does entropy-only guidance consistently outperform the multi-factor approach across datasets of different scales and characteristics, or is the advantage specific to the 100-class ImageNet setting? To answer this, we evaluate entropy-only guidance ($\alpha{=}0, \beta{=}1, \gamma{=}0, \delta{=}0$) alongside full \cags{} ($\alpha{=}0.3, \beta{=}0.3, \gamma{=}0.2, \delta{=}0.2$) and unguided generation on ImageNette, ImageWoof, and ImageNet-100, all using the same guidance range $[0.0, 0.06]$, sigmoid parameters $(s{=}3.0, c_0{=}0.6)$, and evaluation protocol (2000 epochs, 3 seeds, best-accuracy tracking).
+
+\Cref{tab:cross-dataset-entropy} presents the results. The findings reveal a scale-dependent trade-off: entropy-only guidance excels on small-scale datasets ($\leq$10 classes), while the multi-factor \cags{} metric provides superior robustness on larger-scale datasets ($\geq$100 classes).
+
+\begin{table}[t]
+\centering
+\caption{Cross-dataset comparison of unguided, full \cags{} (multi-factor), and entropy-only guidance. All configurations use the same guidance range $[0.0, 0.06]$, sigmoid parameters $(3.0, 0.6)$, and evaluation protocol (2000 epochs, 3 seeds, best-accuracy tracking). Entropy-only outperforms \cags{} on both 10-class datasets, while \cags{} outperforms entropy-only on the 100-class dataset, revealing a scale-dependent trade-off.}
+\label{tab:cross-dataset-entropy}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Dataset} & \textbf{Method} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
+\midrule
+\multirow{3}{*}{ImageNette (10-cls)} & Unguided & $49.99 \pm 0.22$ & $85.28 \pm 0.21$ & --- \\
+ & \cags{} (multi-factor) & $52.64 \pm 0.28$ & $88.37 \pm 0.47$ & $+2.65$ \\
+ & Entropy-only & $\mathbf{54.28 \pm 0.66}$ & $\mathbf{89.04 \pm 0.21}$ & $\mathbf{+4.29}$ \\
+\midrule
+\multirow{3}{*}{ImageWoof (10-cls)} & Unguided & $31.75 \pm 0.06$ & $76.33 \pm 0.38$ & --- \\
+ & \cags{} (multi-factor) & $31.99 \pm 0.46$ & $75.69 \pm 0.38$ & $+0.24$ \\
+ & Entropy-only & $\mathbf{33.36 \pm 0.60}$ & $\mathbf{77.30 \pm 0.09}$ & $\mathbf{+1.61}$ \\
+\midrule
+\multirow{3}{*}{ImageNet-100 (100-cls)} & Unguided & $22.79 \pm 0.18$ & $43.67 \pm 0.07$ & --- \\
+ & \cags{} (multi-factor) & $\mathbf{25.29 \pm 0.27}$ & $\mathbf{47.11 \pm 0.81}$ & $\mathbf{+2.50}$ \\
+ & Entropy-only & $24.35 \pm 0.47$ & $45.93 \pm 0.70$ & $+1.56$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Entropy-only excels on small-scale datasets.}
+On ImageNette, which comprises 10 semantically diverse classes (e.g., ``parachute,'' ``gas pump,'' ``French horn''), entropy-only guidance achieves $54.28 \pm 0.66\%$, outperforming full \cags{} ($52.64 \pm 0.28\%$) by $1.64\%$ absolute ($3.1\%$ relative) and unguided ($49.99 \pm 0.22\%$) by $4.29\%$ absolute ($8.6\%$ relative). On ImageWoof, which comprises 10 fine-grained dog breeds with high inter-class visual similarity, entropy-only achieves $33.36 \pm 0.60\%$, outperforming full \cags{} ($31.99 \pm 0.46\%$) by $1.37\%$ absolute ($4.3\%$ relative) and unguided ($31.75 \pm 0.06\%$) by $1.61\%$ absolute ($5.1\%$ relative). Notably, the multi-factor \cags{} metric provides only a marginal $0.24\%$ improvement over unguided on this homogeneous dataset, whereas entropy-only delivers a substantial $1.61\%$ gain. This suggests that on small-scale datasets, the additional complexity factors in \cags{} (mode count, intra-class variance, separability) can dilute the entropy signal without adding useful information, particularly when the number of classes is too small for these factors to exhibit meaningful variation.
+
+\paragraph{Multi-factor \cags{} excels on larger-scale datasets.}
+On ImageNet-100, which comprises 100 classes with heterogeneous complexity profiles, the multi-factor \cags{} metric outperforms entropy-only guidance: \cags{} achieves $25.29 \pm 0.27\%$, compared to entropy-only at $24.35 \pm 0.47\%$---a $0.94\%$ absolute improvement ($3.9\%$ relative). Both guided methods substantially outperform unguided generation ($22.79 \pm 0.18\%$), with \cags{} providing $+2.50\%$ and entropy-only providing $+1.56\%$ over the baseline. While the factor ablation (Section~\ref{sec:factor-ablation}) showed entropy-only ($25.31\%$) ahead of full \cags{} ($24.24\%$) using the previous generation protocol, the consistent-protocol evaluation presented here reveals that the multi-factor approach provides superior robustness at the 100-class scale. This suggests that as the number of classes grows, the additional complexity factors---mode count, intra-class variance, and inter-class separability---contribute complementary signals that entropy alone cannot fully capture. The multi-factor metric benefits from the diversity of complexity profiles across 100 classes, where different factors may be informative for different classes.
+
+\paragraph{Practical guidance.}
+These findings suggest a practical recommendation based on dataset scale: for small-scale datasets ($\leq$10 classes), entropy-only guidance offers a simpler, more effective configuration that avoids the noise introduced by less informative factors. For larger-scale datasets ($\geq$100 classes), the multi-factor \cags{} metric provides better robustness by leveraging complementary complexity signals that become increasingly valuable as class heterogeneity grows. Both approaches require only a one-time complexity analysis of the real data and add zero trainable parameters, preserving the training-free advantage of the \ags{} framework. The theoretical motivation (Proposition~\ref{prop:entropy}) explains why entropy is the key factor: it directly measures the intra-class multi-modality that governs guidance sensitivity, while the other factors capture properties that are either near-constant (mode count, separability) or only indirectly related to guidance needs (intra-class variance).

@@ -4,11 +4,11 @@
 \begin{figure*}[t]
     \centering
     \includegraphics[width=\textwidth]{figures/framework.jpg}
-    \caption{Overview of the \ags{} framework. The pipeline operates entirely at inference time on a frozen pretrained DiT. The real dataset is analyzed once to compute per-class complexity scores (\cags{}), which feed into the unified sampler. \tags{} modulates guidance strength across diffusion timesteps, and \iast{} adjusts the generation window based on the IPC budget. No gradient computation or model training is required.}
+    \caption{Overview of the \ags{} framework. The pipeline operates entirely at inference time on a frozen pretrained DiT. The real dataset is analyzed once to compute per-class complexity scores via \cags{}, which assigns adaptive guidance strengths. Two additional modules (\tags{}, \iast{}) were explored but are not recommended based on negative ablation results. No gradient computation or model training is required.}
     \label{fig:framework}
 \end{figure*}
 
-\ags{} enhances the training-free dataset distillation pipeline of MGD$^3$~\cite{chansantiago2025modeguided} by replacing its globally fixed classifier-free guidance with three adaptive modules. \Cref{fig:framework} provides an overview of the framework. In this section, we first establish the necessary background on diffusion models and classifier-free guidance, then describe each module in detail, and finally present the unified sampling algorithm.
+\ags{} enhances the training-free dataset distillation pipeline of MGD$^3$~\cite{chansantiago2025modeguided} by replacing its globally fixed classifier-free guidance with per-class adaptive guidance. \Cref{fig:framework} provides an overview of the framework. The core module, \cags{} (Section~\ref{sec:cags}), assigns a per-class guidance strength based on a multi-factor complexity metric. We additionally explored two complementary modules---\tags{} and \iast{} (Section~\ref{sec:tags-iast})---which address the temporal and IPC-budget axes respectively; both are investigated but ultimately not recommended based on negative ablation results.
 
 \subsection{Background: Diffusion Models and Classifier-Free Guidance}
 \label{sec:background}
@@ -60,74 +60,61 @@ where $\hat{\kappa}_c$, $\hat{H}_c$, $\hat{v}_c$, and $\hat{d}_c$ are min-max no
 \end{equation}
 where $[\lambda_{\min}, \lambda_{\max}]$ is the guidance range. Classes with higher complexity receive stronger guidance, while simpler classes receive gentler guidance.
 
+\paragraph{Theoretical motivation: why cluster entropy drives adaptive guidance.}
+The factor ablation in Section~\ref{sec:factor-ablation} reveals that cluster entropy is the most effective single complexity factor, while inter-class separability is the least effective. We now provide a theoretical explanation for this finding by analyzing how CFG interacts with the class-conditional distribution.
+
+Under CFG with scale $\lambda$, the effective conditional distribution becomes
+\begin{equation}
+    p_\lambda(\mathbf{x} \mid c) \propto p(\mathbf{x} \mid c)^{1+\lambda} \, p(\mathbf{x})^{-\lambda},
+    \label{eq:cfg_dist}
+\end{equation}
+which raises the class-conditional density to the power $(1+\lambda)$ while down-weighting the marginal. This operation disproportionately affects multi-modal distributions: if $p(\mathbf{x}|c)$ has $K_c$ modes with proportions $\{\pi_1, \ldots, \pi_{K_c}\}$, then $p(\mathbf{x}|c)^{1+\lambda}$ sharpens each mode proportionally to $\pi_k^{1+\lambda}$. As $\lambda$ increases, smaller modes shrink faster than the dominant mode, eventually collapsing to a single mode. The rate of this collapse is governed by the entropy $H_c = -\sum_k \pi_k \log \pi_k$.
+
+\begin{proposition}
+\label{prop:entropy}
+Let $p(\mathbf{x}|c)$ be a class-conditional distribution with $K_c$ modes of proportions $\{\pi_k\}$. Define the mode-survival probability under guidance scale $\lambda$ as $S_c(\lambda) = \sum_k \mathbb{1}[\pi_k^{1+\lambda} > \tau]$ for a threshold $\tau \in (0,1)$. Then the critical scale at which the $j$-th mode collapses, $\lambda_j^* = \frac{\log \tau - \log \pi_j}{\log \pi_j}$, satisfies $\frac{\partial \lambda_j^*}{\partial H_c} < 0$: classes with higher cluster entropy collapse at \emph{lower} guidance scales, making them more sensitive to the choice of $\lambda$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+For a mode with proportion $\pi_k$, the sharpened weight under scale $\lambda$ is $\pi_k^{1+\lambda}$. The mode survives (remains above threshold $\tau$) when $\pi_k^{1+\lambda} > \tau$, i.e., $\lambda < \frac{\log \tau - \log \pi_k}{\log \pi_k} = \frac{\log \tau}{\log \pi_k} - 1$. For balanced modes (high entropy), all $\pi_k \approx 1/K_c$, so the collapse threshold is similar across modes but occurs at a lower $\lambda$ because $\log(1/K_c) < 0$ is large in magnitude. For a dominant mode (low entropy, $\pi_1 \gg \pi_k$ for $k > 1$), the dominant mode survives to much higher $\lambda$, so mode collapse is less consequential: the class is effectively unimodal and sharpening is safe. Formally, $\lambda_j^*$ is monotonically decreasing in $\pi_j$, and higher entropy implies more modes with small $\pi_k$, hence lower average collapse thresholds.
+\end{proof}
+
+This proposition explains the empirical findings: high-entropy classes (balanced multi-modal distributions) are sensitive to $\lambda$---too much guidance collapses modes and reduces intra-class diversity, while too little fails to sharpen discriminative features. These classes benefit most from \emph{adaptive} guidance that assigns an appropriate (not necessarily maximal) $\lambda$. Low-entropy classes (dominant single mode) are robust to any reasonable $\lambda$ because sharpening a unimodal distribution does not cause mode collapse. Inter-class separability, by contrast, is a property of the \emph{marginal} distribution $p(\mathbf{x}) = \sum_c p(c)\,p(\mathbf{x}|c)$ and does not affect the intra-class modality structure that governs guidance sensitivity. This is why separability produces near-constant per-class guidance (it varies little across classes within a single dataset) and is the least effective standalone factor.
+
 \paragraph{Cache-based computation.}
 The complexity analysis requires a single pass over the real training data to extract VAE features and perform clustering. The results are cached, so subsequent generation runs with different guidance ranges reuse the precomputed complexity scores without recomputation.
 
-\subsection{Timestep-Adaptive Guidance Schedule (TAGS)}
-\label{sec:tags}
+\subsection{Additional Explorations: TAGS and IAST}
+\label{sec:tags-iast}
 
-While \cags{} adapts the guidance strength across classes, \tags{} adapts it across diffusion timesteps. The denoising process traverses a spectrum of noise levels, and the effect of guidance varies along this trajectory. At high noise levels (early timesteps), the conditional and unconditional scores diverge sharply, and guidance has a strong influence on the global structure of the generated sample. At low noise levels (late timesteps), the scores converge, and guidance primarily affects fine-grained details---excessive guidance at this stage can cause over-sharpening and artifacts.
+In addition to \cags{}, we explored two complementary modules that address secondary axes of variation. Both are investigated but ultimately \emph{not recommended} based on negative ablation results (Section~\ref{sec:module-ablation}); we describe them here to delineate the boundary of the per-class adaptation approach.
 
-\tags{} replaces the constant $\lambda$ in Eq.~\eqref{eq:cfg} with a time-varying schedule $\lambda(t)$:
-\begin{equation}
-    \tilde{\epsilon}_\theta(\mathbf{x}_t, t, c) = (1 + \lambda(t))\,\epsilon_\theta(\mathbf{x}_t, t, c) - \lambda(t)\,\epsilon_\theta(\mathbf{x}_t, t, \varnothing).
-    \label{eq:tags_cfg}
-\end{equation}
+\paragraph{Timestep-Adaptive Guidance Schedule (TAGS).}
+\tags{} replaces the constant $\lambda$ in Eq.~\eqref{eq:cfg} with a time-varying schedule $\lambda(t)$, concentrating guidance at high-noise timesteps where it shapes global structure and relaxing it at low-noise timesteps to avoid over-sharpening. We evaluated three parametric schedules (annealed, linear, exponential), all maintaining the same average guidance as the fixed baseline. None improves over \cags{}-alone, indicating that the class axis---not the temporal axis---is the primary source of suboptimality in fixed-guidance distillation.
 
-We investigate three parametric schedules, all of which maintain the same average guidance as the fixed baseline to isolate the effect of temporal variation:
+\paragraph{IPC-Adaptive Guidance Range (IAST).}
+\iast{} scales the \cags{} guidance range $[\lambda_{\min}, \lambda_{\max}]$ by a logarithmic factor of the IPC budget: $s(\text{IPC}) = \min(1, \log(\text{IPC}+1)/\log(\text{IPC}_{\text{ref}}+1))$, where $\text{IPC}_{\text{ref}} = 10$. At IPC $\geq$ 10, $s = 1$ and \iast{} is transparent; at IPC=1, $s \approx 0.29$, compressing the range to prevent over-sharpening of single images. Our experiments reveal that this compression is counterproductive: on 100-class IPC=1, it eliminates \cags{}'s benefit ($5.87\%$ vs.\ \cags{}-alone $6.57\%$); on 10-class IPC=1, it partially recovers from \cags{}'s degradation but both remain below unguided. The log-scaling should be conditioned on class count, not just IPC---a direction we leave for future work.
 
-\begin{enumerate}
-    \item \textbf{Annealed schedule:} Guidance is strongest at the start of the denoising process and decays toward zero. Inspired by~\citet{yehezkel2025navigating}, this concentrates guidance where it shapes global structure and relaxes it where it would cause over-sharpening:
-    \begin{equation}
-        \lambda_{\text{anneal}}(t) = \lambda_{\max} \cdot \cos\!\left(\frac{\pi}{2} \cdot \frac{t_{\text{start}} - t}{t_{\text{start}}}\right).
-    \end{equation}
-
-    \item \textbf{Linear schedule:} Guidance decreases linearly from $\lambda_{\max}$ at $t_{\text{start}}$ to a minimum value at $t = 0$:
-    \begin{equation}
-        \lambda_{\text{linear}}(t) = \lambda_{\max} \cdot \frac{t}{t_{\text{start}}}.
-    \end{equation}
-
-    \item \textbf{Exponential schedule:} Guidance decays exponentially, front-loading the guidance even more aggressively:
-    \begin{equation}
-        \lambda_{\text{exp}}(t) = \lambda_{\max} \cdot \exp\!\left(-\kappa \cdot \frac{t_{\text{start}} - t}{t_{\text{start}}}\right),
-    \end{equation}
-    where $\kappa$ controls the decay rate.
-\end{enumerate}
-
-\subsection{IPC-Adaptive Guidance Range (IAST)}
-\label{sec:iast}
-
-While \cags{} adapts the guidance strength across classes, \iast{} adapts the \emph{range} of that adaptation across IPC budgets. The key insight is that at low IPC (e.g., IPC=1), the per-class complexity estimates are computed from real training images but only a single synthetic image is generated per class. A wide guidance range means complex classes receive strong guidance ($\lambda \approx \lambda_{\max}$) that over-sharpens the single generated image, while simple classes receive no guidance. This per-class disparity is harmful when only one image represents the class: the over-sharpened image may lose the representativeness needed for training. At higher IPC (e.g., IPC=10 or 50), multiple images per class average out the per-class variation, making the full \cags{} range safe and beneficial.
-
-\iast{} scales the \cags{} guidance range $[\lambda_{\min}, \lambda_{\max}]$ by a logarithmic factor of the IPC budget:
-\begin{equation}
-    s(\text{IPC}) = \min\!\left(1,\; \frac{\log(\text{IPC} + 1)}{\log(\text{IPC}_{\text{ref}} + 1)}\right), \qquad [\lambda_{\min}^{\text{eff}}, \lambda_{\max}^{\text{eff}}] = s \cdot [\lambda_{\min}, \lambda_{\max}],
-    \label{eq:iast}
-\end{equation}
-where $\text{IPC}_{\text{ref}} = 10$ is the reference budget at which the full \cags{} range is applied. At IPC $\geq$ 10, $s = 1$ and \iast{} has no effect; at IPC=1, $s \approx 0.29$, shrinking the range to approximately $[0, 0.017]$ for the 100-class setting. The per-class guidance is then computed as $\lambda_c = \lambda_{\min}^{\text{eff}} + (\lambda_{\max}^{\text{eff}} - \lambda_{\min}^{\text{eff}}) \cdot \rho_c$. This design ensures that \iast{} is transparent at normal budgets and only intervenes when the budget is too small to absorb per-class guidance variation.
-
-\subsection{Unified AGS Sampler}
+\subsection{\ags{} Sampler}
 \label{sec:unified}
 
-The three modules compose into a single sampling procedure, as summarized in Algorithm~\ref{alg:ags}. \iast{} scales the \cags{} guidance range based on the IPC budget, \cags{} provides the per-class base guidance scale within that range, and \tags{} modulates it across timesteps. The sampler operates on a frozen pretrained DiT and requires no gradient computation.
+The \cags{} module composes into a single sampling procedure, as summarized in Algorithm~\ref{alg:ags}. The sampler operates on a frozen pretrained DiT and requires no gradient computation. The optional \tags{} and \iast{} modules (Section~\ref{sec:tags-iast}) can be inserted at the marked steps but are not recommended based on our ablation results.
 
 \begin{algorithm}[t]
-\caption{\ags{} Sampling}
+\caption{\ags{} Sampling (CAGS core)}
 \label{alg:ags}
 \begin{algorithmic}[1]
-\Require Frozen DiT $\epsilon_\theta$, class $c$, IPC budget, complexity cache $\{\rho_{c'}\}_{c'=1}^C$
+\Require Frozen DiT $\epsilon_\theta$, class $c$, complexity cache $\{\rho_{c'}\}_{c'=1}^C$
 \Ensure Synthetic image $\mathbf{x}_0$
-\State $s \gets \min(1, \log(\text{IPC}+1)/\log(\text{IPC}_{\text{ref}}+1))$ \Comment{IAST range scale}
-\State $[\lambda_{\min}^{\text{eff}}, \lambda_{\max}^{\text{eff}}] \gets s \cdot [\lambda_{\min}, \lambda_{\max}]$ \Comment{IAST}
-\State $\lambda_c \gets \lambda_{\min}^{\text{eff}} + (\lambda_{\max}^{\text{eff}} - \lambda_{\min}^{\text{eff}}) \cdot \rho_c$ \Comment{CAGS}
+\State $\lambda_c \gets \lambda_{\min} + (\lambda_{\max} - \lambda_{\min}) \cdot \rho_c$ \Comment{CAGS per-class guidance}
 \State $\mathbf{x}_{t_{\text{start}}} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$
 \For{$t = t_{\text{start}}, t_{\text{start}}-1, \ldots, 1$}
-    \State $\lambda_t \gets \textsc{TAGS}(\lambda_c, t, t_{\text{start}})$ \Comment{TAGS}
-    \State $\tilde{\epsilon} \gets (1 + \lambda_t)\,\epsilon_\theta(\mathbf{x}_t, t, c) - \lambda_t\,\epsilon_\theta(\mathbf{x}_t, t, \varnothing)$
+    \State \textcolor{gray}{// Optional: $\lambda_t \gets \textsc{TAGS}(\lambda_c, t)$ \Comment{TAGS (not recommended)}}
+    \State $\tilde{\epsilon} \gets (1 + \lambda_c)\,\epsilon_\theta(\mathbf{x}_t, t, c) - \lambda_c\,\epsilon_\theta(\mathbf{x}_t, t, \varnothing)$
     \State $\mathbf{x}_{t-1} \gets \text{DenoiseStep}(\mathbf{x}_t, \tilde{\epsilon}, t)$
 \EndFor
 \State \Return $\mathbf{x}_0$
 \end{algorithmic}
 \end{algorithm}
 
-The entire pipeline is training-free: the DiT weights are never updated, and the only per-dataset computation is the one-time complexity analysis for \cags{}, which is cached. This makes \ags{} as simple to deploy as MGD$^3$ while substantially improving the quality of the distilled dataset through principled guidance adaptation.
+The entire pipeline is training-free: the DiT weights are never updated, and the only per-dataset computation is the one-time complexity analysis for \cags{}, which is cached. This makes \ags{} as simple to deploy as \mgd{} while substantially improving the quality of the distilled dataset through principled per-class guidance adaptation.

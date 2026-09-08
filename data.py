@@ -123,6 +123,10 @@ class ImageFolder(datasets.DatasetFolder):
                 file_list = './misc/class100.txt'
             elif self.spec == 'imagenet1k':
                 file_list = './misc/class_indices.txt'
+            elif self.spec == 'animals':
+                file_list = './misc/class_animals_subset.txt'
+            elif self.spec == 'objects':
+                file_list = './misc/class_objects_subset.txt'
             else:
                 raise AssertionError(f'spec does not exist!')
             with open(file_list, 'r') as f:
@@ -918,6 +922,10 @@ class KNNDataset(torch.utils.data.Dataset):
                 file_list = './misc/class100.txt'
             elif self.spec == 'imagenet1k':
                 file_list = './misc/class_indices.txt'
+            elif self.spec == 'animals':
+                file_list = './misc/class_animals_subset.txt'
+            elif self.spec == 'objects':
+                file_list = './misc/class_objects_subset.txt'
             else:
                 raise AssertionError(f'spec does not exist!')
             with open(file_list, 'r') as f:

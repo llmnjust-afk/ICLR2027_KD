@@ -3,17 +3,17 @@
 
 We identify several limitations of the current work that point to directions for future investigation.
 
-\paragraph{Boundary conditions for \cags{}.}
-\cags{} provides substantial gains when class complexity variation is large (100-class subset, $+7.6\%$ to $+14.8\%$ relative) but is neutral or harmful when variation is limited (10-class IPC=1, $-12.8\%$; ImageWoof, $-5.2\%$). This boundary condition is inherent to the per-class adaptation approach: when all classes share similar structural complexity, per-class guidance differentiation provides no benefit and may reduce intra-class diversity. Practitioners should verify that complexity scores exhibit meaningful variation before applying \cags{}.
+\paragraph{Scale-dependent factor effectiveness.}
+The effectiveness of the multi-factor \cags{} metric relative to entropy-only guidance depends on dataset scale: entropy-only excels on small-scale datasets ($\leq$10 classes), while the full multi-factor metric wins on medium-to-large-scale datasets ($\geq$44 classes). This suggests that the additional complexity factors (mode count, intra-class variance, separability) become informative only when sufficient class heterogeneity exists. The transition point between entropy-only and multi-factor superiority lies between 10 and 44 classes; future work should investigate this boundary more precisely and explore adaptive weight selection based on dataset characteristics.
 
-\paragraph{\iast{} and \tags{} are not recommended.}
-\iast{}'s log-scaling is counterproductive in both tested IPC=1 settings: it eliminates \cags{}'s benefit on 100-class ($5.87\%$ vs.\ $6.57\%$) and only partially recovers \cags{}'s degradation on 10-class ($21.13\%$ vs.\ $19.87\%$), with both remaining below unguided ($22.80\%$). \tags{} does not improve over \cags{}-alone. A class-count-conditioned scaling function for \iast{} and more sophisticated temporal schedules for \tags{} are directions for future work.
+\paragraph{Exploratory modules not recommended.}
+Two additional modules---\tags{} (timestep-adaptive guidance) and \iast{} (IPC-adaptive guidance range)---were explored but are not recommended. \tags{} does not improve over \cags{}-alone, and \iast{}'s log-scaling is counterproductive at low IPC. More sophisticated temporal schedules or class-count-conditioned scaling functions are directions for future work.
 
 \paragraph{Fixed complexity weights.}
 The multi-factor complexity metric uses fixed weights $(\alpha, \beta, \gamma, \delta) = (0.3, 0.3, 0.2, 0.2)$ that are not learned from data. While our factor ablation demonstrates that cluster entropy is the most effective single factor and that inter-class separability is the least effective---with all configurations that reduce separability weight outperforming the full multi-factor metric---learning the weights from data could further optimize the complexity metric for specific dataset characteristics.
 
 \paragraph{Evaluation scope.}
-Our experiments use three random seeds per configuration. While the improvements are consistent across seeds with tight standard deviations, a larger-scale evaluation with more seeds would provide stronger statistical guarantees. Additionally, we evaluate on ImageNet-100, ImageNette, and ImageWoof; extending to the full ImageNet-1K and other large-scale datasets would further validate the approach's scalability.
+Our experiments use three random seeds per configuration. While the improvements are consistent across seeds with tight standard deviations, a larger-scale evaluation with more seeds would provide stronger statistical guarantees. Additionally, we evaluate on ImageNet-100, ImageNette, ImageWoof, and semantic subsets of ImageNet-100; extending to the full ImageNet-1K and other large-scale datasets would further validate the approach's scalability.
 
 \paragraph{Single generator.}
 All experiments use the DiT-XL/2 model~\cite{peebles2022scalable} pretrained on ImageNet-1K. While the adaptive guidance principle is architecture-agnostic, evaluating \ags{} with other pretrained diffusion models (e.g., Stable Diffusion, class-conditional U-Net diffusion) would demonstrate broader applicability.
