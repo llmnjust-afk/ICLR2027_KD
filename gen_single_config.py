@@ -47,7 +47,7 @@ def recompute_complexity(analyzer, alpha, beta, gamma, delta):
 def main():
     parser = argparse.ArgumentParser(description="Generate dataset with single CAGS config")
     parser.add_argument("--spec", type=str, default="imagenet100",
-                        choices=["nette", "woof", "imagenet100", "imagenet1k", "animals", "objects"])
+                        choices=["nette", "woof", "imagenet100", "imagenet1k", "imagenet200", "animals", "objects"])
     parser.add_argument("--nclass", type=int, default=100)
     parser.add_argument("--imagenet-dir", type=str, required=True)
     parser.add_argument("--save-base", type=str, required=True)

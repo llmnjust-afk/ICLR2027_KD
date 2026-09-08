@@ -64,6 +64,7 @@ def setup_classes(spec="nette", nclass=10):
         "imagenet1k": "./misc/class_indices.txt",
         "animals": "./misc/class_animals_subset.txt",
         "objects": "./misc/class_objects_subset.txt",
+        "imagenet200": "./misc/class200.txt",
     }
     with open(file_map[spec], "r") as fp:
         sel_classes = [c.strip() for c in fp.readlines()]
