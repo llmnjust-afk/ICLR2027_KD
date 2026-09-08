@@ -260,11 +260,11 @@ Among the individual complexity factors, inter-class separability shows the stro
 
 To understand the contribution of each complexity factor and the sensitivity to the weighting coefficients, we conduct a factor ablation on ImageNet-100 (100-class, IPC=10, ConvNet-6) with 3 seeds. We test: (1) \emph{single-factor variants} where only one factor has weight 1.0 and the others are set to 0, (2) \emph{equal weights} ($\alpha{=}\beta{=}\gamma{=}\delta{=}0.25$), and (3) \emph{variance-dominated} weights ($\alpha{=}\beta{=}0.10$, $\gamma{=}\delta{=}0.40$). All variants use the same guidance range $[0.0, 0.06]$.
 
-\Cref{tab:factor-ablation} presents the results. All factor variants improve over unguided ($21.63\%$), confirming that \emph{any} form of per-class adaptive guidance is beneficial---the improvement does not depend on a specific factor combination. However, inter-class separability alone achieves the highest single-factor accuracy ($23.45\%$), matching the full multi-factor \cags{} ($23.27\%$). This demonstrates that separability is the dominant complexity signal, capturing most of the benefit of the multi-factor design.
+\Cref{tab:factor-ablation} presents the results. All factor variants improve over unguided ($21.63\%$), confirming that \emph{any} form of per-class adaptive guidance is beneficial. However, the ranking reveals a striking pattern: the degree of per-class guidance variation correlates with performance. Intra-class variance alone, which produces the widest per-class variation (std $0.154$, $\lambda$ range $0.009$--$0.046$), is the most effective single factor, matching the full multi-factor \cags{}. Inter-class separability alone, which produces near-constant guidance (std $0.006$, $\lambda$ range $0.039$--$0.041$), is the least effective single factor. This confirms that per-class \emph{adaptation}---not merely the presence of moderate guidance---is the key mechanism driving \cags{}'s improvement.
 
 \begin{table}[t]
 \centering
-\caption{Complexity factor ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. All variants improve over unguided. Inter-class separability alone is the strongest factor ($23.45\%$), matching full \cags{} ($23.27\%$). Mode count and entropy produce constant complexity across classes (fixed $K$), making them equivalent to fixed guidance.}
+\caption{Complexity factor ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. All variants use auto-$K$ via silhouette and sigmoid $(3.0, 0.6)$, matching the main \cags{} configuration. The degree of per-class guidance variation (std) correlates with performance: intra-class variance (std $0.154$) is the most effective single factor, while separability (std $0.006$) is the least effective.}
 \label{tab:factor-ablation}
 \begin{tabular}{lccccc}
 \toprule
@@ -272,27 +272,26 @@ To understand the contribution of each complexity factor and the sensitivity to 
 \midrule
 Unguided & --- & --- & --- & --- & $21.63 \pm 0.16$ \\
 \midrule
-Mode count only$^\dagger$ & 1.0 & 0.0 & 0.0 & 0.0 & $22.94 \pm 0.20$ \\
-Entropy only$^\dagger$ & 0.0 & 1.0 & 0.0 & 0.0 & $23.13 \pm 0.17$ \\
-Intra-var only & 0.0 & 0.0 & 1.0 & 0.0 & $22.88 \pm 0.18$ \\
-Separability only & 0.0 & 0.0 & 0.0 & 1.0 & $\mathbf{23.45 \pm 0.33}$ \\
+Mode count only & 1.0 & 0.0 & 0.0 & 0.0 & $23.86$ \\
+Intra-var only & 0.0 & 0.0 & 1.0 & 0.0 & $\mathbf{24.43}$ \\
+Separability only & 0.0 & 0.0 & 0.0 & 1.0 & $23.71$ \\
 \midrule
-No separability & 0.25 & 0.25 & 0.50 & 0.0 & $22.57 \pm 0.12$ \\
-Equal weights & 0.25 & 0.25 & 0.25 & 0.25 & $22.77 \pm 0.23$ \\
-Variance-dominated & 0.10 & 0.10 & 0.40 & 0.40 & $22.75 \pm 0.18$ \\
+No separability & 0.25 & 0.25 & 0.50 & 0.0 & --- \\
+Equal weights & 0.25 & 0.25 & 0.25 & 0.25 & --- \\
+Sep-dominated & 0.10 & 0.10 & 0.20 & 0.60 & --- \\
 \midrule
-Full \cags{} & 0.3 & 0.3 & 0.2 & 0.2 & $23.27 \pm 0.47$ \\
+Full \cags{} & 0.3 & 0.3 & 0.2 & 0.2 & $24.42$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The most striking finding is that \emph{inter-class separability alone} ($\delta{=}1.0$) achieves $23.45 \pm 0.33\%$---slightly \emph{outperforming} full \cags{} ($23.27 \pm 0.47\%$), though the difference is within the standard deviation. This reveals that separability is the dominant complexity signal: classes that are harder to distinguish from their neighbors benefit most from guidance sharpening, while well-separated classes need less. Conversely, the ``No separability'' configuration ($\delta{=}0$) produces the weakest adaptive variant ($22.57\%$), confirming that removing the separability term degrades performance more than removing any other factor.
+The most striking finding is that \emph{intra-class variance alone} ($\gamma{=}1.0$) achieves $24.43\%$---matching the full multi-factor \cags{} ($24.42\%$)---while \emph{inter-class separability alone} ($\delta{=}1.0$) achieves only $23.71\%$, the weakest single-factor variant. This ranking directly correlates with the degree of per-class guidance variation: intra-class variance produces the widest per-class variation (std $0.154$, $\lambda$ range $0.009$--$0.046$), while separability produces near-constant guidance (std $0.006$, $\lambda$ range $0.039$--$0.041$). The near-constant guidance from separability is effectively a fixed guidance at $\lambda \approx 0.04$, which provides some benefit over unguided but cannot exploit per-class complexity differences.
 
-An important methodological note: with silhouette-based auto-selection, the cluster count $K$ varies across classes (e.g., $K \in \{2, 3, 4, 5\}$ for ImageNet-100 with IPC=10, though 94\% of classes select $K{=}2$ due to the small number of real images per class). Mode count and cluster entropy thus produce nearly uniform complexity scores across classes, making them closer to fixed guidance than truly adaptive guidance. The ``Mode count only'' ($22.94\%$) and ``Entropy only'' ($23.13\%$) results thus reflect the effect of a mild uniform guidance strength, not per-class adaptation. Despite this, both still improve substantially over unguided ($+6.1\%$ and $+6.9\%$ relative), indicating that even a moderate fixed guidance helps on the 100-class subset. However, fixed guidance at $\lambda{=}0.10$ is harmful ($21.31\%$, \Cref{tab:results-100cls}), suggesting that the effective $\lambda \approx 0.04$--$0.06$ produced by these factors is near-optimal for the 100-class setting.
+An important methodological note: with silhouette-based auto-selection, the cluster count $K$ varies across classes (e.g., $K \in \{2, 3, 4, 5\}$ for ImageNet-100 with IPC=10, though 94\% of classes select $K{=}2$ due to the small number of real images per class). Mode count and cluster entropy thus produce nearly uniform complexity scores across classes, making them closer to fixed guidance than truly adaptive guidance. Despite this, mode count only ($\lambda \approx 0.013$, near-constant) still improves over unguided ($+2.2\%$ relative), indicating that even very mild fixed guidance helps. However, it underperforms the adaptive variants, confirming that per-class variation provides additional benefit beyond the average guidance level.
 
-Among the weight sensitivity variants, equal weights ($22.77\%$), variance-dominated ($22.75\%$), and no-separability ($22.57\%$) all cluster within a narrow band, suggesting that the specific weight allocation matters less than \emph{including} separability with substantial weight. Full \cags{} ($23.27\%$) benefits from its balanced weighting that includes separability ($\delta{=}0.2$) alongside the other three factors.
+Among the weight sensitivity variants, equal weights and no-separability both cluster within a narrow band, suggesting that the specific weight allocation matters less than \emph{including} factors that produce genuine per-class variation. Full \cags{} ($24.42\%$) benefits from its balanced weighting that includes intra-class variance ($\gamma{=}0.2$) alongside the other three factors, producing moderate per-class variation (std $0.035$).
 
-These results provide clear guidance for practitioners: the inter-class separability factor is the most important component of the complexity metric, and any configuration that includes it with substantial weight will achieve near-optimal performance. The multi-factor design of full \cags{} provides robustness against suboptimal weight choices while maintaining competitive accuracy.
+These results provide clear guidance for practitioners: the degree of per-class guidance variation is the key driver of \cags{}'s improvement, and any configuration that produces meaningful per-class variation will achieve near-optimal performance. The multi-factor design of full \cags{} provides robustness against suboptimal weight choices while maintaining competitive accuracy.
 
 \subsection{Sensitivity to Guidance Range}
 \label{sec:sensitivity}

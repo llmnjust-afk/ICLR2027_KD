@@ -44,7 +44,7 @@ We quantify the complexity of each class $c$ through four complementary factors,
 
     \item \textbf{Intra-class variance} ($v_c$): Measures the dispersion of images within class $c$. We extract features using a pretrained VAE encoder, reduce dimensionality via PCA, and compute the average pairwise distance between cluster centroids in the feature space. Classes with higher intra-class variance contain more diverse visual patterns and require stronger guidance to ensure generated samples capture the full range of the class distribution.
 
-    \item \textbf{Inter-class separability} ($d_c$): Measures how well class $c$ is separated from other classes. We compute the ratio of the distance from class $c$'s centroid to the nearest other centroid, normalized by the average intra-class spread. Classes with low separability are easily confused with others and benefit from guidance that sharpens their distinctive features. As our factor ablation reveals (Section~\ref{sec:factor-ablation}), this is the dominant complexity signal.
+    \item \textbf{Inter-class separability} ($d_c$): Measures how well class $c$ is separated from other classes. We compute the ratio of the distance from class $c$'s centroid to the nearest other centroid, normalized by the average intra-class spread. Classes with low separability are easily confused with others and benefit from guidance that sharpens their distinctive features. Our factor ablation reveals that separability produces near-constant guidance across classes and is the least effective single factor (Section~\ref{sec:factor-ablation}).
 \end{enumerate}
 
 \paragraph{Complexity score and guidance mapping.}
