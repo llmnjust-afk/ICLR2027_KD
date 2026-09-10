@@ -262,10 +262,10 @@ D4M 的核心是 "real image → VAE encode → add noise at t_start → DiT den
 | 5 | 15.06 | −7.73 |
 | 10 | 16.08 | −6.71 |
 | 15 | 16.38 | −6.41 |
-| 20 | *pending* | *pending* |
+| 20 | 18.38 | −4.41 |
 | 25 | 20.21 ± 0.39 | −2.58 |
-| 30 | *pending* | *pending* |
-| 35 | *pending* | *pending* |
+| 30 | 22.58 | −0.21 |
+| 35 | 22.80 | +0.01 |
 | 40 | 23.07 ± 0.59 | +0.28 |
 | 45 | *pending* | *pending* |
 | **Unguided** | **22.79 ± 0.18** | — |
