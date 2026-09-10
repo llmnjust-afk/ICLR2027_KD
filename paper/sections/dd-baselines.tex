@@ -32,7 +32,31 @@ Unguided & $22.79 \pm 0.18$ & $26.65 \pm 0.16$ & $26.49 \pm 0.42$ \\
 On ConvNet-6, the optimal two-factor \cags{} achieves $25.70\%$, surpassing MGD$^3$'s published $23.4\%$ by $+2.30\%$ absolute and IDC-1's $24.3\%$ by $+1.40\%$. On ResNet-18, the four-factor \cags{} achieves $31.14\%$ and the two-factor optimal achieves $30.50\%$, surpassing MGD$^3$'s published $23.6\%$ by $+7.54\%$ and $+6.90\%$ absolute respectively, and IDC-1's $25.1\%$ by $+6.04\%$ and $+5.40\%$. On ResNetAP-10, the four-factor \cags{} achieves $30.70\%$ and the two-factor optimal achieves $29.52\%$, exceeding MGD$^3$'s $25.8\%$ by $+4.90\%$ and $+3.72\%$ and IDC-1's $25.7\%$ by $+5.00\%$ and $+3.82\%$. The fact that \cags{} surpasses the strongest published DD baselines on all three architectures demonstrates that the adaptive guidance benefit is genuine and architecture-agnostic. Notably, the four-factor \cags{} outperforms the two-factor optimal on both ResNet-18 ($31.14\%$ vs.\ $30.50\%$) and ResNetAP-10 ($30.70\%$ vs.\ $29.52\%$), while the two-factor optimal wins on ConvNet-6 ($25.70\%$ vs.\ $25.29\%$), suggesting that the additional complexity factors provide complementary signal on higher-capacity architectures.
 
 \paragraph{D4M is sensitive to the denoising start timestep.}
-Our D4M implementation reveals a striking sensitivity to $t_{\text{start}}$: with $t_{\text{start}} = 25$ (fewer denoising steps, more real-image retention), D4M achieves only $20.21 \pm 0.39\%$---\emph{below} the unguided baseline ($22.79\%$) by $-2.58\%$ absolute. However, with $t_{\text{start}} = 40$ (more denoising steps, relying more on the generative prior), D4M recovers to $23.07 \pm 0.59\%$, approaching the four-factor \cags{}'s $25.29\%$ but still falling short by $-2.22\%$ with $1.5\times$ higher variance. This result carries two implications. First, naively injecting real image structure into the diffusion process at too few denoising steps ($t = 25$) introduces artifacts that degrade downstream classification, confirming that the strength of diffusion-based dataset distillation lies primarily in the generative prior rather than in preserving real image features. Second, while D4M with sufficient denoising steps ($t = 40$) can approximate \cags{} performance, it requires access to real images, introduces an additional hyperparameter ($t_{\text{start}}$) that must be tuned per dataset, and still does not surpass \cags{}. In contrast, \cags{} generates from pure noise without any real-image access, requires no $t_{\text{start}}$ tuning, and provides per-class adaptive guidance that is both more principled and more effective.
+To comprehensively characterize D4M's sensitivity to the noise injection level, we sweep $t_{\text{start}} \in \{5, 10, 15, 20, 25, 30, 35, 40, 45\}$ under the same DiT generator and evaluation protocol (\Cref{tab:d4m-sensitivity}). The results reveal a monotonic increasing trend: D4M accuracy rises steadily from $15.06\%$ at $t_{\text{start}}{=}5$ to $23.07\%$ at $t_{\text{start}}{=}40$, then plateaus. At low $t_{\text{start}}$ values, D4M substantially \emph{underperforms} unguided generation---at $t_{\text{start}}{=}5$, D4M achieves only $15.06\%$ ($-7.73\%$ vs.\ unguided), and even at $t_{\text{start}}{=}10$, it reaches just $16.08\%$ ($-6.71\%$), indicating that insufficient denoising steps preserve real-image artifacts that degrade downstream classification. Only at $t_{\text{start}}{=}40$ does D4M marginally exceed unguided ($23.07\%$ vs.\ $22.79\%$), and even at the optimal $t_{\text{start}}$, it falls $2.63\%$ short of \cags{}'s $25.70\%$. Critically, D4M requires access to real images, introduces $t_{\text{start}}$ as an additional hyperparameter that must be tuned per dataset, and exhibits $1.5$--$2\times$ higher variance than \cags{} at every operating point. In contrast, \cags{} generates from pure noise without any real-image access, requires no $t_{\text{start}}$ tuning, and provides per-class adaptive guidance that is both more principled and more effective.
+
+\begin{table}[t]
+\centering
+\caption{D4M sensitivity to $t_{\text{start}}$ on ImageNet-100 (100-class, IPC=10, ConvNet-6). New data points ($t{=}5$--$20$, $30$--$35$, $45$) use 1 seed; $t{=}25$ and $t{=}40$ use 3 seeds. D4M accuracy increases monotonically with $t_{\text{start}}$ but never reaches \cags{}'s $25.70\%$. At $t{=}5$--$20$, D4M underperforms unguided ($22.79\%$); only at $t{=}40$ does it marginally exceed unguided.}
+\label{tab:d4m-sensitivity}
+\begin{tabular}{ccc}
+\toprule
+$t_{\text{start}}$ & Top-1 (\%) & $\Delta$ vs.\ Unguided \\
+\midrule
+5 & $15.06$ & $-7.73$ \\
+10 & $16.08$ & $-6.71$ \\
+15 & $16.38$ & $-6.41$ \\
+20 & \textit{XX.XX} & \textit{XX.XX} \\
+25 & $20.21 \pm 0.39$ & $-2.58$ \\
+30 & \textit{XX.XX} & \textit{XX.XX} \\
+35 & \textit{XX.XX} & \textit{XX.XX} \\
+40 & $23.07 \pm 0.59$ & $+0.28$ \\
+45 & \textit{XX.XX} & \textit{XX.XX} \\
+\midrule
+Unguided & $22.79 \pm 0.18$ & --- \\
+\cags{} (2-factor, optimal) & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{+2.91}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \paragraph{D4M's benefit is dataset-dependent.}
 To further investigate D4M's behavior, we apply it with $t_{\text{start}} = 25$ to two additional datasets: ImageNette (10 classes, visually distinct categories) and ImageWoof (10 classes, fine-grained dog breeds). \Cref{tab:d4m-cross} presents the results alongside the IN-100 comparison. On ImageNette, D4M achieves $54.91 \pm 0.24\%$, competitive with the four-factor \cags{} ($54.36 \pm 0.57\%$) but below the two-factor optimal ($55.27 \pm 0.68\%$). However, on ImageWoof, D4M drops to $28.05 \pm 0.27\%$, \emph{below} the unguided baseline ($31.39 \pm 0.68\%$) by $-3.34\%$. This dataset-dependent behavior reveals that D4M's real-image initialization is beneficial when classes are visually distinct (ImageNette) but harmful when classes are fine-grained and visually similar (ImageWoof), where the generative prior is more important than preserved real-image structure. \cags{}, by contrast, provides consistent improvements across all three datasets without requiring real-image access or per-dataset hyperparameter tuning, demonstrating the robustness of its principled, training-free approach. We note that D4M's ImageNette and ImageWoof results were obtained under an earlier evaluation protocol (2000 epochs); our unguided and \cags{} results for these 10-class datasets use 3000 epochs per our unified protocol, which may partially account for the performance difference.

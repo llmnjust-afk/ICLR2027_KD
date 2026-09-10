@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  10 SEP 2026 15:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  10 SEP 2026 22:19
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -523,7 +523,7 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count308
 \l__pdf_internal_box=\box56
 )
-(/tmp/paperguru-out-jQi1pD/main.aux)
+(/tmp/paperguru-out-o9SYSJ/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -545,8 +545,8 @@ LaTeX Font Info:    ... okay on input line 42.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
 Package hyperref Info: Link coloring OFF on input line 42.
- (/tmp/paperguru-out-jQi1pD/main.out)
-(/tmp/paperguru-out-jQi1pD/main.out)
+ (/tmp/paperguru-out-o9SYSJ/main.out)
+(/tmp/paperguru-out-o9SYSJ/main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
@@ -738,8 +738,16 @@ Package pdftex.def Info: figures/results_comparison.pdf  used on input line 152
 (pdftex.def)             Requested size: 469.75502pt x 231.82452pt.
 
 [14] [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figur
-es/results_comparison.pdf>] [17] [18] [19]
-Overfull \hbox (29.1228pt too wide) in paragraph at lines 325--326
+es/results_comparison.pdf>] [17] [18]
+<figures/class_level_mechanism.pdf, id=571, 710.67938pt x 569.52919pt>
+File: figures/class_level_mechanism.pdf Graphic file (type pdf)
+<use figures/class_level_mechanism.pdf>
+Package pdftex.def Info: figures/class_level_mechanism.pdf  used on input line 
+305.
+(pdftex.def)             Requested size: 469.75502pt x 376.46399pt.
+ [19] [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/c
+lass_level_mechanism.pdf>] [21]
+Overfull \hbox (29.1228pt too wide) in paragraph at lines 353--354
 \T1/lmr/m/n/10 (-20) To as-sess the ro-bust-ness of \T1/lmr/m/sc/10 (-20) CAGS 
 \T1/lmr/m/n/10 (-20) to the choice of guid-ance range $\OT1/lmr/m/n/10 (-20) [\
 OML/lmm/m/it/10 ^^U[]; ^^U[]\OT1/lmr/m/n/10 (-20) ]$\T1/lmr/m/n/10 (-20) , we s
@@ -752,7 +760,7 @@ ML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 06\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex [20]
+rning.tex
 Overfull \hbox (19.61183pt too wide) in paragraph at lines 4--5
 \T1/lmr/m/n/10 (-20) mance, with clus-ter en-tropy alone ($\OML/lmm/m/it/10 ^^L
 []\OT1/lmr/m/n/10 (-20) 1$\T1/lmr/m/n/10 (-20) ) out-per-form-ing the de-fault 
@@ -763,16 +771,16 @@ multi-factor de-sign ($\OML/lmm/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it
 m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2$\T1/lmr/m/n/10 (-20) )
  []
 
-[21] [22])
+[22] [23])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
-set-entropy.tex [23]
+set-entropy.tex [24]
 Overfull \hbox (1.47008pt too wide) in paragraph at lines 12--29
  [][] 
  []
 
-[24])
+[25])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
-ubset.tex [25])
+ubset.tex [26])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex
 Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
@@ -784,22 +792,22 @@ n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^N[]\O
 T1/lmr/m/n/10 (-20) 0)$
  []
 
-[26] [27])
+[27] [28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [28])
+et.tex [29] [30])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex [29]
-<figures/guidance_analysis.pdf, id=679, 1075.30493pt x 317.09583pt>
+nalysis.tex [31]
+<figures/guidance_analysis.pdf, id=792, 1075.30493pt x 317.09583pt>
 File: figures/guidance_analysis.pdf Graphic file (type pdf)
 <use figures/guidance_analysis.pdf>
 Package pdftex.def Info: figures/guidance_analysis.pdf  used on input line 14.
 (pdftex.def)             Requested size: 469.75502pt x 138.52586pt.
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [30] [31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fig
-ures/guidance_analysis.pdf>] [32])
+es.tex [32 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
+guidance_analysis.pdf>] [33] [34])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [33]
+s.tex [35]
 Overfull \hbox (13.63068pt too wide) in paragraph at lines 7--8
  []\T1/lmr/bx/sc/10 (-20) Configuration choice is dataset-dependent.[] \T1/lmr/
 m/n/10 (-20) The two-factor op-ti-mal con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20) 
@@ -811,13 +819,13 @@ T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex [34]
+.tex [36]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
-[35]) (/tmp/paperguru-out-jQi1pD/main.bbl [36] [37] [38]) [39]
-(/tmp/paperguru-out-jQi1pD/main.aux)
+[37]) (/tmp/paperguru-out-o9SYSJ/main.bbl [38] [39] [40]) [41]
+(/tmp/paperguru-out-o9SYSJ/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -825,13 +833,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: C790309E190320191BA48A56922119F8;6705.
  ) 
 Here is how much of TeX's memory you used:
- 18121 strings out of 477975
- 305509 string characters out of 5839282
- 1871330 words of memory out of 5000000
- 37324 multiletter control sequences out of 15000+600000
- 631539 words of font info for 310 fonts, out of 8000000 for 9000
+ 18140 strings out of 477975
+ 306018 string characters out of 5839282
+ 1877330 words of memory out of 5000000
+ 37336 multiletter control sequences out of 15000+600000
+ 631496 words of font info for 310 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,11n,77p,3730b,639s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,13n,77p,3730b,643s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/l
@@ -853,16 +861,16 @@ lmsy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b>
-Output written on /tmp/paperguru-out-jQi1pD/main.pdf (39 pages, 6979125 bytes).
+Output written on /tmp/paperguru-out-o9SYSJ/main.pdf (41 pages, 7015768 bytes).
 
 PDF statistics:
- 1075 PDF objects out of 1200 (max. 8388607)
- 844 compressed objects within 9 object streams
- 194 named destinations out of 1000 (max. 500000)
- 64280 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 1189 PDF objects out of 1200 (max. 8388607)
+ 878 compressed objects within 9 object streams
+ 200 named destinations out of 1000 (max. 500000)
+ 64285 words of extra memory for PDF output out of 74296 (max. 10000000)
 
 
-Latexmk: Missing bbl file '/tmp/paperguru-out-jQi1pD/main.bbl' in following:
+Latexmk: Missing bbl file '/tmp/paperguru-out-o9SYSJ/main.bbl' in following:
  No file main.bbl.
 
 Rc files read:
@@ -878,7 +886,7 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-jQi1pD"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-o9SYSJ"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -960,7 +968,7 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-jQi1pD/main.aux)
+(/tmp/paperguru-out-o9SYSJ/main.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1400,8 +1408,8 @@ LaTeX Warning: Reference `tab:significance' on page 1 undefined on input line 2
 
 [17]
 
-LaTeX Warning: Reference `fig:results-overview' on page 1 undefined on input li
-ne 283.
+LaTeX Warning: Reference `tab:quartile-analysis' on page 1 undefined on input l
+ine 281.
 
 
 LaTeX Warning: Reference `sec:factor-ablation' on page 1 undefined on input lin
@@ -1409,16 +1417,21 @@ e 283.
 
 [18]
 
+LaTeX Warning: Reference `fig:class-level-mechanism' on page 1 undefined on inp
+ut line 285.
+
+
 LaTeX Warning: Reference `tab:factor-ablation' on page 1 undefined on input lin
-e 312.
+e 337.
 
-[19]
+[19] [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/cl
+ass_level_mechanism.pdf>]
 
-LaTeX Warning: Reference `tab:sensitivity' on page 1 undefined on input line 32
-5.
+LaTeX Warning: Reference `tab:sensitivity' on page 1 undefined on input line 35
+3.
 
 
-Overfull \hbox (29.1228pt too wide) in paragraph at lines 325--326
+Overfull \hbox (29.1228pt too wide) in paragraph at lines 353--354
 \T1/lmr/m/n/10 (-20) To as-sess the ro-bust-ness of \T1/lmr/m/sc/10 (-20) CAGS 
 \T1/lmr/m/n/10 (-20) to the choice of guid-ance range $\OT1/lmr/m/n/10 (-20) [\
 OML/lmm/m/it/10 ^^U[]; ^^U[]\OT1/lmr/m/n/10 (-20) ]$\T1/lmr/m/n/10 (-20) , we s
@@ -1429,7 +1442,7 @@ ML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 06\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20
  (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 10\OMS/lmsy/m/n/10 g$
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex [20]
+rning.tex [21]
 
 LaTeX Warning: Reference `sec:factor-ablation' on page 1 undefined on input lin
 e 4.
@@ -1438,27 +1451,27 @@ e 4.
 LaTeX Warning: Reference `sec:compute-efficiency' on page 1 undefined on input 
 line 7.
 
+[22]
 
 LaTeX Warning: Reference `tab:weight-grid' on page 1 undefined on input line 46
 .
 
-[21]
+[23]
 
 LaTeX Warning: Reference `tab:weight-full' on page 1 undefined on input line 49
 .
 
-[22])
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
-set-entropy.tex
+set-entropy.tex [24]
 
-LaTeX Warning: Reference `sec:factor-ablation' on page 23 undefined on input li
+LaTeX Warning: Reference `sec:factor-ablation' on page 25 undefined on input li
 ne 4.
 
 
-LaTeX Warning: Reference `sec:weight-learning' on page 23 undefined on input li
+LaTeX Warning: Reference `sec:weight-learning' on page 25 undefined on input li
 ne 4.
 
-[23]
 
 LaTeX Warning: Reference `tab:cross-dataset-config' on page 1 undefined on inpu
 t line 6.
@@ -1466,25 +1479,25 @@ t line 6.
 
 Overfull \hbox (1.47008pt too wide) in paragraph at lines 12--29
  [][] 
-[24]
+[25]
 
-LaTeX Warning: Reference `sec:semantic-subset' on page 25 undefined on input li
+LaTeX Warning: Reference `sec:semantic-subset' on page 26 undefined on input li
 ne 38.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
 ubset.tex
 
-LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 25 undefined on in
+LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 26 undefined on in
 put line 4.
 
 
 LaTeX Warning: Reference `tab:semantic-subset' on page 1 undefined on input lin
 e 6.
 
-[25]
+[26]
 
-LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 26 undefined on in
+LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 27 undefined on in
 put line 34.
 
 )
@@ -1498,60 +1511,61 @@ Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
 n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^N[]\O
 T1/lmr/m/n/10 (-20) 0)$
 
-Package natbib Warning: Citation `russakovsky2014imagenet' on page 26 undefined
+Package natbib Warning: Citation `russakovsky2014imagenet' on page 27 undefined
  on input line 4.
 
 
 LaTeX Warning: Reference `tab:scaling' on page 1 undefined on input line 6.
 
+[27]
 
 LaTeX Warning: Reference `prop:entropy' on page 1 undefined on input line 32.
 
-[26])
+[28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [27]
+et.tex
 
-Package natbib Warning: Citation `peebles2022scalable' on page 28 undefined on 
+Package natbib Warning: Citation `peebles2022scalable' on page 29 undefined on 
 input line 4.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 28 undefin
+Package natbib Warning: Citation `rombach2021highresolution' on page 29 undefin
 ed on input line 4.
 
 
-Package natbib Warning: Citation `bossard2014food101' on page 28 undefined on i
+Package natbib Warning: Citation `bossard2014food101' on page 29 undefined on i
 nput line 7.
 
 
-Package natbib Warning: Citation `krizhevsky2009learning' on page 28 undefined 
+Package natbib Warning: Citation `krizhevsky2009learning' on page 29 undefined 
 on input line 7.
 
 
 LaTeX Warning: Reference `tab:non-imagenet' on page 1 undefined on input line 1
 0.
 
-[28]
+[29]
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 29 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 30 undefi
 ned on input line 33.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 29 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 30 undefined on input 
 line 33.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 29 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 30 undefined on input l
 ine 33.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex [29]
+nalysis.tex [30]
 
 LaTeX Warning: Reference `fig:guidance-analysis' on page 1 undefined on input l
 ine 6.
 
 
-LaTeX Warning: Reference `sec:factor-ablation' on page 30 undefined on input li
+LaTeX Warning: Reference `sec:factor-ablation' on page 31 undefined on input li
 ne 6.
 
 )
@@ -1562,23 +1576,21 @@ LaTeX Warning: Reference `tab:dd-baselines' on page 1 undefined on input line 4
 .
 
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 30 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 31 undefi
 ned on input line 4.
 
 
-Package natbib Warning: Citation `kim2022dataset' on page 30 undefined on input
+Package natbib Warning: Citation `kim2022dataset' on page 31 undefined on input
  line 4.
 
 
-Package natbib Warning: Citation `fan2025generative' on page 30 undefined on in
+Package natbib Warning: Citation `fan2025generative' on page 31 undefined on in
 put line 4.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 30 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 31 undefined on input 
 line 4.
 
-[30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>]
 
 Package natbib Warning: Citation `chansantiago2025modeguided' on page 31 undefi
 ned on input line 8.
@@ -1609,49 +1621,55 @@ line 23.
 
 [31]
 
-LaTeX Warning: Reference `tab:d4m-cross' on page 1 undefined on input line 38.
+LaTeX Warning: Reference `tab:d4m-sensitivity' on page 1 undefined on input lin
+e 35.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 56.
+LaTeX Warning: Reference `tab:d4m-cross' on page 1 undefined on input line 62.
+
+[32 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
+e_analysis.pdf>]
+
+Package natbib Warning: Citation `wang2026dmgd' on page 33 undefined on input l
+ine 80.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 56.
+3 undefined on input line 80.
 
 
 LaTeX Warning: Reference `tab:sota-comparison' on page 1 undefined on input lin
-e 56.
+e 80.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 60.
-
-
-Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 60.
-
-
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 60.
+Package natbib Warning: Citation `wang2026dmgd' on page 33 undefined on input l
+ine 84.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 60.
+3 undefined on input line 84.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 66.
+Package natbib Warning: Citation `wang2026dmgd' on page 33 undefined on input l
+ine 84.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 76.
+3 undefined on input line 84.
 
-[32])
+
+Package natbib Warning: Citation `wang2026dmgd' on page 33 undefined on input l
+ine 90.
+
+
+Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
+3 undefined on input line 100.
+
+[33])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [33]
+s.tex [34]
 
-LaTeX Warning: Reference `eq:complexity' on page 34 undefined on input line 7.
+LaTeX Warning: Reference `eq:complexity' on page 35 undefined on input line 7.
 
 
 Overfull \hbox (13.63068pt too wide) in paragraph at lines 7--8
@@ -1662,26 +1680,26 @@ n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\O
 T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 
 ; ^^N[]\OT1/lmr/m/n/10 (-20) 0)$
 
-Package natbib Warning: Citation `wang2026dmgd' on page 34 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 35 undefined on input l
 ine 13.
 
-)
+[35])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex [34]
+.tex
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
+[36]
 
-LaTeX Warning: Reference `prop:entropy' on page 35 undefined on input line 10.
+LaTeX Warning: Reference `prop:entropy' on page 37 undefined on input line 10.
 
-[35]
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-6 undefined on input line 12.
+7 undefined on input line 12.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 36 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 37 undefined on input l
 ine 12.
 
 )
@@ -1689,7 +1707,7 @@ No file main.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[36] (/tmp/paperguru-out-jQi1pD/main.aux)
+[37] (/tmp/paperguru-out-o9SYSJ/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1726,29 +1744,29 @@ msy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-jQi1pD/main.pdf (36 pages, 6947858 bytes).
+Output written on /tmp/paperguru-out-o9SYSJ/main.pdf (37 pages, 6985638 bytes).
 
-SyncTeX written on /tmp/paperguru-out-jQi1pD/main.synctex.gz.Transcript written on /tmp/paperguru-out-jQi1pD/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-jQi1pD/main.log'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.log'
+SyncTeX written on /tmp/paperguru-out-o9SYSJ/main.synctex.gz.Transcript written on /tmp/paperguru-out-o9SYSJ/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-o9SYSJ/main.log'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.log'
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-jQi1pD/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-o9SYSJ/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-jQi1pD/main'...
-Rule 'bibtex /tmp/paperguru-out-jQi1pD/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-o9SYSJ/main'...
+Rule 'bibtex /tmp/paperguru-out-o9SYSJ/main':  Reasons for rerun
 Category 'other':
-  Rerun of 'bibtex /tmp/paperguru-out-jQi1pD/main' forced or previously required
+  Rerun of 'bibtex /tmp/paperguru-out-o9SYSJ/main' forced or previously required
 
 ------------
-Run number 1 of rule 'bibtex /tmp/paperguru-out-jQi1pD/main'
+Run number 1 of rule 'bibtex /tmp/paperguru-out-o9SYSJ/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-jQi1pD/'.
+Latexmk: Change directory to '/tmp/paperguru-out-o9SYSJ/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-jQi1pD:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-jQi1pD:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-o9SYSJ:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-o9SYSJ:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -1760,15 +1778,15 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-jQi1pD/main.aux
-  /tmp/paperguru-out-jQi1pD/main.bbl
-  /tmp/paperguru-out-jQi1pD/main.out
+  /tmp/paperguru-out-o9SYSJ/main.aux
+  /tmp/paperguru-out-o9SYSJ/main.bbl
+  /tmp/paperguru-out-o9SYSJ/main.out
 
 ------------
 Run number 2 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-jQi1pD"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-o9SYSJ"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -1850,8 +1868,8 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-jQi1pD/main.aux) (/tmp/paperguru-out-jQi1pD/main.out)
-(/tmp/paperguru-out-jQi1pD/main.out)
+(/tmp/paperguru-out-o9SYSJ/main.aux) (/tmp/paperguru-out-o9SYSJ/main.out)
+(/tmp/paperguru-out-o9SYSJ/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -2156,8 +2174,9 @@ _KD/paper/figures/results_comparison.pdf>]
 Package natbib Warning: Citation `dufour2026lottery' on page 16 undefined on in
 put line 226.
 
-[16] [17] [18] [19]
-Overfull \hbox (29.1228pt too wide) in paragraph at lines 325--326
+[16] [17] [18] [19] [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
+aper/figures/class_level_mechanism.pdf>]
+Overfull \hbox (29.1228pt too wide) in paragraph at lines 353--354
 \T1/lmr/m/n/10 (-20) To as-sess the ro-bust-ness of \T1/lmr/m/sc/10 (-20) CAGS 
 \T1/lmr/m/n/10 (-20) to the choice of guid-ance range $\OT1/lmr/m/n/10 (-20) [\
 OML/lmm/m/it/10 ^^U[]; ^^U[]\OT1/lmr/m/n/10 (-20) ]$\T1/lmr/m/n/10 (-20) , we s
@@ -2166,9 +2185,9 @@ m/m/it/10 :\OT1/lmr/m/n/10 (-20) 04\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20) 0\O
 ML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 06\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20
 ) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 08\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10
  (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 10\OMS/lmsy/m/n/10 g$
-)
+[21])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex [20]
+rning.tex
 Overfull \hbox (19.61183pt too wide) in paragraph at lines 4--5
 \T1/lmr/m/n/10 (-20) mance, with clus-ter en-tropy alone ($\OML/lmm/m/it/10 ^^L
 []\OT1/lmr/m/n/10 (-20) 1$\T1/lmr/m/n/10 (-20) ) out-per-form-ing the de-fault 
@@ -2177,14 +2196,14 @@ multi-factor de-sign ($\OML/lmm/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it
 /lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 3\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/n/10 (-
 20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2\OML/lmm/m/it/10 ; ^^N[]\OT1/lmr/
 m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2$\T1/lmr/m/n/10 (-20) )
-[21] [22])
+[22] [23] [24])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
-set-entropy.tex [23]
+set-entropy.tex
 Overfull \hbox (1.47008pt too wide) in paragraph at lines 12--29
  [][] 
-[24])
+[25])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
-ubset.tex [25])
+ubset.tex [26])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex
 Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
@@ -2195,128 +2214,129 @@ Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
 n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^N[]\O
 T1/lmr/m/n/10 (-20) 0)$
 
-Package natbib Warning: Citation `russakovsky2014imagenet' on page 26 undefined
+Package natbib Warning: Citation `russakovsky2014imagenet' on page 27 undefined
  on input line 4.
 
-[26])
+[27] [28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [27]
+et.tex
 
-Package natbib Warning: Citation `peebles2022scalable' on page 28 undefined on 
+Package natbib Warning: Citation `peebles2022scalable' on page 29 undefined on 
 input line 4.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 28 undefin
+Package natbib Warning: Citation `rombach2021highresolution' on page 29 undefin
 ed on input line 4.
 
 
-Package natbib Warning: Citation `bossard2014food101' on page 28 undefined on i
+Package natbib Warning: Citation `bossard2014food101' on page 29 undefined on i
 nput line 7.
 
 
-Package natbib Warning: Citation `krizhevsky2009learning' on page 28 undefined 
+Package natbib Warning: Citation `krizhevsky2009learning' on page 29 undefined 
 on input line 7.
 
-[28]
+[29]
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 29 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 30 undefi
 ned on input line 33.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 29 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 30 undefined on input 
 line 33.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 29 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 30 undefined on input l
 ine 33.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex [29])
+nalysis.tex [30])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
 es.tex
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 30 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 31 undefi
 ned on input line 4.
 
 
-Package natbib Warning: Citation `kim2022dataset' on page 30 undefined on input
+Package natbib Warning: Citation `kim2022dataset' on page 31 undefined on input
  line 4.
 
 
-Package natbib Warning: Citation `fan2025generative' on page 30 undefined on in
+Package natbib Warning: Citation `fan2025generative' on page 31 undefined on in
 put line 4.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 30 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 31 undefined on input 
 line 4.
-
-[30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>]
-
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 31 undefi
-ned on input line 8.
-
-
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 31 undefi
-ned on input line 8.
-
-
-Package natbib Warning: Citation `kim2022dataset' on page 31 undefined on input
- line 17.
-
-
-Package natbib Warning: Citation `fan2025generative' on page 31 undefined on in
-put line 18.
-
-
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 31 undefi
-ned on input line 19.
-
-
-Package natbib Warning: Citation `su2024dataset' on page 31 undefined on input 
-line 22.
-
-
-Package natbib Warning: Citation `su2024dataset' on page 31 undefined on input 
-line 23.
 
 [31]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 56.
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 32 undefi
+ned on input line 8.
+
+
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 32 undefi
+ned on input line 8.
+
+
+Package natbib Warning: Citation `kim2022dataset' on page 32 undefined on input
+ line 17.
+
+
+Package natbib Warning: Citation `fan2025generative' on page 32 undefined on in
+put line 18.
+
+
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 32 undefi
+ned on input line 19.
+
+
+Package natbib Warning: Citation `su2024dataset' on page 32 undefined on input 
+line 22.
+
+
+Package natbib Warning: Citation `su2024dataset' on page 32 undefined on input 
+line 23.
+
+[32 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
+e_analysis.pdf>]
+
+Package natbib Warning: Citation `wang2026dmgd' on page 33 undefined on input l
+ine 80.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 56.
+3 undefined on input line 80.
 
+[33]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 60.
-
-
-Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 60.
-
-
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 60.
+Package natbib Warning: Citation `wang2026dmgd' on page 34 undefined on input l
+ine 84.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 60.
+4 undefined on input line 84.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 32 undefined on input l
-ine 66.
+Package natbib Warning: Citation `wang2026dmgd' on page 34 undefined on input l
+ine 84.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-2 undefined on input line 76.
+4 undefined on input line 84.
 
-[32])
+
+Package natbib Warning: Citation `wang2026dmgd' on page 34 undefined on input l
+ine 90.
+
+
+Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
+4 undefined on input line 100.
+
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [33]
+s.tex [34]
 Overfull \hbox (13.63068pt too wide) in paragraph at lines 7--8
  []\T1/lmr/bx/sc/10 (-20) Configuration choice is dataset-dependent.[] \T1/lmr/
 m/n/10 (-20) The two-factor op-ti-mal con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20) 
@@ -2324,286 +2344,36 @@ m/n/10 (-20) The two-factor op-ti-mal con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20)
 n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\O
 T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 
 ; ^^N[]\OT1/lmr/m/n/10 (-20) 0)$
+[35]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 34 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 36 undefined on input l
 ine 13.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex [34]
+.tex [36]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
-[35]
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-6 undefined on input line 12.
+7 undefined on input line 12.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 36 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 37 undefined on input l
 ine 12.
 
-) (/tmp/paperguru-out-jQi1pD/main.bbl [36] [37] [38])
+) (/tmp/paperguru-out-o9SYSJ/main.bbl [37] [38] [39])
 
 Package natbib Warning: There were undefined citations.
 
-[39] (/tmp/paperguru-out-jQi1pD/main.aux
+[40] (/tmp/paperguru-out-o9SYSJ/main.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
 
 )
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
- )
-(see the transcript file for additional information){/usr/share/texmf/fonts/enc
-/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/sh
-are/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm
-/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf
-/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.p
-fb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/t
-ype1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></
-usr/share/texmf/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr
-/share/texmf/fonts/type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi9.pfb></usr/share/t
-exmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
-r12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fon
-ts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></
-usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/pu
-blic/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/t
-exmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/l
-msy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/f
-onts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pf
-b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-jQi1pD/main.pdf (39 pages, 6971032 bytes).
-
-SyncTeX written on /tmp/paperguru-out-jQi1pD/main.synctex.gz.Transcript written on /tmp/paperguru-out-jQi1pD/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-jQi1pD/main.log'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-jQi1pD/main.bbl'
-Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-jQi1pD/main.pdf'
-Latexmk: Found bibliography file(s):
-  /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-jQi1pD/main'...
-Rule 'bibtex /tmp/paperguru-out-jQi1pD/main':  Reasons for rerun
-Changed files or newly in use/created:
-  /tmp/paperguru-out-jQi1pD/main.aux
-
-------------
-Run number 2 of rule 'bibtex /tmp/paperguru-out-jQi1pD/main'
-------------
-Latexmk: Change directory to '/tmp/paperguru-out-jQi1pD/'.
-To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-jQi1pD:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-jQi1pD:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
-------------
-Running 'bibtex  "main.aux"'
-------------
-This is BibTeX, Version 0.99d (TeX Live 2022/Debian)
-The top-level auxiliary file: main.aux
-The style file: plainnat.bst
-Database file #1: refs.bib
-Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper'
-Latexmk: applying rule 'pdflatex'...
-Rule 'pdflatex':  Reasons for rerun
-Changed files or newly in use/created:
-  /tmp/paperguru-out-jQi1pD/main.aux
-
-------------
-Run number 3 of rule 'pdflatex'
-------------
-------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-jQi1pD"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
-------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
-entering extended mode
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex
-LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-01-16>
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
-(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
-(/usr/share/texmf/tex/latex/lm/lmodern.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
-(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
-Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
-Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
-(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-jQi1pD/main.aux) (/tmp/paperguru-out-jQi1pD/main.out)
-(/tmp/paperguru-out-jQi1pD/main.out)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-)
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
-(/usr/share/texmf/tex/latex/lm/omllmm.fd)
-(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
-(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/abstract.t
-ex)
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/introducti
-on.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/usr/share/texmf/tex/latex/lm/ts1lmr.fd)
-
-LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 13.
-
-[2]
-
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 19.
-
-)
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/related-wo
-rk.tex [3] [4])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/method.tex
-[5] [6 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/fram
-ework.jpg>] [7] [8])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s.tex (/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [9] [10] [11] [12] [13]
-[14] [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figur
-es/results_comparison.pdf>] [17] [18] [19]
-Overfull \hbox (29.1228pt too wide) in paragraph at lines 325--326
-\T1/lmr/m/n/10 (-20) To as-sess the ro-bust-ness of \T1/lmr/m/sc/10 (-20) CAGS 
-\T1/lmr/m/n/10 (-20) to the choice of guid-ance range $\OT1/lmr/m/n/10 (-20) [\
-OML/lmm/m/it/10 ^^U[]; ^^U[]\OT1/lmr/m/n/10 (-20) ]$\T1/lmr/m/n/10 (-20) , we s
-weep $\OML/lmm/m/it/10 ^^U[] \OMS/lmsy/m/n/10 2 f\OT1/lmr/m/n/10 (-20) 0\OML/lm
-m/m/it/10 :\OT1/lmr/m/n/10 (-20) 04\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20) 0\O
-ML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 06\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20
-) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 08\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10
- (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 10\OMS/lmsy/m/n/10 g$
-)
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex [20]
-Overfull \hbox (19.61183pt too wide) in paragraph at lines 4--5
-\T1/lmr/m/n/10 (-20) mance, with clus-ter en-tropy alone ($\OML/lmm/m/it/10 ^^L
-[]\OT1/lmr/m/n/10 (-20) 1$\T1/lmr/m/n/10 (-20) ) out-per-form-ing the de-fault 
-multi-factor de-sign ($\OML/lmm/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it
-/10 :\OT1/lmr/m/n/10 (-20) 3\OML/lmm/m/it/10 ; ^^L[]\OT1/lmr/m/n/10 (-20) 0\OML
-/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 3\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/n/10 (-
-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2\OML/lmm/m/it/10 ; ^^N[]\OT1/lmr/
-m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2$\T1/lmr/m/n/10 (-20) )
-[21] [22])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
-set-entropy.tex [23]
-Overfull \hbox (1.47008pt too wide) in paragraph at lines 12--29
- [][] 
-[24])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
-ubset.tex [25])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
-0.tex
-Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
-\T1/lmr/m/n/10 (-20) tic sub-set anal-y-sis yield a nu-anced prac-ti-cal rec-om
--men-da-tion. The two-factor con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20) (\OML/lmm
-/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 ; ^^L[]\OT1/lmr/m/n/10 (-20
-) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/
-n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^N[]\O
-T1/lmr/m/n/10 (-20) 0)$
-[26] [27])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [28])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex [29])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [30] [31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fig
-ures/guidance_analysis.pdf>] [32])
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [33]
-Overfull \hbox (13.63068pt too wide) in paragraph at lines 7--8
- []\T1/lmr/bx/sc/10 (-20) Configuration choice is dataset-dependent.[] \T1/lmr/
-m/n/10 (-20) The two-factor op-ti-mal con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20) 
-(\OML/lmm/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 ; ^^L[]\OT1/lmr/m/
-n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\O
-T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 
-; ^^N[]\OT1/lmr/m/n/10 (-20) 0)$
-)
-(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex [34]
-
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 6.
-
-[35]) (/tmp/paperguru-out-jQi1pD/main.bbl [36] [37] [38]) [39]
-(/tmp/paperguru-out-jQi1pD/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2632,29 +2402,30 @@ msy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-jQi1pD/main.pdf (39 pages, 6979125 bytes).
+Output written on /tmp/paperguru-out-o9SYSJ/main.pdf (40 pages, 7008196 bytes).
 
-SyncTeX written on /tmp/paperguru-out-jQi1pD/main.synctex.gz.Transcript written on /tmp/paperguru-out-jQi1pD/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-jQi1pD/main.log'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-jQi1pD/main.bbl'
+SyncTeX written on /tmp/paperguru-out-o9SYSJ/main.synctex.gz.Transcript written on /tmp/paperguru-out-o9SYSJ/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-o9SYSJ/main.log'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-o9SYSJ/main.bbl'
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-jQi1pD/main.pdf'
+Latexmk: References changed.
+Latexmk: Log file says output to '/tmp/paperguru-out-o9SYSJ/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-jQi1pD/main'...
-Rule 'bibtex /tmp/paperguru-out-jQi1pD/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-o9SYSJ/main'...
+Rule 'bibtex /tmp/paperguru-out-o9SYSJ/main':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-jQi1pD/main.aux
+  /tmp/paperguru-out-o9SYSJ/main.aux
 
 ------------
-Run number 3 of rule 'bibtex /tmp/paperguru-out-jQi1pD/main'
+Run number 2 of rule 'bibtex /tmp/paperguru-out-o9SYSJ/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-jQi1pD/'.
+Latexmk: Change directory to '/tmp/paperguru-out-o9SYSJ/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-jQi1pD:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-jQi1pD:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-o9SYSJ:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-o9SYSJ:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -2666,13 +2437,13 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-jQi1pD/main.aux
+  /tmp/paperguru-out-o9SYSJ/main.aux
 
 ------------
-Run number 4 of rule 'pdflatex'
+Run number 3 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-jQi1pD"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-o9SYSJ"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -2754,8 +2525,8 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-jQi1pD/main.aux) (/tmp/paperguru-out-jQi1pD/main.out)
-(/tmp/paperguru-out-jQi1pD/main.out)
+(/tmp/paperguru-out-o9SYSJ/main.aux) (/tmp/paperguru-out-o9SYSJ/main.out)
+(/tmp/paperguru-out-o9SYSJ/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -2793,8 +2564,9 @@ ework.jpg>] [7] [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
 s.tex (/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [9] [10] [11] [12] [13]
 [14] [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figur
-es/results_comparison.pdf>] [17] [18] [19]
-Overfull \hbox (29.1228pt too wide) in paragraph at lines 325--326
+es/results_comparison.pdf>] [17] [18] [19] [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7
+D2HVQ9DM1/ICLR2027_KD/paper/figures/class_level_mechanism.pdf>] [21]
+Overfull \hbox (29.1228pt too wide) in paragraph at lines 353--354
 \T1/lmr/m/n/10 (-20) To as-sess the ro-bust-ness of \T1/lmr/m/sc/10 (-20) CAGS 
 \T1/lmr/m/n/10 (-20) to the choice of guid-ance range $\OT1/lmr/m/n/10 (-20) [\
 OML/lmm/m/it/10 ^^U[]; ^^U[]\OT1/lmr/m/n/10 (-20) ]$\T1/lmr/m/n/10 (-20) , we s
@@ -2805,7 +2577,7 @@ ML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 06\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20
  (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 10\OMS/lmsy/m/n/10 g$
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex [20]
+rning.tex
 Overfull \hbox (19.61183pt too wide) in paragraph at lines 4--5
 \T1/lmr/m/n/10 (-20) mance, with clus-ter en-tropy alone ($\OML/lmm/m/it/10 ^^L
 []\OT1/lmr/m/n/10 (-20) 1$\T1/lmr/m/n/10 (-20) ) out-per-form-ing the de-fault 
@@ -2814,14 +2586,14 @@ multi-factor de-sign ($\OML/lmm/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it
 /lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 3\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/n/10 (-
 20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2\OML/lmm/m/it/10 ; ^^N[]\OT1/lmr/
 m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2$\T1/lmr/m/n/10 (-20) )
-[21] [22])
+[22] [23])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
-set-entropy.tex [23]
+set-entropy.tex [24]
 Overfull \hbox (1.47008pt too wide) in paragraph at lines 12--29
  [][] 
-[24])
+[25])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
-ubset.tex [25])
+ubset.tex [26])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex
 Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
@@ -2831,16 +2603,16 @@ Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
 ) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/
 n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^N[]\O
 T1/lmr/m/n/10 (-20) 0)$
-[26] [27])
+[27] [28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [28])
+et.tex [29] [30])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex [29])
+nalysis.tex [31])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [30] [31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fig
-ures/guidance_analysis.pdf>] [32])
+es.tex [32 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
+guidance_analysis.pdf>] [33] [34])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [33]
+s.tex [35]
 Overfull \hbox (13.63068pt too wide) in paragraph at lines 7--8
  []\T1/lmr/bx/sc/10 (-20) Configuration choice is dataset-dependent.[] \T1/lmr/
 m/n/10 (-20) The two-factor op-ti-mal con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20) 
@@ -2850,13 +2622,267 @@ T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10
 ; ^^N[]\OT1/lmr/m/n/10 (-20) 0)$
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex [34]
+.tex [36]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
-[35]) (/tmp/paperguru-out-jQi1pD/main.bbl [36] [37] [38]) [39]
-(/tmp/paperguru-out-jQi1pD/main.aux)
+[37]) (/tmp/paperguru-out-o9SYSJ/main.bbl [38] [39] [40]) [41]
+(/tmp/paperguru-out-o9SYSJ/main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information){/usr/share/texmf/fonts/enc
+/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf
+/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmcsco10.pfb></usr/share/texmf/fonts/type
+1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/publ
+ic/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi9.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+r12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fon
+ts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/l
+msy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/f
+onts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /tmp/paperguru-out-o9SYSJ/main.pdf (41 pages, 7015768 bytes).
+
+SyncTeX written on /tmp/paperguru-out-o9SYSJ/main.synctex.gz.Transcript written on /tmp/paperguru-out-o9SYSJ/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-o9SYSJ/main.log'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-o9SYSJ/main.bbl'
+Latexmk: References changed.
+Latexmk: Log file says output to '/tmp/paperguru-out-o9SYSJ/main.pdf'
+Latexmk: Found bibliography file(s):
+  /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-o9SYSJ/main'...
+Rule 'bibtex /tmp/paperguru-out-o9SYSJ/main':  Reasons for rerun
+Changed files or newly in use/created:
+  /tmp/paperguru-out-o9SYSJ/main.aux
+
+------------
+Run number 3 of rule 'bibtex /tmp/paperguru-out-o9SYSJ/main'
+------------
+Latexmk: Change directory to '/tmp/paperguru-out-o9SYSJ/'.
+To assist finding of files in document directory, I set
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-o9SYSJ:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-o9SYSJ:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+------------
+Running 'bibtex  "main.aux"'
+------------
+This is BibTeX, Version 0.99d (TeX Live 2022/Debian)
+The top-level auxiliary file: main.aux
+The style file: plainnat.bst
+Database file #1: refs.bib
+Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /tmp/paperguru-out-o9SYSJ/main.aux
+
+------------
+Run number 4 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-o9SYSJ"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/paperguru-out-o9SYSJ/main.aux) (/tmp/paperguru-out-o9SYSJ/main.out)
+(/tmp/paperguru-out-o9SYSJ/main.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/abstract.t
+ex)
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/introducti
+on.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+(/usr/share/texmf/tex/latex/lm/ts1lmr.fd)
+
+LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
+(Font)              using `T1/lmr/bx/n' instead on input line 13.
+
+[2]
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 19.
+
+)
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/related-wo
+rk.tex [3] [4])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/method.tex
+[5] [6 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/fram
+ework.jpg>] [7] [8])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
+s.tex (/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [9] [10] [11] [12] [13]
+[14] [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figur
+es/results_comparison.pdf>] [17] [18] [19] [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7
+D2HVQ9DM1/ICLR2027_KD/paper/figures/class_level_mechanism.pdf>] [21]
+Overfull \hbox (29.1228pt too wide) in paragraph at lines 353--354
+\T1/lmr/m/n/10 (-20) To as-sess the ro-bust-ness of \T1/lmr/m/sc/10 (-20) CAGS 
+\T1/lmr/m/n/10 (-20) to the choice of guid-ance range $\OT1/lmr/m/n/10 (-20) [\
+OML/lmm/m/it/10 ^^U[]; ^^U[]\OT1/lmr/m/n/10 (-20) ]$\T1/lmr/m/n/10 (-20) , we s
+weep $\OML/lmm/m/it/10 ^^U[] \OMS/lmsy/m/n/10 2 f\OT1/lmr/m/n/10 (-20) 0\OML/lm
+m/m/it/10 :\OT1/lmr/m/n/10 (-20) 04\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20) 0\O
+ML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 06\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (-20
+) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 08\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10
+ (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 10\OMS/lmsy/m/n/10 g$
+)
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
+rning.tex
+Overfull \hbox (19.61183pt too wide) in paragraph at lines 4--5
+\T1/lmr/m/n/10 (-20) mance, with clus-ter en-tropy alone ($\OML/lmm/m/it/10 ^^L
+[]\OT1/lmr/m/n/10 (-20) 1$\T1/lmr/m/n/10 (-20) ) out-per-form-ing the de-fault 
+multi-factor de-sign ($\OML/lmm/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it
+/10 :\OT1/lmr/m/n/10 (-20) 3\OML/lmm/m/it/10 ; ^^L[]\OT1/lmr/m/n/10 (-20) 0\OML
+/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 3\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/n/10 (-
+20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2\OML/lmm/m/it/10 ; ^^N[]\OT1/lmr/
+m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 2$\T1/lmr/m/n/10 (-20) )
+[22] [23])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
+set-entropy.tex [24]
+Overfull \hbox (1.47008pt too wide) in paragraph at lines 12--29
+ [][] 
+[25])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
+ubset.tex [26])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
+0.tex
+Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
+\T1/lmr/m/n/10 (-20) tic sub-set anal-y-sis yield a nu-anced prac-ti-cal rec-om
+-men-da-tion. The two-factor con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20) (\OML/lmm
+/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 ; ^^L[]\OT1/lmr/m/n/10 (-20
+) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/
+n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^N[]\O
+T1/lmr/m/n/10 (-20) 0)$
+[27] [28])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
+et.tex [29] [30])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
+nalysis.tex [31])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
+es.tex [32 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
+guidance_analysis.pdf>] [33] [34])
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
+s.tex [35]
+Overfull \hbox (13.63068pt too wide) in paragraph at lines 7--8
+ []\T1/lmr/bx/sc/10 (-20) Configuration choice is dataset-dependent.[] \T1/lmr/
+m/n/10 (-20) The two-factor op-ti-mal con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20) 
+(\OML/lmm/m/it/10 []\OT1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 ; ^^L[]\OT1/lmr/m/
+n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\O
+T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 
+; ^^N[]\OT1/lmr/m/n/10 (-20) 0)$
+)
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
+.tex [36]
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 6.
+
+[37]) (/tmp/paperguru-out-o9SYSJ/main.bbl [38] [39] [40]) [41]
+(/tmp/paperguru-out-o9SYSJ/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2882,14 +2908,14 @@ msy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-jQi1pD/main.pdf (39 pages, 6979125 bytes).
+Output written on /tmp/paperguru-out-o9SYSJ/main.pdf (41 pages, 7015768 bytes).
 
-SyncTeX written on /tmp/paperguru-out-jQi1pD/main.synctex.gz.Transcript written on /tmp/paperguru-out-jQi1pD/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-jQi1pD/main.log'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-jQi1pD/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-jQi1pD/main.bbl'
-Latexmk: Log file says output to '/tmp/paperguru-out-jQi1pD/main.pdf'
+SyncTeX written on /tmp/paperguru-out-o9SYSJ/main.synctex.gz.Transcript written on /tmp/paperguru-out-o9SYSJ/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-o9SYSJ/main.log'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-o9SYSJ/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-o9SYSJ/main.bbl'
+Latexmk: Log file says output to '/tmp/paperguru-out-o9SYSJ/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
 Latexmk: All targets () are up-to-date
