@@ -51,19 +51,22 @@ DATASET_CONFIGS = {
     "food101": {
         "data_dir": "/root/data/food101",
         "class_file": "./misc/class_food101.txt",
-        "prompt_template": "a photo of {}, professional food photography",
+        "prompt_template": "a high-quality photo of {}, professional food photography, close-up, on a plate, appetizing, realistic, sharp focus",
+        "negative_prompt": "blurry, low quality, distorted, cartoon, illustration, painting, text, watermark, dark, overexposed, blurry background",
         "nclass": 101,
     },
     "cifar10": {
         "data_dir": "/root/data/cifar10",
         "class_file": "./misc/class_cifar10.txt",
         "prompt_template": "a photo of a {}",
+        "negative_prompt": "blurry, low quality, distorted, cartoon, illustration, painting, text, watermark, dark, overexposed",
         "nclass": 10,
     },
     "cifar100": {
         "data_dir": "/root/data/cifar100",
         "class_file": "./misc/class_cifar100.txt",
         "prompt_template": "a photo of a {}",
+        "negative_prompt": "blurry, low quality, distorted, cartoon, illustration, painting, text, watermark",
         "nclass": 100,
     },
 }
@@ -82,12 +85,13 @@ def get_args():
     parser.add_argument("--num-samples", type=int, default=10, help="IPC (images per class)")
     parser.add_argument("--num-datasets", type=int, default=3, help="Number of generated datasets (seeds)")
     parser.add_argument("--image-size", type=int, default=256)
+    parser.add_argument("--gen-resolution", type=int, default=512, help="Generation resolution (native SD is 512)")
     parser.add_argument("--seed", type=int, default=0)
 
     # SD model
     parser.add_argument("--sd-model", type=str, default=None,
                         help="Path to SD 1.5 model (auto-detected if not set)")
-    parser.add_argument("--cfg-scale", type=float, default=4.0)
+    parser.add_argument("--cfg-scale", type=float, default=7.5)
     parser.add_argument("--num-sampling-steps", type=int, default=50)
 
     # CAGS
@@ -349,14 +353,14 @@ def main():
     scheduler = DDIMScheduler.from_pretrained(os.path.join(sd_path, "scheduler"))
     scheduler.set_timesteps(args.num_sampling_steps, device=device)
 
-    latent_size = args.image_size // 8
+    latent_size = args.gen_resolution // 8
     print(f"Model loaded. Latent size: {latent_size}")
 
     # Compute CAGS complexity from real images
     if not args.no_cags:
         print("\nExtracting VAE features from real images...")
         features_per_class, paths_per_class = extract_vae_features(
-            data_dir, class_names, vae, device, args.image_size, max_per_class=50
+            data_dir, class_names, vae, device, args.gen_resolution, max_per_class=50
         )
 
         print("\nComputing class complexity (CAGS)...")
@@ -395,6 +399,7 @@ def main():
         truncation=True, return_tensors="pt",
     )
     uncond_embeddings = text_encoder(uncond_input.input_ids.to(device))[0]
+    uncond_embeddings_default = uncond_embeddings
 
     for dataset_idx in range(args.num_datasets):
         ds_dir = os.path.join(args.save_dir, f"dataset_{dataset_idx}")
@@ -426,11 +431,22 @@ def main():
 
             # Encode text prompt
             prompt = make_prompt(class_name, template)
+            neg_prompt = cfg.get("negative_prompt", "")
             text_input = tokenizer(
                 prompt, padding="max_length", max_length=tokenizer.model_max_length,
                 truncation=True, return_tensors="pt",
             )
             text_embeddings = text_encoder(text_input.input_ids.to(device))[0]
+
+            # Encode negative prompt for uncond
+            if neg_prompt:
+                neg_input = tokenizer(
+                    neg_prompt, padding="max_length", max_length=tokenizer.model_max_length,
+                    truncation=True, return_tensors="pt",
+                )
+                uncond_embeddings = text_encoder(neg_input.input_ids.to(device))[0]
+            else:
+                uncond_embeddings = uncond_embeddings_default
 
             # Get mode features for this class
             if clusters_centers and class_idx in clusters_centers:
@@ -468,6 +484,13 @@ def main():
                 latent = latent / 0.18215
                 image = vae.decode(latent).sample
                 image = (image / 2 + 0.5).clamp(0, 1)
+
+                # Resize to target image_size if different from gen_resolution
+                if args.gen_resolution != args.image_size:
+                    image = torch.nn.functional.interpolate(
+                        image, size=(args.image_size, args.image_size),
+                        mode="bilinear", align_corners=False
+                    )
 
                 save_path = os.path.join(class_dir, f"{img_idx}.png")
                 save_image(image, save_path)
