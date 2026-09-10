@@ -18,9 +18,9 @@ The 12 configurations span three thematic groups. \textbf{Round~1} (4 configs) e
 \textbf{Group} & \textbf{Config} & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & \textbf{Proxy Top-1} & \textbf{Full Top-1} \\
 \midrule
 \multicolumn{8}{l}{\textit{Existing configurations (full eval: 3 seeds, 2000 epochs)}} \\
-& Unguided & --- & --- & --- & --- & $18.54$ & $21.63 \pm 0.16$ \\
-& Entropy only & 0 & 1 & 0 & 0 & $18.32$ & $25.31 \pm 0.62$ \\
-& Full \cags{} & 0.30 & 0.30 & 0.20 & 0.20 & $20.90$ & $24.24 \pm 0.26$ \\
+& Unguided & --- & --- & --- & --- & $18.54$ & $22.79 \pm 0.18$ \\
+& Entropy only & 0 & 1 & 0 & 0 & $18.32$ & $24.35 \pm 0.47$ \\
+& Full \cags{} & 0.30 & 0.30 & 0.20 & 0.20 & $20.90$ & $25.29 \pm 0.27$ \\
 \midrule
 \multicolumn{8}{l}{\textit{Round 1: High entropy, no separability ($\delta = 0$)}} \\
 & R1-1 & 0.20 & 0.50 & 0.30 & 0 & $19.96$ & --- \\
@@ -56,9 +56,9 @@ To verify the grid search findings under the standard evaluation protocol, we co
 \toprule
 \textbf{Config} & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} \\
 \midrule
-Unguided & --- & --- & --- & --- & $21.63 \pm 0.16$ & $41.99 \pm 0.32$ \\
-Full \cags{} & 0.30 & 0.30 & 0.20 & 0.20 & $24.24 \pm 0.26$ & $44.99 \pm 0.68$ \\
-Entropy only & 0 & 1 & 0 & 0 & $25.31 \pm 0.62$ & $46.83 \pm 0.55$ \\
+Unguided & --- & --- & --- & --- & $22.79 \pm 0.18$ & $43.67 \pm 0.07$ \\
+Full \cags{} & 0.30 & 0.30 & 0.20 & 0.20 & $25.29 \pm 0.27$ & $47.11 \pm 0.81$ \\
+Entropy only & 0 & 1 & 0 & 0 & $24.35 \pm 0.47$ & $45.93 \pm 0.70$ \\
 \midrule
 R2-1 & 0.10 & 0.70 & 0.20 & 0 & $23.55 \pm 0.27$ & $45.53 \pm 0.36$ \\
 R2-3 & 0.20 & 0.40 & 0.40 & 0 & $24.45 \pm 0.14$ & $46.07 \pm 0.78$ \\

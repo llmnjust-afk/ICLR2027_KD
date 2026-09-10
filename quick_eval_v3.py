@@ -125,7 +125,7 @@ def load_val_data(val_dir, class_names, img_size=224, batch_size=128):
         cls_dir = os.path.join(val_dir, cls)
         if not os.path.isdir(cls_dir):
             continue
-        files = sorted(glob.glob(os.path.join(cls_dir, "*.JPEG")) + glob.glob(os.path.join(cls_dir, "*.jpg")))
+        files = sorted(glob.glob(os.path.join(cls_dir, "*.JPEG")) + glob.glob(os.path.join(cls_dir, "*.jpg")) + glob.glob(os.path.join(cls_dir, "*.png")))
         for f in files:
             all_files.append(f)
             all_labels.append(idx)
@@ -155,8 +155,6 @@ def evaluate_fast(train_dir, val_dir, class_names, num_classes, device,
     t_val_start = time.time()
     print(f"  Loading validation images from {val_dir}...")
     val_images, val_labels = load_val_data(val_dir, class_names, img_size)
-    val_images = val_images.to(device)
-    val_labels = val_labels.to(device)
     print(f"  Loaded {len(val_images)} validation images ({time.time()-t_val_start:.1f}s)")
 
     model = create_model(arch, num_classes, depth=depth, norm_type=norm_type, img_size=img_size)
@@ -220,8 +218,8 @@ def evaluate_fast(train_dir, val_dir, class_names, num_classes, device,
             total = 0
             with torch.no_grad():
                 for start in range(0, len(val_images), batch_size):
-                    imgs = val_images[start:start + batch_size]
-                    tgt = val_labels[start:start + batch_size]
+                    imgs = val_images[start:start + batch_size].to(device)
+                    tgt = val_labels[start:start + batch_size].to(device)
                     outputs = model(imgs)
                     _, pred = outputs.max(1)
                     total += tgt.size(0)

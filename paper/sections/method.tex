@@ -53,7 +53,14 @@ The four factors are combined into a per-class complexity score $\rho_c \in [0, 
     \rho_c = \sigma\!\left(s \cdot \left(\alpha\,\hat{\kappa}_c + \beta\,\hat{H}_c + \gamma\,\hat{v}_c - \delta\,\hat{d}_c\right) - c_0\right),
     \label{eq:complexity}
 \end{equation}
-where $\hat{\kappa}_c$, $\hat{H}_c$, $\hat{v}_c$, and $\hat{d}_c$ are min-max normalized versions of mode count, cluster entropy, intra-class variance, and inter-class separability respectively, $\sigma(\cdot)$ is the sigmoid function, $s$ is the slope, $c_0$ is the center, and $(\alpha, \beta, \gamma, \delta)$ are weighting coefficients. We use $(\alpha, \beta, \gamma, \delta) = (0.3, 0.3, 0.2, 0.2)$ throughout. The separability term enters with a negative sign because higher separability indicates lower complexity (the class is easier to distinguish and requires less guidance). The complexity score is then mapped to a per-class guidance scale:
+where $\hat{\kappa}_c$, $\hat{H}_c$, $\hat{v}_c$, and $\hat{d}_c$ are min-max normalized versions of mode count, cluster entropy, intra-class variance, and inter-class separability respectively, $\sigma(\cdot)$ is the sigmoid function, $s$ is the slope, $c_0$ is the center, and $(\alpha, \beta, \gamma, \delta)$ are weighting coefficients. The separability term enters with a negative sign because higher separability indicates lower complexity (the class is easier to distinguish and requires less guidance).
+
+Through systematic factor ablation (\Cref{sec:factor-ablation}) and weight grid search (\Cref{sec:weight-learning}), we find that the optimal configuration uses only two factors: cluster entropy and intra-class variance with equal weights $(\alpha, \beta, \gamma, \delta) = (0, 0.5, 0.5, 0)$. Mode count and inter-class separability are eliminated because mode count is nearly constant across classes ($K{=}2$ for 94\% of classes under silhouette-based selection, providing little per-class differentiation) and separability produces near-constant guidance (std $0.006$, effectively a fixed $\lambda$). The simplified complexity score is:
+\begin{equation}
+    \rho_c = \sigma\!\left(s \cdot \left(0.5\,\hat{H}_c + 0.5\,\hat{v}_c\right) - c_0\right),
+    \label{eq:complexity-simplified}
+\end{equation}
+which we use as the default throughout. The complexity score is mapped to a per-class guidance scale:
 \begin{equation}
     \lambda_c = \lambda_{\min} + (\lambda_{\max} - \lambda_{\min}) \cdot \rho_c,
     \label{eq:cags_mapping}

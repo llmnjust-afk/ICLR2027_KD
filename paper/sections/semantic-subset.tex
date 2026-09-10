@@ -1,34 +1,34 @@
 \subsection{Semantic Subset Analysis}
 \label{sec:semantic-subset}
 
-The cross-dataset entropy validation (Section~\ref{sec:cross-dataset-entropy}) reveals a scale-dependent trade-off: entropy-only guidance excels on 10-class datasets, while the multi-factor \cags{} metric wins on the 100-class ImageNet-100. A natural question follows: is this trade-off driven by the \emph{number} of classes or by the \emph{semantic composition} of the dataset? To disentangle these factors, we partition the 100 ImageNet-100 classes into two semantically coherent subsets---44 animal classes (``animals'') and 56 non-animal classes (``objects'')---and evaluate all three guidance configurations on each subset independently. Both subsets share the same generation pipeline, guidance range $[0.0, 0.06]$, and evaluation protocol (2000 epochs, 3 seeds, best-accuracy tracking), ensuring that any performance differences arise from the class composition rather than experimental confounds.
+The cross-dataset configuration analysis (Section~\ref{sec:cross-dataset-entropy}) reveals that the two-factor optimal configuration outperforms the four-factor design on ImageNette, ImageWoof, and ImageNet-100. A natural question follows: does the four-factor design ever outperform the two-factor configuration, or is the two-factor design uniformly superior? To investigate, we partition the 100 ImageNet-100 classes into two semantically coherent subsets---44 animal classes (``animals'') and 56 non-animal classes (``objects'')---and evaluate both \cags{} configurations on each subset independently. Both subsets share the same generation pipeline, guidance range $[0.0, 0.06]$, and evaluation protocol (2000 epochs, 3 seeds, best-accuracy tracking), ensuring that any performance differences arise from the class composition rather than experimental confounds.
 
-\Cref{tab:semantic-subset} presents the results. The findings confirm that the multi-factor \cags{} advantage is driven by class scale rather than semantic homogeneity: \cags{} outperforms entropy-only on both the 44-class animals subset and the 56-class objects subset, consistent with its superiority on the full 100-class dataset.
+\Cref{tab:semantic-subset} presents the results. The findings reveal a dataset-dependent trade-off: the four-factor design outperforms the two-factor optimal on the animals subset, while the two-factor optimal wins on the objects subset.
 
 \begin{table}[t]
 \centering
-\caption{Semantic subset analysis on ImageNet-100 partitions. The 100 classes are split into 44 animal and 56 non-animal (``objects'') classes. \cags{} outperforms entropy-only on both subsets, confirming that the multi-factor advantage scales with class count rather than being tied to semantic diversity. All results use 3 seeds with best-accuracy tracking.}
+\caption{Semantic subset analysis on ImageNet-100 partitions. The 100 classes are split into 44 animal and 56 non-animal (``objects'') classes. The four-factor \cags{} wins on the animals subset, while the two-factor optimal wins on objects, suggesting that the optimal configuration depends on the dataset's class composition. All results use 2000 epochs, 3 seeds with best-accuracy tracking.}
 \label{tab:semantic-subset}
 \begin{tabular}{llccc}
 \toprule
-\textbf{Subset} & \textbf{Method} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
+\textbf{Subset} & \textbf{Method} & \textbf{Top-1 (\%)} & \textbf{$\Delta$ vs.\ unguided} & \textbf{$\Delta$ opt.\ vs.\ 4-fac.} \\
 \midrule
-\multirow{3}{*}{Animals (44-cls)} & Unguided & $23.64 \pm 0.37$ & $49.02 \pm 0.85$ & --- \\
- & \cags{} (multi-factor) & $\mathbf{25.94 \pm 0.46}$ & $\mathbf{51.24 \pm 0.49}$ & $\mathbf{+2.30}$ \\
- & Entropy-only & $25.29 \pm 0.39$ & $51.05 \pm 0.10$ & $+1.65$ \\
+\multirow{3}{*}{Animals (44-cls)} & Unguided & $23.64 \pm 0.37$ & --- & --- \\
+ & \cags{} (4-factor) & $\mathbf{25.94 \pm 0.46}$ & $\mathbf{+2.30}$ & --- \\
+ & \cags{} (2-factor opt.) & $24.83 \pm 0.47$ & $+1.19$ & $-1.11$ \\
 \midrule
-\multirow{3}{*}{Objects (56-cls)} & Unguided & $25.08 \pm 0.29$ & $46.45 \pm 0.50$ & --- \\
- & \cags{} (multi-factor) & $\mathbf{26.85 \pm 0.25}$ & $\mathbf{50.56 \pm 0.50}$ & $\mathbf{+1.77}$ \\
- & Entropy-only & $26.42 \pm 0.12$ & $49.60 \pm 0.40$ & $+1.34$ \\
+\multirow{3}{*}{Objects (56-cls)} & Unguided & $25.08 \pm 0.29$ & --- & --- \\
+ & \cags{} (4-factor) & $26.85 \pm 0.25$ & $+1.77$ & --- \\
+ & \cags{} (2-factor opt.) & $\mathbf{27.67 \pm 0.47}$ & $\mathbf{+2.59}$ & $+0.82$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\paragraph{\cags{} wins on both semantic subsets.}
-On the 44-class animals subset, \cags{} achieves $25.94 \pm 0.46\%$, outperforming entropy-only ($25.29 \pm 0.39\%$) by $0.65\%$ absolute ($2.6\%$ relative) and unguided ($23.64 \pm 0.37\%$) by $2.30\%$ absolute ($9.7\%$ relative). On the 56-class objects subset, \cags{} achieves $26.85 \pm 0.25\%$, outperforming entropy-only ($26.42 \pm 0.12\%$) by $0.43\%$ absolute ($1.6\%$ relative) and unguided ($25.08 \pm 0.29\%$) by $1.77\%$ absolute ($7.1\%$ relative). These results demonstrate that the multi-factor advantage of \cags{} is not an artifact of the specific 100-class composition but rather a function of the number of classes: at 44 and 56 classes, the additional complexity factors---mode count, intra-class variance, and inter-class separability---already provide complementary signals that entropy alone cannot capture.
+\paragraph{Four-factor wins on animals, two-factor wins on objects.}
+On the 44-class animals subset, the four-factor \cags{} achieves $25.94 \pm 0.46\%$, outperforming the two-factor optimal ($24.83 \pm 0.47\%$) by $+1.11\%$ absolute and unguided ($23.64 \pm 0.37\%$) by $+2.30\%$ absolute ($9.7\%$ relative). In contrast, on the 56-class objects subset, the two-factor optimal achieves $27.67 \pm 0.47\%$, outperforming the four-factor design ($26.85 \pm 0.25\%$) by $+0.82\%$ and unguided ($25.08 \pm 0.29\%$) by $+2.59\%$ absolute ($10.3\%$ relative). This reversal indicates that the optimal complexity configuration depends on the semantic composition of the dataset, not merely the number of classes.
 
-\paragraph{Contrast with 10-class datasets.}
-On the 10-class ImageNette and ImageWoof datasets (Section~\ref{sec:cross-dataset-entropy}), entropy-only guidance outperforms \cags{} by $1.4$--$1.6\%$. The semantic subset results bridge this gap: at 44 classes, \cags{} surpasses entropy-only by $0.65\%$, and at 56 classes by $0.43\%$, suggesting that the transition from entropy-only to multi-factor superiority occurs somewhere between 10 and 44 classes. This threshold is consistent with the theoretical motivation (Proposition~\ref{prop:entropy}): with fewer classes, the complexity factors exhibit limited variation and add noise, but as the class count grows, the factors capture genuinely different aspects of class complexity that entropy alone cannot represent.
+\paragraph{Why the four-factor wins on animals.}
+The animals subset comprises visually diverse categories (e.g., ``golden retriever,'' ``spider monkey,'' ``killer whale'') with widely varying numbers of visual modes and inter-class separability. On this subset, the mode count factor ($\alpha{=}0.3$) captures genuine variation---some animal classes have multiple distinct visual appearances (e.g., different breeds or poses) while others are more uniform---and the separability factor ($\delta{=}0.2$) correctly identifies classes that are easily confused with others. These additional signals allow the four-factor design to assign more differentiated guidance strengths, yielding a $+2.30\%$ improvement over unguided compared to the two-factor's $+1.19\%$. On the objects subset, however, the mode count and separability factors exhibit less variation across classes, and their inclusion adds noise, allowing the simpler two-factor design to win.
 
 \paragraph{Implications for practical deployment.}
-The combined findings from the cross-dataset validation and semantic subset analysis yield a clear practical recommendation. For small-scale datasets ($\leq$10 classes), entropy-only guidance is both simpler and more effective. For medium-to-large-scale datasets ($\geq$44 classes), the full multi-factor \cags{} metric provides consistent advantages across different semantic compositions. Both approaches remain training-free and require only a one-time complexity analysis, preserving the practical appeal of the \ags{} framework.
+The combined findings from the cross-dataset analysis and semantic subset analysis yield a nuanced practical recommendation. The two-factor configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ should be the default choice, as it provides consistent improvements across all tested datasets without the risk of degradation observed with the four-factor design on fine-grained data (Section~\ref{sec:cross-dataset-entropy}). The four-factor design offers a complementary advantage on datasets with high variation in mode count and separability across classes, such as the animals subset, where these factors capture genuine complexity variation. For practitioners facing an unknown dataset, the two-factor configuration's robustness, lower variance, and consistent improvements make it the safer default. Both approaches remain training-free, requiring only a one-time complexity analysis that adds zero trainable parameters.

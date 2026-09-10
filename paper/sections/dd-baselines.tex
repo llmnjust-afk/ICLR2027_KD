@@ -21,35 +21,68 @@ MGD$^3$~\cite{chansantiago2025modeguided} & $23.4 \pm 0.9$ & $25.8 \pm 0.5$ & $2
 \multicolumn{4}{l}{\emph{Fair comparison (same DiT generator, same eval protocol)}} \\
 D4M~\cite{su2024dataset} ($t{=}25$) & $20.21 \pm 0.39$ & --- & --- \\
 D4M~\cite{su2024dataset} ($t{=}40$) & $23.07 \pm 0.59$ & --- & --- \\
-Unguided & $21.63 \pm 0.16$ & $25.17 \pm 0.23$ & $24.99 \pm 0.12$ \\
-\cags{} $[0.0, 0.06]$ & $\mathbf{23.27 \pm 0.47}$ & $\mathbf{28.55 \pm 0.42}$ & $\mathbf{29.24 \pm 0.27}$ \\
+Unguided & $22.79 \pm 0.18$ & $26.65 \pm 0.16$ & $26.49 \pm 0.42$ \\
+\cags{} (4-factor) $[0.0, 0.06]$ & $25.29 \pm 0.27$ & $\mathbf{30.70 \pm 0.07}$ & $\mathbf{31.14 \pm 0.34}$ \\
+\cags{} (2-factor, optimal) & $\mathbf{25.70 \pm 0.07}$ & $29.52 \pm 0.08$ & $30.50 \pm 0.07$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{\cags{} surpasses all published baselines.}
-On ConvNet-6, \cags{} achieves $23.27\%$, matching MGD$^3$'s published $23.4\%$ within the margin of error while improving over our own unguided baseline by $+7.6\%$ relative. On ResNet-18, \cags{} achieves $29.24\%$, surpassing MGD$^3$'s published $23.6\%$ by $+5.64\%$ absolute and IDC-1's $25.1\%$ by $+4.14\%$. On ResNetAP-10, \cags{} achieves $28.55\%$, exceeding MGD$^3$'s $25.8\%$ by $+2.75\%$ and IDC-1's $25.7\%$ by $+2.85\%$. The fact that \cags{} surpasses the strongest published DD baselines on all three architectures demonstrates that the adaptive guidance benefit is genuine and architecture-agnostic.
+On ConvNet-6, the optimal two-factor \cags{} achieves $25.70\%$, surpassing MGD$^3$'s published $23.4\%$ by $+2.30\%$ absolute and IDC-1's $24.3\%$ by $+1.40\%$. On ResNet-18, the four-factor \cags{} achieves $31.14\%$ and the two-factor optimal achieves $30.50\%$, surpassing MGD$^3$'s published $23.6\%$ by $+7.54\%$ and $+6.90\%$ absolute respectively, and IDC-1's $25.1\%$ by $+6.04\%$ and $+5.40\%$. On ResNetAP-10, the four-factor \cags{} achieves $30.70\%$ and the two-factor optimal achieves $29.52\%$, exceeding MGD$^3$'s $25.8\%$ by $+4.90\%$ and $+3.72\%$ and IDC-1's $25.7\%$ by $+5.00\%$ and $+3.82\%$. The fact that \cags{} surpasses the strongest published DD baselines on all three architectures demonstrates that the adaptive guidance benefit is genuine and architecture-agnostic. Notably, the four-factor \cags{} outperforms the two-factor optimal on both ResNet-18 ($31.14\%$ vs.\ $30.50\%$) and ResNetAP-10 ($30.70\%$ vs.\ $29.52\%$), while the two-factor optimal wins on ConvNet-6 ($25.70\%$ vs.\ $25.29\%$), suggesting that the additional complexity factors provide complementary signal on higher-capacity architectures.
 
 \paragraph{D4M is sensitive to the denoising start timestep.}
-Our D4M implementation reveals a striking sensitivity to $t_{\text{start}}$: with $t_{\text{start}} = 25$ (fewer denoising steps, more real-image retention), D4M achieves only $20.21 \pm 0.39\%$---\emph{below} the unguided baseline ($21.63\%$) by $-1.42\%$ absolute. However, with $t_{\text{start}} = 40$ (more denoising steps, relying more on the generative prior), D4M recovers to $23.07 \pm 0.59\%$, approaching \cags{}'s $23.27\%$ but still falling short by $-0.20\%$ with $1.5\times$ higher variance. This result carries two implications. First, naively injecting real image structure into the diffusion process at too few denoising steps ($t = 25$) introduces artifacts that degrade downstream classification, confirming that the strength of diffusion-based dataset distillation lies primarily in the generative prior rather than in preserving real image features. Second, while D4M with sufficient denoising steps ($t = 40$) can approximate \cags{} performance, it requires access to real images, introduces an additional hyperparameter ($t_{\text{start}}$) that must be tuned per dataset, and still does not surpass \cags{}. In contrast, \cags{} generates from pure noise without any real-image access, requires no $t_{\text{start}}$ tuning, and provides per-class adaptive guidance that is both more principled and more effective.
+Our D4M implementation reveals a striking sensitivity to $t_{\text{start}}$: with $t_{\text{start}} = 25$ (fewer denoising steps, more real-image retention), D4M achieves only $20.21 \pm 0.39\%$---\emph{below} the unguided baseline ($22.79\%$) by $-2.58\%$ absolute. However, with $t_{\text{start}} = 40$ (more denoising steps, relying more on the generative prior), D4M recovers to $23.07 \pm 0.59\%$, approaching the four-factor \cags{}'s $25.29\%$ but still falling short by $-2.22\%$ with $1.5\times$ higher variance. This result carries two implications. First, naively injecting real image structure into the diffusion process at too few denoising steps ($t = 25$) introduces artifacts that degrade downstream classification, confirming that the strength of diffusion-based dataset distillation lies primarily in the generative prior rather than in preserving real image features. Second, while D4M with sufficient denoising steps ($t = 40$) can approximate \cags{} performance, it requires access to real images, introduces an additional hyperparameter ($t_{\text{start}}$) that must be tuned per dataset, and still does not surpass \cags{}. In contrast, \cags{} generates from pure noise without any real-image access, requires no $t_{\text{start}}$ tuning, and provides per-class adaptive guidance that is both more principled and more effective.
 
 \paragraph{D4M's benefit is dataset-dependent.}
-To further investigate D4M's behavior, we apply it with $t_{\text{start}} = 25$ to two additional datasets: ImageNette (10 classes, visually distinct categories) and ImageWoof (10 classes, fine-grained dog breeds). \Cref{tab:d4m-cross} presents the results alongside the IN-100 comparison. On ImageNette, D4M achieves $54.91 \pm 0.24\%$, outperforming both \cags{} ($52.64\%$) and entropy-only ($54.28\%$)---the only setting where D4M surpasses all guided methods. However, on ImageWoof, D4M drops to $28.05 \pm 0.27\%$, \emph{below} the unguided baseline ($31.75\%$) by $-3.70\%$. This dataset-dependent behavior reveals that D4M's real-image initialization is beneficial when classes are visually distinct (ImageNette) but harmful when classes are fine-grained and visually similar (ImageWoof), where the generative prior is more important than preserved real-image structure. \cags{}, by contrast, provides consistent improvements across all three datasets without requiring real-image access or per-dataset hyperparameter tuning, demonstrating the robustness of its principled, training-free approach.
+To further investigate D4M's behavior, we apply it with $t_{\text{start}} = 25$ to two additional datasets: ImageNette (10 classes, visually distinct categories) and ImageWoof (10 classes, fine-grained dog breeds). \Cref{tab:d4m-cross} presents the results alongside the IN-100 comparison. On ImageNette, D4M achieves $54.91 \pm 0.24\%$, competitive with the four-factor \cags{} ($54.36 \pm 0.57\%$) but below the two-factor optimal ($55.27 \pm 0.68\%$). However, on ImageWoof, D4M drops to $28.05 \pm 0.27\%$, \emph{below} the unguided baseline ($31.39 \pm 0.68\%$) by $-3.34\%$. This dataset-dependent behavior reveals that D4M's real-image initialization is beneficial when classes are visually distinct (ImageNette) but harmful when classes are fine-grained and visually similar (ImageWoof), where the generative prior is more important than preserved real-image structure. \cags{}, by contrast, provides consistent improvements across all three datasets without requiring real-image access or per-dataset hyperparameter tuning, demonstrating the robustness of its principled, training-free approach. We note that D4M's ImageNette and ImageWoof results were obtained under an earlier evaluation protocol (2000 epochs); our unguided and \cags{} results for these 10-class datasets use 3000 epochs per our unified protocol, which may partially account for the performance difference.
 
 \begin{table}[t]
 \centering
-\caption{D4M ($t_{\text{start}}{=}25$) across datasets. D4M outperforms \cags{} only on ImageNette (visually distinct classes), but underperforms unguided on both ImageWoof (fine-grained) and IN-100 (large-scale). \cags{} provides consistent improvements across all datasets without real-image access.}
+\caption{D4M ($t_{\text{start}}{=}25$) across datasets. D4M is competitive with four-factor \cags{} on ImageNette but underperforms unguided on both ImageWoof (fine-grained) and IN-100 (large-scale). The two-factor optimal \cags{} provides consistent improvements across all datasets without real-image access. $\dagger$ indicates D4M results from an earlier 2000-epoch protocol.}
 \label{tab:d4m-cross}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-\textbf{Dataset} & \textbf{Classes} & \textbf{Unguided} & \textbf{\cags{}} & \textbf{D4M ($t{=}25$)} \\
+\textbf{Dataset} & \textbf{Classes} & \textbf{Unguided} & \textbf{\cags{} 4-fac.} & \textbf{\cags{} opt.} & \textbf{D4M ($t{=}25$)$^\dagger$} \\
 \midrule
-ImageNette & 10 & $49.99 \pm 0.22$ & $52.64 \pm 0.28$ & $\mathbf{54.91 \pm 0.24}$ \\
-ImageWoof & 10 & $31.75 \pm 0.06$ & $\mathbf{31.99 \pm 0.46}$ & $28.05 \pm 0.27$ \\
-IN-100 & 100 & $22.79 \pm 0.18$ & $\mathbf{25.29 \pm 0.27}$ & $20.21 \pm 0.39$ \\
+ImageNette & 10 & $51.30 \pm 0.41$ & $54.36 \pm 0.57$ & $\mathbf{55.27 \pm 0.68}$ & $54.91 \pm 0.24$ \\
+ImageWoof & 10 & $31.39 \pm 0.68$ & $29.76 \pm 0.14$ & $\mathbf{32.87 \pm 0.29}$ & $28.05 \pm 0.27$ \\
+IN-100 & 100 & $22.79 \pm 0.18$ & $25.29 \pm 0.27$ & $\mathbf{25.70 \pm 0.07}$ & $20.21 \pm 0.39$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\paragraph{Relative improvement is architecture-consistent.}
-The \emph{relative} improvement from \cags{} over unguided is consistent across architectures: $+7.6\%$ relative on ConvNet-6, $+17.0\%$ on ResNet-18, and $+13.4\%$ on ResNetAP-10. The increasing gain on deeper architectures suggests that \cags{}-generated images contain richer discriminative features that are better exploited by more expressive classifiers. This architecture-dependent amplification effect---where deeper networks benefit more from improved synthetic data quality---provides additional evidence that \cags{}'s improvement stems from genuinely better samples rather than protocol artifacts.
+\paragraph{Comparison with 2026 methods: DMGD and LGD.}
+DMGD~\cite{wang2026dmgd} (CVPR~2026) and LGD~\cite{chansantiago2026learnabilityguided} represent the latest advances in diffusion-based dataset distillation. DMGD introduces a training-free dual matching framework combining semantic matching via classifier-free guidance and distribution matching via optimal transport, while LGD proposes an incremental learnability-driven approach that constructs datasets stage-by-stage with model-conditioned sample selection. \Cref{tab:sota-comparison} compares our results with DMGD's published numbers on ImageNette and ImageWoof at IPC=10 with ResNetAP-10, alongside LGD's reported numbers at IPC=50.
+
+\begin{table}[t]
+\centering
+\caption{Comparison with 2026 state-of-the-art methods on ImageNette and ImageWoof. DMGD numbers are from~\cite{wang2026dmgd} (ResNet10-AP, IPC=10). LGD numbers are from~\cite{chansantiago2026learnabilityguided} (ConvNet-6, IPC=50). Our results use ResNetAP-10 for the IPC=10 comparison and ConvNet-6 for the IPC=50 comparison. Our unguided baseline is lower than DMGD's DiT baseline, likely due to our heavier augmentation protocol (color jitter, PCA lighting, CutMix with $p{=}1.0$); nevertheless, our relative improvement over the respective baseline is comparable.}
+\label{tab:sota-comparison}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Method} & \textbf{Protocol} & \textbf{ImageNette} & \textbf{ImageWoof} \\
+\midrule
+\multicolumn{4}{l}{\emph{IPC=10, ResNetAP-10 (from DMGD~\cite{wang2026dmgd})}} \\
+DiT (unguided) & published & $59.1$ & $34.7$ \\
+Minimax & published & $62.0$ & $39.2$ \\
+MGD$^3$ & published & $66.4$ & $40.4$ \\
+DMGD & published & $\mathbf{68.4}$ & $\mathbf{40.8}$ \\
+\midrule
+\multicolumn{4}{l}{\emph{IPC=10, ResNetAP-10 (ours)}} \\
+Unguided & ours & $54.00 \pm 0.32$ & $36.83 \pm 0.25$ \\
+\cags{} (2-factor opt.) & ours & $62.00 \pm 0.16$ & $38.86 \pm 0.19$ \\
+\midrule
+\multicolumn{4}{l}{\emph{IPC=50, ConvNet-6 (from LGD~\cite{chansantiago2026learnabilityguided})}} \\
+DiT (unguided) & published & $74.1$ & $48.5$ \\
+MGD$^3$ & published & $80.9$ & $53.4$ \\
+LGD & published & $\mathbf{82.6}$ & $\mathbf{53.9}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Protocol differences affect absolute comparison.}
+Our unguided ResNetAP-10 baseline on ImageNette ($54.00\%$) is $5.1\%$ below DMGD's reported DiT baseline ($59.1\%$), despite using the same pretrained DiT-XL/2 generator. We attribute this gap primarily to our heavier data augmentation: following the MGD$^3$ protocol, we apply random resized crop, horizontal flip, color jitter ($0.4$ brightness, contrast, saturation), AlexNet-style PCA lighting noise, and CutMix ($p{=}1.0$), whereas DMGD and LGD employ lighter augmentation (random crop and CutMix). At IPC=10, where each class has only 10 training images, aggressive color and lighting augmentation can destroy discriminative features, particularly on visually distinct datasets like ImageNette. Despite this baseline difference, our two-factor \cags{} achieves a relative improvement of $+14.8\%$ over our unguided baseline on ImageNette ($54.00\% \to 62.00\%$), comparable to DMGD's $+15.7\%$ improvement over its DiT baseline ($59.1\% \to 68.4\%$). On ImageWoof, our unguided baseline ($36.83\%$) is actually $2.1\%$ above DMGD's DiT baseline ($34.7\%$), and our \cags{} optimal ($38.86\%$) approaches Minimax ($39.2\%$).
+
+\paragraph{Complementary positioning.}
+\cags{} occupies a complementary position relative to DMGD and LGD. DMGD's dual matching requires computing optimal transport distances between synthetic and target distributions at each denoising step, adding computational overhead. LGD requires iterative classifier training and learnability-guided sample selection, fundamentally departing from the single-pass training-free paradigm. \cags{}, by contrast, adjusts only the per-class guidance strength $\lambda$ based on a one-time complexity analysis, adding negligible overhead to the diffusion sampling process. The three approaches target different aspects of the generation pipeline: DMGD improves distribution alignment, LGD improves sample selection, and \cags{} improves per-class guidance calibration. These mechanisms are orthogonal: \cags{} could serve as the per-class guidance module within DMGD's framework or as the seed generator for LGD's incremental construction, potentially combining adaptive guidance with distribution matching or learnability-driven selection.
