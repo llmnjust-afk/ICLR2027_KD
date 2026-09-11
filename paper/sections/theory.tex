@@ -103,5 +103,29 @@ The theoretical results provide precise explanations for five key experimental o
 
 \emph{(5) CAGS is neutral on 10-class subsets} (Table~\ref{tab:results-10cls}). With only 10 classes, the complexity distribution is narrow, $\lambda_c^*$ values are similar across classes, and the adaptivity gap $\Delta \approx 0$. Per-class adaptation provides no benefit when there is little per-class variation to exploit, confirming the scaling boundary condition.
 
+\paragraph{Quantitative validation of Theorem~\ref{thm:adaptivity-gap}.}
+We empirically validate the prediction that the adaptivity gap grows with cross-class heterogeneity by measuring the fraction of classes with multi-mode structure ($K > 2$) across datasets of varying class count (\Cref{fig:theorem1-fit}). On ImageNet-derived subsets, this fraction increases monotonically: $0\%$ at $C{=}10$, $5\%$ at $C{=}100$, $28.5\%$ at $C{=}200$, and $60\%$ at $C{=}1000$, tracking the increasing diversity of mode structures in larger class sets. The actual CAGS gain increases in parallel: $0\%$ at $C{=}10$, $+2.91\%$ at $C{=}100$, $+3.30\%$ at $C{=}200$, $+3.58\%$ at $C{=}1000$. This confirms that the adaptivity gap---and hence the benefit of per-class guidance---is driven by cross-class heterogeneity in mode structure, as predicted by Theorem~\ref{thm:adaptivity-gap}. Notably, the 10-class datasets ImageNette ($+3.97\%$) and ImageWoof ($+1.48\%$) show varying gains despite having $K{=}2$ for all classes, indicating that intra-class variance heterogeneity alone can drive the adaptivity gap even without multi-mode structure.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/theorem1_fit.pdf}
+\caption{Quantitative validation of Theorem~\ref{thm:adaptivity-gap}. (a)~Distribution of mode counts ($K$) across ImageNet subsets with increasing class count. The fraction of classes with $K > 2$ grows from $0\%$ ($C{=}10$) to $60\%$ ($C{=}1000$), reflecting increasing mode structure heterogeneity. (b)~Mode heterogeneity (fraction of classes with $K > 2$) vs.\ actual CAGS accuracy gain. ImageNet subsets (circles) show a positive trend; 10-class variants (squares) demonstrate that class composition matters even at fixed $C$.}
+\label{fig:theorem1-fit}
+\end{figure}
+
+\paragraph{Why TAGS fails: temporal variation cannot substitute for class variation.}
+\tags{} replaces the constant $\lambda$ with a time-varying schedule $\lambda(t)$, varying guidance across timesteps but applying the same $\lambda(t)$ to all classes at each $t$. The adaptivity gap at timestep $t$ is:
+\begin{equation}
+\Delta(t) = \frac{1}{C}\sum_{c=1}^C \frac{\beta\,\sigma_c^2}{2}\,(\lambda_c^* - \lambda(t))^2.
+\end{equation}
+The optimal per-class guidance $\lambda_c^* = v_c / (\beta\,\sigma_c^2)$ (Proposition~\ref{prop:opt-lambda}) depends on intra-class properties ($v_c, \boldsymbol{\pi}_c$) and is independent of the timestep $t$, because the mode structure is a property of the class-conditional distribution, not the noise level. Therefore, the best temporal schedule $\lambda(t)$ at each $t$ is the cross-class average $\bar{\lambda} = \frac{1}{C}\sum_c \lambda_c^*$, yielding $\Delta_{\text{TAGS}} = \sum_t \Delta(t) = T \cdot \Delta_{\text{fixed}}$, where $T$ is the number of timesteps. This is exactly $T$ times the fixed-guidance adaptivity gap---TAGS provides \emph{no reduction} in the adaptivity gap because it varies $\lambda$ along a dimension (time) where the optimal $\lambda_c^*$ is constant, while failing to vary it along the dimension (class) where $\lambda_c^*$ actually differs. In contrast, \cags{} varies $\lambda$ across classes, directly targeting the source of suboptimality.
+
+\paragraph{Why IAST fails: range compression reduces the adaptivity gap.}
+\iast{} scales the guidance range $[\lambda_{\min}, \lambda_{\max}]$ by a factor $s(\text{IPC}) = \min(1, \log(\text{IPC}+1)/\log(\text{IPC}_{\text{ref}}+1))$, compressing the range when $\text{IPC} < \text{IPC}_{\text{ref}} = 10$. The effective per-class guidance becomes $s \cdot \lambda_c$, and the adaptivity gap scales as:
+\begin{equation}
+\Delta_{\text{IAST}} = \frac{1}{C}\sum_c \frac{\beta\,\sigma_c^2}{2}\,(\lambda_c^* - s\,\lambda_c)^2 \approx s^2 \cdot \Delta_{\text{CAGS}},
+\end{equation}
+where the approximation holds when $s \cdot \lambda_c$ is close to $s \cdot \bar{\lambda}$ (i.e., the compressed guidance is nearly uniform). At IPC=1, $s \approx 0.29$, so $\Delta_{\text{IAST}} \approx 0.084 \cdot \Delta_{\text{CAGS}}$---a $92\%$ reduction in the adaptivity gap. Rather than protecting against over-sharpening, IAST eliminates the per-class differentiation that drives CAGS's benefit. At IPC $\geq 10$, $s = 1$ and IAST is transparent, which is consistent with our experimental finding that IAST is neutral at IPC=10 but harmful at IPC=1. This analysis reveals that the IPC dimension, like the temporal dimension, is not the axis along which adaptive guidance provides value---the class axis is.
+
 \paragraph{Remark on assumptions.}
 The well-separated modes assumption (Lemma~\ref{lem:cfg-modes}) is an idealization; in practice, modes may overlap and the $p(\mathbf{x})^{-\lambda}$ term introduces inter-class effects. However, the qualitative predictions---that optimal $\lambda$ increases with $v_c$ and $H_c$, that separability is irrelevant, and that the adaptivity gap grows with class heterogeneity---are robust to relaxation of this assumption, as confirmed by experiments across datasets, architectures, and scales (Sections~\ref{sec:experiments}--\ref{sec:dd-baselines}).

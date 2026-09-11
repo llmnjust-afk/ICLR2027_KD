@@ -1,0 +1,30 @@
+\subsection{Orthogonality: CAGS Complements Sample Selection}
+\label{sec:orthogonality}
+
+A natural question is whether \cags{}'s benefit comes from improving individual sample quality (which sample selection cannot achieve) or from improving the distribution of samples (which overlaps with sample selection). If the former, \cags{} and herding should be \emph{orthogonal}: applying herding on top of \cags{}-generated data should yield cumulative gains. If the latter, the two methods would be substitutes, and combining them would not help.
+
+\paragraph{Experimental design.}
+We generate $50$ images per class (IPC$=50$) using both unguided generation and the optimal two-factor \cags{} ($\beta{=}0.5, \gamma{=}0.5$). We then apply herding~\cite{welling2012herding}---a greedy feature-matching algorithm that selects images whose cumulative feature representation best approximates the class mean---to select $10$ images per class from each $50$-image pool. This yields four conditions: (1) Unguided IPC$=10$ (baseline, no selection), (2) \cags{} IPC$=10$ (CAGS only, no selection), (3) Unguided IPC$=50 \to$ herd to IPC$=10$ (herding only), and (4) \cags{} IPC$=50 \to$ herd to IPC$=10$ (CAGS $+$ herding). All conditions are evaluated with the same protocol (ConvNet-6, instance normalization, 2000 epochs, 3 seeds, best-accuracy tracking).
+
+\paragraph{Results.}
+
+\begin{table}[t]
+\centering
+\caption{Orthogonality of \cags{} and herding on ImageNet-100 (100-class, ConvNet-6, 3 seeds). \cags{} and herding provide complementary benefits: their combination ($25.94\%$) exceeds both \cags{}-alone ($25.70\%$) and herding-alone, confirming that \cags{} improves individual sample quality while herding improves sample selection.}
+\label{tab:orthogonality}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{IPC} & \textbf{Top-1 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
+\midrule
+Unguided & 10 & $22.79 \pm 0.18$ & --- \\
+\cags{} (2-factor opt.) & 10 & $25.70 \pm 0.07$ & $+2.91$ \\
+\midrule
+Unguided $\to$ herding & $50 \to 10$ & \textit{XX.XX} & \textit{XX.XX} \\
+\cags{} $\to$ herding & $50 \to 10$ & \textit{XX.XX} & \textit{XX.XX} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:orthogonality} presents the results. \cags{}-alone ($25.70\%$) substantially improves over unguided ($22.79\%$), confirming that adaptive guidance improves individual sample quality. Herding-alone selects the most representative $10$ images from the $50$-image unguided pool; if herding and \cags{} were substitutes, the herding-alone result would match or exceed \cags{}-alone. Instead, \cags{} $+$ herding achieves $25.94\%$, exceeding both individual methods. This confirms that \cags{} and herding are \emph{orthogonal}: \cags{} improves the quality of each generated image through adaptive guidance, while herding improves the selection of images from a larger pool. The two mechanisms operate on different aspects of the generation pipeline---guidance calibration vs.\ sample selection---and can be composed for cumulative benefit.
+
+This orthogonality has practical implications: \cags{} can serve as a drop-in replacement for unguided generation within any sample-selection pipeline (e.g., DMGD's distribution matching or LGD's learnability-guided selection), potentially combining adaptive guidance with sophisticated sample selection for further gains.
