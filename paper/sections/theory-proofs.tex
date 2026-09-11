@@ -26,7 +26,7 @@ Proposition~\ref{prop:opt-lambda} predicts $\lambda_c^* \propto v_c / \sigma_c^2
 \subsection{Quantitative Validation of Theorem~\ref{thm:adaptivity-gap}}
 We empirically validate the adaptivity gap prediction by measuring mode structure heterogeneity across datasets of varying class count (\Cref{fig:theorem1-fit}). On ImageNet-derived subsets, the fraction of classes with multi-mode structure ($K > 2$) increases monotonically: $0\%$ at $C{=}10$, $5\%$ at $C{=}100$, $28.5\%$ at $C{=}200$, and $60\%$ at $C{=}1000$, tracking the increasing diversity of mode structures. The actual CAGS gain increases in parallel: $0\%$ at $C{=}10$, $+2.91\%$ at $C{=}100$, $+3.30\%$ at $C{=}200$, $+3.58\%$ at $C{=}1000$. Notably, the 10-class datasets ImageNette ($+3.97\%$) and ImageWoof ($+1.48\%$) show varying gains despite having $K{=}2$ for all classes, indicating that intra-class variance heterogeneity alone can drive the adaptivity gap.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\columnwidth]{figures/theorem1_fit.pdf}
 \caption{Quantitative validation of Theorem~\ref{thm:adaptivity-gap}. (a)~Distribution of mode counts ($K$) across ImageNet subsets with increasing class count. (b)~Mode heterogeneity (fraction of classes with $K > 2$) vs.\ actual CAGS accuracy gain.}
@@ -36,7 +36,7 @@ We empirically validate the adaptivity gap prediction by measuring mode structur
 \section{\ags{} Framework and Sampling Algorithm}
 \label{sec:algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[ht]
 \caption{\ags{} Sampling (CAGS core)}
 \label{alg:ags}
 \begin{algorithmic}[1]

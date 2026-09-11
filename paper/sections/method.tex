@@ -5,7 +5,7 @@
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.75\columnwidth]{figures/framework.jpg}
+    \includegraphics[width=0.65\columnwidth]{figures/framework.jpg}
     \caption{Overview of the \ags{} framework. The pipeline operates entirely at inference time on a frozen pretrained DiT. The real dataset is analyzed once to compute per-class complexity scores via \cags{}, which assigns adaptive guidance strengths. No gradient computation or model training is required.}
     \label{fig:framework}
 \end{figure}
@@ -34,15 +34,12 @@ We quantify the complexity of each class $c$ through four complementary factors,
 where $\hat{H}_c$ and $\hat{v}_c$ are min-max normalized, $\sigma(\cdot)$ is the sigmoid, $s = 3.0$ is the slope, and $c_0 = 0.6$ is the center. The score maps to a per-class guidance scale $\lambda_c = \lambda_{\min} + (\lambda_{\max} - \lambda_{\min}) \cdot \rho_c$, where $[\lambda_{\min}, \lambda_{\max}] = [0.0, 0.06]$. Classes with higher complexity receive stronger guidance. The general four-factor formulation is $\rho_c = \sigma\!\left(s \cdot (\alpha\hat{\kappa}_c + \beta\hat{H}_c + \gamma\hat{v}_c - \delta\hat{d}_c) - c_0\right)$; separability enters negatively since higher separability implies lower complexity.
 
 \paragraph{Theoretical motivation.}
-Section~\ref{sec:theory} provides a rigorous explanation: under a Gaussian mixture model, the optimal per-class guidance $\lambda_c^* \propto v_c / \sigma_c^2$ is increasing in both intra-class variance $v_c$ and entropy $H_c$ (Proposition~\ref{prop:opt-lambda}), and the adaptivity gap from per-class adaptation grows with cross-class heterogeneity (Theorem~\ref{thm:adaptivity-gap}).
-
-\paragraph{Cache-based computation.}
-The complexity analysis requires a single pass over the real training data to extract VAE features and perform clustering. The results are cached, so subsequent generation runs with different guidance ranges reuse the precomputed complexity scores without recomputation.
+Section~\ref{sec:theory} proves that $\lambda_c^* \propto v_c / \sigma_c^2$ is increasing in both $v_c$ and $H_c$ (Proposition~\ref{prop:opt-lambda}), and the adaptivity gap grows with cross-class heterogeneity (Theorem~\ref{thm:adaptivity-gap}).
 
 \subsection{Additional Explorations: TAGS and IAST}
 \label{sec:tags-iast}
 
-We explored two complementary modules that address secondary axes of variation. Both are \emph{not recommended} based on negative ablation results (Section~\ref{sec:module-ablation}). \tags{} (Timestep-Adaptive Guidance Schedule) replaces the constant $\lambda$ with a time-varying schedule $\lambda(t)$, concentrating guidance at high-noise timesteps. None of the three evaluated schedules (annealed, linear, exponential) improves over \cags{}-alone, because the optimal $\lambda_c^*$ depends on class properties, not the noise level (Section~\ref{sec:theory}). \iast{} (IPC-Adaptive Guidance Range) scales the guidance range by a logarithmic factor of IPC; at IPC=1 ($s \approx 0.29$), it eliminates 92\% of the per-class differentiation, hurting rather than helping.
+We explored two complementary modules that address secondary axes of variation. Both are \emph{not recommended} based on negative ablation results (Section~\ref{sec:module-ablation}). \tags{} (Timestep-Adaptive Guidance Schedule) replaces the constant $\lambda$ with a time-varying schedule $\lambda(t)$, concentrating guidance at high-noise timesteps. None of the three evaluated schedules improves over \cags{}-alone, because the optimal $\lambda_c^*$ depends on class properties, not the noise level. \iast{} (IPC-Adaptive Guidance Range) scales the guidance range by a logarithmic factor of IPC; at IPC=1 ($s \approx 0.29$), it eliminates 92\% of the per-class differentiation, hurting rather than helping.
 
 \subsection{\ags{} Sampler}
 \label{sec:unified}

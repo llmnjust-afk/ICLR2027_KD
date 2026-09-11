@@ -3,7 +3,7 @@
 
 A central claim of \cags{} is that per-class adaptive guidance becomes increasingly beneficial as the number of classes grows. We evaluate \cags{} across class counts from 10 to 1000, keeping all other settings fixed (IPC=10, instance normalization). The full ImageNet-1K~\cite{russakovsky2014imagenet} evaluation uses all 1000 classes with 1000 training epochs (reduced from 2000 due to the 10$\times$ scale).
 
-\Cref{tab:scaling} presents the scaling results. The \cags{} advantage over unguided grows substantially: $+1.19\%$ absolute on 44 classes, $+2.91\%$ on 100 classes, $+3.30\%$ on 200 classes, and $+3.58\%$ on 1000 classes (ConvNet-6). On ImageNet-1K, the advantage amplifies on deeper architectures: $+6.97\%$ ($+41.3\%$ relative) on ResNet-18 and $+6.83\%$ ($+43.7\%$ relative) on ResNetAP-10. This three-architecture scaling result provides the strongest evidence for the scaling hypothesis: the benefit of per-class adaptive guidance grows with both class count and classifier capacity, consistent with the adaptivity gap theorem (Theorem~\ref{thm:adaptivity-gap}).
+\Cref{tab:scaling} presents the scaling results. The \cags{} advantage over unguided grows substantially: $+2.91\%$ on 100 classes, $+3.30\%$ on 200 classes, and $+3.58\%$ on 1000 classes (ConvNet-6). On ImageNet-1K, the advantage amplifies on deeper architectures: $+6.97\%$ ($+41.3\%$ relative) on ResNet-18 and $+6.83\%$ ($+43.7\%$ relative) on ResNetAP-10. This three-architecture scaling result provides the strongest evidence for the scaling hypothesis: the benefit of per-class adaptive guidance grows with both class count and classifier capacity, consistent with the adaptivity gap theorem (Theorem~\ref{thm:adaptivity-gap}).
 
 \begin{table}[t]
 \centering
@@ -16,8 +16,6 @@ A central claim of \cags{} is that per-class adaptive guidance becomes increasin
 \midrule
 ImageNette & 10 & $49.99 \pm 0.22$ & $\mathbf{55.27 \pm 0.68}$ & $+5.28$ \\
 ImageWoof & 10 & $31.75 \pm 0.06$ & $\mathbf{32.87 \pm 0.29}$ & $+1.12$ \\
-Animals & 44 & $23.64 \pm 0.37$ & $\mathbf{24.83 \pm 0.47}$ & $+1.19$ \\
-Objects & 56 & $25.08 \pm 0.29$ & $\mathbf{27.67 \pm 0.47}$ & $+2.59$ \\
 IN-100 & 100 & $22.79 \pm 0.18$ & $\mathbf{25.70 \pm 0.07}$ & $+2.91$ \\
 IN-200 & 200 & $18.49 \pm 0.21$ & $\mathbf{21.79 \pm 0.16}$ & $+3.30$ \\
 \midrule

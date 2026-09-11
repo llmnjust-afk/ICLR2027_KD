@@ -10,9 +10,6 @@ We evaluate on ImageNet-100 (both 10-class and 100-class subsets)~\cite{russakov
 \paragraph{Architecture and protocol.}
 Following MGD$^3$~\cite{chansantiago2025modeguided}, we use a pretrained DiT-XL/2~\cite{peebles2022scalable} as the frozen generator for all ImageNet-derived experiments, with 50 denoising steps and a high-noise guidance window covering the first 25 timesteps. We evaluate downstream classification using ConvNet-6, ResNet-18, and ResNetAP-10~\cite{kaiming2015deep}, all with instance normalization. Classifiers are trained with SGD (lr $0.1$, weight decay $1\text{e}{-4}$, batch size $128$) with a multi-step LR schedule. We use 2000 epochs for 100-class experiments, ImageNette, and ImageWoof; 3000 for the 10-class subset and CIFAR-10; 1000 for IN-1K. Data augmentation includes random resized crop, horizontal flip, color jitter, PCA lighting noise, and CutMix. Following MGD$^3$, we report the \emph{best} top-1 accuracy across all training epochs. All experiments use three random seeds, and we report mean $\pm$ standard deviation (population std for reporting; sample std for $t$-tests).
 
-\paragraph{Baselines.}
-We compare against: (1) \textbf{Unguided} ($\lambda = 0$), the MGD$^3$ baseline; (2) \textbf{Fixed $\lambda$}, globally fixed guidance strength; and (3) \textbf{Random Herding}, randomly selecting IPC real images per class. We additionally compare with D4M~\cite{su2024dataset} under the same DiT generator.
-
 \paragraph{\ags{} configurations.}
 For \cags{}, we use the complexity weighting $(\alpha, \beta, \gamma, \delta) = (0, 0.5, 0.5, 0)$---the optimal configuration identified by our factor ablation (\Cref{sec:factor-ablation}) and weight grid search (Appendix~\ref{sec:weight-learning})---with sigmoid parameters $s = 3.0$, $c_0 = 0.6$, and guidance range $[0.0, 0.06]$.
 
@@ -24,7 +21,7 @@ For \cags{}, we use the complexity weighting $(\alpha, \beta, \gamma, \delta) = 
 \begin{table}[t]
 \centering
 \footnotesize
-\caption{Main results on ImageNet-100 (100-class, IPC=10). Published baselines (Random--MGD$^3$) are from~\cite{chansantiago2025modeguided}. D4M is our implementation under the same protocol. \cags{} surpasses all published baselines on all three architectures. The \cags{}+D4M hybrid (combining real-image initialization with adaptive guidance) does not improve over \cags{}-alone, confirming that pure-noise generation with adaptive guidance is sufficient.}
+\caption{Main results on ImageNet-100 (100-class, IPC=10). Published baselines are from~\cite{chansantiago2025modeguided}. D4M is our implementation under the same protocol.}
 \label{tab:sota-main}
 \begin{tabular}{lccc}
 \toprule
@@ -55,7 +52,7 @@ To understand the contribution of each complexity factor, we conduct a factor ab
 \begin{table}[t]
 \centering
 \footnotesize
-\caption{Complexity factor ablation on ImageNet-100 (100-class, IPC=10, ConvNet-6, 3 seeds). Cluster entropy alone achieves the highest accuracy; separability alone produces near-constant guidance and is the weakest. The $\rho$ std column reports the standard deviation of the per-class complexity score $\rho_c$ (before mapping to $\lambda_c = 0.06\,\rho_c$); the ratio between configurations is preserved under the $\lambda$ mapping. Configurations use independently generated datasets from the weight grid search (Appendix~\ref{sec:weight-learning}); the ``Full \cags{}'' and ``Entropy only'' entries differ by ${\sim}1\%$ from the weight-learning tables due to different diffusion sampling seeds.}
+\caption{Complexity factor ablation (100-class, IPC=10, ConvNet-6, 3 seeds). The $\rho$ std column reports std of the per-class complexity score $\rho_c$ (before mapping to $\lambda_c = 0.06\,\rho_c$). Entries use independently generated datasets from the weight grid search (Appendix~\ref{sec:weight-learning}); ``Full \cags{}'' and ``Entropy only'' differ by ${\sim}1\%$ from the weight-learning tables due to different diffusion sampling seeds.}
 \label{tab:factor-ablation}
 \begin{tabular}{lcccccc}
 \toprule
@@ -75,12 +72,12 @@ Separability only & 0 & 0 & 0 & 1 & $23.75 \pm 0.09$ & 0.006 \\
 \end{tabular}
 \end{table}
 
-The two-factor optimal $(0, 0.5, 0.5, 0)$ resolves this by concentrating all weight on entropy and intra-class variance---the two factors with the widest per-class spread---maximizing the range of guidance strengths. This widens the per-class $\lambda$ variation by $2.3\times$ (std $0.0049$ vs.\ $0.0021$ for the four-factor design, computed from the cached complexity scores), directly translating to larger accuracy gains. We provide detailed analysis of per-class mechanisms, quartile analysis, and the separability paradox in Appendix~\ref{sec:class-analysis}.
+The two-factor optimal $(0, 0.5, 0.5, 0)$ resolves this by concentrating all weight on entropy and intra-class variance---the two factors with the widest per-class spread---maximizing the range of guidance strengths. This widens the per-class $\lambda$ variation by $2.3\times$ (std $0.0049$ vs.\ $0.0021$ for the four-factor design, computed from the cached complexity scores), directly translating to larger accuracy gains. A class-level mechanism analysis (\Cref{fig:class-level-mechanism}, Appendix~\ref{sec:class-analysis}) confirms that higher-complexity quartiles receive stronger guidance and exhibit larger gains ($2.8\times$ difference between top and bottom halves).
 
 \subsection{Statistical Significance}
 \label{sec:significance}
 
-Despite using only three seeds, the improvements on the 100-class subset are statistically significant ($p < 0.05$) at all IPC settings, with large effect sizes (Cohen's $d \geq 3.90$). Cross-architecture results are also significant ($p = 0.011$ for ResNet-18, $p < 0.001$ for ResNetAP-10). The neutral 10-class IPC=10 result is confirmed non-significant ($p = 0.721$). The ImageNette improvement reaches significance ($p = 0.014$, $d = 4.83$).
+Despite using only three seeds, the improvements on the 100-class subset are statistically significant ($p < 0.05$) at all IPC settings, with large effect sizes (Cohen's $d \geq 3.90$). Cross-architecture results are also significant ($p = 0.011$ for ResNet-18, $p < 0.001$ for ResNetAP-10). The neutral 10-class IPC=10 result is confirmed non-significant ($p = 0.721$).
 
 \begin{table}[t]
 \centering
@@ -108,14 +105,14 @@ ImageNette & CAGS vs Ung & $+2.65$ & $8.37$ & $0.014$ & $4.83$ \\
 \end{tabular}
 \end{table}
 
-\subsection{Comparison with D4M}
+\subsection{D4M Comparison and 2026 Methods}
 \label{sec:d4m-summary}
 
-We implement D4M~\cite{su2024dataset} under our exact protocol (same DiT-XL/2 generator, 2000 epochs, 3 seeds, ConvNet-6). D4M encodes real images through the VAE, adds partial noise at timestep $t_{\text{start}}$, and denoises with the frozen DiT using a standard CFG scale of $\lambda_{\text{CFG}} = 4.0$. Note that D4M's global CFG ($\lambda{=}4.0$) and \cags{}'s per-class adaptive guidance ($\lambda \in [0, 0.06]$) operate in different regimes: \cags{} uses a mild range because the adaptive mechanism redistributes guidance across classes rather than relying on a single large value. As shown in \Cref{tab:sota-main}, at $t_{\text{start}}{=}40$ (its optimum), D4M achieves $23.07\%$---falling short of \cags{} and barely exceeding unguided ($22.79\%$). Full D4M sensitivity analysis and cross-dataset comparison are in Appendix~\ref{sec:dd-baselines}.
+We implement D4M~\cite{su2024dataset} under our exact protocol. D4M's global CFG ($\lambda{=}4.0$) and \cags{}'s adaptive guidance ($\lambda \in [0, 0.06]$) operate in different regimes: \cags{} uses a mild range because the adaptive mechanism redistributes guidance across classes. At $t_{\text{start}}{=}40$ (its optimum), D4M achieves $23.07\%$---falling short of \cags{} and barely exceeding unguided ($22.79\%$). Full D4M sensitivity analysis, cross-dataset comparison, and comparison with 2026 methods (DMGD~\cite{wang2026dmgd}, LGD~\cite{chansantiago2026learnabilityguided}) are in Appendix~\ref{sec:dd-baselines}. We note that DMGD achieves higher absolute accuracy on ImageNette/ImageWoof, but with a $5.1\%$ baseline advantage due to lighter augmentation; in relative improvement, \cags{} ($+14.8\%$) is comparable to DMGD ($+15.7\%$) while adding negligible overhead.
 
 \subsection{CAGS+D4M Hybrid Ablation}
 \label{sec:hybrid-ablation}
 
 A natural question is whether the two approaches are complementary: could D4M's real-image initialization provide a better starting point that \cags{}'s adaptive guidance then refines? To test this, we construct a hybrid pipeline that initializes from real images (VAE encode $\to$ add noise at $t_{\text{start}} \to$ denoise with per-class adaptive \cags{} guidance), sweeping $t_{\text{start}} \in \{35, 40, 45\}$ on ConvNet-6, then evaluating the winner on all three architectures. The hybrid uses the initial four-factor \cags{} weights (the two-factor and four-factor configurations produce similar per-class guidance on 100 classes, $r > 0.9$).
 
-On ConvNet-6, the hybrid peaks at $t_{\text{start}}{=}45$: $25.17 \pm 0.37\%$, compared to $24.27 \pm 0.21\%$ at $t{=}35$ and $23.79 \pm 0.34\%$ at $t{=}40$. At this best operating point, the hybrid is evaluated on all three architectures (\Cref{tab:sota-main}). The results reveal that the hybrid does \emph{not} improve over \cags{}-alone on any architecture: ConvNet-6 $25.17\%$ vs.\ \cags{}'s $25.70\%$ ($-0.53\%$), ResNet-18 $30.18\%$ vs.\ $30.50\%$ ($-0.32\%$), and ResNetAP-10 $29.51\%$ vs.\ $29.52\%$ ($-0.01\%$, but with $2.75\times$ higher variance). The gap is largest on ConvNet-6, where the generative prior is most important, and smallest on ResNetAP-10, where the deeper architecture can partially compensate for initialization artifacts. This finding reinforces the core message: \cags{}'s training-free, pure-noise approach is not only simpler (no real-image access, no $t_{\text{start}}$ hyperparameter) but also more effective than combining real-image initialization with adaptive guidance. The hybrid still substantially outperforms unguided ($+2.38$--$+3.69\%$ absolute) and all published baselines, confirming that the adaptive guidance benefit dominates regardless of initialization strategy.
+On ConvNet-6, the hybrid peaks at $t_{\text{start}}{=}45$: $25.17 \pm 0.37\%$, compared to $24.27 \pm 0.21\%$ at $t{=}35$ and $23.79 \pm 0.34\%$ at $t{=}40$. At this best operating point, the hybrid is evaluated on all three architectures (\Cref{tab:sota-main}). The hybrid does \emph{not} improve over \cags{}-alone on any architecture: ConvNet-6 $25.17\%$ vs.\ $25.70\%$ ($-0.53\%$), ResNet-18 $30.18\%$ vs.\ $30.50\%$ ($-0.32\%$), and ResNetAP-10 $29.51\%$ vs.\ $29.52\%$ ($-0.01\%$, but with $2.75\times$ higher variance). This reinforces the core message: \cags{}'s training-free, pure-noise approach is both simpler and more effective than combining real-image initialization with adaptive guidance.

@@ -1,4 +1,6 @@
-\documentclass[10pt]{article}
+\documentclass{article}
+
+\usepackage{iclr2027_conference,times}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -14,23 +16,16 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
 \usepackage{nicefrac}
-\usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{placeins}
 \usepackage{cleveref}
-\usepackage[round]{natbib}
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{multirow}
 \usepackage{subcaption}
-
-% ICLR-style formatting (self-contained, no external style file needed)
-\usepackage[margin=0.85in]{geometry}
-\linespread{1.0}
-\setlength{\parskip}{1pt}
 
 \title{AGS-DD: Adaptive Guidance Scheduling for Training-Free Diffusion Dataset Distillation}
 
@@ -57,7 +52,13 @@
 \input{sections/limitations}
 \input{sections/conclusion}
 
-\bibliographystyle{plainnat}
+\section*{Reproducibility Statement}
+All hyperparameters, random seeds, hardware specifications, and data processing steps are documented in Section~\ref{sec:setup} and Appendix~\ref{sec:reproducibility}. The complete sampling algorithm is provided in Appendix~\ref{sec:algorithm}. Code will be released upon acceptance at \url{https://github.com/anonymous/ags-dd} (anonymized link provided in supplementary materials).
+
+\section*{AI Use Statement}
+In this work, we used generative AI tools (large language models) for the following tasks: (1)~implementing and debugging the CAGS complexity analysis pipeline, dataset generation scripts, and classifier training code; (2)~assisting with the writing and formatting of LaTeX proofs and mathematical derivations in the appendix; (3)~drafting and editing portions of the manuscript text for clarity and readability; and (4)~formatting references and tables. We have not used generative AI tools for generating experimental results, fabricating data, or drawing scientific conclusions. All experimental design, data analysis, theoretical development, and interpretation of results were conducted solely by the authors. We have reviewed all AI-assisted work and verified the correctness of all code, proofs, and text produced with AI assistance. We take responsibility for the final content of this work, including text, claims, or artifacts produced with the aid of generative AI.
+
+\bibliographystyle{iclr2027_conference}
 \bibliography{refs}
 
 \newpage
