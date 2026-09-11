@@ -19,6 +19,10 @@ By Lemma~\ref{lem:cfg-modes}, the effective mode weights $\tilde{\pi}_{c,k}(\lam
 \subsection{Remark on Assumptions}
 The well-separated modes assumption (Lemma~\ref{lem:cfg-modes}) is an idealization; in practice, modes may overlap and the $p(\mathbf{x})^{-\lambda}$ term introduces inter-class effects. However, the qualitative predictions---that optimal $\lambda$ increases with $v_c$ and $H_c$, that separability is irrelevant, and that the adaptivity gap grows with class heterogeneity---are robust to relaxation of this assumption, as confirmed by experiments across datasets, architectures, and scales (Sections~\ref{sec:experiments}--\ref{sec:dd-baselines}).
 
+\subsection{From Theory to Implementation}
+\label{sec:theory-impl}
+Proposition~\ref{prop:opt-lambda} predicts $\lambda_c^* \propto v_c / \sigma_c^2$, which is linear in $v_c$ and entropy-dependent through $\sigma_c^2$. The implementation uses a sigmoid mapping $\rho_c = \sigma(s \cdot (0.5\hat{H}_c + 0.5\hat{v}_c) - c_0)$ followed by $\lambda_c = 0.06\,\rho_c$, which is not a direct instantiation of the linear formula. The sigmoid serves two practical purposes: it bounds $\lambda_c \in [0, 0.06]$ to prevent over-guidance (addressing the small-$\lambda$ regime where the theory is valid), and it provides a smooth, monotonic mapping from the complexity score to the guidance scale that is robust to normalization choices. The key theoretical predictions---that $\lambda_c$ should be increasing in both $H_c$ and $v_c$, and independent of separability---are preserved by the sigmoid mapping since it is monotonic in its argument. The linear prediction from the theory provides the \emph{qualitative} design rationale (which factors to include, which to exclude), while the sigmoid provides the \emph{quantitative} robustness needed for practical deployment.
+
 \subsection{Quantitative Validation of Theorem~\ref{thm:adaptivity-gap}}
 We empirically validate the adaptivity gap prediction by measuring mode structure heterogeneity across datasets of varying class count (\Cref{fig:theorem1-fit}). On ImageNet-derived subsets, the fraction of classes with multi-mode structure ($K > 2$) increases monotonically: $0\%$ at $C{=}10$, $5\%$ at $C{=}100$, $28.5\%$ at $C{=}200$, and $60\%$ at $C{=}1000$, tracking the increasing diversity of mode structures. The actual CAGS gain increases in parallel: $0\%$ at $C{=}10$, $+2.91\%$ at $C{=}100$, $+3.30\%$ at $C{=}200$, $+3.58\%$ at $C{=}1000$. Notably, the 10-class datasets ImageNette ($+3.97\%$) and ImageWoof ($+1.48\%$) show varying gains despite having $K{=}2$ for all classes, indicating that intra-class variance heterogeneity alone can drive the adaptivity gap.
 
@@ -31,13 +35,6 @@ We empirically validate the adaptivity gap prediction by measuring mode structur
 
 \section{\ags{} Framework and Sampling Algorithm}
 \label{sec:algorithm}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\columnwidth]{figures/framework.jpg}
-    \caption{Overview of the \ags{} framework. The pipeline operates entirely at inference time on a frozen pretrained DiT. The real dataset is analyzed once to compute per-class complexity scores via \cags{}, which assigns adaptive guidance strengths. No gradient computation or model training is required.}
-    \label{fig:framework}
-\end{figure}
 
 \begin{algorithm}[h]
 \caption{\ags{} Sampling (CAGS core)}

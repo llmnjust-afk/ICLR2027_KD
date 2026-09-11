@@ -1,17 +1,12 @@
+\FloatBarrier
 \section{Limitations}
 \label{sec:limitations}
 
 \paragraph{Configuration choice is dataset-dependent.}
-The two-factor configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ is the recommended default and outperforms the initial four-factor design on most datasets. On certain settings (Animals subset, IN-200), the four-factor design achieves marginally higher accuracy where mode count and separability exhibit greater variation. The general framework supports all four factors, and practitioners can tune weights for their specific dataset using the cached feature pipeline. Future work should investigate automatic weight selection.
+The two-factor configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ is the recommended default. On certain settings (Animals subset, IN-200), the four-factor design achieves marginally higher accuracy where mode count and separability exhibit greater variation. Practitioners can tune weights using the cached feature pipeline; automatic weight selection is future work.
 
-\paragraph{Exploratory modules not recommended.}
-\tags{} does not improve over \cags{}-alone, and \iast{}'s log-scaling is counterproductive at low IPC. More sophisticated temporal schedules or class-count-conditioned scaling are directions for future work.
+\paragraph{Evaluation and theoretical scope.}
+While improvements are consistent across seeds, a larger-scale evaluation with more seeds would provide stronger statistical guarantees. Our ImageNette baseline ($54.0\%$) is lower than DMGD's~\cite{wang2026dmgd} ($59.1\%$), likely due to heavier augmentation. The analysis assumes well-separated Gaussian modes and a second-order approximation; while qualitative predictions are confirmed empirically, a more general analysis would strengthen the contribution. The non-ImageNet results use SD~1.5, not trained for the target domains, resulting in low absolute accuracy on Food-101 ($4.17\%$). \tags{} and \iast{} do not improve over \cags{}-alone.
 
-\paragraph{Evaluation scope.}
-While improvements are consistent across seeds with tight standard deviations, a larger-scale evaluation with more seeds would provide stronger statistical guarantees. Our unguided baseline on ImageNette ($54.0\%$ with ResNetAP-10) is lower than DMGD's~\cite{wang2026dmgd} reported DiT baseline ($59.1\%$), likely due to our heavier augmentation protocol following MGD$^3$. A unified evaluation protocol across methods would enable fairer comparison.
-
-\paragraph{Theoretical assumptions.}
-The analysis assumes well-separated Gaussian modes and a second-order approximation; while the qualitative predictions are confirmed empirically, a more general analysis would strengthen the contribution.
-
-\paragraph{Generator and domain scope.}
-The non-ImageNet results use SD~1.5, not specifically trained for the target domains, resulting in low absolute accuracy on Food-101 ($4.17\%$). Domain-specific generators would likely yield higher absolute performance. Future work should evaluate with domain-adapted generators.
+\paragraph{Reproducibility and LLM disclosure.}
+All hyperparameters are in Section~\ref{sec:setup}; code will be released upon acceptance. LLMs were used for code debugging and manuscript editing only; all experimental design and conclusions are solely the authors'. Details in Appendix~\ref{sec:reproducibility}.

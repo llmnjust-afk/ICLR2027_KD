@@ -1,7 +1,14 @@
 \section{Method}
 \label{sec:method}
 
-\ags{} enhances the training-free dataset distillation pipeline of MGD$^3$~\cite{chansantiago2025modeguided} by replacing its globally fixed classifier-free guidance with per-class adaptive guidance. The core module, \cags{} (Section~\ref{sec:cags}), assigns a per-class guidance strength based on a complexity metric. We additionally explored two complementary modules---\tags{} and \iast{} (Section~\ref{sec:tags-iast})---which address the temporal and IPC-budget axes respectively; both are investigated but ultimately not recommended based on negative ablation results. An overview of the framework is in Appendix~\ref{sec:algorithm}.
+\ags{} enhances the training-free dataset distillation pipeline of MGD$^3$~\cite{chansantiago2025modeguided} by replacing its globally fixed classifier-free guidance with per-class adaptive guidance. The core module, \cags{} (Section~\ref{sec:cags}), assigns a per-class guidance strength based on a complexity metric. We additionally explored two complementary modules---\tags{} and \iast{} (Section~\ref{sec:tags-iast})---which address the temporal and IPC-budget axes respectively; both are investigated but ultimately not recommended based on negative ablation results. An overview of the framework is in \Cref{fig:framework}, and the full sampling algorithm is in Appendix~\ref{sec:algorithm}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.75\columnwidth]{figures/framework.jpg}
+    \caption{Overview of the \ags{} framework. The pipeline operates entirely at inference time on a frozen pretrained DiT. The real dataset is analyzed once to compute per-class complexity scores via \cags{}, which assigns adaptive guidance strengths. No gradient computation or model training is required.}
+    \label{fig:framework}
+\end{figure}
 
 \subsection{Background: Diffusion Models and Classifier-Free Guidance}
 \label{sec:background}
