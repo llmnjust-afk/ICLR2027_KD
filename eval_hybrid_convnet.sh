@@ -7,9 +7,9 @@ cd /root/ICLR2027_KD
 # Wait for generation to finish (check if all 300 classes are done)
 echo "Waiting for generation to finish..."
 while true; do
-    T40=$(grep -c "^  n0" logs/gen_cags_d4m_4f_t40.log 2>/dev/null || echo 0)
-    T35=$(grep -c "^  n0" logs/gen_cags_d4m_4f_t35.log 2>/dev/null || echo 0)
-    T45=$(grep -c "^  n0" logs/gen_cags_d4m_4f_t45.log 2>/dev/null || echo 0)
+    T40=$(grep -c '^  n[0-9]' logs/gen_cags_d4m_4f_t40.log 2>/dev/null || echo 0)
+    T35=$(grep -c '^  n[0-9]' logs/gen_cags_d4m_4f_t35.log 2>/dev/null || echo 0)
+    T45=$(grep -c '^  n[0-9]' logs/gen_cags_d4m_4f_t45.log 2>/dev/null || echo 0)
     echo "  t40: $T40/300, t35: $T35/300, t45: $T45/300"
     if [ "$T40" -ge 300 ] && [ "$T35" -ge 300 ] && [ "$T45" -ge 300 ]; then
         echo "All generation complete!"
