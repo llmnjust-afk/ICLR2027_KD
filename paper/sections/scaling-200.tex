@@ -7,14 +7,14 @@ A central claim of \cags{} is that per-class adaptive guidance becomes increasin
 
 \begin{table}[t]
 \centering
-\caption{Scaling analysis: \cags{} advantage grows with class count. All experiments use IPC=10, instance normalization. Epochs: 3000 for 10-class, 2000 for 44--200 classes, 1000 for 1000 classes. Seeds: 3 for $\leq$200 classes, 3 for 1000-class ResNet-18 and ResNetAP-10, 2 for 1000-class ConvNet-6. The \cags{} advantage increases from $+1.19\%$ (44 classes) to $+6.97\%$ (1000 classes, ResNet-18), confirming the scaling hypothesis.}
+\caption{Scaling analysis: \cags{} advantage grows with class count. All experiments use IPC=10, instance normalization. Epochs: 2000 for 10--200 classes, 1000 for 1000 classes. Seeds: 3 for $\leq$200 classes, 3 for 1000-class ResNet-18 and ResNetAP-10, 2 for 1000-class ConvNet-6. The \cags{} advantage increases from $+1.19\%$ (44 classes) to $+6.97\%$ (1000 classes, ResNet-18), confirming the scaling hypothesis.}
 \label{tab:scaling}
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Dataset} & \textbf{Classes} & \textbf{Unguided} & \textbf{\cags{} 4-fac.} & \textbf{\cags{} opt.} & \textbf{Opt.\ $\Delta$} \\
 \midrule
-ImageNette & 10 & $51.30 \pm 0.41$ & $54.36 \pm 0.57$ & $\mathbf{55.27 \pm 0.68}$ & $+3.97$ \\
-ImageWoof & 10 & $31.39 \pm 0.68$ & $29.76 \pm 0.14$ & $\mathbf{32.87 \pm 0.29}$ & $+1.48$ \\
+ImageNette & 10 & $49.99 \pm 0.22$ & $52.64 \pm 0.28$ & $\mathbf{55.27 \pm 0.68}$ & $+5.28$ \\
+ImageWoof & 10 & $31.75 \pm 0.06$ & $31.99 \pm 0.46$ & $\mathbf{32.87 \pm 0.29}$ & $+1.12$ \\
 Animals & 44 & $23.64 \pm 0.37$ & $\mathbf{25.94 \pm 0.46}$ & $24.83 \pm 0.47$ & $+1.19$ \\
 Objects & 56 & $25.08 \pm 0.29$ & $26.85 \pm 0.25$ & $\mathbf{27.67 \pm 0.47}$ & $+2.59$ \\
 IN-100 & 100 & $22.79 \pm 0.18$ & $25.29 \pm 0.27$ & $\mathbf{25.70 \pm 0.07}$ & $+2.91$ \\

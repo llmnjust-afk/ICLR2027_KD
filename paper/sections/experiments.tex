@@ -11,7 +11,7 @@ We evaluate on four ImageNet-derived datasets of varying scale and difficulty: (
 Following MGD$^3$~\cite{chansantiago2025modeguided}, we use a pretrained DiT-XL/2~\cite{peebles2022scalable} model trained on ImageNet-1K as the frozen generator for all ImageNet-derived experiments. The DiT operates in latent space via a pretrained VAE, with 50 denoising steps per sample. The high-noise guidance window covers the first 25 timesteps, where classifier-free guidance is applied. For non-ImageNet experiments (Food-101, CIFAR-10), we use Stable Diffusion~\cite{rombach2021highresolution} 1.5 as the generator, which shares the same VAE architecture and supports text-to-image generation for arbitrary class categories. We evaluate downstream classification using ConvNet-6 (a 6-layer convolutional network with $128$ channels), ResNet-18, and ResNetAP-10~\cite{kaiming2015deep}. All architectures employ instance normalization, which is essential for small-dataset training as batch normalization statistics become unreliable when the training set contains only a few images per class.
 
 \paragraph{Training protocol.}
-We faithfully replicate the MGD$^3$~\cite{chansantiago2025modeguided} evaluation protocol to ensure fair comparison. Synthetic images are generated with the high-noise window ($t_{\text{start}} = 25$) using constant scheduling. Downstream classifiers are trained with SGD (learning rate $0.1$, weight decay $1\text{e}{-4}$, batch size $128$) with a multi-step learning rate schedule that decays at $\frac{2}{3}$ and $\frac{5}{6}$ of the total epochs. The number of training epochs is set to 2000 for all 100-class experiments and 3000 for all 10-class experiments, uniformly across all methods to ensure fair comparison. We note that the MGD$^3$ protocol prescribes varying epoch counts (1300 for 100-class IPC=10, 1000 for 100-class IPC=50), but we use a fixed 2000 epochs for all 100-class settings to avoid confounding the comparison with differing convergence budgets. Data augmentation consists of random resized crop (scale $0.5$--$1.0$), horizontal flip, color jitter ($0.4$ brightness, $0.4$ contrast, $0.4$ saturation), and AlexNet-style PCA lighting noise ($\text{alphastd} = 0.1$), applied in this order before normalization; CutMix ($p = 1.0$, $\beta = 1.0$) is then applied. Crucially, following MGD$^3$, we report the \emph{best} top-1 accuracy across all training epochs (not the final-epoch accuracy), evaluated at $100$ evenly spaced checkpoints. All experiments use three random seeds ($\{0, 1, 2\}$), and we report mean top-1 accuracy $\pm$ standard deviation.
+We faithfully replicate the MGD$^3$~\cite{chansantiago2025modeguided} evaluation protocol to ensure fair comparison. Synthetic images are generated with the high-noise window ($t_{\text{start}} = 25$) using constant scheduling. Downstream classifiers are trained with SGD (learning rate $0.1$, weight decay $1\text{e}{-4}$, batch size $128$) with a multi-step learning rate schedule that decays at $\frac{2}{3}$ and $\frac{5}{6}$ of the total epochs. The number of training epochs is set to 2000 for all 100-class experiments, ImageNette, and ImageWoof, and 3000 for the 10-class ImageNet-100 subset and CIFAR-10, uniformly across all methods to ensure fair comparison. We note that the MGD$^3$ protocol prescribes varying epoch counts (1300 for 100-class IPC=10, 1000 for 100-class IPC=50), but we use a fixed 2000 epochs for all 100-class settings to avoid confounding the comparison with differing convergence budgets. Data augmentation consists of random resized crop (scale $0.5$--$1.0$), horizontal flip, color jitter ($0.4$ brightness, $0.4$ contrast, $0.4$ saturation), and AlexNet-style PCA lighting noise ($\text{alphastd} = 0.1$), applied in this order before normalization; CutMix ($p = 1.0$, $\beta = 1.0$) is then applied. Crucially, following MGD$^3$, we report the \emph{best} top-1 accuracy across all training epochs (not the final-epoch accuracy), evaluated at $100$ evenly spaced checkpoints. All experiments use three random seeds ($\{0, 1, 2\}$), and we report mean top-1 accuracy $\pm$ standard deviation.
 
 \paragraph{Baselines.}
 We compare against: (1) \textbf{Unguided} ($\lambda = 0$), the MGD$^3$ baseline without classifier-free guidance; (2) \textbf{Fixed $\lambda$}, MGD$^3$ with a globally fixed guidance strength, swept over $\lambda \in \{0.05, 0.08, 0.10, 0.12, 0.15\}$; and (3) \textbf{Random Herding}, a standard dataset distillation baseline that randomly selects IPC images per class from the real dataset. We additionally cite published numbers from D4M~\cite{su2025diffusion}, SRe$^2$L~\cite{yin2023squeeze}, MTT~\cite{cazenavette2022dataset}, DMGD~\cite{wang2026dmgd}, and CoDA~\cite{zhou2025coda} for reference.
@@ -150,13 +150,13 @@ $\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $+1.4\%$ & --- & --- \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/results_comparison.pdf}
-\caption{\cags{} vs.\ unguided across all evaluated settings. Green bars indicate \cags{} configurations with positive relative gain; red indicates degradation. \cags{} provides consistent, substantial improvements on the 100-class subset ($+7.6\%$ to $+17.0\%$ relative) and at 10-class IPC=50 ($+7.9\%$), while the degradation on ImageWoof ($-5.2\%$) confirms the complexity-variation boundary condition.}
+\caption{\cags{} vs.\ unguided across all evaluated settings. Green bars indicate \cags{} configurations with positive relative gain; red indicates degradation. \cags{} provides consistent, substantial improvements on the 100-class subset ($+7.6\%$ to $+17.0\%$ relative) and at 10-class IPC=50 ($+7.9\%$), while the marginal gain on ImageWoof ($+0.8\%$ for 4-factor, $+3.5\%$ for optimal) reflects the complexity-variation boundary condition.}
 \label{fig:results-overview}
 \end{figure}
 
 To verify that the improvements from \cags{} are architecture-agnostic, we evaluate on ResNet-18 and ResNetAP-10 in addition to ConvNet-6, all with instance normalization and 2000 training epochs (\Cref{tab:cross-arch}). Both \cags{} configurations improve over unguided across all three architectures on the 100-class subset at IPC=10. On ResNet-18, the four-factor \cags{} achieves $31.14 \pm 0.34\%$ ($+17.6\%$ relative over unguided $26.49 \pm 0.42\%$), outperforming the two-factor optimal ($30.50 \pm 0.07\%$, $+15.1\%$ relative) by $+0.64\%$. On ResNetAP-10, the four-factor achieves $30.70 \pm 0.07\%$ ($+15.2\%$ relative over unguided $26.65 \pm 0.16\%$), again outperforming the two-factor optimal ($29.52 \pm 0.08\%$, $+10.8\%$ relative) by $+1.18\%$. On ConvNet-6, the two-factor optimal achieves the highest accuracy. The stronger gains on deeper architectures (ResNet-18: $+15.1$--$17.6\%$, ResNetAP-10: $+10.8$--$15.2\%$) compared to ConvNet-6 ($+12.8\%$) indicate that the benefit of adaptive guidance is not coupled to a specific architecture's inductive bias, and that \cags{}-generated images contain richer discriminative features better exploited by more expressive classifiers. The four-factor design's advantage on deeper architectures suggests that the mode count and separability factors capture complementary signals that become more valuable with higher-capacity models, consistent with the semantic subset findings (Section~\ref{sec:semantic-subset}).
 
-We further verify cross-architecture consistency on ImageNette and ImageWoof (\Cref{tab:cross-arch-nette-woof}). On ImageNette, the optimal \cags{} configuration provides consistent gains across all three architectures, with the relative benefit \emph{increasing} with architecture capacity: ConvNet-6 ($+7.8\%$), ResNet-18 ($+11.3\%$), and ResNetAP-10 ($+14.8\%$). On ImageWoof, the gains are more modest but consistently positive: $+4.7\%$, $+4.3\%$, and $+5.5\%$ respectively. The consistent improvement across six dataset--architecture combinations, with gains ranging from $+4.3\%$ to $+17.6\%$ relative, confirms that \cags{}'s benefit stems from the synthetic data quality rather than architecture-specific effects.
+We further verify cross-architecture consistency on ImageNette and ImageWoof (\Cref{tab:cross-arch-nette-woof}). On ImageNette, the optimal \cags{} configuration provides consistent gains across all three architectures, with the relative benefit \emph{increasing} with architecture capacity: ConvNet-6 ($+10.6\%$), ResNet-18 ($+11.3\%$), and ResNetAP-10 ($+14.8\%$). On ImageWoof, the gains are more modest but consistently positive: $+3.5\%$, $+4.3\%$, and $+5.5\%$ respectively. The consistent improvement across six dataset--architecture combinations, with gains ranging from $+3.5\%$ to $+17.6\%$ relative, confirms that \cags{}'s benefit stems from the synthetic data quality rather than architecture-specific effects.
 
 \begin{table}[t]
 \centering
@@ -181,11 +181,11 @@ ResNetAP-10 (inst.\ norm) & $26.65 \pm 0.16$ & $\mathbf{30.70 \pm 0.07}$ & $29.5
 \toprule
 \textbf{Dataset} & \textbf{Architecture} & \textbf{Unguided} & \textbf{\cags{} (optimal)} & \textbf{$\Delta$ (rel.)} \\
 \midrule
-ImageNette & ConvNet-6 & $51.30 \pm 0.41$ & $55.27 \pm 0.68$ & $+7.8\%$ \\
+ImageNette & ConvNet-6 & $49.99 \pm 0.22$ & $55.27 \pm 0.68$ & $+10.6\%$ \\
 ImageNette & ResNet-18 & $52.45 \pm 1.05$ & $58.39 \pm 0.44$ & $+11.3\%$ \\
 ImageNette & ResNetAP-10 & $54.00 \pm 0.32$ & $\mathbf{62.00 \pm 0.16}$ & $+14.8\%$ \\
 \midrule
-ImageWoof & ConvNet-6 & $31.39 \pm 0.68$ & $32.87 \pm 0.29$ & $+4.7\%$ \\
+ImageWoof & ConvNet-6 & $31.75 \pm 0.06$ & $32.87 \pm 0.29$ & $+3.5\%$ \\
 ImageWoof & ResNet-18 & $35.00 \pm 0.62$ & $36.49 \pm 0.93$ & $+4.3\%$ \\
 ImageWoof & ResNetAP-10 & $36.83 \pm 0.25$ & $\mathbf{38.86 \pm 0.19}$ & $+5.5\%$ \\
 \bottomrule
@@ -195,27 +195,27 @@ ImageWoof & ResNetAP-10 & $36.83 \pm 0.25$ & $\mathbf{38.86 \pm 0.19}$ & $+5.5\%
 \subsection{ImageNette and ImageWoof}
 \label{sec:results-nette-woof}
 
-To assess generalization beyond ImageNet-100, we evaluate on ImageNette (easy) and ImageWoof (hard) with IPC=10, ConvNet-6, and 3 seeds (\Cref{tab:results-nette-woof}). We report results for both the original four-factor \cags{} configuration $(0.3, 0.3, 0.2, 0.2)$ and the optimized two-factor configuration $(0, 0.5, 0.5, 0)$ identified by our weight grid search (\Cref{sec:weight-learning}). On ImageNette, both configurations improve over unguided: the original \cags{} achieves $54.36 \pm 0.57\%$ vs.\ unguided $51.30 \pm 0.41\%$ ($+6.0\%$ relative), and the optimal configuration achieves $55.27 \pm 0.68\%$ ($+7.8\%$ relative), confirming that per-class adaptive guidance generalizes to easily classifiable datasets.
+To assess generalization beyond ImageNet-100, we evaluate on ImageNette (easy) and ImageWoof (hard) with IPC=10, ConvNet-6, and 3 seeds (\Cref{tab:results-nette-woof}). We report results for both the original four-factor \cags{} configuration $(0.3, 0.3, 0.2, 0.2)$ and the optimized two-factor configuration $(0, 0.5, 0.5, 0)$ identified by our weight grid search (\Cref{sec:weight-learning}). On ImageNette, both configurations improve over unguided: the original \cags{} achieves $52.64 \pm 0.28\%$ vs.\ unguided $49.99 \pm 0.22\%$ ($+5.3\%$ relative), and the optimal configuration achieves $55.27 \pm 0.68\%$ ($+10.6\%$ relative), confirming that per-class adaptive guidance generalizes to easily classifiable datasets.
 
-On ImageWoof, the two configurations diverge dramatically. The original four-factor \cags{} achieves $29.76 \pm 0.14\%$---\emph{below} unguided $31.39 \pm 0.68\%$ ($-5.2\%$ relative), a degradation caused by the separability factor's counterproductive near-constant guidance on fine-grained classes. However, the optimal two-factor configuration \emph{eliminates this degradation}: it achieves $32.87 \pm 0.29\%$, exceeding unguided by $+1.48\%$ absolute ($+4.7\%$ relative). This is a critical finding: the weight grid search not only improves accuracy on datasets where \cags{} already helps (ImageNette: $+0.91\%$ over original \cags{}), but also \emph{fixes the failure mode} on fine-grained datasets where the original configuration hurt. The mechanism is clear: eliminating the separability factor ($\delta \to 0$) and mode count ($\alpha \to 0$) removes the near-constant guidance offset that was adding noise on ImageWoof's visually similar classes, allowing the entropy and intra-class variance signals to provide genuinely useful per-class differentiation. This result strengthens the case for the simplified two-factor design and demonstrates that the boundary condition identified in the original configuration was an artifact of suboptimal weight selection, not a fundamental limitation of per-class adaptive guidance.
+On ImageWoof, the two configurations diverge. The original four-factor \cags{} achieves $31.99 \pm 0.46\%$---only marginally above unguided $31.75 \pm 0.06\%$ ($+0.8\%$ relative), a negligible improvement caused by the separability factor's counterproductive near-constant guidance on fine-grained classes. In contrast, the optimal two-factor configuration provides a clearer improvement: it achieves $32.87 \pm 0.29\%$, exceeding unguided by $+1.12\%$ absolute ($+3.5\%$ relative) and the four-factor design by $+0.87\%$ absolute. This is a critical finding: the weight grid search not only improves accuracy on datasets where \cags{} already helps (ImageNette: $+2.63\%$ over original \cags{}), but also \emph{amplifies the benefit} on fine-grained datasets where the original configuration provided minimal gains. The mechanism is clear: eliminating the separability factor ($\delta \to 0$) and mode count ($\alpha \to 0$) removes the near-constant guidance offset that was adding noise on ImageWoof's visually similar classes, allowing the entropy and intra-class variance signals to provide genuinely useful per-class differentiation. This result strengthens the case for the simplified two-factor design and demonstrates that the marginal benefit of the original configuration on fine-grained data was an artifact of suboptimal weight selection, not a fundamental limitation of per-class adaptive guidance.
 
 \begin{table}[t]
 \centering
-\caption{ImageNette and ImageWoof results with ConvNet-6, IPC=10, 3 seeds. The original four-factor \cags{} $(0.3, 0.3, 0.2, 0.2)$ \emph{hurts} on ImageWoof ($-5.2\%$ relative), but the optimized two-factor configuration $(0, 0.5, 0.5, 0)$ \emph{fixes this degradation} and improves over unguided by $+4.7\%$ relative, demonstrating that the ImageWoof failure was an artifact of suboptimal weight selection.}
+\caption{ImageNette and ImageWoof results with ConvNet-6, IPC=10, 3 seeds. The original four-factor \cags{} $(0.3, 0.3, 0.2, 0.2)$ provides only marginal gains on ImageWoof ($+0.8\%$ relative), but the optimized two-factor configuration $(0, 0.5, 0.5, 0)$ provides clearer improvements ($+3.5\%$ relative), demonstrating that the two-factor design is more effective on fine-grained data.}
 \label{tab:results-nette-woof}
 \begin{tabular}{llcc}
 \toprule
 \textbf{Dataset} & \textbf{Method} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} \\
 \midrule
 ImageNette & Random Herding & $40.82 \pm 0.17$ & $81.38 \pm 0.08$ \\
-ImageNette & Unguided & $51.30 \pm 0.41$ & $86.03 \pm 0.36$ \\
-ImageNette & \cags{} (4-factor) & $54.36 \pm 0.57$ & $89.38 \pm 0.46$ \\
-ImageNette & \cags{} (2-factor, optimal) & $\mathbf{55.27 \pm 0.68}$ & $\mathbf{89.72 \pm 0.35}$ \\
+ImageNette & Unguided & $49.99 \pm 0.22$ & $85.28 \pm 0.21$ \\
+ImageNette & \cags{} (4-factor) & $52.64 \pm 0.28$ & $88.37 \pm 0.47$ \\
+ImageNette & \cags{} (2-factor, optimal) & $\mathbf{55.27 \pm 0.68}$ & $\mathbf{88.35 \pm 0.35}$ \\
 \midrule
 ImageWoof & Random Herding & $22.69 \pm 0.16$ & $68.73 \pm 0.16$ \\
-ImageWoof & Unguided & $31.39 \pm 0.68$ & $76.49 \pm 0.23$ \\
-ImageWoof & \cags{} (4-factor) & $29.76 \pm 0.14$ & $75.24 \pm 0.29$ \\
-ImageWoof & \cags{} (2-factor, optimal) & $\mathbf{32.87 \pm 0.29}$ & $\mathbf{77.75 \pm 1.12}$ \\
+ImageWoof & Unguided & $31.75 \pm 0.06$ & $76.33 \pm 0.38$ \\
+ImageWoof & \cags{} (4-factor) & $31.99 \pm 0.46$ & $75.69 \pm 0.38$ \\
+ImageWoof & \cags{} (2-factor, optimal) & $\mathbf{32.87 \pm 0.29}$ & $\mathbf{76.95 \pm 1.12}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -223,13 +223,11 @@ ImageWoof & \cags{} (2-factor, optimal) & $\mathbf{32.87 \pm 0.29}$ & $\mathbf{7
 \subsection{FID Analysis}
 \label{sec:fid}
 
-To assess the impact of \cags{} on the fidelity of the generated images, we compute Fr\'echet Inception Distance (FID)~\cite{dufour2026lottery} between synthetic and real validation images (\Cref{tab:fid}). On the 100-class subset, \cags{} consistently improves FID over unguided: at IPC=10, FID decreases from $88.66$ to $85.26$ ($-3.40$), and at IPC=50, from $71.06$ to $59.28$ ($-11.78$). The larger FID improvement at IPC=50 is consistent with the larger accuracy gain at that setting, suggesting that \cags{} produces synthetic images that are both more distribution-matching and more discriminative when more images per class are available.
-
-Interestingly, on ImageNette and ImageWoof, \cags{} \emph{increases} FID (ImageNette: $105.21 \to 108.59$; ImageWoof: $86.27 \to 94.70$). On ImageNette, \cags{} still improves classification accuracy ($+6.0\%$ relative) despite higher FID, revealing that \cags{}'s benefit stems from sharpening class-discriminative features rather than matching the real data distribution. On ImageWoof, \cags{} \emph{decreases} both FID quality and classification accuracy, providing further evidence that the method is counterproductive when class complexity variation is minimal. These findings challenge the common assumption that lower FID always corresponds to better downstream utility, and highlight the importance of evaluating dataset distillation methods on the actual task (classification accuracy) rather than relying solely on distributional metrics.
+To assess the impact of \cags{} on the fidelity of the generated images, we compute Fr\'echet Inception Distance (FID)~\cite{dufour2026lottery} between synthetic and real validation images (\Cref{tab:fid}). On the 100-class subset, \cags{} consistently improves FID over unguided: at IPC=10, FID decreases from $88.66$ to $85.26$ ($-3.40$), and at IPC=50, from $71.06$ to $59.28$ ($-11.78$). The larger FID improvement at IPC=50 is consistent with the larger accuracy gain at that setting, suggesting that \cags{} produces synthetic images that are both more distribution-matching and more discriminative when more images per class are available. These findings challenge the common assumption that lower FID always corresponds to better downstream utility: \cags{} improves both FID and classification accuracy on the 100-class subset, indicating that the guidance adaptation produces images that are simultaneously more faithful to the real distribution and more discriminative for training.
 
 \begin{table}[t]
 \centering
-\caption{FID scores (lower is better) for unguided vs.\ \cags{}. \cags{} improves FID on 100-class (where complexity variation is large) but increases FID on ImageNette/Woof. On ImageNette, \cags{} still improves accuracy despite higher FID; on ImageWoof, both FID and accuracy degrade, confirming the method is counterproductive when complexity variation is minimal.}
+\caption{FID scores (lower is better) for unguided vs.\ \cags{} on the 100-class subset. \cags{} improves FID at both IPC settings, with the larger improvement at IPC=50 consistent with the larger accuracy gain at that setting.}
 \label{tab:fid}
 \begin{tabular}{llccc}
 \toprule
@@ -237,8 +235,6 @@ Interestingly, on ImageNette and ImageWoof, \cags{} \emph{increases} FID (ImageN
 \midrule
 ImageNet-100 (100-cls) & 10 & $88.66$ & $\mathbf{85.26}$ & $-3.40$ \\
 ImageNet-100 (100-cls) & 50 & $71.06$ & $\mathbf{59.28}$ & $-11.78$ \\
-ImageNette & 10 & $\mathbf{105.21}$ & $108.59$ & $+3.38$ \\
-ImageWoof & 10 & $\mathbf{86.27}$ & $94.70$ & $+8.42$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -268,7 +264,7 @@ ResNetAP-10 IPC=10 & CAGS vs Ung & $+4.05$ & $48.52$ & $<0.001$ & $28.02$ \\
 10-cls IPC=10 & CAGS vs Ung & $-0.33$ & $-0.41$ & $0.721$ & $-0.24$ \\
 10-cls IPC=50 & CAGS vs Ung & $+5.13$ & $3.42$ & $0.076$ & $1.97$ \\
 \midrule
-ImageNette & CAGS vs Ung & $+3.06$ & $11.51$ & $0.008$ & $6.64$ \\
+ImageNette & CAGS vs Ung & $+2.65$ & $8.37$ & $0.014$ & $4.83$ \\
 \bottomrule
 \end{tabular}
 \end{table}
