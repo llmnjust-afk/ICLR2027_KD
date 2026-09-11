@@ -54,7 +54,7 @@ To understand the contribution of each \ags{} module, we evaluate module combina
 
 \begin{table}[t]
 \centering
-\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides the dominant single-module gain; \tags{} improves over unguided but underperforms \cags{}-alone, and \iast{} is transparent at IPC=10 by design (scale = 1.0).}
+\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. Uses the initial four-factor \cags{} configuration; the simplified two-factor \cags{} achieves $25.70\%$ (Table~\ref{tab:sota-main}). \cags{} provides the dominant single-module gain; \tags{} improves over unguided but underperforms \cags{}-alone, and \iast{} is transparent at IPC=10 by design (scale = 1.0).}
 \label{tab:module-ablation}
 \begin{tabular}{lcc}
 \toprule
@@ -63,7 +63,7 @@ To understand the contribution of each \ags{} module, we evaluate module combina
 Unguided (MGD$^3$ baseline) & $22.79 \pm 0.18$ & --- \\
 Fixed $\lambda = 0.10$ & $21.31 \pm 0.42$ & $-1.48$ \\
 \midrule
-\cags{} $[0.0, 0.06]$ & $\mathbf{25.29 \pm 0.27}$ & $\mathbf{+2.50}$ \\
+\cags{} $[0.0, 0.06]$ (4-factor init.) & $\mathbf{25.29 \pm 0.27}$ & $\mathbf{+2.50}$ \\
 \iast{} + \cags{} (IPC=10, equiv.\ to \cags{}) & $25.29 \pm 0.27$ & $+2.50$ \\
 \tags{} linear + \cags{} $[0.0, 0.06]$ & $22.73 \pm 0.15$ & $-0.06$ \\
 \bottomrule
@@ -73,15 +73,15 @@ Fixed $\lambda = 0.10$ & $21.31 \pm 0.42$ & $-1.48$ \\
 \subsection{IPC Ablation on 100-class}
 \label{sec:ipc-ablation}
 
-The 100-class IPC ablation reveals the most nuanced findings of our study (\Cref{tab:ipc-ablation-100cls}). At IPC=1, the unguided baseline achieves $5.79 \pm 0.09\%$, and the optimal two-factor \cags{} improves to $6.51 \pm 0.22\%$ ($+12.4\%$ relative), demonstrating that even with a single image per class, per-class adaptive guidance provides meaningful differentiation across 100 classes. Crucially, \iast{}+\cags{} \emph{reduces} performance to $5.87 \pm 0.07\%$, essentially reverting to unguided levels ($+1.4\%$ relative, within noise). The \iast{} log-scaling factor for IPC=1 is $0.289$, which compresses the guidance range from $[0, 0.06]$ to $[0, 0.017]$. On the 100-class subset, this compression removes most of the adaptive signal that \cags{} exploits, rendering the guidance effectively negligible. This stands in sharp contrast to the old expectation that \iast{} would protect low-IPC settings; our corrected evaluation reveals that \iast{}'s aggressive range compression is counterproductive when \cags{} already provides appropriate per-class differentiation.
+The 100-class IPC ablation reveals the most nuanced findings of our study (\Cref{tab:ipc-ablation-100cls}). At IPC=1, the unguided baseline achieves $5.79 \pm 0.09\%$, and \cags{} improves to $6.51 \pm 0.22\%$ ($+12.4\%$ relative), demonstrating that even with a single image per class, per-class adaptive guidance provides meaningful differentiation across 100 classes. Crucially, \iast{}+\cags{} \emph{reduces} performance to $5.87 \pm 0.07\%$, essentially reverting to unguided levels ($+1.4\%$ relative, within noise). The \iast{} log-scaling factor for IPC=1 is $0.289$, which compresses the guidance range from $[0, 0.06]$ to $[0, 0.017]$. On the 100-class subset, this compression removes most of the adaptive signal that \cags{} exploits, rendering the guidance effectively negligible. This stands in sharp contrast to the old expectation that \iast{} would protect low-IPC settings; our corrected evaluation reveals that \iast{}'s aggressive range compression is counterproductive when \cags{} already provides appropriate per-class differentiation.
 
 The contrast between this result and the 10-class IPC=1 setting (where \cags{} itself \emph{hurts}) reveals an important boundary condition. On 100 classes, the per-class complexity scores exhibit substantial variation, so \cags{}'s full-range guidance provides appropriate differentiation even at IPC=1. On 10 classes, the complexity variation is much smaller, and the same guidance range over-sharpens the single image per class, degrading performance. \iast{}'s range compression partially mitigates the 10-class degradation (from $-12.8\%$ to $-7.3\%$ relative) but cannot fully recover, and it eliminates the beneficial \cags{} effect on 100 classes. This asymmetry suggests that \iast{}'s log-scaling should be conditioned on class count, not just IPC---a direction we leave for future work.
 
-At IPC=10, the optimal two-factor \cags{} improves to $25.70 \pm 0.07\%$ ($+12.8\%$ relative), outperforming the original four-factor configuration ($25.29 \pm 0.27\%$, $+10.9\%$ relative) by $+0.41\%$ absolute with $3.9\times$ lower variance. At IPC=50, the optimal two-factor \cags{} achieves $41.45 \pm 0.11\%$ ($+19.4\%$ relative over unguided $34.71 \pm 0.37\%$), substantially outperforming the original four-factor configuration ($39.85 \pm 0.15\%$, $+14.8\%$ relative) by $+1.60\%$ absolute with $1.4\times$ lower variance. Random Herding at IPC=50 ($34.46 \pm 0.02\%$) is comparable to unguided diffusion generation ($34.71 \pm 0.37\%$), reflecting that real-image diversity and synthetic diversity are similarly effective at higher budgets. However, the optimal \cags{} surpasses Random Herding by $+6.99\%$ absolute ($+20.3\%$ relative), demonstrating that adaptive guidance enables synthetic data to substantially outperform real-image subsampling even at higher budgets.
+At IPC=10, \cags{} improves to $25.70 \pm 0.07\%$ ($+12.8\%$ relative), with $3.9\times$ lower variance than the initial four-factor design ($25.29 \pm 0.27\%$). At IPC=50, \cags{} achieves $41.45 \pm 0.11\%$ ($+19.4\%$ relative over unguided $34.71 \pm 0.37\%$), outperforming the initial four-factor configuration ($39.85 \pm 0.15\%$, $+14.8\%$ relative) by $+1.60\%$ absolute with $1.4\times$ lower variance. Random Herding at IPC=50 ($34.46 \pm 0.02\%$) is comparable to unguided diffusion generation ($34.71 \pm 0.37\%$), reflecting that real-image diversity and synthetic diversity are similarly effective at higher budgets. However, the optimal \cags{} surpasses Random Herding by $+6.99\%$ absolute ($+20.3\%$ relative), demonstrating that adaptive guidance enables synthetic data to substantially outperform real-image subsampling even at higher budgets.
 
 \begin{table}[t]
 \centering
-\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. The optimal two-factor \cags{} $(0, 0.5, 0.5, 0)$ provides consistent and substantial gains at all IPC settings ($+12.4\%$ to $+19.4\%$ relative over unguided), outperforming the original four-factor configuration at IPC=10 and IPC=50. \iast{}+\cags{} \emph{hurts} at IPC=1 by compressing the guidance range.}
+\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides consistent and substantial gains at all IPC settings ($+12.4\%$ to $+19.4\%$ relative over unguided). \iast{}+\cags{} \emph{hurts} at IPC=1 by compressing the guidance range.}
 \label{tab:ipc-ablation-100cls}
 \begin{tabular}{lccc}
 \toprule
@@ -90,11 +90,10 @@ At IPC=10, the optimal two-factor \cags{} improves to $25.70 \pm 0.07\%$ ($+12.8
 Random Herding & $3.69 \pm 0.08$ & $14.06 \pm 0.48$ & $34.46 \pm 0.02$ \\
 Unguided & $5.79 \pm 0.09$ & $22.79 \pm 0.18$ & $34.71 \pm 0.37$ \\
 Fixed $\lambda = 0.10$ & --- & $21.31 \pm 0.42$ & --- \\
-\cags{} (4-factor) $[0.0, 0.06]$ & --- & $25.29 \pm 0.27$ & $39.85 \pm 0.15$ \\
-\cags{} (2-factor, optimal) & $\mathbf{6.51 \pm 0.22}$ & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{41.45 \pm 0.11}$ \\
+\cags{} & $\mathbf{6.51 \pm 0.22}$ & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{41.45 \pm 0.11}$ \\
 \iast{}+\cags{} $[0.0, 0.06]$ & $5.87 \pm 0.07$ & --- & --- \\
 \midrule
-$\Delta$ \cags{} opt.\ vs.\ unguided (rel.) & --- & $+12.8\%$ & $+19.4\%$ \\
+$\Delta$ \cags{} vs.\ unguided (rel.) & --- & $+12.8\%$ & $+19.4\%$ \\
 $\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $+1.4\%$ & --- & --- \\
 \bottomrule
 \end{tabular}

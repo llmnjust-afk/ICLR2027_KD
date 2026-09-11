@@ -10,21 +10,21 @@ A central claim of \cags{} is that per-class adaptive guidance becomes increasin
 \small
 \caption{Scaling analysis: \cags{} advantage grows with class count. IPC=10, instance normalization. Epochs: 2000 for $\leq$200 classes, 1000 for 1000 classes. Seeds: 3 for $\leq$200 classes, 3 for IN-1K ResNet-18/ResNetAP-10, 2 for IN-1K ConvNet-6.}
 \label{tab:scaling}
-\begin{tabular}{lccccc}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Dataset} & \textbf{Classes} & \textbf{Unguided} & \textbf{\cags{} 4-fac.} & \textbf{\cags{} opt.} & \textbf{Opt.\ $\Delta$} \\
+\textbf{Dataset} & \textbf{Classes} & \textbf{Unguided} & \textbf{\cags{}} & \textbf{$\Delta$} \\
 \midrule
-ImageNette & 10 & $49.99 \pm 0.22$ & $52.64 \pm 0.28$ & $\mathbf{55.27 \pm 0.68}$ & $+5.28$ \\
-ImageWoof & 10 & $31.75 \pm 0.06$ & $31.99 \pm 0.46$ & $\mathbf{32.87 \pm 0.29}$ & $+1.12$ \\
-Animals & 44 & $23.64 \pm 0.37$ & $\mathbf{25.94 \pm 0.46}$ & $24.83 \pm 0.47$ & $+1.19$ \\
-Objects & 56 & $25.08 \pm 0.29$ & $26.85 \pm 0.25$ & $\mathbf{27.67 \pm 0.47}$ & $+2.59$ \\
-IN-100 & 100 & $22.79 \pm 0.18$ & $25.29 \pm 0.27$ & $\mathbf{25.70 \pm 0.07}$ & $+2.91$ \\
-IN-200 & 200 & $18.49 \pm 0.21$ & $\mathbf{22.17 \pm 0.07}$ & $21.79 \pm 0.16$ & $+3.30$ \\
+ImageNette & 10 & $49.99 \pm 0.22$ & $\mathbf{55.27 \pm 0.68}$ & $+5.28$ \\
+ImageWoof & 10 & $31.75 \pm 0.06$ & $\mathbf{32.87 \pm 0.29}$ & $+1.12$ \\
+Animals & 44 & $23.64 \pm 0.37$ & $\mathbf{24.83 \pm 0.47}$ & $+1.19$ \\
+Objects & 56 & $25.08 \pm 0.29$ & $\mathbf{27.67 \pm 0.47}$ & $+2.59$ \\
+IN-100 & 100 & $22.79 \pm 0.18$ & $\mathbf{25.70 \pm 0.07}$ & $+2.91$ \\
+IN-200 & 200 & $18.49 \pm 0.21$ & $\mathbf{21.79 \pm 0.16}$ & $+3.30$ \\
 \midrule
-\multicolumn{6}{l}{\emph{ImageNet-1K (1000 classes), 1000 epochs}} \\
-IN-1K (ConvNet-6) & 1000 & $11.48 \pm 0.16$ & --- & $\mathbf{15.06 \pm 0.06}$ & $\mathbf{+3.58}$ \\
-IN-1K (ResNet-18) & 1000 & $16.86 \pm 0.06$ & --- & $\mathbf{23.83 \pm 0.13}$ & $\mathbf{+6.97}$ \\
-IN-1K (ResNetAP-10) & 1000 & $15.64 \pm 0.08$ & --- & $\mathbf{22.46 \pm 0.18}$ & $\mathbf{+6.83}$ \\
+\multicolumn{5}{l}{\emph{ImageNet-1K (1000 classes), 1000 epochs}} \\
+IN-1K (ConvNet-6) & 1000 & $11.48 \pm 0.16$ & $\mathbf{15.06 \pm 0.06}$ & $\mathbf{+3.58}$ \\
+IN-1K (ResNet-18) & 1000 & $16.86 \pm 0.06$ & $\mathbf{23.83 \pm 0.13}$ & $\mathbf{+6.97}$ \\
+IN-1K (ResNetAP-10) & 1000 & $15.64 \pm 0.08$ & $\mathbf{22.46 \pm 0.18}$ & $\mathbf{+6.83}$ \\
 \bottomrule
 \end{tabular}
 \end{table}

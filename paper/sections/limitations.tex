@@ -2,7 +2,7 @@
 \label{sec:limitations}
 
 \paragraph{Configuration choice is dataset-dependent.}
-The two-factor optimal configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ outperforms the four-factor design on most datasets, but the four-factor design wins on certain settings (Animals subset, ResNet-18, IN-200) where mode count and separability exhibit greater variation. The general framework supports all four factors, and practitioners can tune weights for their specific dataset using the cached feature pipeline. Future work should investigate automatic weight selection.
+The two-factor configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ is the recommended default and outperforms the initial four-factor design on most datasets. On certain settings (Animals subset, IN-200), the four-factor design achieves marginally higher accuracy where mode count and separability exhibit greater variation. The general framework supports all four factors, and practitioners can tune weights for their specific dataset using the cached feature pipeline. Future work should investigate automatic weight selection.
 
 \paragraph{Exploratory modules not recommended.}
 \tags{} does not improve over \cags{}-alone, and \iast{}'s log-scaling is counterproductive at low IPC. More sophisticated temporal schedules or class-count-conditioned scaling are directions for future work.
