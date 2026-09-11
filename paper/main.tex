@@ -28,9 +28,9 @@
 \usepackage{subcaption}
 
 % ICLR-style formatting (self-contained, no external style file needed)
-\usepackage[margin=1in]{geometry}
-\linespread{1.15}
-\setlength{\parskip}{4pt}
+\usepackage[margin=0.85in]{geometry}
+\linespread{1.0}
+\setlength{\parskip}{1pt}
 
 \title{AGS-DD: Adaptive Guidance Scheduling for Training-Free Diffusion Dataset Distillation}
 
@@ -52,18 +52,23 @@
 \input{sections/method}
 \input{sections/theory}
 \input{sections/experiments}
-\input{sections/weight-learning}
-\input{sections/cross-dataset-entropy}
-\input{sections/semantic-subset}
 \input{sections/scaling-200}
 \input{sections/non-imagenet}
-\input{sections/guidance-analysis}
-\input{sections/dd-baselines}
-\input{sections/orthogonality}
 \input{sections/limitations}
 \input{sections/conclusion}
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
+
+\newpage
+\appendix
+\input{sections/theory-proofs}
+\input{sections/experiments-appendix}
+\input{sections/dd-baselines}
+\input{sections/weight-learning}
+\input{sections/cross-dataset-entropy}
+\input{sections/semantic-subset}
+\input{sections/guidance-analysis}
+\input{sections/orthogonality}
 
 \end{document}

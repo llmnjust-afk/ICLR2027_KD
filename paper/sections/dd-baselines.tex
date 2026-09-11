@@ -1,4 +1,4 @@
-\subsection{Comparison with Published DD Methods}
+\section{Comparison with Published DD Methods}
 \label{sec:dd-baselines}
 
 To contextualize \cags{} within the broader dataset distillation landscape, \Cref{tab:dd-baselines} compares our results on ImageNet-100 (100-class, IPC=10) against published numbers from several DD methods, as reported in the MGD$^3$ paper~\cite{chansantiago2025modeguided}. We include Random selection, Herding, IDC~\cite{kim2022dataset}, MinMaxDiff~\cite{fan2025generative}, and MGD$^3$ itself. Additionally, we implement D4M~\cite{su2024dataset} under our exact protocol: D4M encodes real images through the VAE, adds partial noise at an intermediate timestep ($t_{\text{start}}$ out of 50 denoising steps), and denoises using the same frozen DiT-XL/2 generator with the same CFG scale ($\lambda_{\text{CFG}} = 4.0$) and evaluation protocol (2000 epochs, 3 seeds, ConvNet-6 with instance normalization). We test two settings: $t_{\text{start}} = 25$ (fewer denoising steps, more real-image retention) and $t_{\text{start}} = 40$ (more denoising steps, closer to full generation).

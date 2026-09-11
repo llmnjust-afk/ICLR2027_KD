@@ -1,4 +1,4 @@
-\subsection{Semantic Subset Analysis}
+\section{Semantic Subset Analysis}
 \label{sec:semantic-subset}
 
 The cross-dataset configuration analysis (Section~\ref{sec:cross-dataset-entropy}) reveals that the two-factor optimal configuration outperforms the four-factor design on ImageNette, ImageWoof, and ImageNet-100. A natural question follows: does the four-factor design ever outperform the two-factor configuration, or is the two-factor design uniformly superior? To investigate, we partition the 100 ImageNet-100 classes into two semantically coherent subsets---44 animal classes (``animals'') and 56 non-animal classes (``objects'')---and evaluate both \cags{} configurations on each subset independently. Both subsets share the same generation pipeline, guidance range $[0.0, 0.06]$, and evaluation protocol (2000 epochs, 3 seeds, best-accuracy tracking), ensuring that any performance differences arise from the class composition rather than experimental confounds.

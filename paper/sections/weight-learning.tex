@@ -1,4 +1,4 @@
-\subsection{Weight Sensitivity and Grid Search}
+\section{Weight Sensitivity and Grid Search}
 \label{sec:weight-learning}
 
 The factor ablation (\Cref{sec:factor-ablation}) reveals that the weighting coefficients $(\alpha, \beta, \gamma, \delta)$ substantially affect performance, with cluster entropy alone ($\beta{=}1$) outperforming the default multi-factor design ($\alpha{=}0.3, \beta{=}0.3, \gamma{=}0.2, \delta{=}0.2$) by $1.07\%$ absolute. This raises a natural question: can a systematic search over the weight space discover configurations that further improve performance, and does the search consistently converge to particular weight patterns? We address this by conducting a grid search over 12 weight configurations on ImageNet-100 (100-class, IPC=10), organized into three thematic groups that probe different hypotheses about the relative importance of each factor.

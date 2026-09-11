@@ -1,4 +1,4 @@
-\subsection{Cross-Dataset Configuration Analysis}
+\section{Cross-Dataset Configuration Analysis}
 \label{sec:cross-dataset-entropy}
 
 The factor ablation (Section~\ref{sec:factor-ablation}) and weight grid search (Section~\ref{sec:weight-learning}) identify the two-factor configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ as optimal on ImageNet-100. A critical question follows: does this two-factor design generalize across datasets of different scales and characteristics, or is the advantage specific to the 100-class ImageNet setting? To answer this, we evaluate the four-factor \cags{} ($\alpha{=}0.3, \beta{=}0.3, \gamma{=}0.2, \delta{=}0.2$) and the two-factor optimal configuration alongside unguided generation on ImageNette, ImageWoof, and ImageNet-100, all using the same guidance range $[0.0, 0.06]$, sigmoid parameters $(s{=}3.0, c_0{=}0.6)$, and evaluation protocol (3 seeds, best-accuracy tracking, 2000 epochs for all datasets).
