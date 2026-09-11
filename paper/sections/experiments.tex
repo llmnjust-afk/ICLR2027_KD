@@ -52,7 +52,7 @@ To understand the contribution of each complexity factor, we conduct a factor ab
 \begin{table}[t]
 \centering
 \footnotesize
-\caption{Complexity factor ablation (100-class, IPC=10, ConvNet-6, 3 seeds). The $\rho$ std column reports std of the per-class complexity score $\rho_c$ (before mapping to $\lambda_c = 0.06\,\rho_c$). Entries use independently generated datasets from the weight grid search (Appendix~\ref{sec:weight-learning}); ``Full \cags{}'' and ``Entropy only'' differ by ${\sim}1\%$ from the weight-learning tables due to different diffusion sampling seeds.}
+\caption{Complexity factor ablation (100-class, IPC=10, ConvNet-6, 3 seeds). The $\rho$ std column reports std of the per-class complexity score $\rho_c$ (before mapping to $\lambda_c = 0.06\,\rho_c$). Entries use independently generated datasets from the weight grid search (Appendix~\ref{sec:weight-learning}); ``Full \cags{}'' and ``Entropy only'' differ by ${\sim}1\%$ from the weight-learning tables due to different diffusion sampling seeds. The unguided baseline ($22.79\%$) uses 3 seeds and differs from the 5-seed main result ($22.90\%$, \Cref{tab:sota-main}) due to independent dataset generation.}
 \label{tab:factor-ablation}
 \begin{tabular}{lcccccc}
 \toprule
@@ -88,10 +88,10 @@ Using five seeds for the main 100-class IPC=10 experiments and three for others,
 \toprule
 \textbf{Setting} & \textbf{Comparison} & \textbf{$\Delta$ (\%)} & \textbf{$t$-stat} & \textbf{$p$-value} & \textbf{Cohen's $d$} \\
 \midrule
-100-cls IPC=1 & CAGS vs Ung & $+0.72$ & $6.80$ & $0.021$ & $3.93$ \\
-100-cls IPC=10 & CAGS vs Ung & $+2.65$ & $13.97$ & $1.5\!\times\!10^{-4}$ & $6.21$ \\
-100-cls IPC=50 & CAGS vs Ung & $+5.14$ & $14.13$ & $0.005$ & $8.16$ \\
-100-cls IPC=1 & IAST+CAGS vs CAGS & $-0.70$ & $-4.17$ & $0.053$ & $-2.41$ \\
+100-cls IPC=1 (ConvNet-6) & CAGS vs Ung & $+0.72$ & $6.80$ & $0.021$ & $3.93$ \\
+100-cls IPC=10 (ConvNet-6) & CAGS vs Ung & $+2.65$ & $13.97$ & $1.5\!\times\!10^{-4}$ & $6.21$ \\
+100-cls IPC=50 (ConvNet-6) & CAGS vs Ung & $+6.74$ & $21.01$ & $0.002$ & $20.51$ \\
+100-cls IPC=1 (ConvNet-6) & IAST+CAGS vs CAGS & $-0.70$ & $-4.17$ & $0.053$ & $-2.41$ \\
 \midrule
 ResNet-18 IPC=10 & CAGS vs Ung & $+4.29$ & $19.79$ & $3.9\!\times\!10^{-5}$ & $10.63$ \\
 ResNetAP-10 IPC=10 & CAGS vs Ung & $+3.23$ & $16.35$ & $8.2\!\times\!10^{-5}$ & $6.46$ \\
@@ -109,6 +109,13 @@ ImageNette & CAGS vs Ung & $+2.65$ & $8.37$ & $0.014$ & $4.83$ \\
 \label{sec:d4m-summary}
 
 We implement D4M~\cite{su2024dataset} under our exact protocol. D4M's global CFG ($\lambda{=}4.0$) and \cags{}'s adaptive guidance ($\lambda \in [0, 0.06]$) operate in different regimes: \cags{} uses a mild range because the adaptive mechanism redistributes guidance across classes. At $t_{\text{start}}{=}40$ (its optimum), D4M achieves $23.07\%$---falling short of \cags{} and barely exceeding unguided ($22.90\%$). Full D4M sensitivity analysis, cross-dataset comparison, and comparison with 2026 methods (DMGD~\cite{wang2026dmgd}, LGD~\cite{chansantiago2026learnabilityguided}) are in Appendix~\ref{sec:dd-baselines}. We note that DMGD achieves higher absolute accuracy on ImageNette/ImageWoof, but with a $5.1\%$ baseline advantage due to lighter augmentation; in relative improvement, \cags{} ($+14.8\%$) is comparable to DMGD ($+15.7\%$) while adding negligible overhead.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/results_comparison.pdf}
+\caption{\cags{} vs.\ unguided and published baselines across architectures and class counts. (a)~Main 100-class results (IPC=10, 5 seeds): \cags{} surpasses all baselines on all three architectures. (b)~Scaling: the \cags{} advantage grows with class count, reaching $+6.97\%$ on ResNet-18 at 1000 classes.}
+\label{fig:results-comparison}
+\end{figure}
 
 \subsection{CAGS+D4M Hybrid Ablation}
 \label{sec:hybrid-ablation}

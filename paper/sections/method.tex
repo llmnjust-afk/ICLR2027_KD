@@ -5,7 +5,37 @@
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.65\columnwidth]{figures/framework.jpg}
+    \begin{tikzpicture}[
+        node distance=0.35cm and 0.5cm,
+        box/.style={draw, rounded corners=2pt, minimum width=2.2cm, minimum height=0.6cm, align=center, font=\footnotesize, fill=blue!8},
+        databox/.style={draw, rounded corners=2pt, minimum width=1.8cm, minimum height=0.6cm, align=center, font=\footnotesize, fill=gray!10},
+        resultbox/.style={draw, rounded corners=2pt, minimum width=2.0cm, minimum height=0.6cm, align=center, font=\footnotesize, fill=green!10},
+        arrow/.style={-Stealth, thick, draw=gray!70},
+    ]
+   
+    \node[databox] (real) {Real\\Training Images};
+    \node[box, right=of real] (vae) {VAE Feature\\Extraction};
+    \node[box, right=of vae] (kmeans) {$K$-means\\Clustering};
+    \node[box, right=of kmeans] (score) {Complexity\\Score $\rho_c$};
+
+   
+    \node[box, below=0.5cm of $(vae)!0.5!(kmeans)$, minimum width=4.5cm] (cags) {\cags{}: $\lambda_c = 0.06\,\sigma\!\bigl(s(0.5\hat{H}_c + 0.5\hat{v}_c) - c_0\bigr)$};
+
+   
+    \node[box, below=of cags, minimum width=2.4cm, fill=blue!15] (dit) {Frozen DiT\\(per-class CFG)};
+    \node[resultbox, right=of dit] (synth) {Synthetic\\Dataset};
+
+   
+    \draw[arrow] (real) -- (vae);
+    \draw[arrow] (vae) -- (kmeans);
+    \draw[arrow] (kmeans) -- (score);
+    \draw[arrow] (score.south) |- (cags.east);
+    \draw[arrow] (cags) -- (dit);
+    \draw[arrow] (dit) -- (synth);
+
+   
+    \node[font=\scriptsize\itshape, gray, above=0.05cm of vae] {One-time analysis (cached)};
+    \end{tikzpicture}
     \caption{Overview of the \ags{} framework. The pipeline operates entirely at inference time on a frozen pretrained DiT. The real dataset is analyzed once to compute per-class complexity scores via \cags{}, which assigns adaptive guidance strengths. No gradient computation or model training is required.}
     \label{fig:framework}
 \end{figure}

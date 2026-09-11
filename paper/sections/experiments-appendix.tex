@@ -81,7 +81,7 @@ At IPC=10, \cags{} improves to $25.55 \pm 0.21\%$ ($+11.6\%$ relative over the 5
 
 \begin{table}[t]
 \centering
-\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides consistent and substantial gains at all IPC settings ($+12.4\%$ to $+19.4\%$ relative over unguided). \iast{}+\cags{} \emph{hurts} at IPC=1 by compressing the guidance range.}
+\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6. Best-accuracy tracking per MGD$^3$ protocol. \cags{} provides consistent and substantial gains at all IPC settings ($+12.4\%$ to $+19.4\%$ relative over unguided). \iast{}+\cags{} \emph{hurts} at IPC=1 by compressing the guidance range. The IPC=10 \cags{} entry uses 5 seeds (matching \Cref{tab:sota-main}); all other entries use 3 seeds.}
 \label{tab:ipc-ablation-100cls}
 \begin{tabular}{lccc}
 \toprule
@@ -90,7 +90,7 @@ At IPC=10, \cags{} improves to $25.55 \pm 0.21\%$ ($+11.6\%$ relative over the 5
 Random Herding & $3.69 \pm 0.08$ & $14.06 \pm 0.48$ & $34.46 \pm 0.02$ \\
 Unguided & $5.79 \pm 0.09$ & $22.79 \pm 0.18$ & $34.71 \pm 0.37$ \\
 Fixed $\lambda = 0.10$ & --- & $21.31 \pm 0.42$ & --- \\
-\cags{} & $\mathbf{6.51 \pm 0.22}$ & $\mathbf{25.55 \pm 0.21}$ & $\mathbf{41.45 \pm 0.11}$ \\
+\cags{} & $\mathbf{6.51 \pm 0.22}$ & $\mathbf{25.55 \pm 0.21}$ & $\mathbf{41.45 \pm 0.09}$ \\
 \iast{}+\cags{} $[0.0, 0.06]$ & $5.87 \pm 0.07$ & --- & --- \\
 \midrule
 $\Delta$ \cags{} vs.\ unguided (rel.) & --- & $+11.6\%$ & $+19.4\%$ \\
@@ -134,7 +134,7 @@ To assess the impact of \cags{} on the fidelity of the generated images, we comp
 
 \begin{table}[t]
 \centering
-\caption{FID scores (lower is better) for unguided vs.\ \cags{} on the 100-class subset. \cags{} improves FID at both IPC settings, with the larger improvement at IPC=50 consistent with the larger accuracy gain at that setting.}
+\caption{FID scores (lower is better) for unguided vs.\ \cags{} on the 100-class subset. \cags{} improves FID at both IPC settings, with the larger improvement at IPC=50 consistent with the larger accuracy gain at that setting. FID is computed from a single generation run per method (same diffusion seed) to ensure a controlled comparison; we note that FID can exhibit hidden randomness across seeds~\cite{dufour2026lottery}.}
 \label{tab:fid}
 \begin{tabular}{llccc}
 \toprule

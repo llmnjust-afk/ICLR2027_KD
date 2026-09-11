@@ -13,9 +13,9 @@ import matplotlib.patches as mpatches
 # Data from compute_theorem1_fit.py
 datasets = {
     'IN-10':    {'C': 10,   'gain': 0.00, 'frac_K_gt2': 0.000, 'K_dist': {2: 10}},
-    'Nette':    {'C': 10,   'gain': 3.97, 'frac_K_gt2': 0.000, 'K_dist': {2: 10}},
-    'Woof':     {'C': 10,   'gain': 1.48, 'frac_K_gt2': 0.000, 'K_dist': {2: 10}},
-    'IN-100':   {'C': 100,  'gain': 2.91, 'frac_K_gt2': 0.050, 'K_dist': {2: 95, 3: 2, 4: 2, 5: 1}},
+    'Nette':    {'C': 10,   'gain': 5.28, 'frac_K_gt2': 0.000, 'K_dist': {2: 10}},
+    'Woof':     {'C': 10,   'gain': 1.12, 'frac_K_gt2': 0.000, 'K_dist': {2: 10}},
+    'IN-100':   {'C': 100,  'gain': 2.65, 'frac_K_gt2': 0.050, 'K_dist': {2: 95, 3: 2, 4: 2, 5: 1}},
     'IN-200':   {'C': 200,  'gain': 3.30, 'frac_K_gt2': 0.285, 'K_dist': {2: 143, 3: 9, 4: 4, 5: 4, 6: 6, 7: 5, 8: 4, 9: 5, 10: 1, 11: 2, 13: 3, 14: 1, 15: 3, 16: 3, 17: 1, 18: 1, 19: 2, 20: 3}},
     'IN-1K':    {'C': 1000, 'gain': 3.58, 'frac_K_gt2': 0.600, 'K_dist': {2: 400, 3: 80, 4: 41, 5: 43, 6: 44, 7: 40, 8: 42, 9: 35, 10: 23, 11: 36, 12: 35, 13: 28, 14: 26, 15: 23, 16: 26, 17: 17, 18: 13, 19: 20, 20: 28}},
 }
@@ -130,7 +130,7 @@ ax2.set_ylabel('CAGS gain over unguided (%)', fontsize=12)
 ax2.set_title('(b) Mode heterogeneity vs.\\ accuracy gain', fontsize=13)
 ax2.legend(fontsize=9, loc='lower right')
 ax2.set_xlim(-0.05, 0.7)
-ax2.set_ylim(-0.5, 4.8)
+ax2.set_ylim(-0.5, 6.5)
 ax2.grid(True, alpha=0.2)
 
 # Legend for markers
