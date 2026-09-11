@@ -10,14 +10,14 @@ We generate $50$ images per class (IPC$=50$) using both unguided generation and 
 
 \begin{table}[t]
 \centering
-\caption{CAGS vs.\ herding on ImageNet-100 (100-class, ConvNet-6, 3 seeds). CAGS-alone outperforms both herding-alone and the combination, indicating that adaptive guidance subsumes the benefit of sample selection: the diversity signal that herding extracts from a larger pool is already encoded by CAGS at IPC$=10$.}
+\caption{CAGS vs.\ herding on ImageNet-100 (100-class, ConvNet-6). Unguided and \cags{}-alone use 5 seeds; herding conditions use 3 seeds. CAGS-alone outperforms both herding-alone and the combination, indicating that adaptive guidance subsumes the benefit of sample selection: the diversity signal that herding extracts from a larger pool is already encoded by CAGS at IPC$=10$.}
 \label{tab:orthogonality}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Method} & \textbf{IPC} & \textbf{Top-1 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
 \midrule
-Unguided & 10 & $22.79 \pm 0.18$ & --- \\
-\cags{} (2-factor opt.) & 10 & $25.70 \pm 0.07$ & $+2.91$ \\
+Unguided & 10 & $22.90 \pm 0.50$ & --- \\
+\cags{} (2-factor opt.) & 10 & $25.55 \pm 0.21$ & $+2.65$ \\
 \midrule
 Unguided $\to$ herding & $50 \to 10$ & $23.08 \pm 0.07$ & $+0.29$ \\
 \cags{} $\to$ herding & $50 \to 10$ & $24.77 \pm 0.29$ & $+1.98$ \\
@@ -25,8 +25,8 @@ Unguided $\to$ herding & $50 \to 10$ & $23.08 \pm 0.07$ & $+0.29$ \\
 \end{tabular}
 \end{table}
 
-\Cref{tab:orthogonality} presents the results. Three findings emerge. First, herding provides a marginal improvement over unguided generation ($23.08\%$ vs.\ $22.79\%$, $+0.29\%$), confirming that selecting representative images from a larger pool yields a small benefit. Second, \cags{}-alone ($25.70\%$) substantially outperforms both herding-alone ($23.08\%$) and the combination of \cags{} with herding ($24.77\%$), demonstrating that adaptive guidance at IPC$=10$ is more effective than sample selection from a $5\times$ larger pool. Third, \cags{} $+$ herding ($24.77\%$) underperforms \cags{}-alone ($25.70\%$) by $0.93\%$, indicating that herding introduces a slight \emph{redundancy} with \cags{}: the diversity signal that herding extracts from the larger pool is already captured by \cags{}'s per-class guidance adaptation.
+\Cref{tab:orthogonality} presents the results. Three findings emerge. First, herding provides a marginal improvement over unguided generation ($23.08\%$ vs.\ $22.90\%$, $+0.18\%$), confirming that selecting representative images from a larger pool yields a small benefit. Second, \cags{}-alone ($25.55\%$) substantially outperforms both herding-alone ($23.08\%$) and the combination of \cags{} with herding ($24.77\%$), demonstrating that adaptive guidance at IPC$=10$ is more effective than sample selection from a $5\times$ larger pool. Third, \cags{} $+$ herding ($24.77\%$) underperforms \cags{}-alone ($25.55\%$) by $0.78\%$, indicating that herding introduces a slight \emph{redundancy} with \cags{}: the diversity signal that herding extracts from the larger pool is already captured by \cags{}'s per-class guidance adaptation.
 
-Crucially, \cags{} improves the quality of the herding pool: the gain from \cags{} over unguided is $+2.91\%$ without herding and $+1.69\%$ with herding ($24.77\%$ vs.\ $23.08\%$). This confirms that \cags{} enhances individual sample quality through adaptive guidance---a dimension that sample selection cannot access---while the reduced gain under herding reflects the overlap between the two methods' diversity-improvement mechanisms. In aggregate, the combined method still yields $+1.98\%$ over unguided, but the sub-additive structure ($1.98 < 2.91 + 0.29 = 3.20$) confirms partial substitution rather than orthogonality.
+Crucially, \cags{} improves the quality of the herding pool: the gain from \cags{} over unguided is $+2.65\%$ without herding and $+1.69\%$ with herding ($24.77\%$ vs.\ $23.08\%$). This confirms that \cags{} enhances individual sample quality through adaptive guidance---a dimension that sample selection cannot access---while the reduced gain under herding reflects the overlap between the two methods' diversity-improvement mechanisms. In aggregate, the combined method still yields $+1.88\%$ over unguided, but the sub-additive structure ($1.88 < 2.65 + 0.18 = 2.83$) confirms partial substitution rather than orthogonality.
 
 These findings have practical implications: \cags{} is best used as a standalone generation-time intervention rather than combined with post-hoc sample selection. The result also suggests that \cags{}'s per-class guidance adaptation and herding's feature-matching selection target overlapping aspects of sample diversity, with \cags{} achieving superior results at lower computational cost (single-pass generation at IPC$=10$ vs.\ generating at IPC$=50$ then selecting).

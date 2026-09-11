@@ -54,7 +54,7 @@ To understand the contribution of each \ags{} module, we evaluate module combina
 
 \begin{table}[t]
 \centering
-\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. Uses the initial four-factor \cags{} configuration; the simplified two-factor \cags{} achieves $25.70\%$ (Table~\ref{tab:sota-main}). \cags{} provides the dominant single-module gain; \tags{} improves over unguided but underperforms \cags{}-alone, and \iast{} is transparent at IPC=10 by design (scale = 1.0).}
+\caption{Module ablation on ImageNet-100 (100-class) with ConvNet-6, IPC=10, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. Uses the initial four-factor \cags{} configuration; the simplified two-factor \cags{} achieves $25.55\%$ (Table~\ref{tab:sota-main}). \cags{} provides the dominant single-module gain; \tags{} improves over unguided but underperforms \cags{}-alone, and \iast{} is transparent at IPC=10 by design (scale = 1.0).}
 \label{tab:module-ablation}
 \begin{tabular}{lcc}
 \toprule
@@ -77,7 +77,7 @@ The 100-class IPC ablation reveals the most nuanced findings of our study (\Cref
 
 The contrast between this result and the 10-class IPC=1 setting (where \cags{} itself \emph{hurts}) reveals an important boundary condition. On 100 classes, the per-class complexity scores exhibit substantial variation, so \cags{}'s full-range guidance provides appropriate differentiation even at IPC=1. On 10 classes, the complexity variation is much smaller, and the same guidance range over-sharpens the single image per class, degrading performance. \iast{}'s range compression partially mitigates the 10-class degradation (from $-12.8\%$ to $-7.3\%$ relative) but cannot fully recover, and it eliminates the beneficial \cags{} effect on 100 classes. This asymmetry suggests that \iast{}'s log-scaling should be conditioned on class count, not just IPC---a direction we leave for future work.
 
-At IPC=10, \cags{} improves to $25.70 \pm 0.07\%$ ($+12.8\%$ relative), with $3.9\times$ lower variance than the initial four-factor design ($25.29 \pm 0.27\%$). At IPC=50, \cags{} achieves $41.45 \pm 0.11\%$ ($+19.4\%$ relative over unguided $34.71 \pm 0.37\%$), outperforming the initial four-factor configuration ($39.85 \pm 0.15\%$, $+14.8\%$ relative) by $+1.60\%$ absolute with $1.4\times$ lower variance. Random Herding at IPC=50 ($34.46 \pm 0.02\%$) is comparable to unguided diffusion generation ($34.71 \pm 0.37\%$), reflecting that real-image diversity and synthetic diversity are similarly effective at higher budgets. However, the optimal \cags{} surpasses Random Herding by $+6.99\%$ absolute ($+20.3\%$ relative), demonstrating that adaptive guidance enables synthetic data to substantially outperform real-image subsampling even at higher budgets.
+At IPC=10, \cags{} improves to $25.55 \pm 0.21\%$ ($+11.6\%$ relative over the 5-seed unguided baseline of $22.90\%$), with lower variance than the initial four-factor design ($25.29 \pm 0.27\%$). At IPC=50, \cags{} achieves $41.45 \pm 0.11\%$ ($+19.4\%$ relative over unguided $34.71 \pm 0.37\%$), outperforming the initial four-factor configuration ($39.85 \pm 0.15\%$, $+14.8\%$ relative) by $+1.60\%$ absolute with $1.4\times$ lower variance. Random Herding at IPC=50 ($34.46 \pm 0.02\%$) is comparable to unguided diffusion generation ($34.71 \pm 0.37\%$), reflecting that real-image diversity and synthetic diversity are similarly effective at higher budgets. However, the optimal \cags{} surpasses Random Herding by $+6.99\%$ absolute ($+20.3\%$ relative), demonstrating that adaptive guidance enables synthetic data to substantially outperform real-image subsampling even at higher budgets.
 
 \begin{table}[t]
 \centering
@@ -90,10 +90,10 @@ At IPC=10, \cags{} improves to $25.70 \pm 0.07\%$ ($+12.8\%$ relative), with $3.
 Random Herding & $3.69 \pm 0.08$ & $14.06 \pm 0.48$ & $34.46 \pm 0.02$ \\
 Unguided & $5.79 \pm 0.09$ & $22.79 \pm 0.18$ & $34.71 \pm 0.37$ \\
 Fixed $\lambda = 0.10$ & --- & $21.31 \pm 0.42$ & --- \\
-\cags{} & $\mathbf{6.51 \pm 0.22}$ & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{41.45 \pm 0.11}$ \\
+\cags{} & $\mathbf{6.51 \pm 0.22}$ & $\mathbf{25.55 \pm 0.21}$ & $\mathbf{41.45 \pm 0.11}$ \\
 \iast{}+\cags{} $[0.0, 0.06]$ & $5.87 \pm 0.07$ & --- & --- \\
 \midrule
-$\Delta$ \cags{} vs.\ unguided (rel.) & --- & $+12.8\%$ & $+19.4\%$ \\
+$\Delta$ \cags{} vs.\ unguided (rel.) & --- & $+11.6\%$ & $+19.4\%$ \\
 $\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $+1.4\%$ & --- & --- \\
 \bottomrule
 \end{tabular}
@@ -149,7 +149,7 @@ ImageNet-100 (100-cls) & 50 & $71.06$ & $\mathbf{59.28}$ & $-11.78$ \\
 \subsection{Class-Level Mechanism Analysis}
 \label{sec:class-analysis}
 
-To provide direct mechanistic evidence for \cags{}'s design rationale, we conduct a class-level analysis correlating per-class complexity scores with per-class accuracy gains. We train unguided and \cags{} models on the 100-class subset using the optimal two-factor data (IPC=10, ConvNet-6, 2000 epochs, seed 0) and compute per-class accuracy on the 5{,}000-image validation set. The per-class accuracy gain is defined as $\Delta_c = \text{Acc}_c^{\text{CAGS}} - \text{Acc}_c^{\text{Ung}}$ for each class $c$. The overall top-1 accuracies are $22.50\%$ (unguided) and $26.06\%$ (\cags{}), yielding an overall gain of $+3.56\%$---consistent with the 3-seed main result ($+2.91\%$).
+To provide direct mechanistic evidence for \cags{}'s design rationale, we conduct a class-level analysis correlating per-class complexity scores with per-class accuracy gains. We train unguided and \cags{} models on the 100-class subset using the optimal two-factor data (IPC=10, ConvNet-6, 2000 epochs, seed 0) and compute per-class accuracy on the 5{,}000-image validation set. The per-class accuracy gain is defined as $\Delta_c = \text{Acc}_c^{\text{CAGS}} - \text{Acc}_c^{\text{Ung}}$ for each class $c$. The overall top-1 accuracies are $22.50\%$ (unguided) and $26.06\%$ (\cags{}), yielding an overall gain of $+3.56\%$---consistent with the 5-seed main result ($+2.65\%$).
 
 The overall Pearson correlation between the two-factor complexity score $\rho_c$ and per-class gain $\Delta_c$ is $r = 0.138$ ($p = 0.172$), substantially stronger than the near-zero correlation ($r = 0.018$) obtained with the original four-factor weights, but still modest. This weak linear correlation, however, masks a clear non-linear pattern revealed by the quartile analysis (\Cref{tab:quartile-analysis}): the top-half complexity classes (Q3+Q4) exhibit a mean gain of $+5.2\%$, while the bottom-half (Q1+Q2) gain only $+1.9\%$---a $2.8\times$ difference. The highest-complexity quartile (Q4) shows the most favorable ratio of positive to negative gains ($19$ positive, $3$ negative, $3$ zero), confirming that \cags{}'s benefit concentrates on complex classes that require stronger guidance.
 
@@ -183,11 +183,11 @@ Q4 (high) & $0.680$ & $0.041$ & $0.186$ & $0.236$ & $+0.050$ & $19/3/3$ \\
 \subsection{Sensitivity to Guidance Range}
 \label{sec:sensitivity}
 
-To assess the robustness of \cags{} to the choice of guidance range $[\lambda_{\min}, \lambda_{\max}]$, we sweep $\lambda_{\max} \in \{0.04, 0.06, 0.08, 0.10\}$ on the 100-class subset with IPC=10 and ConvNet-6 (\Cref{tab:sensitivity}). This sensitivity analysis was conducted during the early exploration phase using the initial four-factor configuration with independently generated datasets, so the absolute accuracies ($22.7$--$23.5\%$) are lower than the optimized two-factor result ($25.70\%$, \Cref{tab:sota-main}). The key finding is the \emph{relative} robustness: all configurations yield top-1 accuracy within a narrow band, well within the standard deviation ($\pm 0.47\%$). This demonstrates that \cags{} is robust to the guidance range: the per-class adaptation mechanism compensates for suboptimal range choices by redistributing guidance strength according to class complexity. Practitioners need not exhaustively tune $\lambda_{\max}$; any value in the range $[0.04, 0.10]$ produces comparable results. Notably, even the widest range $[0.0, 0.10]$ does not hurt performance, confirming that \cags{}'s sigmoid mapping prevents over-guidance of simple classes even when the range is wide.
+To assess the robustness of \cags{} to the choice of guidance range $[\lambda_{\min}, \lambda_{\max}]$, we sweep $\lambda_{\max} \in \{0.04, 0.06, 0.08, 0.10\}$ on the 100-class subset with IPC=10 and ConvNet-6 (\Cref{tab:sensitivity}). This sensitivity analysis was conducted during the early exploration phase using the initial four-factor configuration with independently generated datasets, so the absolute accuracies ($22.7$--$23.5\%$) are lower than the optimized two-factor result ($25.55\%$, \Cref{tab:sota-main}). The key finding is the \emph{relative} robustness: all configurations yield top-1 accuracy within a narrow band, well within the standard deviation ($\pm 0.47\%$). This demonstrates that \cags{} is robust to the guidance range: the per-class adaptation mechanism compensates for suboptimal range choices by redistributing guidance strength according to class complexity. Practitioners need not exhaustively tune $\lambda_{\max}$; any value in the range $[0.04, 0.10]$ produces comparable results. Notably, even the widest range $[0.0, 0.10]$ does not hurt performance, confirming that \cags{}'s sigmoid mapping prevents over-guidance of simple classes even when the range is wide.
 
 \begin{table}[t]
 \centering
-\caption{Sensitivity to guidance range on ImageNet-100 (100-class) with ConvNet-6, IPC=10. These experiments use the initial four-factor configuration with independently generated datasets, so absolute accuracies are lower than the optimized two-factor result ($25.70\%$); the key finding is the relative robustness across $\lambda_{\max}$ values. The $\lambda_{\max}=0.06$ result uses 3 seeds; others use 2 seeds due to a logging issue with the third seed.}
+\caption{Sensitivity to guidance range on ImageNet-100 (100-class) with ConvNet-6, IPC=10. These experiments use the initial four-factor configuration with independently generated datasets, so absolute accuracies are lower than the optimized two-factor result ($25.55\%$); the key finding is the relative robustness across $\lambda_{\max}$ values. The $\lambda_{\max}=0.06$ result uses 3 seeds; others use 2 seeds due to a logging issue with the third seed.}
 \label{tab:sensitivity}
 \begin{tabular}{lccc}
 \toprule

@@ -8,7 +8,7 @@ All experiments use a frozen pretrained DiT-XL/2~\cite{peebles2022scalable} for 
 We report all hyperparameters: sigmoid slope $s{=}3.0$, center $c_0{=}0.6$, guidance range $[0.0, 0.06]$, complexity weights $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$, 50 denoising steps with a 25-step high-noise guidance window, and training with SGD (lr $0.1$, weight decay $1\text{e}{-4}$, batch size $128$). Classifier training uses 2000 epochs for 100-class experiments, ImageNette, and ImageWoof; 3000 for 10-class and CIFAR-10; 1000 for IN-1K. Data augmentation includes random resized crop, horizontal flip, color jitter, PCA lighting noise, and CutMix.
 
 \paragraph{Random seeds.}
-All experiments use 3 random seeds (seeds 0, 1, 2) except where noted in table captions (IN-1K ConvNet-6 uses 2 seeds; some sensitivity analysis entries use 2 seeds). Population std is used for reported standard deviations; sample std (ddof=1) is used for $t$-tests.
+The main 100-class IPC=10 experiments (CAGS and Unguided on all three architectures) use 5 random seeds (seeds 0--4). All other experiments use 3 random seeds (seeds 0, 1, 2) except where noted in table captions (IN-1K ConvNet-6 uses 2 seeds; some sensitivity analysis entries use 2 seeds). Population std is used for reported standard deviations; sample std (ddof=1) is used for $t$-tests.
 
 \paragraph{Hardware.}
 All experiments run on NVIDIA RTX 4090 GPUs. The one-time complexity analysis takes approximately 22 minutes; dataset generation takes $\sim$16 minutes per configuration for 100 classes (IPC=10).

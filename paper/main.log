@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  11 SEP 2026 12:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  11 SEP 2026 22:46
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -502,7 +502,7 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count313
 \l__pdf_internal_box=\box58
 )
-(/tmp/paperguru-out-1cXRCp/main.aux)
+(/tmp/paperguru-out-ylWKFI/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
@@ -539,7 +539,7 @@ LaTeX Font Info:    ... okay on input line 40.
 \everyMPtoPDFconversion=\toks36
 )
 Package hyperref Info: Link coloring OFF on input line 40.
- (/tmp/paperguru-out-1cXRCp/main.out) (/tmp/paperguru-out-1cXRCp/main.out)
+ (/tmp/paperguru-out-ylWKFI/main.out) (/tmp/paperguru-out-ylWKFI/main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
@@ -629,14 +629,21 @@ T1/cmr/m/n/10 ) =
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [8])
+et.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
 s.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex) [9]
+.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 56
 .
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -644,7 +651,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-(/tmp/paperguru-out-1cXRCp/main.bbl [10]
+(/tmp/paperguru-out-ylWKFI/main.bbl [10]
 Underfull \hbox (badness 1910) in paragraph at lines 76--80
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
@@ -662,11 +669,8 @@ T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
  []
 
-
-Underfull \vbox (badness 1264) has occurred while \output is active []
-
- [13]
-<figures/theorem1_fit.pdf, id=575, 859.85333pt x 318.42657pt>
+[13]
+<figures/theorem1_fit.pdf, id=580, 859.85333pt x 318.42657pt>
 File: figures/theorem1_fit.pdf Graphic file (type pdf)
 <use figures/theorem1_fit.pdf>
 Package pdftex.def Info: figures/theorem1_fit.pdf  used on input line 31.
@@ -683,7 +687,7 @@ Underfull \vbox (badness 1796) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
-<figures/class_level_mechanism.pdf, id=700, 710.67938pt x 569.52919pt>
+<figures/class_level_mechanism.pdf, id=705, 710.67938pt x 569.52919pt>
 File: figures/class_level_mechanism.pdf Graphic file (type pdf)
 <use figures/class_level_mechanism.pdf>
 Package pdftex.def Info: figures/class_level_mechanism.pdf  used on input line 
@@ -694,7 +698,7 @@ Package pdftex.def Info: figures/class_level_mechanism.pdf  used on input line
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
 es.tex [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
 class_level_mechanism.pdf>] [21]
-<figures/d4m_sensitivity.pdf, id=843, 425.78604pt x 282.40921pt>
+<figures/d4m_sensitivity.pdf, id=848, 425.78604pt x 282.40921pt>
 File: figures/d4m_sensitivity.pdf Graphic file (type pdf)
 <use figures/d4m_sensitivity.pdf>
 Package pdftex.def Info: figures/d4m_sensitivity.pdf  used on input line 64.
@@ -702,10 +706,7 @@ Package pdftex.def Info: figures/d4m_sensitivity.pdf  used on input line 64.
  [22] [23 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/d
 4m_sensitivity.pdf>])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex
-Underfull \vbox (badness 4084) has occurred while \output is active []
-
- [24]
+rning.tex [24]
 Underfull \hbox (badness 3849) in paragraph at lines 10--11
  []\T1/ptm/b/n/10 (+20) Grid con-fig-u-ra-tions.[] \T1/ptm/m/n/10 (+20) The 12 
 con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
@@ -734,26 +735,26 @@ Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
 [28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
 nalysis.tex
-<figures/guidance_analysis.pdf, id=987, 1075.30493pt x 317.09583pt>
+<figures/guidance_analysis.pdf, id=992, 1075.30493pt x 317.09583pt>
 File: figures/guidance_analysis.pdf Graphic file (type pdf)
 <use figures/guidance_analysis.pdf>
 Package pdftex.def Info: figures/guidance_analysis.pdf  used on input line 14.
 (pdftex.def)             Requested size: 397.48499pt x 117.21233pt.
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
-ity.tex [29] [30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fi
-gures/guidance_analysis.pdf>]) [31] (/tmp/paperguru-out-1cXRCp/main.aux)
+ity.tex [29]) [30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/f
+igures/guidance_analysis.pdf>] [31] (/tmp/paperguru-out-ylWKFI/main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: B704E0E4D61994A50FD757FF2BAD2D74;9566.
  ) 
 Here is how much of TeX's memory you used:
  18028 strings out of 477975
- 302471 string characters out of 5839282
+ 302467 string characters out of 5839282
  1882330 words of memory out of 5000000
  37136 multiletter control sequences out of 15000+600000
  616794 words of font info for 444 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,13n,77p,1894b,611s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,13n,77p,1894b,605s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/
@@ -771,23 +772,24 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-1cXRCp/main.pdf (31 pages, 6812386 bytes).
+amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
+imes/utmri8a.pfb>
+Output written on /tmp/paperguru-out-ylWKFI/main.pdf (31 pages, 6821666 bytes).
 
 PDF statistics:
- 1223 PDF objects out of 1440 (max. 8388607)
- 873 compressed objects within 9 object streams
+ 1232 PDF objects out of 1440 (max. 8388607)
+ 880 compressed objects within 9 object streams
  184 named destinations out of 1000 (max. 500000)
  77722 words of extra memory for PDF output out of 89155 (max. 10000000)
 
 
-Latexmk: Missing bbl file '/tmp/paperguru-out-1cXRCp/main.bbl' in following:
+Latexmk: Missing bbl file '/tmp/paperguru-out-ylWKFI/main.bbl' in following:
  No file main.bbl.
 
 Rc files read:
@@ -803,7 +805,7 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-1cXRCp"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-ylWKFI"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -886,7 +888,7 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-1cXRCp/main.aux)
+(/tmp/paperguru-out-ylWKFI/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
@@ -1266,7 +1268,7 @@ LaTeX Warning: Reference `sec:dd-baselines' on page 7 undefined on input line 1
 11.
 
 
-Underfull \vbox (badness 5331) has occurred while \output is active [7]
+Underfull \vbox (badness 1694) has occurred while \output is active [7]
 
 LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 118.
 
@@ -1376,8 +1378,7 @@ LaTeX Warning: Reference `prop:div-cost' on page 11 undefined on input line 11.
 LaTeX Warning: Reference `thm:adaptivity-gap' on page 11 undefined on input lin
 e 13.
 
-
-Underfull \vbox (badness 1264) has occurred while \output is active [11]
+[11]
 
 LaTeX Warning: Reference `lem:sep-invariance' on page 12 undefined on input lin
 e 16.
@@ -1721,7 +1722,7 @@ nce_analysis.pdf>]
 
 Package natbib Warning: There were undefined citations.
 
-[29] (/tmp/paperguru-out-1cXRCp/main.aux)
+[29] (/tmp/paperguru-out-ylWKFI/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1751,36 +1752,37 @@ ts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1
 amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-1cXRCp/main.pdf (29 pages, 6784969 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /tmp/paperguru-out-ylWKFI/main.pdf (29 pages, 6793808 bytes).
 
-SyncTeX written on /tmp/paperguru-out-1cXRCp/main.synctex.gz.Transcript written on /tmp/paperguru-out-1cXRCp/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-1cXRCp/main.log'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.log'
+SyncTeX written on /tmp/paperguru-out-ylWKFI/main.synctex.gz.Transcript written on /tmp/paperguru-out-ylWKFI/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-ylWKFI/main.log'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.log'
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-1cXRCp/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-ylWKFI/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-1cXRCp/main'...
-Rule 'bibtex /tmp/paperguru-out-1cXRCp/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-ylWKFI/main'...
+Rule 'bibtex /tmp/paperguru-out-ylWKFI/main':  Reasons for rerun
 Category 'other':
-  Rerun of 'bibtex /tmp/paperguru-out-1cXRCp/main' forced or previously required
+  Rerun of 'bibtex /tmp/paperguru-out-ylWKFI/main' forced or previously required
 
 ------------
-Run number 1 of rule 'bibtex /tmp/paperguru-out-1cXRCp/main'
+Run number 1 of rule 'bibtex /tmp/paperguru-out-ylWKFI/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-1cXRCp/'.
+Latexmk: Change directory to '/tmp/paperguru-out-ylWKFI/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-1cXRCp:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-1cXRCp:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-ylWKFI:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-ylWKFI:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -1792,15 +1794,15 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-1cXRCp/main.aux
-  /tmp/paperguru-out-1cXRCp/main.bbl
-  /tmp/paperguru-out-1cXRCp/main.out
+  /tmp/paperguru-out-ylWKFI/main.aux
+  /tmp/paperguru-out-ylWKFI/main.bbl
+  /tmp/paperguru-out-ylWKFI/main.out
 
 ------------
 Run number 2 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-1cXRCp"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-ylWKFI"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -1883,10 +1885,10 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-1cXRCp/main.aux)
+(/tmp/paperguru-out-ylWKFI/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/tmp/paperguru-out-1cXRCp/main.out) (/tmp/paperguru-out-1cXRCp/main.out)
+) (/tmp/paperguru-out-ylWKFI/main.out) (/tmp/paperguru-out-ylWKFI/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
@@ -2144,8 +2146,7 @@ ne 111.
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 7
  undefined on input line 111.
 
-
-Underfull \vbox (badness 5331) has occurred while \output is active [7])
+[7])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex
 
@@ -2177,7 +2178,7 @@ ne 5.
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
 .tex) [9] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-(/tmp/paperguru-out-1cXRCp/main.bbl
+(/tmp/paperguru-out-ylWKFI/main.bbl
 Underfull \hbox (badness 1910) in paragraph at lines 76--80
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
@@ -2200,8 +2201,7 @@ Underfull \hbox (badness 1742) in paragraph at lines 8--9
 Z$ \T1/ptm/m/n/10 (+20) into the KL di-ver-gence yields $\OML/cmm/m/it/10 D[]\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
-
-Underfull \vbox (badness 1264) has occurred while \output is active [13])
+[13])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
 s-appendix.tex [14] [15 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
 aper/figures/theorem1_fit.pdf>] [16]
@@ -2332,7 +2332,7 @@ uidance_analysis.pdf>]
 
 Package natbib Warning: There were undefined citations.
 
-[31] (/tmp/paperguru-out-1cXRCp/main.aux
+[31] (/tmp/paperguru-out-ylWKFI/main.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -2424,38 +2424,39 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols
-/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-1cXRCp/main.pdf (31 pages, 6805688 bytes).
+sfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
+es/utmri8a.pfb>
+Output written on /tmp/paperguru-out-ylWKFI/main.pdf (31 pages, 6814873 bytes).
 
-SyncTeX written on /tmp/paperguru-out-1cXRCp/main.synctex.gz.Transcript written on /tmp/paperguru-out-1cXRCp/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-1cXRCp/main.log'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-1cXRCp/main.bbl'
+SyncTeX written on /tmp/paperguru-out-ylWKFI/main.synctex.gz.Transcript written on /tmp/paperguru-out-ylWKFI/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-ylWKFI/main.log'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-ylWKFI/main.bbl'
 Latexmk: References changed.
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-1cXRCp/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-ylWKFI/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-1cXRCp/main'...
-Rule 'bibtex /tmp/paperguru-out-1cXRCp/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-ylWKFI/main'...
+Rule 'bibtex /tmp/paperguru-out-ylWKFI/main':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-1cXRCp/main.aux
+  /tmp/paperguru-out-ylWKFI/main.aux
 
 ------------
-Run number 2 of rule 'bibtex /tmp/paperguru-out-1cXRCp/main'
+Run number 2 of rule 'bibtex /tmp/paperguru-out-ylWKFI/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-1cXRCp/'.
+Latexmk: Change directory to '/tmp/paperguru-out-ylWKFI/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-1cXRCp:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-1cXRCp:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-ylWKFI:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-ylWKFI:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -2467,14 +2468,14 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-1cXRCp/main.aux
-  /tmp/paperguru-out-1cXRCp/main.out
+  /tmp/paperguru-out-ylWKFI/main.aux
+  /tmp/paperguru-out-ylWKFI/main.out
 
 ------------
 Run number 3 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-1cXRCp"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-ylWKFI"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -2557,10 +2558,10 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-1cXRCp/main.aux)
+(/tmp/paperguru-out-ylWKFI/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/tmp/paperguru-out-1cXRCp/main.out) (/tmp/paperguru-out-1cXRCp/main.out)
+) (/tmp/paperguru-out-ylWKFI/main.out) (/tmp/paperguru-out-ylWKFI/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
@@ -2595,12 +2596,15 @@ T1/cmr/m/n/10 ) =
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [8])
+et.tex
+Underfull \vbox (badness 10000) has occurred while \output is active [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
 s.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex) [9] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-(/tmp/paperguru-out-1cXRCp/main.bbl [10]
+.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active [9]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+(/tmp/paperguru-out-ylWKFI/main.bbl [10]
 Underfull \hbox (badness 1910) in paragraph at lines 76--80
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
@@ -2614,8 +2618,7 @@ Underfull \hbox (badness 1742) in paragraph at lines 8--9
 Z$ \T1/ptm/m/n/10 (+20) into the KL di-ver-gence yields $\OML/cmm/m/it/10 D[]\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
-
-Underfull \vbox (badness 1264) has occurred while \output is active [13])
+[13])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
 s-appendix.tex [14] [15 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
 aper/figures/theorem1_fit.pdf>] [16]
@@ -2627,8 +2630,7 @@ es.tex [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
 class_level_mechanism.pdf>] [21] [22] [23 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ
 9DM1/ICLR2027_KD/paper/figures/d4m_sensitivity.pdf>])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex
-Underfull \vbox (badness 4084) has occurred while \output is active [24]
+rning.tex [24]
 Underfull \hbox (badness 3849) in paragraph at lines 10--11
  []\T1/ptm/b/n/10 (+20) Grid con-fig-u-ra-tions.[] \T1/ptm/m/n/10 (+20) The 12 
 con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
@@ -2650,8 +2652,8 @@ Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
 nalysis.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
-ity.tex [29] [30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fi
-gures/guidance_analysis.pdf>]) [31] (/tmp/paperguru-out-1cXRCp/main.aux)
+ity.tex [29]) [30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/f
+igures/guidance_analysis.pdf>] [31] (/tmp/paperguru-out-ylWKFI/main.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -2673,36 +2675,37 @@ ts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1
 amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-1cXRCp/main.pdf (31 pages, 6812386 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /tmp/paperguru-out-ylWKFI/main.pdf (31 pages, 6821666 bytes).
 
-SyncTeX written on /tmp/paperguru-out-1cXRCp/main.synctex.gz.Transcript written on /tmp/paperguru-out-1cXRCp/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-1cXRCp/main.log'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-1cXRCp/main.bbl'
+SyncTeX written on /tmp/paperguru-out-ylWKFI/main.synctex.gz.Transcript written on /tmp/paperguru-out-ylWKFI/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-ylWKFI/main.log'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-ylWKFI/main.bbl'
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-1cXRCp/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-ylWKFI/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-1cXRCp/main'...
-Rule 'bibtex /tmp/paperguru-out-1cXRCp/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-ylWKFI/main'...
+Rule 'bibtex /tmp/paperguru-out-ylWKFI/main':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-1cXRCp/main.aux
+  /tmp/paperguru-out-ylWKFI/main.aux
 
 ------------
-Run number 3 of rule 'bibtex /tmp/paperguru-out-1cXRCp/main'
+Run number 3 of rule 'bibtex /tmp/paperguru-out-ylWKFI/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-1cXRCp/'.
+Latexmk: Change directory to '/tmp/paperguru-out-ylWKFI/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-1cXRCp:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-1cXRCp:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-ylWKFI:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-ylWKFI:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -2714,13 +2717,13 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-1cXRCp/main.aux
+  /tmp/paperguru-out-ylWKFI/main.aux
 
 ------------
 Run number 4 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-1cXRCp"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-ylWKFI"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -2803,10 +2806,10 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-1cXRCp/main.aux)
+(/tmp/paperguru-out-ylWKFI/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/tmp/paperguru-out-1cXRCp/main.out) (/tmp/paperguru-out-1cXRCp/main.out)
+) (/tmp/paperguru-out-ylWKFI/main.out) (/tmp/paperguru-out-ylWKFI/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
@@ -2841,12 +2844,15 @@ T1/cmr/m/n/10 ) =
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [8])
+et.tex
+Underfull \vbox (badness 10000) has occurred while \output is active [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
 s.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex) [9] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-(/tmp/paperguru-out-1cXRCp/main.bbl [10]
+.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active [9]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+(/tmp/paperguru-out-ylWKFI/main.bbl [10]
 Underfull \hbox (badness 1910) in paragraph at lines 76--80
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
@@ -2860,8 +2866,7 @@ Underfull \hbox (badness 1742) in paragraph at lines 8--9
 Z$ \T1/ptm/m/n/10 (+20) into the KL di-ver-gence yields $\OML/cmm/m/it/10 D[]\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
-
-Underfull \vbox (badness 1264) has occurred while \output is active [13])
+[13])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
 s-appendix.tex [14] [15 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
 aper/figures/theorem1_fit.pdf>] [16]
@@ -2873,8 +2878,7 @@ es.tex [20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
 class_level_mechanism.pdf>] [21] [22] [23 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ
 9DM1/ICLR2027_KD/paper/figures/d4m_sensitivity.pdf>])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex
-Underfull \vbox (badness 4084) has occurred while \output is active [24]
+rning.tex [24]
 Underfull \hbox (badness 3849) in paragraph at lines 10--11
  []\T1/ptm/b/n/10 (+20) Grid con-fig-u-ra-tions.[] \T1/ptm/m/n/10 (+20) The 12 
 con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
@@ -2896,8 +2900,8 @@ Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
 nalysis.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
-ity.tex [29] [30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fi
-gures/guidance_analysis.pdf>]) [31] (/tmp/paperguru-out-1cXRCp/main.aux) )
+ity.tex [29]) [30 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/f
+igures/guidance_analysis.pdf>] [31] (/tmp/paperguru-out-ylWKFI/main.aux) )
 (see the transcript file for additional information){/usr/share/texlive/texmf-d
 ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
@@ -2915,21 +2919,22 @@ ts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1
 amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-1cXRCp/main.pdf (31 pages, 6812386 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /tmp/paperguru-out-ylWKFI/main.pdf (31 pages, 6821666 bytes).
 
-SyncTeX written on /tmp/paperguru-out-1cXRCp/main.synctex.gz.Transcript written on /tmp/paperguru-out-1cXRCp/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-1cXRCp/main.log'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-1cXRCp/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-1cXRCp/main.bbl'
-Latexmk: Log file says output to '/tmp/paperguru-out-1cXRCp/main.pdf'
+SyncTeX written on /tmp/paperguru-out-ylWKFI/main.synctex.gz.Transcript written on /tmp/paperguru-out-ylWKFI/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-ylWKFI/main.log'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-ylWKFI/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-ylWKFI/main.bbl'
+Latexmk: Log file says output to '/tmp/paperguru-out-ylWKFI/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
 Latexmk: All targets () are up-to-date

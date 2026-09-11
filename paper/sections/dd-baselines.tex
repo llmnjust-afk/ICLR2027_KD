@@ -5,7 +5,7 @@ To contextualize \cags{} within the broader dataset distillation landscape, \Cre
 
 \begin{table}[t]
 \centering
-\caption{Comparison with DD methods on ImageNet-100 (100-class, IPC=10). Published baselines (Random through MGD$^3$) are drawn from the MGD$^3$ paper~\cite{chansantiago2025modeguided}. D4M is our implementation under the same protocol. Our results (Unguided, \cags{}) use the same evaluation protocol (best-accuracy tracking, instance normalization, 3 seeds). \cags{} surpasses all published baselines on all three architectures, including MGD$^3$ itself, while D4M's performance is highly sensitive to the denoising start timestep $t_{\text{start}}$.}
+\caption{Comparison with DD methods on ImageNet-100 (100-class, IPC=10). Published baselines (Random through MGD$^3$) are drawn from the MGD$^3$ paper~\cite{chansantiago2025modeguided}. D4M is our implementation under the same protocol. Our results (Unguided, \cags{}) use 5 seeds; D4M uses 3 seeds. \cags{} surpasses all published baselines on all three architectures, including MGD$^3$ itself, while D4M's performance is highly sensitive to the denoising start timestep $t_{\text{start}}$.}
 \label{tab:dd-baselines}
 \begin{tabular}{lccc}
 \toprule
@@ -23,38 +23,38 @@ Real images (first 10/class) & $15.65 \pm 0.19$ & --- & --- \\
 Random Herding & $14.06 \pm 0.48$ & --- & --- \\
 D4M~\cite{su2024dataset} ($t{=}25$) & $20.21 \pm 0.39$ & --- & --- \\
 D4M~\cite{su2024dataset} ($t{=}40$) & $23.07 \pm 0.59$ & --- & --- \\
-Unguided & $22.79 \pm 0.18$ & $26.65 \pm 0.16$ & $26.49 \pm 0.42$ \\
-\cags{} & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{29.52 \pm 0.08}$ & $\mathbf{30.50 \pm 0.07}$ \\
+Unguided & $22.90 \pm 0.50$ & $26.51 \pm 0.43$ & $26.52 \pm 0.27$ \\
+\cags{} & $\mathbf{25.55 \pm 0.21}$ & $\mathbf{29.74 \pm 0.46}$ & $\mathbf{30.81 \pm 0.43}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{\cags{} surpasses all published baselines.}
-On ConvNet-6, \cags{} achieves $25.70\%$, surpassing MGD$^3$'s published $23.4\%$ by $+2.30\%$ absolute and IDC-1's $24.3\%$ by $+1.40\%$. On ResNet-18, \cags{} achieves $30.50\%$, surpassing MGD$^3$'s published $23.6\%$ by $+6.90\%$ absolute and IDC-1's $25.1\%$ by $+5.40\%$. On ResNetAP-10, \cags{} achieves $29.52\%$, exceeding MGD$^3$'s $25.8\%$ by $+3.72\%$ and IDC-1's $25.7\%$ by $+3.82\%$. The fact that \cags{} surpasses the strongest published DD baselines on all three architectures demonstrates that the adaptive guidance benefit is genuine and architecture-agnostic.
+On ConvNet-6, \cags{} achieves $25.55\%$, surpassing MGD$^3$'s published $23.4\%$ by $+2.15\%$ absolute and IDC-1's $24.3\%$ by $+1.25\%$. On ResNet-18, \cags{} achieves $30.81\%$, surpassing MGD$^3$'s published $23.6\%$ by $+7.21\%$ absolute and IDC-1's $25.1\%$ by $+5.71\%$. On ResNetAP-10, \cags{} achieves $29.74\%$, exceeding MGD$^3$'s $25.8\%$ by $+3.94\%$ and IDC-1's $25.7\%$ by $+4.04\%$. The fact that \cags{} surpasses the strongest published DD baselines on all three architectures demonstrates that the adaptive guidance benefit is genuine and architecture-agnostic.
 
 \paragraph{D4M is sensitive to the denoising start timestep.}
-To comprehensively characterize D4M's sensitivity to the noise injection level, we sweep $t_{\text{start}} \in \{5, 10, 15, 20, 25, 30, 35, 40, 45\}$ under the same DiT generator and evaluation protocol (\Cref{tab:d4m-sensitivity}, \Cref{fig:d4m-sensitivity}). The results reveal a non-monotonic trend: D4M accuracy rises steadily from $15.06\%$ at $t_{\text{start}}{=}5$ through $18.38\%$ at $t{=}20$, $20.21\%$ at $t{=}25$, $22.58\%$ at $t{=}30$, $22.80\%$ at $t{=}35$, peaks at $23.07\%$ at $t{=}40$, then \emph{declines} to $22.42\%$ at $t{=}45$. At low $t_{\text{start}}$ values ($5$--$30$), D4M substantially \emph{underperforms} unguided generation---at $t_{\text{start}}{=}5$, D4M achieves only $15.06\%$ ($-7.73\%$ vs.\ unguided), and even at $t_{\text{start}}{=}20$, it reaches just $18.38\%$ ($-4.41\%$), indicating that insufficient denoising steps preserve real-image artifacts that degrade downstream classification. D4M only crosses the unguided baseline between $t{=}30$ and $t{=}35$, peaks at $t{=}40$ with a marginal $+0.28\%$ over unguided, and then drops \emph{below} unguided at $t{=}45$ ($22.42\%$ vs.\ $22.79\%$), suggesting that excessive noise injection introduces residual artifacts that harm generation quality. Even at the optimal $t_{\text{start}}{=}40$, D4M falls $2.63\%$ short of \cags{}'s $25.70\%$. Critically, D4M requires access to real images, introduces $t_{\text{start}}$ as an additional hyperparameter that must be tuned per dataset, and exhibits $1.5$--$2\times$ higher variance than \cags{} at every operating point. In contrast, \cags{} generates from pure noise without any real-image access, requires no $t_{\text{start}}$ tuning, and provides per-class adaptive guidance that is both more principled and more effective.
+To comprehensively characterize D4M's sensitivity to the noise injection level, we sweep $t_{\text{start}} \in \{5, 10, 15, 20, 25, 30, 35, 40, 45\}$ under the same DiT generator and evaluation protocol (\Cref{tab:d4m-sensitivity}, \Cref{fig:d4m-sensitivity}). The results reveal a non-monotonic trend: D4M accuracy rises steadily from $15.06\%$ at $t_{\text{start}}{=}5$ through $18.38\%$ at $t{=}20$, $20.21\%$ at $t{=}25$, $22.58\%$ at $t{=}30$, $22.80\%$ at $t{=}35$, peaks at $23.07\%$ at $t{=}40$, then \emph{declines} to $22.42\%$ at $t{=}45$. At low $t_{\text{start}}$ values ($5$--$30$), D4M substantially \emph{underperforms} unguided generation---at $t_{\text{start}}{=}5$, D4M achieves only $15.06\%$ ($-7.84\%$ vs.\ unguided), and even at $t_{\text{start}}{=}20$, it reaches just $18.38\%$ ($-4.52\%$), indicating that insufficient denoising steps preserve real-image artifacts that degrade downstream classification. D4M only crosses the unguided baseline between $t{=}30$ and $t{=}35$, peaks at $t{=}40$ with a marginal $+0.17\%$ over unguided, and then drops \emph{below} unguided at $t{=}45$ ($22.42\%$ vs.\ $22.90\%$), suggesting that excessive noise injection introduces residual artifacts that harm generation quality. Even at the optimal $t_{\text{start}}{=}40$, D4M falls $2.48\%$ short of \cags{}'s $25.55\%$. Critically, D4M requires access to real images, introduces $t_{\text{start}}$ as an additional hyperparameter that must be tuned per dataset, and exhibits $1.5$--$2\times$ higher variance than \cags{} at every operating point. In contrast, \cags{} generates from pure noise without any real-image access, requires no $t_{\text{start}}$ tuning, and provides per-class adaptive guidance that is both more principled and more effective.
 
 \begin{table}[t]
 \centering
-\caption{D4M sensitivity to $t_{\text{start}}$ on ImageNet-100 (100-class, IPC=10, ConvNet-6). New data points ($t{=}5$--$20$, $30$--$35$, $45$) use 1 seed; $t{=}25$ and $t{=}40$ use 3 seeds. D4M accuracy increases with $t_{\text{start}}$ up to $t{=}40$, then declines at $t{=}45$. At $t{=}5$--$30$, D4M underperforms unguided ($22.79\%$); only at $t{=}35$--$40$ does it marginally exceed unguided, and at $t{=}45$ it drops below again. D4M never reaches \cags{}'s $25.70\%$.}
+\caption{D4M sensitivity to $t_{\text{start}}$ on ImageNet-100 (100-class, IPC=10, ConvNet-6). New data points ($t{=}5$--$20$, $30$--$35$, $45$) use 1 seed; $t{=}25$ and $t{=}40$ use 3 seeds. D4M accuracy increases with $t_{\text{start}}$ up to $t{=}40$, then declines at $t{=}45$. At $t{=}5$--$30$, D4M underperforms unguided ($22.90\%$); only at $t{=}35$--$40$ does it marginally exceed unguided, and at $t{=}45$ it drops below again. D4M never reaches \cags{}'s $25.55\%$.}
 \label{tab:d4m-sensitivity}
 \begin{tabular}{ccc}
 \toprule
 $t_{\text{start}}$ & Top-1 (\%) & $\Delta$ vs.\ Unguided \\
 \midrule
-5 & $15.06$ & $-7.73$ \\
-10 & $16.08$ & $-6.71$ \\
-15 & $16.38$ & $-6.41$ \\
-20 & $18.38$ & $-4.41$ \\
-25 & $20.21 \pm 0.39$ & $-2.58$ \\
-30 & $22.58$ & $-0.21$ \\
-35 & $22.80$ & $+0.01$ \\
-40 & $23.07 \pm 0.59$ & $+0.28$ \\
-45 & $22.42$ & $-0.37$ \\
+5 & $15.06$ & $-7.84$ \\
+10 & $16.08$ & $-6.82$ \\
+15 & $16.38$ & $-6.52$ \\
+20 & $18.38$ & $-4.52$ \\
+25 & $20.21 \pm 0.39$ & $-2.69$ \\
+30 & $22.58$ & $-0.32$ \\
+35 & $22.80$ & $-0.10$ \\
+40 & $23.07 \pm 0.59$ & $+0.17$ \\
+45 & $22.42$ & $-0.48$ \\
 \midrule
-Unguided & $22.79 \pm 0.18$ & --- \\
-\cags{} (2-factor, optimal) & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{+2.91}$ \\
+Unguided & $22.90 \pm 0.50$ & --- \\
+\cags{} (2-factor, optimal) & $\mathbf{25.55 \pm 0.21}$ & $\mathbf{+2.65}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -62,12 +62,12 @@ Unguided & $22.79 \pm 0.18$ & --- \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/d4m_sensitivity.pdf}
-\caption{D4M sensitivity to the denoising start timestep $t_{\text{start}}$ on ImageNet-100 (ConvNet-6, IPC=10). D4M accuracy rises steadily from $t{=}5$ to $t{=}40$, peaks at $23.07\%$, then declines at $t{=}45$. The shaded green and blue bands mark the unguided baseline ($22.79\%$) and \cags{} optimal ($25.70\%$), respectively. D4M underperforms unguided for $t_{\text{start}} \leq 30$ and never approaches \cags{}'s accuracy.}
+\caption{D4M sensitivity to the denoising start timestep $t_{\text{start}}$ on ImageNet-100 (ConvNet-6, IPC=10). D4M accuracy rises steadily from $t{=}5$ to $t{=}40$, peaks at $23.07\%$, then declines at $t{=}45$. The shaded green and blue bands mark the unguided baseline ($22.90\%$) and \cags{} optimal ($25.55\%$), respectively. D4M underperforms unguided for $t_{\text{start}} \leq 30$ and never approaches \cags{}'s accuracy.}
 \label{fig:d4m-sensitivity}
 \end{figure}
 
 \paragraph{Real images alone are substantially worse than generated images.}
-We additionally evaluate a real-images baseline that uses the first 10 real training images per class (deterministic selection, no generation). This baseline achieves $15.65 \pm 0.19\%$, only $1.59\%$ above Random Herding ($14.06 \pm 0.48\%$) but $7.14\%$ \emph{below} unguided generation ($22.79\%$) and $10.05\%$ below \cags{} ($25.70\%$). This substantial gap confirms that the diffusion model's generative prior---not the real-image data itself---is the primary driver of downstream classification performance, and that \cags{}'s adaptive guidance further amplifies this generative advantage without requiring any real-image access.
+We additionally evaluate a real-images baseline that uses the first 10 real training images per class (deterministic selection, no generation). This baseline achieves $15.65 \pm 0.19\%$, only $1.59\%$ above Random Herding ($14.06 \pm 0.48\%$) but $7.25\%$ \emph{below} unguided generation ($22.90\%$) and $9.90\%$ below \cags{} ($25.55\%$). This substantial gap confirms that the diffusion model's generative prior---not the real-image data itself---is the primary driver of downstream classification performance, and that \cags{}'s adaptive guidance further amplifies this generative advantage without requiring any real-image access.
 
 \paragraph{D4M's benefit is dataset-dependent.}
 To further investigate D4M's behavior, we apply it with $t_{\text{start}} = 25$ to two additional datasets: ImageNette (10 classes, visually distinct categories) and ImageWoof (10 classes, fine-grained dog breeds). \Cref{tab:d4m-cross} presents the results alongside the IN-100 comparison. On ImageNette, D4M achieves $54.91 \pm 0.24\%$, slightly below \cags{} ($55.27 \pm 0.68\%$). However, on ImageWoof, D4M drops to $28.05 \pm 0.27\%$, \emph{below} the unguided baseline ($31.75 \pm 0.06\%$) by $-3.70\%$. This dataset-dependent behavior reveals that D4M's real-image initialization is beneficial when classes are visually distinct (ImageNette) but harmful when classes are fine-grained and visually similar (ImageWoof), where the generative prior is more important than preserved real-image structure. \cags{}, by contrast, provides consistent improvements across all three datasets without requiring real-image access or per-dataset hyperparameter tuning, demonstrating the robustness of its principled, training-free approach. All methods use the same evaluation protocol (2000 epochs, 3 seeds, best-accuracy tracking).
@@ -82,7 +82,7 @@ To further investigate D4M's behavior, we apply it with $t_{\text{start}} = 25$ 
 \midrule
 ImageNette & 10 & $49.99 \pm 0.22$ & $\mathbf{55.27 \pm 0.68}$ & $54.91 \pm 0.24$ \\
 ImageWoof & 10 & $31.75 \pm 0.06$ & $\mathbf{32.87 \pm 0.29}$ & $28.05 \pm 0.27$ \\
-IN-100 & 100 & $22.79 \pm 0.18$ & $\mathbf{25.70 \pm 0.07}$ & $20.21 \pm 0.39$ \\
+IN-100 & 100 & $22.90 \pm 0.50$ & $\mathbf{25.55 \pm 0.21}$ & $20.21 \pm 0.39$ \\
 \bottomrule
 \end{tabular}
 \end{table}
