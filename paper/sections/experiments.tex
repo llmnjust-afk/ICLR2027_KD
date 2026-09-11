@@ -41,25 +41,25 @@ Fixed $\lambda = 0.05$ & 0.050 & $49.00 \pm 0.71$ & $83.60 \pm 0.98$ & $-0.73$ \
 \end{table}
 
 \paragraph{IPC ablation reveals boundary conditions.}
-\Cref{tab:ipc-ablation-10cls} presents the full IPC ablation on the 10-class subset. At IPC=50, \cags{} achieves $69.87 \pm 1.43\%$ vs.\ unguided $64.13 \pm 0.09\%$ ($+5.74\%$ absolute, $+9.0\%$ relative), demonstrating that per-class adaptive guidance provides substantial benefit when sufficient images per class enable reliable complexity estimation. At IPC=10, as discussed above, \cags{} is neutral. Critically, at IPC=1, \cags{} \emph{degrades} performance to $19.87 \pm 0.90\%$ vs.\ unguided $22.80 \pm 0.16\%$ ($-2.93\%$ absolute, $-12.8\%$ relative). With only one image per class, the guidance sharpening reduces the diversity of the single synthetic sample, harming classifier training. \iast{} partially mitigates this degradation ($21.13 \pm 0.09\%$, $+1.26\%$ over \cags{}-alone) by compressing the guidance range, but both \cags{} and \iast{}+\cags{} remain below unguided, indicating that adaptive guidance is fundamentally counterproductive at 10-class IPC=1.
+\Cref{tab:ipc-ablation-10cls} presents the full IPC ablation on the 10-class subset. At IPC=50, \cags{} achieves $69.87 \pm 1.43\%$ vs.\ unguided $64.73 \pm 0.77\%$ ($+5.13\%$ absolute, $+7.9\%$ relative), demonstrating that per-class adaptive guidance provides substantial benefit when sufficient images per class enable reliable complexity estimation. At IPC=10, as discussed above, \cags{} is neutral. Critically, at IPC=1, \cags{} \emph{degrades} performance to $19.87 \pm 0.90\%$ vs.\ unguided $22.80 \pm 0.16\%$ ($-2.93\%$ absolute, $-12.8\%$ relative). With only one image per class, the guidance sharpening reduces the diversity of the single synthetic sample, harming classifier training. \iast{} partially mitigates this degradation ($21.13 \pm 0.09\%$, $+1.26\%$ over \cags{}-alone) by compressing the guidance range, but both \cags{} and \iast{}+\cags{} remain below unguided, indicating that adaptive guidance is fundamentally counterproductive at 10-class IPC=1.
 
-Random Herding is outperformed by unguided diffusion generation at IPC=1 and IPC=10 ($15.93\%$ vs.\ $22.80\%$ and $40.13\%$ vs.\ $49.73\%$), but slightly exceeds unguided at IPC=50 ($65.47\%$ vs.\ $64.13\%$, $+2.1\%$ relative). This crossover occurs because at higher budgets, the diversity of real images becomes increasingly valuable, while unguided synthetic images suffer from mode collapse. However, \cags{} surpasses Random Herding at IPC=50 by $+4.40\%$ absolute ($69.87\%$ vs.\ $65.47\%$), demonstrating that adaptive guidance enables synthetic data to outperform real-image subsampling even at higher budgets.
+Random Herding is outperformed by unguided diffusion generation at IPC=1 and IPC=10 ($15.93\%$ vs.\ $22.80\%$ and $40.13\%$ vs.\ $49.73\%$), but slightly exceeds unguided at IPC=50 ($65.47\%$ vs.\ $64.73\%$, $+1.1\%$ relative). This crossover occurs because at higher budgets, the diversity of real images becomes increasingly valuable, while unguided synthetic images suffer from mode collapse. However, \cags{} surpasses Random Herding at IPC=50 by $+4.40\%$ absolute ($69.87\%$ vs.\ $65.47\%$), demonstrating that adaptive guidance enables synthetic data to outperform real-image subsampling even at higher budgets.
 
 \begin{table}[t]
 \centering
-\caption{IPC ablation on ImageNet-100 (10-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} $[0.0, 0.08]$ provides large gains at IPC=50 ($+9.0\%$ relative) but is neutral at IPC=10 and \emph{harmful} at IPC=1 ($-12.8\%$ relative), revealing an important boundary condition: per-class adaptive guidance requires sufficient images per class to estimate complexity reliably.}
+\caption{IPC ablation on ImageNet-100 (10-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. \cags{} $[0.0, 0.08]$ provides large gains at IPC=50 ($+7.9\%$ relative) but is neutral at IPC=10 and \emph{harmful} at IPC=1 ($-12.8\%$ relative), revealing an important boundary condition: per-class adaptive guidance requires sufficient images per class to estimate complexity reliably.}
 \label{tab:ipc-ablation-10cls}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Method} & \textbf{IPC=1} & \textbf{IPC=10} & \textbf{IPC=50} \\
 \midrule
 Random Herding & $15.93 \pm 0.57$ & $40.13 \pm 0.90$ & $65.47 \pm 0.62$ \\
-Unguided & $22.80 \pm 0.16$ & $49.73 \pm 1.20$ & $64.13 \pm 0.09$ \\
+Unguided & $22.80 \pm 0.16$ & $49.73 \pm 1.20$ & $64.73 \pm 0.77$ \\
 Fixed $\lambda = 0.05$ & --- & $49.00 \pm 0.71$ & --- \\
 \cags{} $[0.0, 0.08]$ & $19.87 \pm 0.90$ & $49.40 \pm 0.28$ & $\mathbf{69.87 \pm 1.43}$ \\
 \iast{}+\cags{} & $21.13 \pm 0.09$ & --- & --- \\
 \midrule
-$\Delta$ \cags{} vs.\ unguided (rel.) & $-12.8\%$ & $-0.7\%$ & $+9.0\%$ \\
+$\Delta$ \cags{} vs.\ unguided (rel.) & $-12.8\%$ & $-0.7\%$ & $+7.9\%$ \\
 $\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $-7.3\%$ & --- & --- \\
 \bottomrule
 \end{tabular}
@@ -150,7 +150,7 @@ $\Delta$ \iast{}+\cags{} vs.\ unguided (rel.) & $+1.4\%$ & --- & --- \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/results_comparison.pdf}
-\caption{\cags{} vs.\ unguided across all evaluated settings. Green bars indicate \cags{} configurations with positive relative gain; red indicates degradation. \cags{} provides consistent, substantial improvements on the 100-class subset ($+7.6\%$ to $+17.0\%$ relative) and at 10-class IPC=50 ($+9.0\%$), while the degradation on ImageWoof ($-5.2\%$) confirms the complexity-variation boundary condition.}
+\caption{\cags{} vs.\ unguided across all evaluated settings. Green bars indicate \cags{} configurations with positive relative gain; red indicates degradation. \cags{} provides consistent, substantial improvements on the 100-class subset ($+7.6\%$ to $+17.0\%$ relative) and at 10-class IPC=50 ($+7.9\%$), while the degradation on ImageWoof ($-5.2\%$) confirms the complexity-variation boundary condition.}
 \label{fig:results-overview}
 \end{figure}
 
@@ -246,7 +246,7 @@ ImageWoof & 10 & $\mathbf{86.27}$ & $94.70$ & $+8.42$ \\
 \subsection{Statistical Significance}
 \label{sec:significance}
 
-To rigorously evaluate whether \cags{}'s improvements are statistically reliable rather than artifacts of random seed variation, we conduct paired two-tailed $t$-tests on the per-seed best top-1 accuracies across all key configurations (\Cref{tab:significance}). Despite using only three seeds---which limits statistical power---the improvements on the 100-class subset reach statistical significance ($p < 0.05$) at both IPC=1 and IPC=50, with IPC=10 showing a borderline trend ($p = 0.061$) accompanied by a large effect size (Cohen's $d = 2.23$). The cross-architecture results are highly significant ($p = 0.002$ for ResNet-18, $p = 0.007$ for ResNetAP-10), confirming that the benefit is not architecture-specific. The neutral 10-class IPC=10 result is confirmed non-significant ($p = 0.721$), while the degradation at 10-class IPC=1 approaches significance ($p = 0.052$). The \iast{}-induced degradation at 100-class IPC=1 is also borderline significant ($p = 0.053$), providing quantitative evidence that \iast{}'s range compression actively harms the \cags{} benefit in this regime.
+To rigorously evaluate whether \cags{}'s improvements are statistically reliable rather than artifacts of random seed variation, we conduct paired two-tailed $t$-tests on the per-seed best top-1 accuracies across all key configurations (\Cref{tab:significance}). Despite using only three seeds---which limits statistical power---the improvements on the 100-class subset are statistically significant ($p < 0.05$) at all IPC settings, with large effect sizes (Cohen's $d \geq 3.90$). The cross-architecture results are also significant ($p = 0.011$ for ResNet-18, $p < 0.001$ for ResNetAP-10), confirming that the benefit is not architecture-specific. The neutral 10-class IPC=10 result is confirmed non-significant ($p = 0.721$), while the degradation at 10-class IPC=1 approaches significance ($p = 0.052$). The \iast{}-induced degradation at 100-class IPC=1 is borderline significant ($p = 0.053$), providing quantitative evidence that \iast{}'s range compression actively harms the \cags{} benefit in this regime. The 10-class IPC=50 improvement does not reach significance ($p = 0.076$), though the effect size is large (Cohen's $d = 1.97$).
 
 \begin{table}[t]
 \centering
@@ -257,16 +257,16 @@ To rigorously evaluate whether \cags{}'s improvements are statistically reliable
 \textbf{Setting} & \textbf{Comparison} & \textbf{$\Delta$ (\%)} & \textbf{$t$-stat} & \textbf{$p$-value} & \textbf{Cohen's $d$} \\
 \midrule
 100-cls IPC=1 & CAGS vs Ung & $+0.78$ & $6.75$ & $0.021$ & $3.90$ \\
-100-cls IPC=10 & CAGS vs Ung & $+1.64$ & $3.87$ & $0.061$ & $2.23$ \\
+100-cls IPC=10 & CAGS vs Ung & $+2.50$ & $15.46$ & $0.004$ & $8.93$ \\
 100-cls IPC=50 & CAGS vs Ung & $+5.14$ & $14.13$ & $0.005$ & $8.16$ \\
 100-cls IPC=1 & IAST+CAGS vs CAGS & $-0.70$ & $-4.17$ & $0.053$ & $-2.41$ \\
 \midrule
-ResNet-18 IPC=10 & CAGS vs Ung & $+4.25$ & $23.06$ & $0.002$ & $13.32$ \\
-ResNetAP-10 IPC=10 & CAGS vs Ung & $+3.38$ & $11.95$ & $0.007$ & $6.90$ \\
+ResNet-18 IPC=10 & CAGS vs Ung & $+4.65$ & $9.60$ & $0.011$ & $5.55$ \\
+ResNetAP-10 IPC=10 & CAGS vs Ung & $+4.05$ & $48.52$ & $<0.001$ & $28.02$ \\
 \midrule
 10-cls IPC=1 & CAGS vs Ung & $-2.93$ & $-4.21$ & $0.052$ & $-2.43$ \\
 10-cls IPC=10 & CAGS vs Ung & $-0.33$ & $-0.41$ & $0.721$ & $-0.24$ \\
-10-cls IPC=50 & CAGS vs Ung & $+5.74$ & $4.21$ & $0.053$ & $2.43$ \\
+10-cls IPC=50 & CAGS vs Ung & $+5.13$ & $3.42$ & $0.076$ & $1.97$ \\
 \midrule
 ImageNette & CAGS vs Ung & $+3.06$ & $11.51$ & $0.008$ & $6.64$ \\
 \bottomrule
