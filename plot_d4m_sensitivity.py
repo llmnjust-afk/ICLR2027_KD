@@ -58,8 +58,9 @@ ax.axhline(y=unguided, color='#2ca02c', linestyle='--', linewidth=1.5, alpha=0.8
 ax.axhline(y=cags, color='#1f77b4', linestyle='--', linewidth=1.5, alpha=0.8,
            label=f'CAGS optimal ({cags}%)')
 
-# Shade CAGS region
+# Shade reference regions
 ax.fill_between(t_values, cags - cags_std, cags + cags_std, color='#1f77b4', alpha=0.1)
+ax.fill_between(t_values, unguided - unguided_std, unguided + unguided_std, color='#2ca02c', alpha=0.1)
 
 # Labels
 ax.set_xlabel(r'Denoising start timestep ($t_{\mathrm{start}}$)', fontsize=12)
@@ -68,7 +69,7 @@ ax.set_title('D4M Sensitivity to Denoising Start Timestep', fontsize=13)
 ax.legend(fontsize=9, loc='lower right')
 ax.grid(True, alpha=0.2)
 ax.set_xlim(0, 50)
-ax.set_ylim(18, 27)
+ax.set_ylim(14, 27)
 
 plt.tight_layout()
 os.makedirs("/root/ICLR2027_KD/figures", exist_ok=True)
