@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  11 SEP 2026 05:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  11 SEP 2026 05:11
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -526,7 +526,7 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count311
 \l__pdf_internal_box=\box56
 )
-(/tmp/paperguru-out-6KY292/main.aux)
+(/tmp/paperguru-out-TKI2nl/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
@@ -548,8 +548,8 @@ LaTeX Font Info:    ... okay on input line 45.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
 LaTeX Font Info:    ... okay on input line 45.
 Package hyperref Info: Link coloring OFF on input line 45.
- (/tmp/paperguru-out-6KY292/main.out)
-(/tmp/paperguru-out-6KY292/main.out)
+ (/tmp/paperguru-out-TKI2nl/main.out)
+(/tmp/paperguru-out-TKI2nl/main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
@@ -845,8 +845,8 @@ T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
-[42]) (/tmp/paperguru-out-6KY292/main.bbl [43] [44] [45] [46]) [47]
-(/tmp/paperguru-out-6KY292/main.aux)
+[42]) (/tmp/paperguru-out-TKI2nl/main.bbl [43] [44] [45]) [46]
+(/tmp/paperguru-out-TKI2nl/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -854,13 +854,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 1429E70AE05BD03986B79DE397B101A8;7181.
  ) 
 Here is how much of TeX's memory you used:
- 18284 strings out of 477975
- 308601 string characters out of 5839282
+ 18285 strings out of 477975
+ 308618 string characters out of 5839282
  1872330 words of memory out of 5000000
  37420 multiletter control sequences out of 15000+600000
- 634159 words of font info for 323 fonts, out of 8000000 for 9000
+ 634260 words of font info for 324 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,13n,77p,3893b,653s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,13n,77p,3893b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
@@ -883,16 +883,16 @@ m/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf
 .pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/
 type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-6KY292/main.pdf (47 pages, 7109472 bytes).
+Output written on /tmp/paperguru-out-TKI2nl/main.pdf (46 pages, 7108857 bytes).
 
 PDF statistics:
- 1466 PDF objects out of 1728 (max. 8388607)
- 1025 compressed objects within 11 object streams
- 232 named destinations out of 1000 (max. 500000)
+ 1462 PDF objects out of 1728 (max. 8388607)
+ 1022 compressed objects within 11 object streams
+ 231 named destinations out of 1000 (max. 500000)
  64311 words of extra memory for PDF output out of 74296 (max. 10000000)
 
 
-Latexmk: Missing bbl file '/tmp/paperguru-out-6KY292/main.bbl' in following:
+Latexmk: Missing bbl file '/tmp/paperguru-out-TKI2nl/main.bbl' in following:
  No file main.bbl.
 
 Rc files read:
@@ -908,7 +908,7 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-6KY292"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-TKI2nl"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -990,7 +990,7 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-6KY292/main.aux)
+(/tmp/paperguru-out-TKI2nl/main.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1599,12 +1599,11 @@ put line 226.
 
 LaTeX Warning: Reference `tab:fid' on page 1 undefined on input line 226.
 
-[20]
 
 LaTeX Warning: Reference `tab:significance' on page 1 undefined on input line 2
 45.
 
-[21]
+[20] [21]
 
 LaTeX Warning: Reference `tab:quartile-analysis' on page 1 undefined on input l
 ine 277.
@@ -1617,13 +1616,12 @@ e 279.
 LaTeX Warning: Reference `fig:class-level-mechanism' on page 1 undefined on inp
 ut line 281.
 
-[22]
 
 LaTeX Warning: Reference `tab:factor-ablation' on page 1 undefined on input lin
 e 333.
 
-[23 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/class_l
-evel_mechanism.pdf>] [24]
+[22] [23 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/cl
+ass_level_mechanism.pdf>] [24]
 
 LaTeX Warning: Reference `tab:sensitivity' on page 1 undefined on input line 34
 9.
@@ -1653,12 +1651,11 @@ line 7.
 LaTeX Warning: Reference `tab:weight-grid' on page 1 undefined on input line 46
 .
 
-[26]
 
 LaTeX Warning: Reference `tab:weight-full' on page 1 undefined on input line 49
 .
 
-[27])
+[26] [27])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
 set-entropy.tex
 
@@ -1669,7 +1666,6 @@ ne 4.
 LaTeX Warning: Reference `sec:weight-learning' on page 28 undefined on input li
 ne 4.
 
-[28]
 
 LaTeX Warning: Reference `tab:cross-dataset-config' on page 1 undefined on inpu
 t line 6.
@@ -1677,24 +1673,25 @@ t line 6.
 
 Overfull \hbox (1.47008pt too wide) in paragraph at lines 12--29
  [][] 
+[28]
 
 LaTeX Warning: Reference `sec:semantic-subset' on page 29 undefined on input li
 ne 38.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
-ubset.tex [29]
+ubset.tex
 
-LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 30 undefined on in
+LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 29 undefined on in
 put line 4.
 
+[29]
 
 LaTeX Warning: Reference `tab:semantic-subset' on page 1 undefined on input lin
 e 6.
 
-[30]
 
-LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 31 undefined on in
+LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 30 undefined on in
 put line 34.
 
 )
@@ -1707,6 +1704,7 @@ Overfull \hbox (24.12234pt too wide) in paragraph at lines 34--1
 ) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\OT1/lmr/m/
 n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^N[]\O
 T1/lmr/m/n/10 (-20) 0)$
+[30]
 
 Package natbib Warning: Citation `russakovsky2014imagenet' on page 31 undefined
  on input line 4.
@@ -1729,35 +1727,34 @@ input line 4.
 Package natbib Warning: Citation `rombach2021highresolution' on page 32 undefin
 ed on input line 4.
 
-[32]
 
-Package natbib Warning: Citation `bossard2014food101' on page 33 undefined on i
+Package natbib Warning: Citation `bossard2014food101' on page 32 undefined on i
 nput line 7.
 
 
-Package natbib Warning: Citation `krizhevsky2009learning' on page 33 undefined 
+Package natbib Warning: Citation `krizhevsky2009learning' on page 32 undefined 
 on input line 7.
 
+[32]
 
 LaTeX Warning: Reference `tab:non-imagenet' on page 1 undefined on input line 1
 0.
 
-[33]
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 34 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 33 undefi
 ned on input line 33.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 34 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 33 undefined on input 
 line 33.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 34 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 33 undefined on input l
 ine 33.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex
+nalysis.tex [33]
 
 LaTeX Warning: Reference `fig:guidance-analysis' on page 1 undefined on input l
 ine 6.
@@ -1789,36 +1786,36 @@ put line 4.
 Package natbib Warning: Citation `su2024dataset' on page 35 undefined on input 
 line 4.
 
-[35 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>]
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 36 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 35 undefi
 ned on input line 8.
 
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 36 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 35 undefi
 ned on input line 8.
 
 
-Package natbib Warning: Citation `kim2022dataset' on page 36 undefined on input
+Package natbib Warning: Citation `kim2022dataset' on page 35 undefined on input
  line 17.
 
 
-Package natbib Warning: Citation `fan2025generative' on page 36 undefined on in
+Package natbib Warning: Citation `fan2025generative' on page 35 undefined on in
 put line 18.
 
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 36 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 35 undefi
 ned on input line 19.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 36 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 35 undefined on input 
 line 24.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 36 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 35 undefined on input 
 line 25.
 
+[35 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
+e_analysis.pdf>]
 
 LaTeX Warning: Reference `tab:d4m-sensitivity' on page 1 undefined on input lin
 e 37.
@@ -1831,65 +1828,65 @@ e 37.
 
 LaTeX Warning: Reference `tab:d4m-cross' on page 1 undefined on input line 74.
 
-[37]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 38 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 37 undefined on input l
 ine 92.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-8 undefined on input line 92.
+7 undefined on input line 92.
 
 
 LaTeX Warning: Reference `tab:sota-comparison' on page 1 undefined on input lin
 e 92.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 38 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 37 undefined on input l
 ine 96.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-8 undefined on input line 96.
+7 undefined on input line 96.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 38 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 37 undefined on input l
 ine 96.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-8 undefined on input line 96.
+7 undefined on input line 96.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 38 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 37 undefined on input l
 ine 102.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 3
-8 undefined on input line 112.
+7 undefined on input line 112.
 
-[38 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/d4m_sen
-sitivity.pdf>]
+[37]
 
-LaTeX Warning: Reference `sec:orthogonality' on page 39 undefined on input line
+LaTeX Warning: Reference `sec:orthogonality' on page 38 undefined on input line
  124.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
-ity.tex [39]
+ity.tex [38 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures
+/d4m_sensitivity.pdf>]
 
-Package natbib Warning: Citation `welling2012herding' on page 40 undefined on i
+Package natbib Warning: Citation `welling2012herding' on page 39 undefined on i
 nput line 7.
 
+[39]
 
 LaTeX Warning: Reference `tab:orthogonality' on page 1 undefined on input line 
 28.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [40]
+s.tex
 
-LaTeX Warning: Reference `eq:complexity' on page 41 undefined on input line 7.
+LaTeX Warning: Reference `eq:complexity' on page 40 undefined on input line 7.
 
 
 Overfull \hbox (13.63068pt too wide) in paragraph at lines 7--8
@@ -1899,6 +1896,7 @@ m/n/10 (-20) The two-factor op-ti-mal con-fig-u-ra-tion $\OT1/lmr/m/n/10 (-20)
 n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 ; ^^M[]\O
 T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10 
 ; ^^N[]\OT1/lmr/m/n/10 (-20) 0)$
+[40]
 
 Package natbib Warning: Citation `wang2026dmgd' on page 41 undefined on input l
 ine 13.
@@ -1908,30 +1906,31 @@ LaTeX Warning: Reference `sec:theory' on page 41 undefined on input line 15.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex [41]
+.tex
 
-LaTeX Warning: Reference `sec:theory' on page 42 undefined on input line 4.
+LaTeX Warning: Reference `sec:theory' on page 41 undefined on input line 4.
 
 
-LaTeX Warning: Reference `thm:adaptivity-gap' on page 42 undefined on input lin
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 41 undefined on input lin
 e 4.
 
+[41]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
-[42]
 
-LaTeX Warning: Reference `sec:theory' on page 43 undefined on input line 10.
+LaTeX Warning: Reference `sec:theory' on page 42 undefined on input line 10.
 
 
-LaTeX Warning: Reference `prop:opt-lambda' on page 43 undefined on input line 1
+LaTeX Warning: Reference `prop:opt-lambda' on page 42 undefined on input line 1
 0.
 
 
-LaTeX Warning: Reference `lem:sep-invariance' on page 43 undefined on input lin
+LaTeX Warning: Reference `lem:sep-invariance' on page 42 undefined on input lin
 e 10.
 
+[42]
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 4
 3 undefined on input line 12.
@@ -1949,7 +1948,7 @@ No file main.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[43] (/tmp/paperguru-out-6KY292/main.aux)
+[43] (/tmp/paperguru-out-TKI2nl/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1988,29 +1987,29 @@ fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10
 type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-6KY292/main.pdf (43 pages, 7075640 bytes).
+Output written on /tmp/paperguru-out-TKI2nl/main.pdf (43 pages, 7075646 bytes).
 
-SyncTeX written on /tmp/paperguru-out-6KY292/main.synctex.gz.Transcript written on /tmp/paperguru-out-6KY292/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-6KY292/main.log'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.log'
+SyncTeX written on /tmp/paperguru-out-TKI2nl/main.synctex.gz.Transcript written on /tmp/paperguru-out-TKI2nl/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-TKI2nl/main.log'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.log'
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-6KY292/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-TKI2nl/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-6KY292/main'...
-Rule 'bibtex /tmp/paperguru-out-6KY292/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-TKI2nl/main'...
+Rule 'bibtex /tmp/paperguru-out-TKI2nl/main':  Reasons for rerun
 Category 'other':
-  Rerun of 'bibtex /tmp/paperguru-out-6KY292/main' forced or previously required
+  Rerun of 'bibtex /tmp/paperguru-out-TKI2nl/main' forced or previously required
 
 ------------
-Run number 1 of rule 'bibtex /tmp/paperguru-out-6KY292/main'
+Run number 1 of rule 'bibtex /tmp/paperguru-out-TKI2nl/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-6KY292/'.
+Latexmk: Change directory to '/tmp/paperguru-out-TKI2nl/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-6KY292:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-6KY292:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-TKI2nl:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-TKI2nl:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -2022,15 +2021,15 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-6KY292/main.aux
-  /tmp/paperguru-out-6KY292/main.bbl
-  /tmp/paperguru-out-6KY292/main.out
+  /tmp/paperguru-out-TKI2nl/main.aux
+  /tmp/paperguru-out-TKI2nl/main.bbl
+  /tmp/paperguru-out-TKI2nl/main.out
 
 ------------
 Run number 2 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-6KY292"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-TKI2nl"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -2112,8 +2111,8 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-6KY292/main.aux) (/tmp/paperguru-out-6KY292/main.out)
-(/tmp/paperguru-out-6KY292/main.out)
+(/tmp/paperguru-out-TKI2nl/main.aux) (/tmp/paperguru-out-TKI2nl/main.out)
+(/tmp/paperguru-out-TKI2nl/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -2628,11 +2627,11 @@ Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 4
 Package natbib Warning: Citation `wang2026dmgd' on page 43 undefined on input l
 ine 12.
 
-) (/tmp/paperguru-out-6KY292/main.bbl [43] [44] [45])
+) (/tmp/paperguru-out-TKI2nl/main.bbl [43] [44] [45])
 
 Package natbib Warning: There were undefined citations.
 
-[46] (/tmp/paperguru-out-6KY292/main.aux
+[46] (/tmp/paperguru-out-TKI2nl/main.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -2668,30 +2667,30 @@ fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10
 type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-6KY292/main.pdf (46 pages, 7101164 bytes).
+Output written on /tmp/paperguru-out-TKI2nl/main.pdf (46 pages, 7100944 bytes).
 
-SyncTeX written on /tmp/paperguru-out-6KY292/main.synctex.gz.Transcript written on /tmp/paperguru-out-6KY292/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-6KY292/main.log'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-6KY292/main.bbl'
+SyncTeX written on /tmp/paperguru-out-TKI2nl/main.synctex.gz.Transcript written on /tmp/paperguru-out-TKI2nl/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-TKI2nl/main.log'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-TKI2nl/main.bbl'
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-6KY292/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-TKI2nl/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-6KY292/main'...
-Rule 'bibtex /tmp/paperguru-out-6KY292/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-TKI2nl/main'...
+Rule 'bibtex /tmp/paperguru-out-TKI2nl/main':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-6KY292/main.aux
+  /tmp/paperguru-out-TKI2nl/main.aux
 
 ------------
-Run number 2 of rule 'bibtex /tmp/paperguru-out-6KY292/main'
+Run number 2 of rule 'bibtex /tmp/paperguru-out-TKI2nl/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-6KY292/'.
+Latexmk: Change directory to '/tmp/paperguru-out-TKI2nl/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-6KY292:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-6KY292:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-TKI2nl:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-TKI2nl:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -2703,13 +2702,13 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-6KY292/main.aux
+  /tmp/paperguru-out-TKI2nl/main.aux
 
 ------------
 Run number 3 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-6KY292"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-TKI2nl"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -2791,8 +2790,8 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-6KY292/main.aux) (/tmp/paperguru-out-6KY292/main.out)
-(/tmp/paperguru-out-6KY292/main.out)
+(/tmp/paperguru-out-TKI2nl/main.aux) (/tmp/paperguru-out-TKI2nl/main.out)
+(/tmp/paperguru-out-TKI2nl/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -2899,8 +2898,8 @@ T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
-[42]) (/tmp/paperguru-out-6KY292/main.bbl [43] [44] [45] [46]) [47]
-(/tmp/paperguru-out-6KY292/main.aux)
+[42]) (/tmp/paperguru-out-TKI2nl/main.bbl [43] [44] [45]) [46]
+(/tmp/paperguru-out-TKI2nl/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2931,29 +2930,29 @@ fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10
 type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-6KY292/main.pdf (47 pages, 7109472 bytes).
+Output written on /tmp/paperguru-out-TKI2nl/main.pdf (46 pages, 7108857 bytes).
 
-SyncTeX written on /tmp/paperguru-out-6KY292/main.synctex.gz.Transcript written on /tmp/paperguru-out-6KY292/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-6KY292/main.log'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-6KY292/main.bbl'
+SyncTeX written on /tmp/paperguru-out-TKI2nl/main.synctex.gz.Transcript written on /tmp/paperguru-out-TKI2nl/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-TKI2nl/main.log'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-TKI2nl/main.bbl'
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-6KY292/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-TKI2nl/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-6KY292/main'...
-Rule 'bibtex /tmp/paperguru-out-6KY292/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-TKI2nl/main'...
+Rule 'bibtex /tmp/paperguru-out-TKI2nl/main':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-6KY292/main.aux
+  /tmp/paperguru-out-TKI2nl/main.aux
 
 ------------
-Run number 3 of rule 'bibtex /tmp/paperguru-out-6KY292/main'
+Run number 3 of rule 'bibtex /tmp/paperguru-out-TKI2nl/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-6KY292/'.
+Latexmk: Change directory to '/tmp/paperguru-out-TKI2nl/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-6KY292:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-6KY292:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-TKI2nl:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-TKI2nl:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -2965,13 +2964,13 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-6KY292/main.aux
+  /tmp/paperguru-out-TKI2nl/main.aux
 
 ------------
 Run number 4 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-6KY292"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-TKI2nl"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -3053,8 +3052,8 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-6KY292/main.aux) (/tmp/paperguru-out-6KY292/main.out)
-(/tmp/paperguru-out-6KY292/main.out)
+(/tmp/paperguru-out-TKI2nl/main.aux) (/tmp/paperguru-out-TKI2nl/main.out)
+(/tmp/paperguru-out-TKI2nl/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -3161,8 +3160,8 @@ T1/lmr/m/n/10 (-20) 0\OML/lmm/m/it/10 :\OT1/lmr/m/n/10 (-20) 5\OML/lmm/m/it/10
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 6.
 
-[42]) (/tmp/paperguru-out-6KY292/main.bbl [43] [44] [45] [46]) [47]
-(/tmp/paperguru-out-6KY292/main.aux)
+[42]) (/tmp/paperguru-out-TKI2nl/main.bbl [43] [44] [45]) [46]
+(/tmp/paperguru-out-TKI2nl/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -3190,14 +3189,14 @@ fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10
 type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /tmp/paperguru-out-6KY292/main.pdf (47 pages, 7109472 bytes).
+Output written on /tmp/paperguru-out-TKI2nl/main.pdf (46 pages, 7108857 bytes).
 
-SyncTeX written on /tmp/paperguru-out-6KY292/main.synctex.gz.Transcript written on /tmp/paperguru-out-6KY292/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-6KY292/main.log'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-6KY292/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-6KY292/main.bbl'
-Latexmk: Log file says output to '/tmp/paperguru-out-6KY292/main.pdf'
+SyncTeX written on /tmp/paperguru-out-TKI2nl/main.synctex.gz.Transcript written on /tmp/paperguru-out-TKI2nl/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-TKI2nl/main.log'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-TKI2nl/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-TKI2nl/main.bbl'
+Latexmk: Log file says output to '/tmp/paperguru-out-TKI2nl/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
 Latexmk: All targets () are up-to-date

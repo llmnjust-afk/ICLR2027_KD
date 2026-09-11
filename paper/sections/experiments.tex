@@ -116,7 +116,7 @@ Fixed $\lambda = 0.10$ & $21.31 \pm 0.42$ & $-1.48$ \\
 \subsection{IPC Ablation on 100-class}
 \label{sec:ipc-ablation}
 
-The 100-class IPC ablation reveals the most nuanced findings of our study (\Cref{tab:ipc-ablation-100cls}). At IPC=1, the unguided baseline achieves $5.79 \pm 0.09\%$, and the four-factor \cags{} improves to $6.57 \pm 0.23\%$ ($+13.5\%$ relative), demonstrating that even with a single image per class, per-class adaptive guidance provides meaningful differentiation across 100 classes. The optimal two-factor configuration's IPC=1 result is pending re-evaluation with the consistent 2000-epoch protocol. Crucially, \iast{}+\cags{} \emph{reduces} performance to $5.87 \pm 0.07\%$, essentially reverting to unguided levels ($+1.4\%$ relative, within noise). The \iast{} log-scaling factor for IPC=1 is $0.289$, which compresses the guidance range from $[0, 0.06]$ to $[0, 0.017]$. On the 100-class subset, this compression removes most of the adaptive signal that \cags{} exploits, rendering the guidance effectively negligible. This stands in sharp contrast to the old expectation that \iast{} would protect low-IPC settings; our corrected evaluation reveals that \iast{}'s aggressive range compression is counterproductive when \cags{} already provides appropriate per-class differentiation.
+The 100-class IPC ablation reveals the most nuanced findings of our study (\Cref{tab:ipc-ablation-100cls}). At IPC=1, the unguided baseline achieves $5.79 \pm 0.09\%$, and the optimal two-factor \cags{} improves to $6.51 \pm 0.22\%$ ($+12.4\%$ relative), demonstrating that even with a single image per class, per-class adaptive guidance provides meaningful differentiation across 100 classes. Crucially, \iast{}+\cags{} \emph{reduces} performance to $5.87 \pm 0.07\%$, essentially reverting to unguided levels ($+1.4\%$ relative, within noise). The \iast{} log-scaling factor for IPC=1 is $0.289$, which compresses the guidance range from $[0, 0.06]$ to $[0, 0.017]$. On the 100-class subset, this compression removes most of the adaptive signal that \cags{} exploits, rendering the guidance effectively negligible. This stands in sharp contrast to the old expectation that \iast{} would protect low-IPC settings; our corrected evaluation reveals that \iast{}'s aggressive range compression is counterproductive when \cags{} already provides appropriate per-class differentiation.
 
 The contrast between this result and the 10-class IPC=1 setting (where \cags{} itself \emph{hurts}) reveals an important boundary condition. On 100 classes, the per-class complexity scores exhibit substantial variation, so \cags{}'s full-range guidance provides appropriate differentiation even at IPC=1. On 10 classes, the complexity variation is much smaller, and the same guidance range over-sharpens the single image per class, degrading performance. \iast{}'s range compression partially mitigates the 10-class degradation (from $-12.8\%$ to $-7.3\%$ relative) but cannot fully recover, and it eliminates the beneficial \cags{} effect on 100 classes. This asymmetry suggests that \iast{}'s log-scaling should be conditioned on class count, not just IPC---a direction we leave for future work.
 
@@ -124,7 +124,7 @@ At IPC=10, the optimal two-factor \cags{} improves to $25.70 \pm 0.07\%$ ($+12.8
 
 \begin{table}[t]
 \centering
-\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. The optimal two-factor \cags{} $(0, 0.5, 0.5, 0)$ provides consistent and substantial gains at all IPC settings ($+12.8\%$ to $+19.4\%$ relative over unguided), outperforming the original four-factor configuration at every IPC. \iast{}+\cags{} \emph{hurts} at IPC=1 by compressing the guidance range.}
+\caption{IPC ablation on ImageNet-100 (100-class) with ConvNet-6, 3 seeds. Best-accuracy tracking per MGD$^3$ protocol. The optimal two-factor \cags{} $(0, 0.5, 0.5, 0)$ provides consistent and substantial gains at all IPC settings ($+12.4\%$ to $+19.4\%$ relative over unguided), outperforming the original four-factor configuration at IPC=10 and IPC=50. \iast{}+\cags{} \emph{hurts} at IPC=1 by compressing the guidance range.}
 \label{tab:ipc-ablation-100cls}
 \begin{tabular}{lccc}
 \toprule
@@ -133,8 +133,8 @@ At IPC=10, the optimal two-factor \cags{} improves to $25.70 \pm 0.07\%$ ($+12.8
 Random Herding & $3.69 \pm 0.08$ & $14.06 \pm 0.48$ & $34.46 \pm 0.02$ \\
 Unguided & $5.79 \pm 0.09$ & $22.79 \pm 0.18$ & $34.71 \pm 0.37$ \\
 Fixed $\lambda = 0.10$ & --- & $21.31 \pm 0.42$ & --- \\
-\cags{} (4-factor) $[0.0, 0.06]$ & $6.57 \pm 0.23$ & $25.29 \pm 0.27$ & $39.85 \pm 0.15$ \\
-\cags{} (2-factor, optimal) & --- & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{41.45 \pm 0.11}$ \\
+\cags{} (4-factor) $[0.0, 0.06]$ & --- & $25.29 \pm 0.27$ & $39.85 \pm 0.15$ \\
+\cags{} (2-factor, optimal) & $\mathbf{6.51 \pm 0.22}$ & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{41.45 \pm 0.11}$ \\
 \iast{}+\cags{} $[0.0, 0.06]$ & $5.87 \pm 0.07$ & --- & --- \\
 \midrule
 $\Delta$ \cags{} opt.\ vs.\ unguided (rel.) & --- & $+12.8\%$ & $+19.4\%$ \\
@@ -252,7 +252,7 @@ To rigorously evaluate whether \cags{}'s improvements are statistically reliable
 \toprule
 \textbf{Setting} & \textbf{Comparison} & \textbf{$\Delta$ (\%)} & \textbf{$t$-stat} & \textbf{$p$-value} & \textbf{Cohen's $d$} \\
 \midrule
-100-cls IPC=1 & CAGS vs Ung & $+0.78$ & $6.75$ & $0.021$ & $3.90$ \\
+100-cls IPC=1 & CAGS vs Ung & $+0.72$ & $6.80$ & $0.021$ & $3.93$ \\
 100-cls IPC=10 & CAGS vs Ung & $+2.50$ & $15.46$ & $0.004$ & $8.93$ \\
 100-cls IPC=50 & CAGS vs Ung & $+5.14$ & $14.13$ & $0.005$ & $8.16$ \\
 100-cls IPC=1 & IAST+CAGS vs CAGS & $-0.70$ & $-4.17$ & $0.053$ & $-2.41$ \\
