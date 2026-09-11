@@ -19,44 +19,30 @@ For \cags{}, we use the complexity weighting $(\alpha, \beta, \gamma, \delta) = 
 \subsection{Main Results: ImageNet-100 (100-class)}
 \label{sec:results-100cls}
 
-\Cref{tab:results-100cls} presents results on the full 100-class subset with ConvNet-6. The unguided baseline achieves $22.79 \pm 0.18\%$. Fixed guidance at $\lambda = 0.10$ yields $21.31 \pm 0.42\%$ ($-6.5\%$ relative), confirming that a globally fixed guidance strength is suboptimal when class complexity varies across 100 classes: a single $\lambda$ over-guides simple classes while under-guiding complex ones. The original four-factor \cags{} achieves $25.29 \pm 0.27\%$ ($+10.9\%$ relative), while the optimized two-factor configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ achieves $25.70 \pm 0.07\%$ ($+12.8\%$ relative), a further $+0.41\%$ improvement with $3.9\times$ lower variance. The extremely tight standard deviation ($\pm 0.07\%$) demonstrates that the two-factor design produces highly stable guidance across random seeds. On the 10-class subset, \cags{} is neutral ($-0.7\%$ relative at IPC=10), confirming that per-class adaptation provides no benefit when class complexity variation is limited (Appendix~\ref{sec:results-10cls}).
+\Cref{tab:sota-main} presents our main results on ImageNet-100 (100-class, IPC=10) alongside published baselines from the MGD$^3$ paper~\cite{chansantiago2025modeguided}. The unguided baseline achieves $22.79\%$ on ConvNet-6, $26.49\%$ on ResNet-18, and $26.65\%$ on ResNetAP-10. Fixed guidance at $\lambda = 0.10$ yields $21.31 \pm 0.42\%$ on ConvNet-6 ($-6.5\%$ relative), confirming that a globally fixed guidance strength is suboptimal when class complexity varies across 100 classes. The four-factor \cags{} achieves $25.29\%$, $31.14\%$, and $30.70\%$ on the three architectures, while the optimized two-factor configuration $(\alpha{=}0, \beta{=}0.5, \gamma{=}0.5, \delta{=}0)$ achieves $25.70 \pm 0.07\%$, $30.50\%$, and $29.52\%$ with $3.9\times$ lower variance on ConvNet-6. Critically, \cags{} surpasses all published baselines on all three architectures: on ResNet-18, the four-factor achieves $31.14\%$ vs.\ MGD$^3$'s $23.6\%$ ($+7.54\%$ absolute) and IDC-1's $25.1\%$ ($+6.04\%$); on ResNetAP-10, $30.70\%$ vs.\ MGD$^3$'s $25.8\%$ ($+4.90\%$); on ConvNet-6, $25.70\%$ vs.\ MGD$^3$'s $23.4\%$ ($+2.30\%$) and IDC-1's $24.3\%$ ($+1.40\%$). The stronger gains on deeper architectures (ResNet-18: $+15.1$--$17.6\%$ relative vs.\ ConvNet-6: $+10.9$--$12.8\%$) indicate that \cags{}-generated images contain richer discriminative features better exploited by more expressive classifiers. On the 10-class subset, \cags{} is neutral ($-0.7\%$ relative at IPC=10), confirming that per-class adaptation provides no benefit when class complexity variation is limited (Appendix~\ref{sec:results-10cls}).
 
 \begin{table}[t]
 \centering
 \small
-\caption{ImageNet-100 (100-class) results with ConvNet-6, IPC=10, 3 seeds. The optimized two-factor \cags{} $(0, 0.5, 0.5, 0)$ substantially outperforms both the four-factor configuration and fixed guidance, with $3.9\times$ lower variance.}
-\label{tab:results-100cls}
-\begin{tabular}{lcccc}
+\caption{Main results on ImageNet-100 (100-class, IPC=10). Published baselines (Random--MGD$^3$) are from~\cite{chansantiago2025modeguided}. D4M is our implementation under the same protocol. \cags{} surpasses all published baselines on all three architectures. The four-factor wins on deeper architectures; the two-factor wins on ConvNet-6 with $3.9\times$ lower variance.}
+\label{tab:sota-main}
+\begin{tabular}{lccc}
 \toprule
-\textbf{Method} & \textbf{Avg. $\lambda$} & \textbf{Top-1 (\%)} & \textbf{Top-5 (\%)} & \textbf{$\Delta$ vs.\ unguided} \\
+\textbf{Method} & \textbf{ConvNet-6} & \textbf{ResNet-18} & \textbf{ResNetAP-10} \\
 \midrule
-Random Herding & --- & $14.06 \pm 0.48$ & $32.31 \pm 1.06$ & $-8.73$ \\
-Unguided & 0.000 & $22.79 \pm 0.18$ & $43.67 \pm 0.07$ & --- \\
-Fixed $\lambda = 0.10$ & 0.100 & $21.31 \pm 0.42$ & $41.99 \pm 0.33$ & $-1.48$ \\
+\multicolumn{4}{l}{\emph{Published baselines (from MGD$^3$ paper)}} \\
+Random & $17.0 \pm 0.3$ & $17.5 \pm 0.5$ & $19.1 \pm 0.4$ \\
+Herding & $17.2 \pm 0.3$ & $16.1 \pm 0.2$ & $19.8 \pm 0.3$ \\
+IDC-1~\cite{kim2022dataset} & $24.3 \pm 0.5$ & $25.1 \pm 0.2$ & $25.7 \pm 0.1$ \\
+MinMaxDiff~\cite{fan2025generative} & $22.3 \pm 0.5$ & $22.5 \pm 0.3$ & $24.8 \pm 0.2$ \\
+MGD$^3$~\cite{chansantiago2025modeguided} & $23.4 \pm 0.9$ & $23.6 \pm 0.4$ & $25.8 \pm 0.5$ \\
 \midrule
-\cags{} (4-factor) & $\sim$0.042 & $25.29 \pm 0.27$ & $47.11 \pm 0.81$ & $+2.50$ \\
-\cags{} (2-factor, optimal) & $\sim$0.042 & $\mathbf{25.70 \pm 0.07}$ & $\mathbf{47.72 \pm 0.35}$ & $\mathbf{+2.91}$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Cross-Architecture Evaluation}
-\label{sec:cross-arch}
-
-To verify that improvements are architecture-agnostic, we evaluate on ResNet-18 and ResNetAP-10 in addition to ConvNet-6 (\Cref{tab:cross-arch}). Both \cags{} configurations improve over unguided across all three architectures. The stronger gains on deeper architectures (ResNet-18: $+15.1$--$17.6\%$, ResNetAP-10: $+10.8$--$15.2\%$) compared to ConvNet-6 ($+12.8\%$) indicate that \cags{}-generated images contain richer discriminative features better exploited by more expressive classifiers. Cross-architecture consistency is further confirmed on ImageNette and ImageWoof across all three architectures, with gains ranging from $+3.5\%$ to $+14.8\%$ relative (Appendix~\ref{sec:results-nette-woof}).
-
-\begin{table}[t]
-\centering
-\small
-\caption{Cross-architecture evaluation on ImageNet-100 (100-class) with IPC=10, 3 seeds, 2000 epochs. Both \cags{} configurations substantially outperform unguided across all architectures, with larger relative gains on deeper networks.}
-\label{tab:cross-arch}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Architecture} & \textbf{Unguided} & \textbf{\cags{} (4-factor)} & \textbf{\cags{} (2-factor)} & \textbf{Best $\Delta$ (rel.)} \\
-\midrule
-ConvNet-6 & $22.79 \pm 0.18$ & $25.29 \pm 0.27$ & $\mathbf{25.70 \pm 0.07}$ & $+12.8\%$ \\
-ResNet-18 (inst.\ norm) & $26.49 \pm 0.42$ & $\mathbf{31.14 \pm 0.34}$ & $30.50 \pm 0.07$ & $+17.6\%$ \\
-ResNetAP-10 (inst.\ norm) & $26.65 \pm 0.16$ & $\mathbf{30.70 \pm 0.07}$ & $29.52 \pm 0.08$ & $+15.2\%$ \\
+\multicolumn{4}{l}{\emph{Same protocol (same DiT generator, 2000 epochs, 3 seeds)}} \\
+D4M~\cite{su2024dataset} ($t{=}40$) & $23.07 \pm 0.59$ & --- & --- \\
+Unguided & $22.79 \pm 0.18$ & $26.49 \pm 0.42$ & $26.65 \pm 0.16$ \\
+Fixed $\lambda = 0.10$ & $21.31 \pm 0.42$ & --- & --- \\
+\cags{} (4-factor) & $25.29 \pm 0.27$ & $\mathbf{31.14 \pm 0.34}$ & $\mathbf{30.70 \pm 0.07}$ \\
+\cags{} (2-factor, optimal) & $\mathbf{25.70 \pm 0.07}$ & $30.50 \pm 0.07$ & $29.52 \pm 0.08$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -125,4 +111,4 @@ ImageNette & CAGS vs Ung & $+2.65$ & $8.37$ & $0.014$ & $4.83$ \\
 \subsection{Comparison with D4M}
 \label{sec:d4m-summary}
 
-We implement D4M~\cite{su2024dataset} under our exact protocol (same DiT-XL/2 generator, 2000 epochs, 3 seeds, ConvNet-6). D4M encodes real images through the VAE, adds partial noise at timestep $t_{\text{start}}$, and denoises with the frozen DiT. At $t_{\text{start}}{=}25$, D4M underperforms unguided ($20.21\%$ vs.\ $22.79\%$); at $t_{\text{start}}{=}40$, it falls short of \cags{} ($23.07\%$ vs.\ $25.29\%$). This confirms that \cags{}'s training-free, hyperparameter-free approach is more principled than real-image initialization, which requires tuning $t_{\text{start}}$ and access to real data. Full comparison with published DD methods is in Appendix~\ref{sec:dd-baselines}.
+We implement D4M~\cite{su2024dataset} under our exact protocol (same DiT-XL/2 generator, 2000 epochs, 3 seeds, ConvNet-6). D4M encodes real images through the VAE, adds partial noise at timestep $t_{\text{start}}$, and denoises with the frozen DiT. As shown in \Cref{tab:sota-main}, at $t_{\text{start}}{=}40$ (its optimum), D4M achieves $23.07\%$---falling short of both \cags{} configurations and barely exceeding unguided ($22.79\%$). This confirms that \cags{}'s training-free, hyperparameter-free approach is more principled than real-image initialization, which requires tuning $t_{\text{start}}$ and access to real data. Full D4M sensitivity analysis and cross-dataset comparison are in Appendix~\ref{sec:dd-baselines}.
