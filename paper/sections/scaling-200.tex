@@ -1,10 +1,9 @@
 \subsection{Scaling Analysis: From 10 to 1000 Classes}
 \label{sec:scaling-200}
-\enlargethispage{8\baselineskip}
 
 We evaluate \cags{} across class counts from 10 to 1000, keeping all other settings fixed (IPC=10, instance normalization; IN-1K uses 1000 epochs).
 
-\Cref{tab:scaling} presents the scaling results. The \cags{} advantage grows from $+2.65\%$ (100 classes) to $+3.58\%$ (1000 classes, ConvNet-6), amplifying on deeper architectures: $+6.97\%$ ($+41.3\%$ relative) on ResNet-18 and $+6.83\%$ ($+43.7\%$) on ResNetAP-10, consistent with the adaptivity gap theorem (Theorem~\ref{thm:adaptivity-gap}). The two 10-class datasets included for reference---ImageNette ($+5.28\%$) and ImageWoof ($+1.12\%$)---deviate from the class-count trend because the theorem predicts the adaptivity gap depends on \emph{cross-class heterogeneity} in $\lambda_c^*$, not class count alone: the 10-class ImageNet-100 subset (Appendix~\ref{sec:results-10cls}) has narrow complexity variation ($0\%$ gain), while ImageNette's broader intra-class variance heterogeneity yields gains exceeding even the 100-class subset.
+\Cref{tab:scaling} presents the scaling results. The \cags{} advantage grows from $+2.65\%$ (100 classes) to $+3.58\%$ (1000 classes, ConvNet-6), amplifying on deeper architectures: $+6.97\%$ ($+41.3\%$ relative) on ResNet-18 and $+6.83\%$ ($+43.7\%$) on ResNetAP-10, consistent with the adaptivity gap theorem (Theorem~\ref{thm:adaptivity-gap}). The two 10-class datasets included for reference---ImageNette ($+5.28\%$) and ImageWoof ($+1.12\%$)---deviate from the class-count trend because the theorem predicts the adaptivity gap depends on \emph{cross-class heterogeneity} in $\lambda_c^*$, not class count alone: the 10-class ImageNet-100 subset (Appendix~\ref{sec:results-10cls}) has narrow complexity variation ($0\%$ gain), while ImageNette's broader intra-class variance heterogeneity yields gains exceeding even the 100-class subset. Generalization beyond ImageNet to Food-101 and CIFAR-10 using Stable Diffusion~1.5 further confirms this pattern (\Cref{tab:non-imagenet}, Appendix~\ref{sec:non-imagenet-table}).
 
 \begin{table}[t]
 \centering

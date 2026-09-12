@@ -183,11 +183,11 @@ Q4 (high) & $0.680$ & $0.041$ & $0.186$ & $0.236$ & $+0.050$ & $19/3/3$ \\
 \subsection{Sensitivity to Guidance Range}
 \label{sec:sensitivity}
 
-To assess the robustness of \cags{} to the choice of guidance range $[\lambda_{\min}, \lambda_{\max}]$, we sweep $\lambda_{\max} \in \{0.04, 0.06, 0.08, 0.10\}$ on the 100-class subset with IPC=10 and ConvNet-6 (\Cref{tab:sensitivity}). This sensitivity analysis was conducted during the early exploration phase using the initial four-factor configuration with independently generated datasets, so the absolute accuracies ($22.7$--$23.5\%$) are lower than the optimized two-factor result ($25.55\%$, \Cref{tab:sota-main}). The key finding is the \emph{relative} robustness: all configurations yield top-1 accuracy within a narrow band, well within the standard deviation ($\pm 0.47\%$). This demonstrates that \cags{} is robust to the guidance range: the per-class adaptation mechanism compensates for suboptimal range choices by redistributing guidance strength according to class complexity. Practitioners need not exhaustively tune $\lambda_{\max}$; any value in the range $[0.04, 0.10]$ produces comparable results. Notably, even the widest range $[0.0, 0.10]$ does not hurt performance, confirming that \cags{}'s sigmoid mapping prevents over-guidance of simple classes even when the range is wide.
+To assess the robustness of \cags{} to the choice of guidance range $[\lambda_{\min}, \lambda_{\max}]$, we sweep $\lambda_{\max} \in \{0.04, 0.06, 0.08, 0.10\}$ on the 100-class subset with IPC=10 and ConvNet-6 (\Cref{tab:sensitivity}). This sensitivity analysis was conducted during the early exploration phase using the initial four-factor configuration with independently generated datasets, so the absolute accuracies ($22.8$--$23.3\%$) are lower than the optimized two-factor result ($25.55\%$, \Cref{tab:sota-main}). The key finding is the \emph{relative} robustness: all configurations yield top-1 accuracy within a narrow band, well within the standard deviation ($\pm 0.47\%$). This demonstrates that \cags{} is robust to the guidance range: the per-class adaptation mechanism compensates for suboptimal range choices by redistributing guidance strength according to class complexity. Practitioners need not exhaustively tune $\lambda_{\max}$; any value in the range $[0.04, 0.10]$ produces comparable results. Notably, even the widest range $[0.0, 0.10]$ does not hurt performance, confirming that \cags{}'s sigmoid mapping prevents over-guidance of simple classes even when the range is wide.
 
 \begin{table}[t]
 \centering
-\caption{Sensitivity to guidance range on ImageNet-100 (100-class) with ConvNet-6, IPC=10. These experiments use the initial four-factor configuration with independently generated datasets, so absolute accuracies are lower than the optimized two-factor result ($25.55\%$); the key finding is the relative robustness across $\lambda_{\max}$ values. The $\lambda_{\max}=0.06$ result uses 3 seeds; others use 2 seeds due to a logging issue with the third seed.}
+\caption{Sensitivity to guidance range on ImageNet-100 (100-class) with ConvNet-6, IPC=10. These experiments use the initial four-factor configuration with independently generated datasets, so absolute accuracies are lower than the optimized two-factor result ($25.55\%$); the key finding is the relative robustness across $\lambda_{\max}$ values. All entries use 3 seeds.}
 \label{tab:sensitivity}
 \begin{tabular}{lccc}
 \toprule
@@ -195,10 +195,10 @@ To assess the robustness of \cags{} to the choice of guidance range $[\lambda_{\
 \midrule
 Unguided & 0.000 & $22.79 \pm 0.18$ & --- \\
 \midrule
-0.04 & $\sim$0.028 & $23.24$ & $+0.45$ \\
+0.04 & $\sim$0.028 & $23.20 \pm 0.16$ & $+0.41$ \\
 0.06 & $\sim$0.042 & $23.27 \pm 0.47$ & $+0.48$ \\
-0.08 & $\sim$0.055 & $22.66$ & $-0.13$ \\
-0.10 & $\sim$0.069 & $23.49$ & $+0.70$ \\
+0.08 & $\sim$0.055 & $22.81 \pm 0.42$ & $+0.02$ \\
+0.10 & $\sim$0.069 & $23.31 \pm 0.26$ & $+0.52$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -208,8 +208,10 @@ Unguided & 0.000 & $22.79 \pm 0.18$ & --- \\
 
 The \cags{} overhead consists of three one-time steps performed before dataset generation: (1) VAE feature extraction from real training images ($\sim$14 minutes for 131{,}689 images at $\sim$130 images/s on a single RTX 4090), (2) per-class KMeans clustering with silhouette-based $K$ selection ($\sim$8 minutes for 200 classes at $\sim$4.6 seconds per class), and (3) complexity score computation ($<1$ second). The total one-time overhead is approximately 22 minutes, after which the cached \texttt{ClassComplexityAnalyzer} object can be reused across all configurations---changing the complexity weights $(\alpha, \beta, \gamma, \delta)$ requires only a $<1$ second recomputation of the sigmoid mapping, with no need to re-extract features or re-run clustering. Dataset generation itself takes $\sim$16 minutes per configuration for 100 classes (IPC=10) or $\sim$33 minutes for 200 classes, dominated by the 50-step DiT denoising loop. Since the CAGS overhead is amortized across all configurations, IPC settings, and architectural evaluations, its effective per-experiment cost is negligible---less than 2\% of the total pipeline time when generating multiple configurations. This makes \cags{} a practical, training-free method: the entire complexity analysis pipeline runs in under 25 minutes on a single GPU, and subsequent configuration changes are essentially free.
 
-\subsection{Non-ImageNet Generalization Table}
+\subsection{Non-ImageNet Generalization}
 \label{sec:non-imagenet-table}
+
+To test generalization beyond ImageNet, we evaluate on Food-101~\cite{bossard2014food101} (101 categories) and CIFAR-10~\cite{krizhevsky2009learning} (10 categories) using Stable Diffusion~\cite{rombach2021highresolution} 1.5 as the generator (ConvNet-6; Food-101 \cags{} results are averaged over 2 independently generated datasets, CIFAR-10 over 3 seeds; full details in \Cref{tab:non-imagenet}). On Food-101, \cags{} achieves $4.17 \pm 0.12\%$ vs.\ $2.27 \pm 0.02\%$ unguided ($+83.8\%$ relative); the low absolute accuracy reflects SD~1.5's domain gap, not a \cags{} limitation. On CIFAR-10 (10 classes with narrow complexity variation), \cags{} is neutral ($-0.4\%$ relative), consistent with the scaling hypothesis.
 
 \subsection{Results Comparison Figure}
 \label{sec:results-figure}
