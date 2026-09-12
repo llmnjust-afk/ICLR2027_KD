@@ -207,3 +207,31 @@ Unguided & 0.000 & $22.79 \pm 0.18$ & --- \\
 \label{sec:compute-efficiency}
 
 The \cags{} overhead consists of three one-time steps performed before dataset generation: (1) VAE feature extraction from real training images ($\sim$14 minutes for 131{,}689 images at $\sim$130 images/s on a single RTX 4090), (2) per-class KMeans clustering with silhouette-based $K$ selection ($\sim$8 minutes for 200 classes at $\sim$4.6 seconds per class), and (3) complexity score computation ($<1$ second). The total one-time overhead is approximately 22 minutes, after which the cached \texttt{ClassComplexityAnalyzer} object can be reused across all configurations---changing the complexity weights $(\alpha, \beta, \gamma, \delta)$ requires only a $<1$ second recomputation of the sigmoid mapping, with no need to re-extract features or re-run clustering. Dataset generation itself takes $\sim$16 minutes per configuration for 100 classes (IPC=10) or $\sim$33 minutes for 200 classes, dominated by the 50-step DiT denoising loop. Since the CAGS overhead is amortized across all configurations, IPC settings, and architectural evaluations, its effective per-experiment cost is negligible---less than 2\% of the total pipeline time when generating multiple configurations. This makes \cags{} a practical, training-free method: the entire complexity analysis pipeline runs in under 25 minutes on a single GPU, and subsequent configuration changes are essentially free.
+
+\subsection{Non-ImageNet Generalization Table}
+\label{sec:non-imagenet-table}
+
+\subsection{Results Comparison Figure}
+\label{sec:results-figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/results_comparison.pdf}
+\caption{\cags{} vs.\ unguided and published baselines across architectures and class counts. (a)~Main 100-class results (IPC=10, 5 seeds): \cags{} surpasses all baselines on all three architectures. (b)~Scaling: the \cags{} advantage grows with class count, reaching $+6.97\%$ on ResNet-18 at 1000 classes.}
+\label{fig:results-comparison}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\caption{Non-ImageNet generalization with Stable Diffusion 1.5. \cags{} provides a $+83.8\%$ relative improvement on Food-101 (101 classes), while remaining neutral on CIFAR-10 (10 classes with narrow complexity variation). Food-101 \cags{} results are averaged over 2 independently generated datasets.}
+\label{tab:non-imagenet}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Dataset} & \textbf{Classes} & \textbf{Generator} & \textbf{Unguided} & \textbf{\cags{}} & \textbf{$\Delta$ (rel.)} \\
+\midrule
+Food-101 & 101 & SD 1.5 & $2.27 \pm 0.02$ & $\mathbf{4.17 \pm 0.12}$ & $+83.8\%$ \\
+CIFAR-10 & 10 & SD 1.5 & $\mathbf{14.58 \pm 0.10}$ & $14.52 \pm 0.19$ & $-0.4\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}

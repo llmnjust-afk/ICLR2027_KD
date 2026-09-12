@@ -1,14 +1,15 @@
 \subsection{Scaling Analysis: From 10 to 1000 Classes}
 \label{sec:scaling-200}
+\enlargethispage{8\baselineskip}
 
-A central claim of \cags{} is that per-class adaptive guidance becomes increasingly beneficial as the number of classes grows. We evaluate \cags{} across class counts from 10 to 1000, keeping all other settings fixed (IPC=10, instance normalization). The full ImageNet-1K~\cite{russakovsky2014imagenet} evaluation uses all 1000 classes with 1000 training epochs (reduced from 2000 due to the 10$\times$ scale).
+We evaluate \cags{} across class counts from 10 to 1000, keeping all other settings fixed (IPC=10, instance normalization; IN-1K uses 1000 epochs).
 
-\Cref{tab:scaling} presents the scaling results. The \cags{} advantage over unguided grows substantially: $+2.65\%$ on 100 classes, $+3.30\%$ on 200 classes, and $+3.58\%$ on 1000 classes (ConvNet-6). On ImageNet-1K, the advantage amplifies on deeper architectures: $+6.97\%$ ($+41.3\%$ relative) on ResNet-18 and $+6.83\%$ ($+43.7\%$ relative) on ResNetAP-10. This three-architecture scaling result provides the strongest evidence for the scaling hypothesis: the benefit of per-class adaptive guidance grows with both class count and classifier capacity, consistent with the adaptivity gap theorem (Theorem~\ref{thm:adaptivity-gap}).
+\Cref{tab:scaling} presents the scaling results. The \cags{} advantage grows from $+2.65\%$ (100 classes) to $+3.58\%$ (1000 classes, ConvNet-6), amplifying on deeper architectures: $+6.97\%$ ($+41.3\%$ relative) on ResNet-18 and $+6.83\%$ ($+43.7\%$) on ResNetAP-10, consistent with the adaptivity gap theorem (Theorem~\ref{thm:adaptivity-gap}). The two 10-class datasets included for reference---ImageNette ($+5.28\%$) and ImageWoof ($+1.12\%$)---deviate from the class-count trend because the theorem predicts the adaptivity gap depends on \emph{cross-class heterogeneity} in $\lambda_c^*$, not class count alone: the 10-class ImageNet-100 subset (Appendix~\ref{sec:results-10cls}) has narrow complexity variation ($0\%$ gain), while ImageNette's broader intra-class variance heterogeneity yields gains exceeding even the 100-class subset.
 
 \begin{table}[t]
 \centering
-\footnotesize
-\caption{Scaling analysis: \cags{} advantage grows with class count. IPC=10, instance normalization. Epochs: 2000 for $\leq$200 classes, 1000 for 1000 classes. Seeds: 5 for IN-100, 3 for ImageNette/ImageWoof/IN-200 and IN-1K ResNet-18/ResNetAP-10, 2 for IN-1K ConvNet-6.}
+\scriptsize
+\caption{Scaling analysis: \cags{} advantage grows with class count. IPC=10, instance normalization. Epochs: 2000 for $\leq$200 classes, 1000 for 1000 classes. Seeds: 5 for IN-100, 3 for ImageNette/ImageWoof/IN-200/IN-1K (ResNet-18, ResNetAP-10), 2 for IN-1K ConvNet-6. ImageNette/ImageWoof are 10-class datasets with broader complexity variation than the 10-class ImageNet-100 subset (Theorem~\ref{thm:adaptivity-gap}).}
 \label{tab:scaling}
 \begin{tabular}{lcccc}
 \toprule

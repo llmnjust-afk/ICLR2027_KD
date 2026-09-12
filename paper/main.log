@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  11 SEP 2026 23:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.7.4)  12 SEP 2026 00:36
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -796,7 +796,7 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count334
 \l__pdf_internal_box=\box69
 )
-(/tmp/paperguru-out-AcuJ3p/main.aux)
+(/tmp/paperguru-out-nCFtQv/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -833,7 +833,7 @@ LaTeX Font Info:    ... okay on input line 42.
 \everyMPtoPDFconversion=\toks48
 )
 Package hyperref Info: Link coloring OFF on input line 42.
- (/tmp/paperguru-out-AcuJ3p/main.out) (/tmp/paperguru-out-AcuJ3p/main.out)
+ (/tmp/paperguru-out-nCFtQv/main.out) (/tmp/paperguru-out-nCFtQv/main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -889,7 +889,10 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
 1.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+)
+Underfull \vbox (badness 4353) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
 
@@ -900,11 +903,14 @@ LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/related-wo
 rk.tex [2])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/method.tex
-[3])
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/theory.tex
-[4])
+[4] [5])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s.tex [5]
+s.tex
 Underfull \hbox (badness 1472) in paragraph at lines 14--15
  []\T1/ptm/b/sc/10 (+20) AGS-DD \T1/ptm/b/n/10 (+20) con-fig-u-ra-tions.[] \T1/
 ptm/m/n/10 (+20) For \T1/ptm/m/sc/10 (+20) CAGS\T1/ptm/m/n/10 (+20) , we use th
@@ -912,40 +918,37 @@ e com-plex-ity weight-ing $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ; ^^L; ^^M; ^^N\O
 T1/cmr/m/n/10 ) =
  []
 
-[6] [7]
-<figures/results_comparison.pdf, id=469, 714.9871pt x 352.8389pt>
-File: figures/results_comparison.pdf Graphic file (type pdf)
-<use figures/results_comparison.pdf>
-Package pdftex.def Info: figures/results_comparison.pdf  used on input line 116
-.
-(pdftex.def)             Requested size: 397.48499pt x 196.15631pt.
- [8 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/results
-_comparison.pdf>])
+[6]
+Underfull \vbox (badness 4168) has occurred while \output is active []
+
+ [7])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
-0.tex)
+0.tex [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [9])
+et.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
 s.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex)
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 58
+.tex) (/tmp/paperguru-out-nCFtQv/main.bbl [9]
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 22
 .
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [10]
-(/tmp/paperguru-out-AcuJ3p/main.bbl
+
 Underfull \hbox (badness 1910) in paragraph at lines 75--79
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
  []
 
-[11] [12]) [13]
+[10] [11]) [12]
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/ai-use.tex
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/reproducib
 ility.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/theory-pro
@@ -957,22 +960,23 @@ T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
  []
 
-[14]
-<figures/theorem1_fit.pdf, id=680, 859.85333pt x 318.42657pt>
+[13]
+<figures/theorem1_fit.pdf, id=617, 859.85333pt x 318.42657pt>
 File: figures/theorem1_fit.pdf Graphic file (type pdf)
 <use figures/theorem1_fit.pdf>
 Package pdftex.def Info: figures/theorem1_fit.pdf  used on input line 31.
 (pdftex.def)             Requested size: 397.48499pt x 147.1971pt.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 40.
-)
+ [14])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s-appendix.tex [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
-aper/figures/theorem1_fit.pdf>] [17] [18]
-Underfull \vbox (badness 1997) has occurred while \output is active []
+s-appendix.tex [15 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/
+figures/theorem1_fit.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19]
-<figures/class_level_mechanism.pdf, id=813, 710.67938pt x 569.52919pt>
+ [16]
+[17] [18]
+<figures/class_level_mechanism.pdf, id=749, 710.67938pt x 569.52919pt>
 File: figures/class_level_mechanism.pdf Graphic file (type pdf)
 <use figures/class_level_mechanism.pdf>
 Package pdftex.def Info: figures/class_level_mechanism.pdf  used on input line 
@@ -981,11 +985,27 @@ Package pdftex.def Info: figures/class_level_mechanism.pdf  used on input line
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [20])
+ [19]
+[20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/class_l
+evel_mechanism.pdf>]
+<figures/results_comparison.pdf, id=861, 714.9871pt x 352.8389pt>
+File: figures/results_comparison.pdf Graphic file (type pdf)
+<use figures/results_comparison.pdf>
+Package pdftex.def Info: figures/results_comparison.pdf  used on input line 219
+.
+(pdftex.def)             Requested size: 397.48499pt x 196.15631pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [21 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
-class_level_mechanism.pdf>] [22]
-<figures/d4m_sensitivity.pdf, id=959, 425.78604pt x 282.40921pt>
+es.tex [21]
+Underfull \vbox (badness 3713) has occurred while \output is active []
+
+ [22 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/result
+s_comparison.pdf>]
+<figures/d4m_sensitivity.pdf, id=971, 425.78604pt x 282.40921pt>
 File: figures/d4m_sensitivity.pdf Graphic file (type pdf)
 <use figures/d4m_sensitivity.pdf>
 Package pdftex.def Info: figures/d4m_sensitivity.pdf  used on input line 64.
@@ -1005,17 +1025,17 @@ Underfull \hbox (badness 6510) in paragraph at lines 10--11
 ghts around the neigh-bor-hood
  []
 
-[26])
+
+Underfull \vbox (badness 3930) has occurred while \output is active []
+
+ [26])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
 set-entropy.tex [27]
 Overfull \hbox (35.61678pt too wide) in paragraph at lines 12--29
  [][] 
  []
 
-
-Underfull \vbox (badness 2173) has occurred while \output is active []
-
- [28])
+[28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
 ubset.tex
 Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
@@ -1025,30 +1045,26 @@ Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
 [29])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
 nalysis.tex
-<figures/guidance_analysis.pdf, id=1098, 1075.30493pt x 317.09583pt>
+<figures/guidance_analysis.pdf, id=1115, 1075.30493pt x 317.09583pt>
 File: figures/guidance_analysis.pdf Graphic file (type pdf)
 <use figures/guidance_analysis.pdf>
 Package pdftex.def Info: figures/guidance_analysis.pdf  used on input line 14.
 (pdftex.def)             Requested size: 397.48499pt x 117.21233pt.
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
-ity.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30]
-[31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>]) [32] (/tmp/paperguru-out-AcuJ3p/main.aux)
+ity.tex [30]) [31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/f
+igures/guidance_analysis.pdf>] [32] (/tmp/paperguru-out-nCFtQv/main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B704E0E4D61994A50FD757FF2BAD2D74;9566.
+(rerunfilecheck)             Checksum: BD0142257D0BC0C973A1EB6DEA52F04E;10118.
  ) 
 Here is how much of TeX's memory you used:
- 29094 strings out of 477975
- 549073 string characters out of 5839282
- 1883330 words of memory out of 5000000
- 47972 multiletter control sequences out of 15000+600000
- 619634 words of font info for 445 fonts, out of 8000000 for 9000
+ 29118 strings out of 477975
+ 549596 string characters out of 5839282
+ 1879330 words of memory out of 5000000
+ 47986 multiletter control sequences out of 15000+600000
+ 622458 words of font info for 448 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 84i,13n,80p,2067b,839s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,80p,2114b,839s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/
@@ -1076,15 +1092,15 @@ live/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on /tmp/paperguru-out-AcuJ3p/main.pdf (32 pages, 591715 bytes).
+Output written on /tmp/paperguru-out-nCFtQv/main.pdf (32 pages, 593052 bytes).
 PDF statistics:
- 1349 PDF objects out of 1440 (max. 8388607)
- 922 compressed objects within 10 object streams
- 190 named destinations out of 1000 (max. 500000)
- 81830 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1364 PDF objects out of 1440 (max. 8388607)
+ 936 compressed objects within 10 object streams
+ 192 named destinations out of 1000 (max. 500000)
+ 85950 words of extra memory for PDF output out of 89155 (max. 10000000)
 
 
-Latexmk: Missing bbl file '/tmp/paperguru-out-AcuJ3p/main.bbl' in following:
+Latexmk: Missing bbl file '/tmp/paperguru-out-nCFtQv/main.bbl' in following:
  No file main.bbl.
 
 Rc files read:
@@ -1100,7 +1116,7 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-AcuJ3p"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-nCFtQv"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -1293,7 +1309,7 @@ zlibraryshapes.geometric.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.geometric.code.tex))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-AcuJ3p/main.aux)
+(/tmp/paperguru-out-nCFtQv/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
@@ -1334,10 +1350,6 @@ nput line 4.
 Package natbib Warning: Citation `ho2022classifierfree' on page 1 undefined on 
 input line 6.
 
-
-LaTeX Warning: Reference `sec:module-ablation' on page 1 undefined on input lin
-e 8.
-
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
 
 LaTeX Warning: Reference `prop:opt-lambda' on page 1 undefined on input line 11
@@ -1355,6 +1367,10 @@ Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 2
 
 LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (Font)              using `T1/ptm/m/sc' instead on input line 17.
+
+
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 2 undefined on input line
+ 17.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/related-wo
@@ -1431,45 +1447,45 @@ ut line 8.
 Package natbib Warning: Citation `li2026poolselectrefine' on page 2 undefined o
 n input line 8.
 
+[2]
 
-Package natbib Warning: Citation `ho2022classifierfree' on page 2 undefined on 
+Package natbib Warning: Citation `ho2022classifierfree' on page 3 undefined on 
 input line 11.
 
 
-Package natbib Warning: Citation `yehezkel2025navigating' on page 2 undefined o
+Package natbib Warning: Citation `yehezkel2025navigating' on page 3 undefined o
 n input line 11.
 
 
-Package natbib Warning: Citation `zhang2025much' on page 2 undefined on input l
+Package natbib Warning: Citation `zhang2025much' on page 3 undefined on input l
 ine 11.
 
 
-Package natbib Warning: Citation `malarz2025classifierfree' on page 2 undefined
+Package natbib Warning: Citation `malarz2025classifierfree' on page 3 undefined
  on input line 11.
 
 
-Package natbib Warning: Citation `li2025adaptive' on page 2 undefined on input 
+Package natbib Warning: Citation `li2025adaptive' on page 3 undefined on input 
 line 11.
 
 
-Package natbib Warning: Citation `shafi2026dash' on page 2 undefined on input l
+Package natbib Warning: Citation `shafi2026dash' on page 3 undefined on input l
 ine 11.
 
 
-Package natbib Warning: Citation `li2026rethinking' on page 2 undefined on inpu
+Package natbib Warning: Citation `li2026rethinking' on page 3 undefined on inpu
 t line 11.
 
 
-Package natbib Warning: Citation `zhang2025promptaware' on page 2 undefined on 
+Package natbib Warning: Citation `zhang2025promptaware' on page 3 undefined on 
 input line 11.
 
 
-Package natbib Warning: Citation `sergievskii2026revisiting' on page 2 undefine
+Package natbib Warning: Citation `sergievskii2026revisiting' on page 3 undefine
 d on input line 11.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/method.tex
-[2]
 
 Package natbib Warning: Citation `chansantiago2025modeguided' on page 3 undefin
 ed on input line 4.
@@ -1574,24 +1590,23 @@ LaTeX Warning: Reference `sec:theory-proofs' on page 5 undefined on input line
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s.tex
+s.tex [5]
 
-Package natbib Warning: Citation `russakovsky2014imagenet' on page 5 undefined 
+Package natbib Warning: Citation `russakovsky2014imagenet' on page 6 undefined 
 on input line 8.
 
 
-Package natbib Warning: Citation `bossard2014food101' on page 5 undefined on in
+Package natbib Warning: Citation `bossard2014food101' on page 6 undefined on in
 put line 8.
 
 
-Package natbib Warning: Citation `krizhevsky2009learning' on page 5 undefined o
+Package natbib Warning: Citation `krizhevsky2009learning' on page 6 undefined o
 n input line 8.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 5 undefine
+Package natbib Warning: Citation `rombach2021highresolution' on page 6 undefine
 d on input line 8.
 
-[5]
 
 Package natbib Warning: Citation `chansantiago2025modeguided' on page 6 undefin
 ed on input line 11.
@@ -1657,21 +1672,21 @@ ine 38.
 LaTeX Warning: Reference `tab:factor-ablation' on page 1 undefined on input lin
 e 50.
 
+
+LaTeX Warning: Reference `sec:weight-learning' on page 6 undefined on input lin
+e 55.
+
+
+LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 55.
+
+
+LaTeX Warning: Reference `sec:weight-learning' on page 6 undefined on input lin
+e 55.
+
+
+LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 55.
+
 [6]
-
-LaTeX Warning: Reference `sec:weight-learning' on page 7 undefined on input lin
-e 55.
-
-
-LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 55.
-
-
-LaTeX Warning: Reference `sec:weight-learning' on page 7 undefined on input lin
-e 55.
-
-
-LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 55.
-
 
 LaTeX Warning: Reference `fig:class-level-mechanism' on page 1 undefined on inp
 ut line 75.
@@ -1696,95 +1711,117 @@ Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 7
 LaTeX Warning: Reference `sec:dd-baselines' on page 7 undefined on input line 1
 12.
 
-[7]
 
-LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 126.
+LaTeX Warning: Reference `fig:results-comparison' on page 1 undefined on input 
+line 112.
+
+
+LaTeX Warning: Reference `sec:results-figure' on page 7 undefined on input line
+ 112.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active [7]
+
+LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 117.
 
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
 0.tex
 
-Package natbib Warning: Citation `russakovsky2014imagenet' on page 8 undefined 
-on input line 4.
-
-[8 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/results_
-comparison.pdf>]
-
-LaTeX Warning: Reference `tab:scaling' on page 1 undefined on input line 6.
+LaTeX Warning: Reference `tab:scaling' on page 1 undefined on input line 7.
 
 
-LaTeX Warning: Reference `thm:adaptivity-gap' on page 9 undefined on input line
- 6.
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 8 undefined on input line
+ 7.
+
+
+LaTeX Warning: Reference `sec:results-10cls' on page 8 undefined on input line 
+7.
+
+
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 8 undefined on input line
+ 12.
+
+
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 8 undefined on input line
+ 12.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
 et.tex
 
-Package natbib Warning: Citation `bossard2014food101' on page 9 undefined on in
+Package natbib Warning: Citation `bossard2014food101' on page 8 undefined on in
 put line 4.
 
 
-Package natbib Warning: Citation `krizhevsky2009learning' on page 9 undefined o
+Package natbib Warning: Citation `krizhevsky2009learning' on page 8 undefined o
 n input line 4.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 9 undefine
+Package natbib Warning: Citation `rombach2021highresolution' on page 8 undefine
 d on input line 4.
 
 
-LaTeX Warning: Reference `tab:non-imagenet' on page 1 undefined on input line 6
+LaTeX Warning: Reference `tab:non-imagenet' on page 1 undefined on input line 4
 .
+
+
+LaTeX Warning: Reference `sec:non-imagenet-table' on page 8 undefined on input 
+line 4.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [9]
+s.tex [8]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 10 undefined on input l
-ine 5.
-
-
-LaTeX Warning: Reference `sec:setup' on page 10 undefined on input line 5.
+LaTeX Warning: Reference `sec:semantic-subset' on page 9 undefined on input lin
+e 5.
 
 
-LaTeX Warning: Reference `sec:reproducibility' on page 10 undefined on input li
-ne 5.
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 9 undefined on input line
+ 5.
+
+
+LaTeX Warning: Reference `sec:setup' on page 9 undefined on input line 5.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
 .tex)
 
-LaTeX Warning: Reference `sec:setup' on page 10 undefined on input line 58.
+LaTeX Warning: Reference `sec:setup' on page 9 undefined on input line 58.
 
 
-LaTeX Warning: Reference `sec:reproducibility' on page 10 undefined on input li
-ne 58.
+LaTeX Warning: Reference `sec:reproducibility' on page 9 undefined on input lin
+e 58.
 
 
-LaTeX Warning: Reference `sec:algorithm' on page 10 undefined on input line 58.
+LaTeX Warning: Reference `sec:algorithm' on page 9 undefined on input line 58.
 
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+LaTeX Warning: Reference `sec:ai-use' on page 9 undefined on input line 58.
+
 No file main.bbl.
-[10] [11]
+[9]
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/ai-use.tex
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/reproducib
 ility.tex
 
-Package natbib Warning: Citation `peebles2022scalable' on page 12 undefined on 
+Package natbib Warning: Citation `peebles2022scalable' on page 10 undefined on 
 input line 5.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 12 undefin
+Package natbib Warning: Citation `rombach2021highresolution' on page 10 undefin
 ed on input line 5.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/theory-pro
 ofs.tex
 
-LaTeX Warning: Reference `lem:cfg-modes' on page 12 undefined on input line 4.
+LaTeX Warning: Reference `lem:cfg-modes' on page 10 undefined on input line 4.
 
 
-LaTeX Warning: Reference `prop:div-cost' on page 12 undefined on input line 7.
+LaTeX Warning: Reference `prop:div-cost' on page 10 undefined on input line 7.
 
 
 Underfull \hbox (badness 1742) in paragraph at lines 8--9
@@ -1793,60 +1830,60 @@ Z$ \T1/ptm/m/n/10 (+20) into the KL di-ver-gence yields $\OML/cmm/m/it/10 D[]\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
 
-LaTeX Warning: Reference `prop:opt-lambda' on page 12 undefined on input line 1
+LaTeX Warning: Reference `prop:opt-lambda' on page 10 undefined on input line 1
 0.
 
 
-LaTeX Warning: Reference `prop:div-cost' on page 12 undefined on input line 11.
+LaTeX Warning: Reference `prop:div-cost' on page 10 undefined on input line 11.
 
 
 
-LaTeX Warning: Reference `prop:div-cost' on page 12 undefined on input line 11.
+LaTeX Warning: Reference `prop:div-cost' on page 10 undefined on input line 11.
 
 
+[10]
 
-LaTeX Warning: Reference `thm:adaptivity-gap' on page 12 undefined on input lin
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 11 undefined on input lin
 e 13.
 
-[12]
 
-LaTeX Warning: Reference `lem:sep-invariance' on page 13 undefined on input lin
+LaTeX Warning: Reference `lem:sep-invariance' on page 11 undefined on input lin
 e 16.
 
 
-LaTeX Warning: Reference `lem:cfg-modes' on page 13 undefined on input line 17.
+LaTeX Warning: Reference `lem:cfg-modes' on page 11 undefined on input line 17.
 
 
 
-LaTeX Warning: Reference `prop:div-cost' on page 13 undefined on input line 17.
+LaTeX Warning: Reference `prop:div-cost' on page 11 undefined on input line 17.
 
 
 
-LaTeX Warning: Reference `prop:opt-lambda' on page 13 undefined on input line 1
+LaTeX Warning: Reference `prop:opt-lambda' on page 11 undefined on input line 1
 7.
 
 
-LaTeX Warning: Reference `lem:cfg-modes' on page 13 undefined on input line 17.
+LaTeX Warning: Reference `lem:cfg-modes' on page 11 undefined on input line 17.
 
 
 
-LaTeX Warning: Reference `lem:cfg-modes' on page 13 undefined on input line 20.
+LaTeX Warning: Reference `lem:cfg-modes' on page 11 undefined on input line 20.
 
 
 
-LaTeX Warning: Reference `sec:experiments' on page 13 undefined on input line 2
+LaTeX Warning: Reference `sec:experiments' on page 11 undefined on input line 2
 0.
 
 
-LaTeX Warning: Reference `sec:dd-baselines' on page 13 undefined on input line 
+LaTeX Warning: Reference `sec:dd-baselines' on page 11 undefined on input line 
 20.
 
 
-LaTeX Warning: Reference `prop:opt-lambda' on page 13 undefined on input line 2
+LaTeX Warning: Reference `prop:opt-lambda' on page 11 undefined on input line 2
 4.
 
 
-LaTeX Warning: Reference `thm:adaptivity-gap' on page 13 undefined on input lin
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 11 undefined on input lin
 e 26.
 
 
@@ -1854,14 +1891,14 @@ LaTeX Warning: Reference `fig:theorem1-fit' on page 1 undefined on input line 2
 7.
 
 
-LaTeX Warning: Reference `thm:adaptivity-gap' on page 13 undefined on input lin
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 11 undefined on input lin
 e 32.
 
 
-LaTeX Warning: Reference `thm:adaptivity-gap' on page 13 undefined on input lin
+LaTeX Warning: Reference `thm:adaptivity-gap' on page 11 undefined on input lin
 e 32.
 
-)
+[11])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
 s-appendix.tex
 
@@ -1876,30 +1913,30 @@ LaTeX Warning: Reference `sec:results-100cls' on page 1 undefined on input line
 LaTeX Warning: Reference `tab:ipc-ablation-10cls' on page 1 undefined on input 
 line 7.
 
-[13]
 
 LaTeX Warning: Reference `tab:ipc-ablation-10cls' on page 1 undefined on input 
 line 26.
 
-[14 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/theorem
+[12 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/theorem
 1_fit.pdf>]
 
 LaTeX Warning: Reference `tab:module-ablation' on page 1 undefined on input lin
 e 53.
 
 
-LaTeX Warning: Reference `tab:sota-main' on page 15 undefined on input line 57.
+LaTeX Warning: Reference `tab:sota-main' on page 13 undefined on input line 57.
 
 
 
-LaTeX Warning: Reference `tab:sota-main' on page 15 undefined on input line 57.
+LaTeX Warning: Reference `tab:sota-main' on page 13 undefined on input line 57.
 
 
 
 LaTeX Warning: Reference `tab:ipc-ablation-100cls' on page 1 undefined on input
  line 76.
 
-[15]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [13]
 
 LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 84.
 
@@ -1914,28 +1951,27 @@ line 105.
 LaTeX Warning: Reference `sec:weight-learning' on page 1 undefined on input lin
 e 105.
 
-[16]
+[14]
 
-Package natbib Warning: Citation `heusel2017gans' on page 17 undefined on input
+Package natbib Warning: Citation `heusel2017gans' on page 15 undefined on input
  line 133.
 
 
 LaTeX Warning: Reference `tab:fid' on page 1 undefined on input line 133.
 
 
-Package natbib Warning: Citation `dufour2026lottery' on page 17 undefined on in
+Package natbib Warning: Citation `dufour2026lottery' on page 15 undefined on in
 put line 133.
 
 
-Package natbib Warning: Citation `dufour2026lottery' on page 17 undefined on in
+Package natbib Warning: Citation `dufour2026lottery' on page 15 undefined on in
 put line 137.
 
 
-Package natbib Warning: Citation `dufour2026lottery' on page 17 undefined on in
+Package natbib Warning: Citation `dufour2026lottery' on page 15 undefined on in
 put line 137.
 
-
-Underfull \vbox (badness 1997) has occurred while \output is active [17]
+[15]
 
 LaTeX Warning: Reference `tab:quartile-analysis' on page 1 undefined on input l
 ine 154.
@@ -1957,56 +1993,62 @@ LaTeX Warning: Reference `tab:sota-main' on page 1 undefined on input line 186.
 
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active [18])
+Underfull \vbox (badness 10000) has occurred while \output is active [16]
+[17 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/class_l
+evel_mechanism.pdf>] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [19 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
-class_level_mechanism.pdf>]
+es.tex
 
 LaTeX Warning: Reference `tab:dd-baselines' on page 1 undefined on input line 4
 .
 
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 20 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 18 undefi
 ned on input line 4.
 
 
-Package natbib Warning: Citation `kim2022dataset' on page 20 undefined on input
+Package natbib Warning: Citation `kim2022dataset' on page 18 undefined on input
  line 4.
 
 
-Package natbib Warning: Citation `fan2025generative' on page 20 undefined on in
+Package natbib Warning: Citation `fan2025generative' on page 18 undefined on in
 put line 4.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 20 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 18 undefined on input 
 line 4.
 
+[18]
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 20 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 19 undefi
 ned on input line 8.
 
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 20 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 19 undefi
 ned on input line 8.
 
 
-Package natbib Warning: Citation `kim2022dataset' on page 20 undefined on input
+Package natbib Warning: Citation `kim2022dataset' on page 19 undefined on input
  line 17.
 
 
-Package natbib Warning: Citation `fan2025generative' on page 20 undefined on in
+Package natbib Warning: Citation `fan2025generative' on page 19 undefined on in
 put line 18.
 
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 20 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 19 undefi
 ned on input line 19.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 20 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 19 undefined on input 
 line 24.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 20 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 19 undefined on input 
 line 25.
 
 
@@ -2017,53 +2059,52 @@ e 36.
 LaTeX Warning: Reference `fig:d4m-sensitivity' on page 1 undefined on input lin
 e 36.
 
-[20]
+[19 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/results
+_comparison.pdf>]
 
 LaTeX Warning: Reference `tab:d4m-cross' on page 1 undefined on input line 73.
 
-[21]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 22 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 20 undefined on input l
 ine 91.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 2
-2 undefined on input line 91.
+0 undefined on input line 91.
 
 
 LaTeX Warning: Reference `tab:sota-comparison' on page 1 undefined on input lin
 e 91.
 
+[20]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 22 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 21 undefined on input l
 ine 95.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 2
-2 undefined on input line 95.
+1 undefined on input line 95.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 22 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 21 undefined on input l
 ine 95.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 2
-2 undefined on input line 95.
+1 undefined on input line 95.
 
 
-Package natbib Warning: Citation `wang2026dmgd' on page 22 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 21 undefined on input l
 ine 101.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 2
-2 undefined on input line 111.
+1 undefined on input line 111.
 
+[21 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/d4m_sen
+sitivity.pdf>]
 
-Underfull \vbox (badness 1242) has occurred while \output is active [22 </tmp/w
-ork/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/d4m_sensitivity.pd
-f>]
-
-LaTeX Warning: Reference `sec:orthogonality' on page 23 undefined on input line
+LaTeX Warning: Reference `sec:orthogonality' on page 22 undefined on input line
  123.
 
 )
@@ -2073,7 +2114,6 @@ rning.tex
 LaTeX Warning: Reference `sec:factor-ablation' on page 1 undefined on input lin
 e 4.
 
-[23]
 
 LaTeX Warning: Reference `sec:compute-efficiency' on page 1 undefined on input 
 line 7.
@@ -2086,26 +2126,28 @@ con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
 Underfull \hbox (badness 6510) in paragraph at lines 10--11
 \T1/ptm/m/n/10 (+20) (4 con-figs) ex-plores high-entropy, zero-separability wei
 ghts around the neigh-bor-hood
+[22]
 
 LaTeX Warning: Reference `tab:weight-grid' on page 1 undefined on input line 46
 .
 
-[24]
 
 LaTeX Warning: Reference `tab:weight-full' on page 1 undefined on input line 49
 .
 
-)
+[23])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
-set-entropy.tex [25]
+set-entropy.tex
 
-LaTeX Warning: Reference `sec:factor-ablation' on page 26 undefined on input li
+LaTeX Warning: Reference `sec:factor-ablation' on page 24 undefined on input li
 ne 4.
 
 
-LaTeX Warning: Reference `sec:weight-learning' on page 26 undefined on input li
+LaTeX Warning: Reference `sec:weight-learning' on page 24 undefined on input li
 ne 4.
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active [24]
 
 LaTeX Warning: Reference `tab:cross-dataset-config' on page 1 undefined on inpu
 t line 6.
@@ -2114,16 +2156,15 @@ t line 6.
 Overfull \hbox (35.61678pt too wide) in paragraph at lines 12--29
  [][] 
 
-Underfull \vbox (badness 2173) has occurred while \output is active [26]
-
-LaTeX Warning: Reference `sec:semantic-subset' on page 27 undefined on input li
+LaTeX Warning: Reference `sec:semantic-subset' on page 25 undefined on input li
 ne 38.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
 ubset.tex
+Underfull \vbox (badness 4144) has occurred while \output is active [25]
 
-LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 27 undefined on in
+LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 26 undefined on in
 put line 4.
 
 
@@ -2133,44 +2174,43 @@ e 6.
 
 Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
  [][] 
-[27]
 
-LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 28 undefined on in
+LaTeX Warning: Reference `sec:cross-dataset-entropy' on page 26 undefined on in
 put line 34.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex
+nalysis.tex [26]
 
 LaTeX Warning: Reference `fig:guidance-analysis' on page 1 undefined on input l
 ine 6.
 
 
-LaTeX Warning: Reference `sec:factor-ablation' on page 28 undefined on input li
+LaTeX Warning: Reference `sec:factor-ablation' on page 27 undefined on input li
 ne 6.
 
 
-LaTeX Warning: Reference `sec:factor-ablation' on page 28 undefined on input li
+LaTeX Warning: Reference `sec:factor-ablation' on page 27 undefined on input li
 ne 6.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
 ity.tex
-Underfull \vbox (badness 10000) has occurred while \output is active [28]
 
-Package natbib Warning: Citation `welling2012herding' on page 29 undefined on i
+Package natbib Warning: Citation `welling2012herding' on page 27 undefined on i
 nput line 7.
 
+[27]
 
 LaTeX Warning: Reference `tab:orthogonality' on page 1 undefined on input line 
 28.
 
-[29 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>])
+)
 
 Package natbib Warning: There were undefined citations.
 
-[30] (/tmp/paperguru-out-AcuJ3p/main.aux)
+[28 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
+e_analysis.pdf>] (/tmp/paperguru-out-nCFtQv/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -2210,29 +2250,29 @@ fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-AcuJ3p/main.pdf (30 pages, 562218 bytes).
-SyncTeX written on /tmp/paperguru-out-AcuJ3p/main.synctex.gz.
-Transcript written on /tmp/paperguru-out-AcuJ3p/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-AcuJ3p/main.log'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.log'
+Output written on /tmp/paperguru-out-nCFtQv/main.pdf (28 pages, 560561 bytes).
+SyncTeX written on /tmp/paperguru-out-nCFtQv/main.synctex.gz.
+Transcript written on /tmp/paperguru-out-nCFtQv/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-nCFtQv/main.log'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.log'
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-AcuJ3p/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-nCFtQv/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-AcuJ3p/main'...
-Rule 'bibtex /tmp/paperguru-out-AcuJ3p/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-nCFtQv/main'...
+Rule 'bibtex /tmp/paperguru-out-nCFtQv/main':  Reasons for rerun
 Category 'other':
-  Rerun of 'bibtex /tmp/paperguru-out-AcuJ3p/main' forced or previously required
+  Rerun of 'bibtex /tmp/paperguru-out-nCFtQv/main' forced or previously required
 
 ------------
-Run number 1 of rule 'bibtex /tmp/paperguru-out-AcuJ3p/main'
+Run number 1 of rule 'bibtex /tmp/paperguru-out-nCFtQv/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-AcuJ3p/'.
+Latexmk: Change directory to '/tmp/paperguru-out-nCFtQv/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-AcuJ3p:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-AcuJ3p:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-nCFtQv:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-nCFtQv:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -2244,15 +2284,15 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-AcuJ3p/main.aux
-  /tmp/paperguru-out-AcuJ3p/main.bbl
-  /tmp/paperguru-out-AcuJ3p/main.out
+  /tmp/paperguru-out-nCFtQv/main.aux
+  /tmp/paperguru-out-nCFtQv/main.bbl
+  /tmp/paperguru-out-nCFtQv/main.out
 
 ------------
 Run number 2 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-AcuJ3p"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-nCFtQv"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -2445,10 +2485,10 @@ zlibraryshapes.geometric.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.geometric.code.tex))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-AcuJ3p/main.aux)
+(/tmp/paperguru-out-nCFtQv/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/tmp/paperguru-out-AcuJ3p/main.out) (/tmp/paperguru-out-AcuJ3p/main.out)
+) (/tmp/paperguru-out-nCFtQv/main.out) (/tmp/paperguru-out-nCFtQv/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
@@ -2572,45 +2612,45 @@ ut line 8.
 Package natbib Warning: Citation `li2026poolselectrefine' on page 2 undefined o
 n input line 8.
 
+[2]
 
-Package natbib Warning: Citation `ho2022classifierfree' on page 2 undefined on 
+Package natbib Warning: Citation `ho2022classifierfree' on page 3 undefined on 
 input line 11.
 
 
-Package natbib Warning: Citation `yehezkel2025navigating' on page 2 undefined o
+Package natbib Warning: Citation `yehezkel2025navigating' on page 3 undefined o
 n input line 11.
 
 
-Package natbib Warning: Citation `zhang2025much' on page 2 undefined on input l
+Package natbib Warning: Citation `zhang2025much' on page 3 undefined on input l
 ine 11.
 
 
-Package natbib Warning: Citation `malarz2025classifierfree' on page 2 undefined
+Package natbib Warning: Citation `malarz2025classifierfree' on page 3 undefined
  on input line 11.
 
 
-Package natbib Warning: Citation `li2025adaptive' on page 2 undefined on input 
+Package natbib Warning: Citation `li2025adaptive' on page 3 undefined on input 
 line 11.
 
 
-Package natbib Warning: Citation `shafi2026dash' on page 2 undefined on input l
+Package natbib Warning: Citation `shafi2026dash' on page 3 undefined on input l
 ine 11.
 
 
-Package natbib Warning: Citation `li2026rethinking' on page 2 undefined on inpu
+Package natbib Warning: Citation `li2026rethinking' on page 3 undefined on inpu
 t line 11.
 
 
-Package natbib Warning: Citation `zhang2025promptaware' on page 2 undefined on 
+Package natbib Warning: Citation `zhang2025promptaware' on page 3 undefined on 
 input line 11.
 
 
-Package natbib Warning: Citation `sergievskii2026revisiting' on page 2 undefine
+Package natbib Warning: Citation `sergievskii2026revisiting' on page 3 undefine
 d on input line 11.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/method.tex
-[2]
 
 Package natbib Warning: Citation `chansantiago2025modeguided' on page 3 undefin
 ed on input line 4.
@@ -2643,24 +2683,23 @@ nput line 4.
 
 [4])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s.tex
+s.tex [5]
 
-Package natbib Warning: Citation `russakovsky2014imagenet' on page 5 undefined 
+Package natbib Warning: Citation `russakovsky2014imagenet' on page 6 undefined 
 on input line 8.
 
 
-Package natbib Warning: Citation `bossard2014food101' on page 5 undefined on in
+Package natbib Warning: Citation `bossard2014food101' on page 6 undefined on in
 put line 8.
 
 
-Package natbib Warning: Citation `krizhevsky2009learning' on page 5 undefined o
+Package natbib Warning: Citation `krizhevsky2009learning' on page 6 undefined o
 n input line 8.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 5 undefine
+Package natbib Warning: Citation `rombach2021highresolution' on page 6 undefine
 d on input line 8.
 
-[5]
 
 Package natbib Warning: Citation `chansantiago2025modeguided' on page 6 undefin
 ed on input line 11.
@@ -2720,52 +2759,44 @@ ne 112.
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 7
  undefined on input line 112.
 
-[7])
+
+Underfull \vbox (badness 7221) has occurred while \output is active [7])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
-0.tex [8 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/re
-sults_comparison.pdf>]
-
-Package natbib Warning: Citation `russakovsky2014imagenet' on page 9 undefined 
-on input line 4.
-
-)
+0.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
 et.tex
 
-Package natbib Warning: Citation `bossard2014food101' on page 9 undefined on in
+Package natbib Warning: Citation `bossard2014food101' on page 8 undefined on in
 put line 4.
 
 
-Package natbib Warning: Citation `krizhevsky2009learning' on page 9 undefined o
+Package natbib Warning: Citation `krizhevsky2009learning' on page 8 undefined o
 n input line 4.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 9 undefine
+Package natbib Warning: Citation `rombach2021highresolution' on page 8 undefine
 d on input line 4.
 
 )
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
-s.tex [9]
-
-Package natbib Warning: Citation `wang2026dmgd' on page 10 undefined on input l
-ine 5.
-
-)
+s.tex [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-(/tmp/paperguru-out-AcuJ3p/main.bbl [10]
+.tex) (/tmp/paperguru-out-nCFtQv/main.bbl
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [9]
 Underfull \hbox (badness 1910) in paragraph at lines 75--79
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
-[11] [12]) [13]
+[10] [11]) [12]
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/ai-use.tex
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/reproducib
 ility.tex
 
-Package natbib Warning: Citation `peebles2022scalable' on page 14 undefined on 
+Package natbib Warning: Citation `peebles2022scalable' on page 13 undefined on 
 input line 5.
 
 
-Package natbib Warning: Citation `rombach2021highresolution' on page 14 undefin
+Package natbib Warning: Citation `rombach2021highresolution' on page 13 undefin
 ed on input line 5.
 
 )
@@ -2776,48 +2807,55 @@ Underfull \hbox (badness 1742) in paragraph at lines 8--9
 Z$ \T1/ptm/m/n/10 (+20) into the KL di-ver-gence yields $\OML/cmm/m/it/10 D[]\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
-[14])
+[13] [14])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s-appendix.tex [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
-aper/figures/theorem1_fit.pdf>] [17] [18]
+s-appendix.tex [15 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/
+figures/theorem1_fit.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active [16]
+[17]
 
-Package natbib Warning: Citation `heusel2017gans' on page 19 undefined on input
+Package natbib Warning: Citation `heusel2017gans' on page 18 undefined on input
  line 133.
 
 
-Package natbib Warning: Citation `dufour2026lottery' on page 19 undefined on in
+Package natbib Warning: Citation `dufour2026lottery' on page 18 undefined on in
 put line 133.
 
 
-Package natbib Warning: Citation `dufour2026lottery' on page 19 undefined on in
+Package natbib Warning: Citation `dufour2026lottery' on page 18 undefined on in
 put line 137.
 
 
-Package natbib Warning: Citation `dufour2026lottery' on page 19 undefined on in
+Package natbib Warning: Citation `dufour2026lottery' on page 18 undefined on in
 put line 137.
 
+[18]
+Underfull \vbox (badness 10000) has occurred while \output is active [19]
+[20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/class_l
+evel_mechanism.pdf>]
 
-Underfull \vbox (badness 1997) has occurred while \output is active [19]
-Underfull \vbox (badness 10000) has occurred while \output is active [20])
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [21 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
-class_level_mechanism.pdf>]
+es.tex
 
-Package natbib Warning: Citation `chansantiago2025modeguided' on page 22 undefi
+Package natbib Warning: Citation `chansantiago2025modeguided' on page 21 undefi
 ned on input line 4.
 
 
-Package natbib Warning: Citation `kim2022dataset' on page 22 undefined on input
+Package natbib Warning: Citation `kim2022dataset' on page 21 undefined on input
  line 4.
 
 
-Package natbib Warning: Citation `fan2025generative' on page 22 undefined on in
+Package natbib Warning: Citation `fan2025generative' on page 21 undefined on in
 put line 4.
 
 
-Package natbib Warning: Citation `su2024dataset' on page 22 undefined on input 
+Package natbib Warning: Citation `su2024dataset' on page 21 undefined on input 
 line 4.
 
+[21]
 
 Package natbib Warning: Citation `chansantiago2025modeguided' on page 22 undefi
 ned on input line 8.
@@ -2846,15 +2884,17 @@ line 24.
 Package natbib Warning: Citation `su2024dataset' on page 22 undefined on input 
 line 25.
 
-[22] [23]
+[22 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/results
+_comparison.pdf>]
 
-Package natbib Warning: Citation `wang2026dmgd' on page 24 undefined on input l
+Package natbib Warning: Citation `wang2026dmgd' on page 23 undefined on input l
 ine 91.
 
 
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 2
-4 undefined on input line 91.
+3 undefined on input line 91.
 
+[23]
 
 Package natbib Warning: Citation `wang2026dmgd' on page 24 undefined on input l
 ine 95.
@@ -2879,12 +2919,10 @@ ine 101.
 Package natbib Warning: Citation `chansantiago2026learnabilityguided' on page 2
 4 undefined on input line 111.
 
-
-Underfull \vbox (badness 1242) has occurred while \output is active [24 </tmp/w
-ork/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/d4m_sensitivity.pd
-f>])
+[24 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/d4m_sen
+sitivity.pdf>])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
-rning.tex [25]
+rning.tex
 Underfull \hbox (badness 3849) in paragraph at lines 10--11
  []\T1/ptm/b/n/10 (+20) Grid con-fig-u-ra-tions.[] \T1/ptm/m/n/10 (+20) The 12 
 con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
@@ -2892,33 +2930,33 @@ con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
 Underfull \hbox (badness 6510) in paragraph at lines 10--11
 \T1/ptm/m/n/10 (+20) (4 con-figs) ex-plores high-entropy, zero-separability wei
 ghts around the neigh-bor-hood
-[26])
+[25] [26])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
-set-entropy.tex [27]
+set-entropy.tex
+Underfull \vbox (badness 10000) has occurred while \output is active [27]
 Overfull \hbox (35.61678pt too wide) in paragraph at lines 12--29
  [][] 
-
-Underfull \vbox (badness 2173) has occurred while \output is active [28])
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
 ubset.tex
+Underfull \vbox (badness 4144) has occurred while \output is active [28]
 Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
  [][] 
-[29])
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
-nalysis.tex)
+nalysis.tex [29])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
 ity.tex
-Underfull \vbox (badness 10000) has occurred while \output is active [30]
 
-Package natbib Warning: Citation `welling2012herding' on page 31 undefined on i
+Package natbib Warning: Citation `welling2012herding' on page 30 undefined on i
 nput line 7.
 
-[31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>])
+[30])
 
 Package natbib Warning: There were undefined citations.
 
-[32] (/tmp/paperguru-out-AcuJ3p/main.aux
+[31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
+e_analysis.pdf>] (/tmp/paperguru-out-nCFtQv/main.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -2934,63 +2972,71 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 
  )
 (see the transcript file for additional information)
-pdfTeX warning (dest): name{table.caption.63} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.62} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.60} has been referenced but does not
+pdfTeX warning (dest): name{figure.caption.59} has been referenced but does not
  exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.56} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.55} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.52} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.51} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.50} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.49} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.48} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.47} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.43} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.42} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.41} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.40} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.38} has been referenced but does not
+pdfTeX warning (dest): name{figure.caption.37} has been referenced but does not
  exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.37} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.36} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.33} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.30} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.26} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.23} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.24} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.21} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.23} has been referenced but does not
+pdfTeX warning (dest): name{figure.caption.20} has been referenced but does not
  exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.32} has been referenced but does not
+pdfTeX warning (dest): name{table.caption.32} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.31} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.29} has been referenced but does not
  exist, replaced by a fixed one
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
@@ -3020,31 +3066,31 @@ ve/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8
 a.pfb>
-Output written on /tmp/paperguru-out-AcuJ3p/main.pdf (32 pages, 583871 bytes).
-SyncTeX written on /tmp/paperguru-out-AcuJ3p/main.synctex.gz.
-Transcript written on /tmp/paperguru-out-AcuJ3p/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-AcuJ3p/main.log'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-AcuJ3p/main.bbl'
+Output written on /tmp/paperguru-out-nCFtQv/main.pdf (31 pages, 583912 bytes).
+SyncTeX written on /tmp/paperguru-out-nCFtQv/main.synctex.gz.
+Transcript written on /tmp/paperguru-out-nCFtQv/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-nCFtQv/main.log'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-nCFtQv/main.bbl'
 Latexmk: References changed.
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-AcuJ3p/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-nCFtQv/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-AcuJ3p/main'...
-Rule 'bibtex /tmp/paperguru-out-AcuJ3p/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-nCFtQv/main'...
+Rule 'bibtex /tmp/paperguru-out-nCFtQv/main':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-AcuJ3p/main.aux
+  /tmp/paperguru-out-nCFtQv/main.aux
 
 ------------
-Run number 2 of rule 'bibtex /tmp/paperguru-out-AcuJ3p/main'
+Run number 2 of rule 'bibtex /tmp/paperguru-out-nCFtQv/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-AcuJ3p/'.
+Latexmk: Change directory to '/tmp/paperguru-out-nCFtQv/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-AcuJ3p:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-AcuJ3p:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-nCFtQv:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-nCFtQv:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -3056,14 +3102,14 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-AcuJ3p/main.aux
-  /tmp/paperguru-out-AcuJ3p/main.out
+  /tmp/paperguru-out-nCFtQv/main.aux
+  /tmp/paperguru-out-nCFtQv/main.out
 
 ------------
 Run number 3 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-AcuJ3p"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-nCFtQv"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -3256,10 +3302,10 @@ zlibraryshapes.geometric.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.geometric.code.tex))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-AcuJ3p/main.aux)
+(/tmp/paperguru-out-nCFtQv/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/tmp/paperguru-out-AcuJ3p/main.out) (/tmp/paperguru-out-AcuJ3p/main.out)
+) (/tmp/paperguru-out-nCFtQv/main.out) (/tmp/paperguru-out-nCFtQv/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
@@ -3269,8 +3315,9 @@ s.geometric.code.tex))
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/abstract.t
 ex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/introducti
-on.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/t
-exmf/fonts/map/pdftex/updmap/pdftex.map}]
+on.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+Underfull \vbox (badness 4353) has occurred while \output is active [1{/var/lib
+/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (Font)              using `T1/ptm/m/sc' instead on input line 17.
@@ -3279,31 +3326,34 @@ LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/related-wo
 rk.tex [2])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/method.tex
-[3])
+
+Underfull \vbox (badness 10000) has occurred while \output is active [3])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/theory.tex
-[4])
+[4] [5])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s.tex [5]
+s.tex
 Underfull \hbox (badness 1472) in paragraph at lines 14--15
  []\T1/ptm/b/sc/10 (+20) AGS-DD \T1/ptm/b/n/10 (+20) con-fig-u-ra-tions.[] \T1/
 ptm/m/n/10 (+20) For \T1/ptm/m/sc/10 (+20) CAGS\T1/ptm/m/n/10 (+20) , we use th
 e com-plex-ity weight-ing $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ; ^^L; ^^M; ^^N\O
 T1/cmr/m/n/10 ) =
-[6] [7] [8 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
-results_comparison.pdf>])
+[6]
+Underfull \vbox (badness 4168) has occurred while \output is active [7])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
-0.tex)
+0.tex [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [9])
+et.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
 s.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [10]
-(/tmp/paperguru-out-AcuJ3p/main.bbl
+.tex) (/tmp/paperguru-out-nCFtQv/main.bbl [9]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
 Underfull \hbox (badness 1910) in paragraph at lines 75--79
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
-[11] [12]) [13]
+[10] [11]) [12]
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/ai-use.tex
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/reproducib
 ility.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/theory-pro
@@ -3313,16 +3363,25 @@ Underfull \hbox (badness 1742) in paragraph at lines 8--9
 Z$ \T1/ptm/m/n/10 (+20) into the KL di-ver-gence yields $\OML/cmm/m/it/10 D[]\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
-[14])
+[13] [14])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s-appendix.tex [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
-aper/figures/theorem1_fit.pdf>] [17] [18]
-Underfull \vbox (badness 1997) has occurred while \output is active [19]
-Underfull \vbox (badness 10000) has occurred while \output is active [20])
+s-appendix.tex [15 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/
+figures/theorem1_fit.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active [16]
+[17] [18]
+Underfull \vbox (badness 10000) has occurred while \output is active [19]
+[20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/class_l
+evel_mechanism.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [21 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
-class_level_mechanism.pdf>] [22] [23] [24 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ
-9DM1/ICLR2027_KD/paper/figures/d4m_sensitivity.pdf>])
+es.tex [21]
+Underfull \vbox (badness 3713) has occurred while \output is active [22 </tmp/w
+ork/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/results_comparison
+.pdf>] [23] [24 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fig
+ures/d4m_sensitivity.pdf>])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
 rning.tex [25]
 Underfull \hbox (badness 3849) in paragraph at lines 10--11
@@ -3332,13 +3391,13 @@ con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
 Underfull \hbox (badness 6510) in paragraph at lines 10--11
 \T1/ptm/m/n/10 (+20) (4 con-figs) ex-plores high-entropy, zero-separability wei
 ghts around the neigh-bor-hood
-[26])
+
+Underfull \vbox (badness 3930) has occurred while \output is active [26])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
 set-entropy.tex [27]
 Overfull \hbox (35.61678pt too wide) in paragraph at lines 12--29
  [][] 
-
-Underfull \vbox (badness 2173) has occurred while \output is active [28])
+[28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
 ubset.tex
 Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
@@ -3347,10 +3406,8 @@ Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
 nalysis.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
-ity.tex
-Underfull \vbox (badness 10000) has occurred while \output is active [30]
-[31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>]) [32] (/tmp/paperguru-out-AcuJ3p/main.aux)
+ity.tex [30]) [31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/f
+igures/guidance_analysis.pdf>] [32] (/tmp/paperguru-out-nCFtQv/main.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -3382,29 +3439,29 @@ fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-AcuJ3p/main.pdf (32 pages, 591715 bytes).
-SyncTeX written on /tmp/paperguru-out-AcuJ3p/main.synctex.gz.
-Transcript written on /tmp/paperguru-out-AcuJ3p/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-AcuJ3p/main.log'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-AcuJ3p/main.bbl'
+Output written on /tmp/paperguru-out-nCFtQv/main.pdf (32 pages, 593052 bytes).
+SyncTeX written on /tmp/paperguru-out-nCFtQv/main.synctex.gz.
+Transcript written on /tmp/paperguru-out-nCFtQv/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-nCFtQv/main.log'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-nCFtQv/main.bbl'
 Latexmk: References changed.
-Latexmk: Log file says output to '/tmp/paperguru-out-AcuJ3p/main.pdf'
+Latexmk: Log file says output to '/tmp/paperguru-out-nCFtQv/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
-Latexmk: applying rule 'bibtex /tmp/paperguru-out-AcuJ3p/main'...
-Rule 'bibtex /tmp/paperguru-out-AcuJ3p/main':  Reasons for rerun
+Latexmk: applying rule 'bibtex /tmp/paperguru-out-nCFtQv/main'...
+Rule 'bibtex /tmp/paperguru-out-nCFtQv/main':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-AcuJ3p/main.aux
+  /tmp/paperguru-out-nCFtQv/main.aux
 
 ------------
-Run number 3 of rule 'bibtex /tmp/paperguru-out-AcuJ3p/main'
+Run number 3 of rule 'bibtex /tmp/paperguru-out-nCFtQv/main'
 ------------
-Latexmk: Change directory to '/tmp/paperguru-out-AcuJ3p/'.
+Latexmk: Change directory to '/tmp/paperguru-out-nCFtQv/'.
 To assist finding of files in document directory, I set
-  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-AcuJ3p:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
-  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-AcuJ3p:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
+  BIBINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-nCFtQv:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'
+  BSTINPUTS='/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/paperguru-out-nCFtQv:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1:/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1//:'.
 ------------
 Running 'bibtex  "main.aux"'
 ------------
@@ -3416,13 +3473,13 @@ Latexmk: Change directory back to '/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
 Changed files or newly in use/created:
-  /tmp/paperguru-out-AcuJ3p/main.aux
+  /tmp/paperguru-out-nCFtQv/main.aux
 
 ------------
 Run number 4 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-AcuJ3p"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
+Running 'pdflatex  -file-line-error -interaction=nonstopmode -synctex=1 -no-shell-escape -recorder -output-directory="/tmp/paperguru-out-nCFtQv"  "/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/main.tex"'
 ------------
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
 entering extended mode
@@ -3615,10 +3672,10 @@ zlibraryshapes.geometric.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.geometric.code.tex))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/tmp/paperguru-out-AcuJ3p/main.aux)
+(/tmp/paperguru-out-nCFtQv/main.aux)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/tmp/paperguru-out-AcuJ3p/main.out) (/tmp/paperguru-out-AcuJ3p/main.out)
+) (/tmp/paperguru-out-nCFtQv/main.out) (/tmp/paperguru-out-nCFtQv/main.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
@@ -3628,8 +3685,9 @@ s.geometric.code.tex))
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/abstract.t
 ex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/introducti
-on.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/t
-exmf/fonts/map/pdftex/updmap/pdftex.map}]
+on.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+Underfull \vbox (badness 4353) has occurred while \output is active [1{/var/lib
+/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (Font)              using `T1/ptm/m/sc' instead on input line 17.
@@ -3638,31 +3696,34 @@ LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/related-wo
 rk.tex [2])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/method.tex
-[3])
+
+Underfull \vbox (badness 10000) has occurred while \output is active [3])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/theory.tex
-[4])
+[4] [5])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s.tex [5]
+s.tex
 Underfull \hbox (badness 1472) in paragraph at lines 14--15
  []\T1/ptm/b/sc/10 (+20) AGS-DD \T1/ptm/b/n/10 (+20) con-fig-u-ra-tions.[] \T1/
 ptm/m/n/10 (+20) For \T1/ptm/m/sc/10 (+20) CAGS\T1/ptm/m/n/10 (+20) , we use th
 e com-plex-ity weight-ing $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ; ^^L; ^^M; ^^N\O
 T1/cmr/m/n/10 ) =
-[6] [7] [8 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
-results_comparison.pdf>])
+[6]
+Underfull \vbox (badness 4168) has occurred while \output is active [7])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/scaling-20
-0.tex)
+0.tex [8])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/non-imagen
-et.tex [9])
+et.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/limitation
 s.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/conclusion
-.tex) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [10]
-(/tmp/paperguru-out-AcuJ3p/main.bbl
+.tex) (/tmp/paperguru-out-nCFtQv/main.bbl [9]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
 Underfull \hbox (badness 1910) in paragraph at lines 75--79
 []\T1/ptm/m/n/10 (+20) Jonathan Ho, Ajay Jain, and Pieter Abbeel.  De-nois-ing 
 dif-fu-sion prob-a-bilis-tic mod-els.
-[11] [12]) [13]
+[10] [11]) [12]
+(/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/ai-use.tex
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/reproducib
 ility.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/theory-pro
@@ -3672,16 +3733,25 @@ Underfull \hbox (badness 1742) in paragraph at lines 8--9
 Z$ \T1/ptm/m/n/10 (+20) into the KL di-ver-gence yields $\OML/cmm/m/it/10 D[]\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 ^^
 Y[] [] ^^Y[] \OMS/cmsy/m/n/10 ^^@
-[14])
+[13] [14])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/experiment
-s-appendix.tex [15] [16 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/p
-aper/figures/theorem1_fit.pdf>] [17] [18]
-Underfull \vbox (badness 1997) has occurred while \output is active [19]
-Underfull \vbox (badness 10000) has occurred while \output is active [20])
+s-appendix.tex [15 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/
+figures/theorem1_fit.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active [16]
+[17] [18]
+Underfull \vbox (badness 10000) has occurred while \output is active [19]
+[20 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/class_l
+evel_mechanism.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/dd-baselin
-es.tex [21 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/
-class_level_mechanism.pdf>] [22] [23] [24 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ
-9DM1/ICLR2027_KD/paper/figures/d4m_sensitivity.pdf>])
+es.tex [21]
+Underfull \vbox (badness 3713) has occurred while \output is active [22 </tmp/w
+ork/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/results_comparison
+.pdf>] [23] [24 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/fig
+ures/d4m_sensitivity.pdf>])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/weight-lea
 rning.tex [25]
 Underfull \hbox (badness 3849) in paragraph at lines 10--11
@@ -3691,13 +3761,13 @@ con-fig-u-ra-tions span three the-matic groups. \T1/ptm/b/n/10 (+20) Round 1
 Underfull \hbox (badness 6510) in paragraph at lines 10--11
 \T1/ptm/m/n/10 (+20) (4 con-figs) ex-plores high-entropy, zero-separability wei
 ghts around the neigh-bor-hood
-[26])
+
+Underfull \vbox (badness 3930) has occurred while \output is active [26])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/cross-data
 set-entropy.tex [27]
 Overfull \hbox (35.61678pt too wide) in paragraph at lines 12--29
  [][] 
-
-Underfull \vbox (badness 2173) has occurred while \output is active [28])
+[28])
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/semantic-s
 ubset.tex
 Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
@@ -3706,10 +3776,8 @@ Overfull \hbox (6.74677pt too wide) in paragraph at lines 12--25
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/guidance-a
 nalysis.tex)
 (/tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/sections/orthogonal
-ity.tex
-Underfull \vbox (badness 10000) has occurred while \output is active [30]
-[31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/figures/guidanc
-e_analysis.pdf>]) [32] (/tmp/paperguru-out-AcuJ3p/main.aux) )
+ity.tex [30]) [31 </tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/f
+igures/guidance_analysis.pdf>] [32] (/tmp/paperguru-out-nCFtQv/main.aux) )
 (see the transcript file for additional information){/usr/share/texlive/texmf-d
 ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
@@ -3737,14 +3805,14 @@ fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /tmp/paperguru-out-AcuJ3p/main.pdf (32 pages, 591715 bytes).
-SyncTeX written on /tmp/paperguru-out-AcuJ3p/main.synctex.gz.
-Transcript written on /tmp/paperguru-out-AcuJ3p/main.log.
-Latexmk: Getting log file '/tmp/paperguru-out-AcuJ3p/main.log'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.fls'
-Latexmk: Examining '/tmp/paperguru-out-AcuJ3p/main.log'
-Latexmk: Found input bbl file '/tmp/paperguru-out-AcuJ3p/main.bbl'
-Latexmk: Log file says output to '/tmp/paperguru-out-AcuJ3p/main.pdf'
+Output written on /tmp/paperguru-out-nCFtQv/main.pdf (32 pages, 593052 bytes).
+SyncTeX written on /tmp/paperguru-out-nCFtQv/main.synctex.gz.
+Transcript written on /tmp/paperguru-out-nCFtQv/main.log.
+Latexmk: Getting log file '/tmp/paperguru-out-nCFtQv/main.log'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.fls'
+Latexmk: Examining '/tmp/paperguru-out-nCFtQv/main.log'
+Latexmk: Found input bbl file '/tmp/paperguru-out-nCFtQv/main.bbl'
+Latexmk: Log file says output to '/tmp/paperguru-out-nCFtQv/main.pdf'
 Latexmk: Found bibliography file(s):
   /tmp/work/prj_01M0NK9FC2P84ZZJ7D2HVQ9DM1/ICLR2027_KD/paper/refs.bib
 Latexmk: All targets () are up-to-date

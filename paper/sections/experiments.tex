@@ -82,7 +82,7 @@ Using five seeds for the main 100-class IPC=10 experiments and three for others,
 \begin{table}[t]
 \centering
 \footnotesize
-\caption{Statistical significance of \cags{} vs.\ unguided (and \iast{}+\cags{} vs.\ \cags{}), using paired two-tailed $t$-tests. The three cross-architecture entries (100-cls IPC=10, ResNet-18, ResNetAP-10) use 5 seeds; all other entries use 3 seeds.}
+\caption{Statistical significance of \cags{} vs.\ unguided (and \iast{}+\cags{} vs.\ \cags{}), using paired two-tailed $t$-tests. The three cross-architecture entries (100-cls IPC=10, ResNet-18, ResNetAP-10) use 5 seeds; all other entries use 3 seeds. The 10-cls entries use guidance range $[0.0, 0.08]$ (matching the average guidance of the 100-class configuration); all other entries use $[0.0, 0.06]$.}
 \label{tab:significance}
 \begin{tabular}{llcccc}
 \toprule
@@ -109,18 +109,9 @@ ImageWoof & CAGS vs Ung & $+1.12$ & $4.50$ & $0.046$ & $4.33$ \\
 \subsection{D4M Comparison and 2026 Methods}
 \label{sec:d4m-summary}
 
-We implement D4M~\cite{su2024dataset} under our exact protocol. D4M's global CFG ($\lambda{=}4.0$) and \cags{}'s adaptive guidance ($\lambda \in [0, 0.06]$) operate in different regimes: \cags{} uses a mild range because the adaptive mechanism redistributes guidance across classes. At $t_{\text{start}}{=}40$ (its optimum), D4M achieves $23.07\%$---falling short of \cags{} and barely exceeding unguided ($22.90\%$). Full D4M sensitivity analysis, cross-dataset comparison, and comparison with 2026 methods (DMGD~\cite{wang2026dmgd}, LGD~\cite{chansantiago2026learnabilityguided}) are in Appendix~\ref{sec:dd-baselines}. We note that DMGD achieves higher absolute accuracy on ImageNette/ImageWoof, but with a $5.1\%$ baseline advantage due to lighter augmentation; in relative improvement, \cags{} ($+14.8\%$) is comparable to DMGD ($+15.7\%$) while adding negligible overhead.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/results_comparison.pdf}
-\caption{\cags{} vs.\ unguided and published baselines across architectures and class counts. (a)~Main 100-class results (IPC=10, 5 seeds): \cags{} surpasses all baselines on all three architectures. (b)~Scaling: the \cags{} advantage grows with class count, reaching $+6.97\%$ on ResNet-18 at 1000 classes.}
-\label{fig:results-comparison}
-\end{figure}
+We implement D4M~\cite{su2024dataset} under our exact protocol. At $t_{\text{start}}{=}40$ (its optimum), D4M achieves $23.07\%$---falling short of \cags{} and barely exceeding unguided ($22.90\%$). Full D4M sensitivity analysis, cross-dataset comparison, and comparison with 2026 methods (DMGD~\cite{wang2026dmgd}, LGD~\cite{chansantiago2026learnabilityguided}) are in Appendix~\ref{sec:dd-baselines}. A visual summary of results across architectures and class counts is in \Cref{fig:results-comparison} (Appendix~\ref{sec:results-figure}). DMGD achieves higher absolute accuracy on ImageNette/ImageWoof, but with a $5.1\%$ baseline advantage due to lighter augmentation; in relative improvement, \cags{} ($+14.8\%$) is comparable to DMGD ($+15.7\%$) while adding negligible overhead.
 
 \subsection{CAGS+D4M Hybrid Ablation}
 \label{sec:hybrid-ablation}
 
-A natural question is whether the two approaches are complementary: could D4M's real-image initialization provide a better starting point that \cags{}'s adaptive guidance then refines? To test this, we construct a hybrid pipeline that initializes from real images (VAE encode $\to$ add noise at $t_{\text{start}} \to$ denoise with per-class adaptive \cags{} guidance), sweeping $t_{\text{start}} \in \{35, 40, 45\}$ on ConvNet-6, then evaluating the winner on all three architectures. The hybrid uses the initial four-factor \cags{} weights (the two-factor and four-factor configurations produce similar per-class guidance on 100 classes, $r > 0.9$).
-
-On ConvNet-6, the hybrid peaks at $t_{\text{start}}{=}45$: $25.17 \pm 0.37\%$, compared to $24.27 \pm 0.21\%$ at $t{=}35$ and $23.79 \pm 0.34\%$ at $t{=}40$. At this best operating point, the hybrid is evaluated on all three architectures (\Cref{tab:sota-main}). The hybrid does \emph{not} improve over \cags{}-alone on any architecture: ConvNet-6 $25.17\%$ vs.\ $25.55\%$ ($-0.38\%$), ResNet-18 $30.18\%$ vs.\ $30.81\%$ ($-0.63\%$), and ResNetAP-10 $29.51\%$ vs.\ $29.74\%$ ($-0.23\%$, but with $2.75\times$ higher variance). This reinforces the core message: \cags{}'s training-free, pure-noise approach is both simpler and more effective than combining real-image initialization with adaptive guidance.
+To test whether D4M's real-image initialization complements \cags{}'s adaptive guidance, we construct a hybrid pipeline (VAE encode $\to$ add noise at $t_{\text{start}} \to$ denoise with per-class \cags{} guidance), sweeping $t_{\text{start}} \in \{35, 40, 45\}$ on ConvNet-6. The hybrid peaks at $t_{\text{start}}{=}45$: $25.17 \pm 0.37\%$, and is evaluated on all three architectures (\Cref{tab:sota-main}). The hybrid does \emph{not} improve over \cags{}-alone on any architecture: ConvNet-6 $25.17\%$ vs.\ $25.55\%$ ($-0.38\%$), ResNet-18 $30.18\%$ vs.\ $30.81\%$ ($-0.63\%$), and ResNetAP-10 $29.51\%$ vs.\ $29.74\%$ ($-0.23\%$, but with $2.75\times$ higher variance). This reinforces the core message: \cags{}'s training-free, pure-noise approach is both simpler and more effective than combining real-image initialization with adaptive guidance.
