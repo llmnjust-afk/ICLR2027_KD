@@ -6,7 +6,7 @@ Built on top of [MGD³](https://github.com/jachansantiago/mode_guidance) (ICML 2
 
 ## Overview
 
-Existing training-free diffusion dataset distillation methods (MGD³, CoDA, DMGD) use fixed guidance parameters across all classes, IPC settings, and timesteps. AGS-DD addresses this limitation with three adaptive modules:
+Existing training-free diffusion dataset distillation methods (MGD³, CoDA, DMGD) use fixed guidance parameters across all classes, IPC settings, and timesteps.
 
 ### Three Core Modules
 
