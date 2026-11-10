@@ -173,6 +173,8 @@ class AGSSampler:
         class_label,
         mode_features,
         model_kwargs,
+        generator=None,
+        cfg_schedule=None,
     ):
         """
         Core sampling function with AGS guidance.
@@ -186,6 +188,9 @@ class AGSSampler:
             class_label: Integer class label
             mode_features: Mode features for guidance (latent space)
             model_kwargs: Model keyword arguments (y, cfg_scale)
+            generator: Optional dedicated noise generator for paired experiments.
+            cfg_schedule: Optional callable (step, total_steps, base_cfg) -> CFG.
+                This changes CFG separately from the mode-guidance coefficient.
 
         Returns:
             samples: Generated latent samples
@@ -200,6 +205,12 @@ class AGSSampler:
 
         for i in indices:
             t = torch.tensor([i] * z.shape[0], device=self.device)
+            step_kwargs = model_kwargs
+            if cfg_schedule is not None:
+                step_kwargs = dict(model_kwargs)
+                step_kwargs["cfg_scale"] = cfg_schedule(
+                    i, self.diffusion.num_timesteps, model_kwargs["cfg_scale"]
+                )
 
             # TAGS: Compute adaptive guidance weight for this timestep
             if self.use_tags:
@@ -224,9 +235,10 @@ class AGSSampler:
             if w_t <= 0:
                 out = self.diffusion.p_mean_variance(
                     self.model.forward_with_cfg, img, t,
-                    clip_denoised=False, model_kwargs=model_kwargs,
+                    clip_denoised=False, model_kwargs=step_kwargs,
                 )
-                noise = torch.randn_like(img)
+                noise = torch.randn(img.shape, dtype=img.dtype, device=img.device,
+                                    generator=generator)
                 nonzero_mask = (t != 0).float().view(-1, *([1] * (len(img.shape) - 1)))
                 img = out["mean"] + nonzero_mask * torch.exp(0.5 * out["log_variance"]) * noise
                 continue
@@ -234,21 +246,23 @@ class AGSSampler:
             # Compute p_mean_variance (predicts x_start and mean/variance)
             out = self.diffusion.p_mean_variance(
                 self.model.forward_with_cfg, img, t,
-                clip_denoised=False, model_kwargs=model_kwargs,
+                clip_denoised=False, model_kwargs=step_kwargs,
             )
 
-            noise = torch.randn_like(img)
+            noise = torch.randn(img.shape, dtype=img.dtype, device=img.device,
+                                generator=generator)
             nonzero_mask = (t != 0).float().view(-1, *([1] * (len(img.shape) - 1)))
 
             # Extract predicted x_start (conditional part only)
             xstart = out["pred_xstart"]
             xstart_cond, _ = xstart.chunk(2, dim=0)
 
-            # AGS guidance: steer x_start toward mode features with adaptive weight
-            # Guidance score broadcasts from [1,...] to [2,...] matching log_variance
-            guidance_score = -(
-                xstart_cond - mode_features
-            ) * w_t * torch.exp(0.5 * out["log_variance"])
+            # Apply each sample's mode attraction to its conditional and null
+            # branches. Explicit duplication also supports batches larger than 1.
+            mode_delta = -(xstart_cond - mode_features) * w_t
+            guidance_score = torch.cat([mode_delta, mode_delta], dim=0) * torch.exp(
+                0.5 * out["log_variance"]
+            )
 
             img = (
                 out["mean"]

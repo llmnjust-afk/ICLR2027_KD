@@ -1,4 +1,14 @@
 # Python
+# Local credentials and prepared upload bundles
+/PAT
+/.env
+/.env.*
+/github_update_*/
+ICLR/
+backups/
+rebuttal.local.env
+results/rebuttal*/
+resources/
 __pycache__/
 *.py[cod]
 *$py.class

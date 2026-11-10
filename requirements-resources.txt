@@ -1,0 +1,2 @@
+# Optional data download/extraction; the local ICLR environment has cached 6.0.1.
+pyarrow>=6.0.1,<19

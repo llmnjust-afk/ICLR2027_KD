@@ -1,0 +1,547 @@
+CAGS 补实验运行说明
+
+2026-11-09：处理 BeeGFS 删除锁返回 Remote I/O error
+
+  CPU 检查作业 157753 在 gate.unlink() 收到 Errno 121，检查中止，尚未提交第二批 GPU 作业。
+  对应诊断目录：results/rebuttal_tuned_v1/coordination_checks/d9a6d17e35d3。
+  失败后直接读取 gate 返回不存在，属于需要核实远端删除结果的情况。
+  修复后共享 gate 的 link/unlink 请求不盲目重放：link 报错须读到本进程令牌才能进入；
+  unlink 报错后仅通过读取确认 gate 已消失或换成其他持有者，绝不再删除同名 gate。
+  无法确认释放时保留持有者记录并停止。仅本进程 UUID 私有文件的删除可安全重试。
+  元数据读取对 ECOMM/ESTALE/EREMOTEIO 有界重试；等待现有持有者时不反复写 gate，
+  真正获得 gate 后仍再次核对持有者，不能根据未加锁的读取直接进入临界区。
+  两节点 CPU 检查仅对明确的短暂存储异常在新目录重试一次；互斥断言失败不重试。
+  成功仍需完整两节点、四进程、125 秒等待和计数/单次准备/单次汇总证明。
+  成功与失败的检查均保存 srun.log；已有第一批结果、配置和实验协议保持不变。
+
+  在登录节点启动第二批：
+    bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal_tuned.sh --recover-submit
+  等待显示四个 GPU 作业号后再关闭终端；未显示作业号不代表实验已开始。
+
+2026-11-09：恢复中断的第二批提交
+
+  在原持锁主机 aias-login-2 的登录终端执行：
+    bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal_tuned.sh --recover-submit
+
+  本次提交锁及第二批 .all_pipeline 锁由 PID 347019 持有，心跳均停在 11 月 8 日 17:54。
+  文件记录显示 CPU 协调检查作业 157502 已启动，但没有检查结束记录；第二批 GPU 尚无提交记录。
+  仅据心跳不能确认原进程已退出，须由上述命令在登录主机上核实。
+  --recover-submit 会将确认退出者的锁归档为 .recovered，再继续检查与提交；不删除实验结果。
+  已有完整批次仍按原记录返回，不重新提交；不明 sbatch 请求仍要求核实，不能盲目重试。
+  原进程仍在、另一主机/PID 命名空间或无法核实状态时会停止，不能用 rm -rf 绕过。
+  --retry-failed 也已修复外层提交锁的恢复，但会新建批次；本次只需 --recover-submit。
+  正常关闭 SSH 终端的 SIGHUP 现在会清理本进程的锁和启动检查子进程；保留 nohup 的忽略设置。
+  请等待启动检查结束、显示四个 GPU 作业号后再关闭当前终端。
+  状态查询：bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal_tuned.sh --status
+
+2026-11-08：第一批已完成，现在只提交第二批
+
+  bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal_tuned.sh
+
+  此入口自动读取 latest_core_batch.json，核对四个工作进程成功退出、冻结计划与完整汇总哈希。
+  第一批已全部完成时不再向 Slurm 添加可能过期的 afterok 作业号；工作进程启动时仍复核汇总。
+  第一批未完成时仍使用全部四个作业的 afterok 依赖。不会重新提交第一批。
+  本次第二批尚无 GPU 提交记录，正常提交即可，不需要 --retry-failed。
+  状态查询：bash scripts/submit_rebuttal_tuned.sh --status
+  上次两节点预检查的 Errno 70 发生在读取竞争锁的持有者记录时。
+  现在仅对 ECOMM/ESTALE 元数据读取错误做最多 10 秒重试，不把不可读持有者视为空锁；
+  不重放写操作、不抢锁。持续通信故障仍停止；两节点四进程 125 秒实测检查仍强制执行。
+  该修改已经过离线回归与提交参数预览；不能代替集群上的真实两节点检查。
+  第二批保持既定 ConvNet-6/IPC10/2000 epoch、留出集选参及正式种子 200–204，
+  包含最佳固定强度、独立选出的 CAGS 与其均值/置换对照，以及因素/均值匹配消融。
+  不修改已完成第一批的数值或冻结计划。
+
+2026-11-07 当前入口：核心对照 -> 独立调参 -> 统一消融
+
+  本轮使用最多四张 RTX 4090。第一批 30 份合成数据、90 次训练；第二批先做
+  27 个候选 × 3 个生成种子 × 1 个训练种子 = 81 次留出集训练，再做 15–20 组
+  正式比较（75–100 份数据，225–300 次训练）。正式组数只取决于留出集选出的
+  系数是否等于原默认系数，不按正式验证成绩增删对照。
+
+  登录节点提交两批（本项目已有失败提交记录，首次恢复加 --retry-failed）：
+    bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal_campaign.sh --retry-failed
+  查看两批文件进度（只读，不依赖 Slurm 控制器连通）：
+    bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal_campaign.sh --status
+  预览（不提交、不写配置）：同一入口加 --dry-run。
+  仅提交第一批：原 scripts/submit_rebuttal_core.sh --retry-failed 仍然有效。
+  重复正常提交不加 --retry-failed；该参数仅在所有相关旧作业结束后使用。
+
+  第二批四个单卡作业使用 afterok 依赖第一批全部四个作业，并在启动时核验第一批
+  完整汇总。第一批失败时第二批不会占用 GPU；无效依赖由 Slurm 取消。
+  调度器可能显示八个作业记录，但最多四个实验作业同时有资格运行。
+  本轮预算为 3–7 天；--status 在获得实测耗时后给出当前冻结计划的剩余时间估计，
+  不包含排队/失败和后续未冻结计划，不保证七天内完成。先保持首批证据完整。
+
+  第一批配置仍为 rebuttal.core.env，输出 results/rebuttal_core_v2。
+  第二批配置 rebuttal.tuned.env，输出 results/rebuttal_tuned_v1；复用 v1/prepared
+  的不可变缓存，校验全部文件及类别顺序、IPC、训练/留出划分，不改写原缓存。
+  第一批生成种子 100–104；第二批调参生成种子 0、1、2，正式生成种子 200–204。
+  固定强度的全部预定义候选（含 0 和 0.10）均参与选择，删除旧代码的 <=0.08 限制。
+  CAGS 保留原默认和现有十二个单项变体，双方只看训练集 10% 留出部分。
+  四进程全部完成调参后，仅一个进程冻结 selection.json 和正式计划，其余等待。
+  因素消融同时报告原系数和均值匹配版本；两个 inherited_mgd 设置只是本地继承
+  内核对照，不是已经独立核验的公开 MGD3 复现。调参结果不当作正式效果证据。
+
+  当前跨节点 gate 使用完整 owner JSON 的原子硬链接，不再新建软链接。
+  历史故障曾留下目标为空的软链接；判断旧 gate 使用 lstat，不跟随链接误判目录。
+  旧目录/损坏链接不会被自动绕过，恢复仍需确认持有者退出；正常释放不使用 rmdir。
+  本地单节点长等待测试不能代替两节点检查，提交前仍强制检查两节点四进程 125 秒。
+
+  新增交付：各 runs/<阶段>/reviewer_evidence.csv 对应审稿问题和配对差值；
+  runtime.json 保存实测时间估计；原 raw_results.csv、summary.json/txt、逐类指标保留。
+  不完整批次不产生推断结论，调参阶段明确标注 tuning_only_not_final_evidence。
+  文件进度分别在 logs/slurm/latest_core_batch.json 和 latest_tuned_batch.json。
+
+以下为历史修复记录与详细参考；当前入口及硬链接协议以上述说明为准。
+
+2026-11-07 BeeGFS 跨节点删除故障修复：
+  检查作业 156518 在 rmdir(gate) 处出现 EBUSY，正式 GPU 作业尚未提交。
+  共享注册改用原子 symlink：先写完整持有者记录，再竞争同一个 gate 名称；释放时仅 unlink。
+  正常协调不再创建/删除临时目录。旧目录锁不会被绕过，恢复仍需确认原持有者退出。
+  两节点四进程 125 秒检查前置到图片全量校验之前；检查失败立即停止。
+  缓存和实验协议不变；修复验证记录在 results/rebuttal_core_v2/gate_repair/。
+
+2026-11-07 长时间等待修复与 v2 运行：
+  当前核心输出目录为 results/rebuttal_core_v2；v1 的日志、计划、部分结果完整保留。
+  v2/prepared 通过软链接复用已完整校验的 v1/prepared；不重复提取特征，不改写旧缓存清单。
+  复用来源和校验结果记录在 v2/cache_reuse.json。v1 的生成图片/训练结果不并入 v2 统计。
+  临时 gate 正常消失时重新尝试；只有同一个 gate 连续 120 秒缺失持有者信息才报错。
+  锁重新创建、持有者信息恢复均重置注册异常计时；失联计时也不包含此前正常排队时间。
+  两节点检查现在使用四个 CPU 进程，主进程持锁 125 秒，验证长等待、一次准备和一次汇总。
+  每节点两个 CPU 进程、1G 内存，无 GPU；运行上限 5 分钟，旧的短时间检查不能替代此项验证。
+  切换必须先确认旧作业退出，再更新源码、冻结 v2 计划；已启动进程不会自动加载修复。
+  提交仍为 bash scripts/submit_rebuttal_core.sh --retry-failed；查询仍为同一入口加 --status。
+
+代码和命令入口（项目根目录 /home/lulm/ICLR2027_KD-main）：
+  rebuttal/：补实验主体。prepare.py 特征准备；generate.py 生成；evaluate.py 训练评估；statistics.py 汇总。
+  rebuttal/run.py：实验阶段与队列的 Python CLI；rebuttal/slurm.py：单卡作业提交、执行和状态查询。
+  scripts/：用户命令入口。submit_rebuttal_core.sh 提交；prepare_rebuttal_core.sh 准备数据；rebuttal.sh 分阶段执行。
+  rebuttal.core.env：本批配置；ags/、diffusion/、models.py：已有算法与模型实现。
+  logs/slurm/：作业日志和提交记录；results/rebuttal_core_v2/：准备缓存、生成数据、训练结果和汇总。
+
+启动故障修复（2026-11-07）：
+  原权重检查漏掉 blocks.*.gamma1/gamma2；现在精确校验新增 gamma 为 1，并仅允许未使用的模态嵌入缺失。
+  主干参数缺失、多余参数和尺寸不匹配仍拒绝加载。提交前用真实本地权重作 CPU 元数据检查。
+  BeeGFS 的 tuneUseGlobalFileLocks=false：跨节点协调使用原子 symlink/持有者记录，不依赖 flock。
+  等待中的作业不会把 running 状态当作失败；锁有心跳，过期不等于允许抢占，恢复要求确认原作业结束。
+  提交前自动执行两节点 CPU 协调检查：不申请 GPU，rtx4090 分区每节点 2 CPU/1G，最多等待资源 60 秒。
+  检查通过才提交四个单卡作业；相同协调实现可复用已有两节点通过记录。检查失败会停止并保留诊断文件。
+  真实 GPU smoke 仍在首个负责准备的作业中执行，成功后才进入特征准备与正式实验。
+  查看进度（只读、无需调度器连通）：bash scripts/submit_rebuttal_core.sh --status
+  修复后重跑失败批次：bash scripts/submit_rebuttal_core.sh --retry-failed
+  实时队列仍以 squeue 为准；--status 明确显示文件记录中的失败、阶段、生成/训练数量。
+  旧版启动诊断在 results/rebuttal_core_v1/startup_repair/；本次修复记录在 v2/wait_repair/。
+  两节点检查在当前输出目录的 coordination_checks/，不混入实验统计。
+
+当前优先批次（2026-11-07）：六组核心分配对照，ConvNet-6，5 个生成种子 × 3 个训练种子。
+先在登录节点显式准备数据（无需 GPU，自动使用项目 ICLR/bin/python）：
+
+  bash /home/lulm/ICLR2027_KD-main/scripts/prepare_rebuttal_core.sh
+
+只诊断网络：同一命令加 --diagnose；只做离线完整校验：加 --verify。
+需要的数据：clane9/imagenet-100 固定版本的 17 个训练分片和 1 个验证分片，
+共 8,406,986,315 bytes，126689 张训练图、5000 张验证图。DiT 和 VAE 复用本地文件。
+数据准备预留至少 30 GiB 空间（不含后续生成/训练输出；另核对用户配额）。
+数据根目录：/home/lulm/ImageNet100；训练图在 train/，验证图在 val/，原始分片在 .hf_cache/。
+rebuttal.core.env 的 DATA_ROOT、REPORT_DIR、REBUTTAL_DATA_CACHE 分别指定这三个位置。
+准备入口会在资源锁保护下迁移旧数据和数据集专用缓存，保留旧路径软链接；模型仍在原位置。
+同名文件内容冲突时停止、不覆盖；迁移中断后可重复同一准备命令恢复。
+下载及验证全部通过后，再使用独立配置和输出目录，提交四个独立单卡作业：
+
+  bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal_core.sh
+
+每个作业申请 1 张 RTX 4090、8 核 CPU、32G 内存；四个独立作业号，最多共用 4 张卡。
+REBUTTAL_JOB_COUNT=4 表示作业数，REBUTTAL_GPU_COUNT=1 表示每个作业的卡数。
+四个作业可分配在不同节点，通过共享队列领取不同实验，不会重复生成或训练。
+首个获得准备锁的作业负责 smoke、特征缓存和冻结实验计划，其余等待准备完成。
+准备失败时本批全部报错退出；全部实验成功后只汇总一次。每个作业只使用 Slurm 分配的卡。
+四个 ID 保存于 logs/slurm/latest_core_jobs.json，详细提交和退出状态在对应 core_batches 目录。
+每个作业日志为 logs/slurm/rebuttal-<ID>.log；已有 latest_job.id 仅属于旧的通用单作业入口。
+重复同一提交命令会复用已有记录，部分提交被拒绝时只补未成功提交的名额。
+提交超时/返回值不明时禁止盲目重试，先按 batch.json 中的作业名核实是否已进入队列。
+若实验失败，确认这一批所有作业均已停止后执行同一命令加 --retry-failed；保留成功结果。
+队列存在遗留任务锁时会停止，不能在未确认原工作进程退出时删除锁。
+
+提交入口只验证本地数据，缺失时直接停止并提示准备命令，不再偷偷下载。
+已有分片和提取图片优先校验复用；先完成验证集，再按顺序处理训练分片。
+有完整清单时先处理已缓存分片，遇到首个缺失分片才联网；不因网络故障放弃已有本地进度。
+源数据含合法的 CMYK TIFF：保存为 .tiff 并保持原始字节，提取、训练、评估均支持 TIFF。
+读取时转 RGB，不重新压缩图片；错误信息包含分片名、零起始行号、类别 WNID 和识别出的格式。
+默认先官方、后镜像；若已设置 HF_ENDPOINT，则优先使用该地址。只有真实分片 Range
+读取成功的路线才用于下载；TLS 握手失败时另测 TLS 1.2，始终验证证书。
+不删除/改写代理配置，不更新训练环境依赖。连续两次无字节进展即停止并保留断点。
+详细诊断：resources/core_network_diagnostics.json；状态：resources/core_prepare_status.json；
+错误：resources/core_prepare_error.json；迁移记录：resources/imagenet100_storage_migration.json；
+实际大文件传输记录：/home/lulm/ImageNet100/core_transfer_events.jsonl（旧日志路径保留软链接）。
+这些日志保留请求/重定向/CDN 主机和 curl 错误，但去除代理凭据和签名 URL 参数。
+用户终端开启 proxy_on 后，验证片和训练首片已成功下载并通过 SHA-256；TIFF 报错属于格式限制，
+不是下载损坏。工具会话的代理访问权限与用户终端不同；续传状态以最新准备日志为准。
+网络脚本修复不能保证集群出口/CDN 可达。若仍失败，按诊断中的代理/TLS/CDN 阶段处理，勿关闭证书验证。
+
+仅预览提交参数可加 --dry-run。该入口使用 rebuttal.core.env、FINAL_SUITE=allocation，
+直接运行 smoke -> prepare -> 六组生成/评估 -> 汇总，跳过调参和特征/K 敏感性实验。
+评估固定第 2000 epoch，结果放在 results/rebuttal_core_v2；协议和勘误见 REBUTTAL_CORE_NOTES.txt。
+以下原有 submit_rebuttal.sh 仍指向完整套件，不是本批六组核心对照入口；
+下文旧的自动资源下载说明仅适用于原完整套件。
+
+在 aias-login-2 登录节点，一条命令提交 GPU 作业
+
+  bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal.sh
+
+登录节点没有分配给当前终端的 GPU；直接运行训练入口会报 PyTorch 无法使用 CUDA。
+提交入口先在登录节点准备共享数据/模型，成功后调用 sbatch，在 rtx4090 分区申请
+1 张 RTX 4090、8 个 CPU 核、32G 内存；不指定账户或 QOS，使用该用户的集群默认值。
+排队后由 Slurm 在计算节点启动完整流程。无需修改 CUDA_VISIBLE_DEVICES 或重装 PyTorch。
+资源准备失败时不会提交 GPU 作业。已提交只表示进入队列，不表示已经开始训练。
+作业号和日志路径在提交成功后打印，日志为 logs/slurm/rebuttal-<作业号>.log。
+查看自己的队列：squeue -u lulm
+
+Slurm 作业中的训练保持前台执行，避免 shell 退出后计算进程随作业被终止。
+作业只使用 Slurm 分配的 CUDA_VISIBLE_DEVICES，不使用旧配置里其他节点的 GPU 编号。
+可选多卡（4 张 GPU、32 核、128G 内存）仍不改变实验协议：
+  REBUTTAL_GPU_COUNT=4 bash /home/lulm/ICLR2027_KD-main/scripts/submit_rebuttal.sh
+如需指定已获授权的账户/QOS/时限，可设置 REBUTTAL_SLURM_ACCOUNT、REBUTTAL_SLURM_QOS、REBUTTAL_SLURM_TIME。
+只预览提交参数：bash scripts/submit_rebuttal.sh --dry-run
+
+一条命令启动 本机多卡
+
+以下直接启动方式仅用于已经分配 GPU 的终端/计算节点。
+
+  REBUTTAL_DOWNLOAD_TRANSPORT=curl bash /home/lulm/ICLR2027_KD-main/scripts/run_rebuttal_all.sh
+
+本次启动修复（2026-11-07）：
+  后续检查发现新的阻塞：Cannot SHA-256 verify this LFS artifact。
+  原因是下载器过度依赖 resolve HEAD 响应中的 ETag/大小/提交信息，缺失时直接退出。
+  已改为：规范 HEAD URL → 固定提交的仓库 API LFS 信息 → 固定提交的原始 LFS 指针。
+  某个端点仍不能提供校验信息时继续尝试其他端点；最终文件仍必须通过 SHA-256 和大小校验。
+  新增了缺失 HEAD 元数据、API/指针回退和镜像失败后转官方地址的回归测试。
+  resources/last_error.json 中的原始故障是下载 ImageNet-100 第一个 parquet 分片时，
+  Hugging Face CDN 的 TLS/SSL EOF；当时训练还没有开始，DiT 与 VAE 已在本地。
+  启动器固定使用项目 ICLR/bin/python，不需要 conda activate/deactivate。
+  默认 auto 模式先尝试 Hub；连接失败自动切换 curl 的 HTTP/1.1 传输。
+  上面的命令直接用 curl 下载大文件，跳过已知失败的 Hub 大文件传输方式。
+  每次续传重新解析下载链接，保留 partial 文件，并用仓库元数据校验文件大小及 SHA-256。
+  不关闭 TLS 证书校验，也不会绕过当前代理设置。换传输方式不能修复断网或失效代理。
+  未完成所有分片的下载目录不会被误当成完整数据集。
+  训练前先检查依赖和 PyTorch CUDA；没有 GPU 会在前台报错，不会先下载再后台退出。
+
+如果联网节点与 GPU 节点分开，先在能联网的节点执行（不需要 GPU）：
+
+  REBUTTAL_DOWNLOAD_TRANSPORT=curl bash /home/lulm/ICLR2027_KD-main/scripts/run_rebuttal_all.sh --prepare-only
+
+然后在有 GPU 且能访问同一项目目录的节点执行：
+
+  bash /home/lulm/ICLR2027_KD-main/scripts/run_rebuttal_all.sh
+
+--check 检查 GPU/依赖并列出本地资源；--foreground 可把训练流程留在前台，便于定位错误。
+--prepare-only 只准备数据和模型，不启动训练。资源失败会返回非零退出码并保留缓存。
+网络完全不可达时，需要修复节点网络/代理，或提供完整数据目录；重复启动不能代替资源下载。
+本次离线测试覆盖 TLS 失败切换、断点续传、哈希不匹配拒绝、下载不完整拒绝和启动失败传播。
+这些测试不能替代联网节点上的真实下载与 GPU smoke 检查。
+
+本机 rebuttal.local.env 已配置正式 full 套件，ConvNet-6 / ResNet-18 / ResNetAP-10
+三个架构、2000 epochs、5 个正式生成种子与 3 个训练种子；默认包含敏感性实验。
+使用已有 resnet18-f37072fd.pth 增加 ResNet-18 与 VAE 特征的对照。
+这比下文的“默认单架构任务量”更大；实际任务数以计划输出为准。
+数据路径目前是待完成的下载目标，不代表数据已经齐备；启动器会先校验并补齐。
+现有流程覆盖主要因果对照、独立调参、因素/K/PCA/特征敏感性。
+代表性的外部自适应 CFG 方法和公开 MGD3 的独立协议复现仍需另外核验，不能宣称已全部覆盖。
+
+启动器现在先自动查找本地资源，缺失时下载数据与原实验指定的 VAE，再保存路径配置。
+当前已复用 MinimaxDiffusion 项目中的 DiT-XL/2 权重，并在 pretrained_models 中建立链接。
+缺失资源下载需要运行节点联网；下载未成功时不会假装已启动实验，也不会替换成错误的数据集或 VAE。
+针对 Hugging Face 的 TLS/SSL 断连，启动器默认先使用 hf-mirror.com，连接失败再切换官方地址。
+设置了 HF_ENDPOINT 时先尝试指定地址。网络错误允许切换重试，标签或数据校验错误会直接停止。
+这些公开资源请求不发送账户令牌；TLS 证书校验保持开启。已有缓存会保留。
+已有 rebuttal.local.env 时优先检查并复用有效路径。GPU 优先使用 REBUTTAL_GPUS、调度器的 CUDA_VISIBLE_DEVICES、
+已有配置的 GPUS；均未指定时自动检测本机全部可见 GPU。
+启动后自动在后台依次完成 smoke、准备缓存、独立调参、正式多卡对照和 K/特征敏感性实验。
+数据/模型首次下载在前台显示进度，资源齐备后才将实验转入后台。
+日志位置与 PID 会直接打印。默认不运行只能作为内部消融的时变 CFG 扩展。
+此入口调度本机显卡；多机共享队列的用法见第五节。
+
+自动下载的数据来源为原项目下载脚本使用的 clane9/imagenet-100，并固定到具体仓库提交。
+新下载器会从 WNID、原始文件名及数据集标签元数据核实类别对应关系，
+不会假设 parquet 的 label 顺序恰好等于 misc/class100.txt 的顺序。
+VAE 使用 stabilityai/sd-vae-ft-mse；缓存中的普通 SD1.5 VAE 不会被自动当成相同模型替用。
+数据下载/解包依赖 PyArrow，本项目已离线安装 6.0.1；其他机器可用本地 wheel 或自动安装兼容版本。
+
+一 这次实现覆盖什么
+
+主实验采用 ImageNet-100、IPC=10、冻结 DiT-XL/2、50 步去噪、CFG=4.0。
+自适应对象是额外模态引导系数，不是 CFG。原始结果目录不会被覆盖。
+
+新增入口：python -m rebuttal.run
+多卡入口：bash scripts/rebuttal.sh
+配置模板：rebuttal.example.env
+核验测试：tests/test_rebuttal.py、test_resources.py、test_transfers.py、test_launcher.py
+
+默认 full 正式实验包括：
+  no_mode：关闭额外模态引导，保留 CFG=4。
+  cags：两因素类别自适应。
+  fixed_mean：固定为同一批实际 CAGS 系数的均值。
+  fixed_best_<architecture>：在独立调参集上选出的固定强度。
+  cags_selected_<architecture>：在独立子集上重新选择权重、Sigmoid 和范围后的配置。
+  selected_fixed_mean / selected_permuted：独立选出配置自己的平均系数和三次置换对照。
+    如果选出的系数向量与预设 CAGS 完全一致，会复用 cags 及其对照，不重复计算。
+  permuted_17 / 29 / 43：三组固定的类别系数随机置换。
+  entropy / dispersion / four_factor：三种因素配置。
+  entropy_mean_matched / dispersion_mean_matched / four_factor_mean_matched：
+    通过移动 logit 截距，将各因素配置平均系数匹配到 CAGS，保持系数范围与排序。
+  inherited_mgd_fixed_0p10_window25：继承的 MGD3 模态更新、固定 0.1、25 步窗口。
+  inherited_mgd_fixed_0p10_stop0：继承采样脚本的 guidance=True、系数 0.1、stop_t=0 设置。
+
+后两项用于在当前统一流程内检查继承的 MGD3 固定模态引导。
+它们没有被标成“已独立核实的公开论文最优配置复现”。公开 MGD3 的完整协议仍需核对。
+
+二 已有备份
+
+修改前的完整代码备份：
+  backups/rebuttal_20261106_231353/code_before.tar.gz
+逐文件 SHA-256：
+  backups/rebuttal_20261106_231353/manifest.json
+
+此后还创建了阶段性备份。每次创建实验计划时会自动归档相关源码、配置模板和本说明。
+也可以随时执行：
+  bash scripts/rebuttal.sh backup
+
+恢复时先将压缩包解到另一个目录，核对后再恢复需要的文件；历史实验输出应保留。
+
+三 填写路径并做 GPU 冒烟检查
+
+  cd /home/lulm/ICLR2027_KD-main
+  source ICLR/bin/activate
+  cp rebuttal.example.env rebuttal.local.env
+  nano rebuttal.local.env
+
+填写四个路径：
+  DATA_ROOT：包含 train/<WNID>/ 与 val/<WNID>/ 的 ImageNet 或 ImageNet-100 根目录。
+  REPORT_DIR：原始最终报告验证集目录，下面必须按 WNID 分文件夹。
+  DIT_CKPT：本地 DiT-XL-2-256x256.pt 文件。
+  VAE_PATH：AutoencoderKL 的本地目录，例如 sd-vae-ft-mse，或完整 SD 模型的 vae 子目录。
+
+设置本机 GPUS，例如 0,1,2,3,4,5,6,7。
+LOCAL_ONLY=1 表示只读本地 Hugging Face 模型；若明确需要联网下载，可设为 0 并将 VAE_PATH 改为模型 ID。
+使用绝对路径，方便多机共享目录。多机上的同一路径必须都能访问。
+
+先运行：
+  bash scripts/rebuttal.sh test
+  bash scripts/rebuttal.sh smoke
+
+smoke 会用真实 DiT、VAE、GPU 跑 50 步生成、配对噪声检查和一个分类器训练 epoch。
+它也会按配置中的生成 batch 与分类器 batch 检查运行和显存占用，记录峰值分配显存。
+分类显存检查会硬链接重复诊断图像以凑足 batch，不将重复数据当成科学实验。
+其模态目标是诊断用零向量，结果保存在 WORKDIR/smoke_tests 下，明确标为 smoke_test_only。
+这些图像和准确率不能用于论文表格，也不会进入正式统计。
+
+四 单机多卡最直接的运行方式
+
+  bash scripts/rebuttal.sh prepare
+  bash scripts/rebuttal.sh tune
+  bash scripts/rebuttal.sh final
+
+可使用 nohup，三个阶段顺序执行：
+  nohup bash -c 'set -e; bash scripts/rebuttal.sh prepare; bash scripts/rebuttal.sh tune; bash scripts/rebuttal.sh final' > rebuttal_pipeline.log 2>&1 &
+
+查看进度：
+  tail -f rebuttal_pipeline.log
+  bash scripts/rebuttal.sh status tune
+  bash scripts/rebuttal.sh status final
+
+工作线程的详细日志位于：
+  WORKDIR/runs/tune/worker_logs/
+  WORKDIR/runs/final/worker_logs/
+
+prepare 只需要运行一次。它会：
+  1. 对每类真实训练图像按固定种子留出 10% 作为独立调参集。
+  2. 剩余 90% 才用于特征提取、复杂度分析和生成模态目标。
+  3. 使用 VAE latent mean，不对特征随机采样；默认中心裁剪、不随机翻转。
+  4. 保存每张参与特征提取的原图 SHA-256、特征文件哈希及模态目标哈希。
+  5. 创建 auto-K 和固定 K=2/5/10 的复杂度配置；所有配置共享生成目标。
+
+缓存固定后不可静默覆盖。要改变训练划分、IPC、特征或预处理，请换 WORKDIR。
+新实验的特征提取和最终 epoch 协议已经显式固定，与历史表格可能不同；
+所有新方法和基线都按同一协议重评，不能将新结果直接拼进旧表却省略协议变化。
+独立重新调参不能追溯改变历史实验使用过验证集的事实；回复中仍应如实说明旧流程，
+再将本次独立划分、冻结参数后的新实验作为补充证据。
+
+五 两台或多台机器并行
+
+前提：代码、ICLR 环境、模型、数据及 WORKDIR 位于所有机器都可访问的共享路径。
+每张卡启动一个工作进程；共享文件队列通过原子锁避免重复领取任务。
+
+只在一台机器上准备缓存和创建调参计划：
+  bash scripts/rebuttal.sh prepare
+  bash scripts/rebuttal.sh plan-tune
+
+随后在每台机器分别执行，例如：
+  REBUTTAL_GPUS=0,1,2,3,4,5,6,7 bash scripts/rebuttal.sh workers tune
+
+REBUTTAL_GPUS 可以覆盖配置文件里的 GPUS，适合各机器可用编号不同的情况。
+可以 nohup 启动 workers；各机器日志文件带主机名，不会互相覆盖。
+
+所有调参任务完成后，在任意一台机器执行一次：
+  bash scripts/rebuttal.sh select
+  bash scripts/rebuttal.sh plan-final
+
+然后在每台机器执行：
+  REBUTTAL_GPUS=0,1,2,3,4,5,6,7 bash scripts/rebuttal.sh workers final
+
+全部完成后汇总：
+  bash scripts/rebuttal.sh summary final
+
+4090 和 A800 可以共同领取任务。同一个生成种子下的各方法会绑定到相同 GPU 型号，
+但允许分布到同型号的不同卡；同一个生成种子、训练种子、架构的分类比较由一个工作进程完成。
+这样既能并行生成，也避免在一个配对比较内部混用 4090 与 A800。
+硬件型号和库版本均被记录；统计结果仍应披露使用了哪些硬件。
+
+若不同机器不共享文件系统，应使用各自独立 WORKDIR 并保留原始记录；
+不要直接把一台机器的共享队列文件复制给另一台机器同时执行。
+当前这套自动合并流程针对共享文件系统，不包含跨独立文件系统的结果合并器。
+
+六 默认任务量与优先安排
+
+默认仅运行 ConvNet-6：
+  调参：生成种子 0/1/2，训练种子 0；
+    13 个 CAGS 候选与 13 个可选择的共享系数候选，另保留固定 0.10 作为参考，共 27 组；
+    81 份生成数据集、81 次分类器训练，2000 epochs。
+    CAGS 候选包括默认、仅熵、仅离散度、四因素、两种熵/离散度权重比例、
+    slope=2/5、center=0.4/0.5/0.7、maximum=0.04/0.08 的单因素变体。
+    固定系数候选为 0/0.005/0.01/0.015/0.02/0.025/0.03/0.035/0.04/0.045/0.05/0.06/0.08。
+    两个候选族使用相同独立调参数据、训练轮数、生成种子及 13 个可选择候选的预算。
+    0.10 保留作历史固定强度参考，不参与 [0,0.08] 内最佳固定值选择。
+    固定值 0 也可获选，避免预设“必须存在有益的非零引导”。
+    CAGS 以调参均值最高者获选；相同分数先选非零因素较少者，再按候选名称排序。
+    如果仅熵、仅离散度或四因素获选，应如实报告，不能人为强制两因素获胜。
+  正式 full：生成种子 100/101/102/103/104，训练种子 0/1/2；
+    单架构 15 至 20 组，75 至 100 份生成数据集、225 至 300 次分类器训练，2000 epochs；
+    数量取决于独立选出的配置是否与原预设一致。
+
+实际计划会打印任务数量，不能把多架构配置仍按上述单架构数量估算。
+
+如果希望先拿到核心因果对照，将配置里的 FINAL_SUITE 改为 core：
+  核心对照加两项继承固定引导及必要的独立选出配置对照，共 9 至 14 组，
+  45 至 70 份生成数据集、135 至 210 次分类器训练。
+  正式计划一旦创建，不要在同名 final 下切换 suite。
+  完成 core 后，可独立执行因素实验：
+    bash scripts/rebuttal.sh plan-factors
+    bash scripts/rebuttal.sh workers factors
+    bash scripts/rebuttal.sh summary factors
+  独立实验计划会重新生成自己的数据，避免把不同计划的记录静默混为同一批实验。
+
+4090 默认生成 batch=4、分类器 batch=128；A800 使用相同 batch，保证协议匹配。
+如果实际显存不足，应在创建调参计划前修改 GEN_BATCH_SIZE/TRAIN_BATCH_SIZE，
+并在最终计划中保持一致。已冻结计划不会静默接受不同 batch。
+
+需要跨架构时，在调参和正式计划创建前设置：
+  ARCHITECTURES=convnet6,resnet18,resnetap10
+每个架构分别在独立调参集上选择最佳固定系数。
+程序会拒绝对从未调参的架构宣称“该架构的最佳固定强度”。
+
+EPOCHS=500、较少种子可以用于独立 WORKDIR 下的预检查，
+但不能把这类结果与 2000 epoch 正式结果混合，也不能把 proxy 的最佳系数自动转为全协议最优。
+程序要求正式实验与其调参实验在 epoch、优化器、采样、batch 和精度等关键参数上匹配。
+
+七 统计输出如何对应审稿意见
+
+输出位于：
+  WORKDIR/runs/final/summary.json
+  WORKDIR/runs/final/raw_results.csv
+  WORKDIR/runs/final/evaluation/g<生成种子>/t<训练种子>/<架构>/<方法>.json
+
+summary.json 报告：
+  每个生成种子内先平均训练种子的准确率；
+  独立生成重复间的样本标准差；
+  CAGS 与各对照的逐生成种子配对差值；
+  配对差值均值、95% t 区间、双侧 p 值、明确定义的 Cohen dz；
+  同一架构比较族内的 Holm 校正 p 值；
+  CAGS 相对三次置换平均结果的配对差值。
+
+3 个训练种子不是 3 次独立生成。默认正式比较的 n_generation=5，而不是 15。
+这些区间以固定的真实数据划分、特征缓存和模型权重为条件，
+没有额外估计不同特征提取种子、不同训练子集划分造成的方差。
+
+未完成全部配对任务时，正式 summarize 会拒绝推断统计。
+只看进度可执行：
+  python -m rebuttal.run summarize --plan "$WORKDIR/runs/final" --allow-partial
+该模式不输出不完整配对结果的显著性结论。
+
+重点解读：
+  cags_minus_fixed_mean：类别分配与平均强度的区分。
+  cags_minus_fixed_best_<architecture>：相对独立调优共享系数的差异。
+  cags_minus_permuted_average：系数分配到正确类别是否有效。
+  cags_selected_<architecture>_minus_*：独立重新调参后的相应比较。
+  cags_minus_entropy / dispersion / four_factor：因素配置比较。
+  *_mean_matched：平均强度被控制后的因素配置比较。
+  inherited_mgd_*：当前继承采样更新在同一评估流程下的固定引导结果。
+
+八 特征和聚类敏感性
+
+prepare 默认已保存相同 VAE 特征下 auto-K 与 K=2/5/10 的复杂度配置。
+正式主实验之后执行：
+  bash scripts/rebuttal.sh plan-sensitivity
+  bash scripts/rebuttal.sh workers sensitivity
+  bash scripts/rebuttal.sh summary sensitivity
+
+这些配置只改变复杂度估计器，生成模态目标仍固定。
+PCA 的随机初始化按类别固定，不因前一个类别或 K 配置消耗了不同随机数而改变。
+同时生成原系数和平均强度匹配后的版本，便于区分估计器与整体强度的作用。
+
+若还要比较特征提取器，在第一次 prepare 前填写：
+  RESNET_FEATURE_CKPT=/path/to/torchvision_resnet18_imagenet_state_dict.pth
+这应是 torchvision ResNet-18 的完整 ImageNet state_dict，不是本项目蒸馏分类器的检查点。
+程序会额外提取 ResNet-18 特征并建立 resnet18_auto 配置；模态目标仍来自相同 VAE 缓存。
+
+也可以手动准备 PCA 维度变体，例如：
+  python -m rebuttal.run prepare --workdir /new/workdir --data-root /path/to/imagenet100 \
+      --vae /path/to/sd-vae-ft-mse --pca-variants 2,8 --local-files-only
+
+九 自适应 CFG 对照的准确定位
+
+可运行内部时变 CFG 消融：
+  bash scripts/rebuttal.sh plan-cfg-controls
+  bash scripts/rebuttal.sh workers cfg_controls
+  bash scripts/rebuttal.sh summary cfg_controls
+
+其中包括高噪声阶段 CFG=4、低噪声阶段 CFG=1 的窗口方案，
+以及 CFG 从高噪声 4 线性降低到低噪声 1 的退火方案；分别与固定均值模态引导、CAGS 组合。
+这里 CFG=1 表示标准条件预测，并不是无条件预测。
+
+这些是明确记录的内部消融，没有冒称 PACFG、ECAI adaptive scaling 等已发表方法的忠实复现。
+本次外部文献与官方实现访问失败，代表性已发表自适应方法的移植仍需在取得规范后完成。
+因此，这一组结果能讨论 CFG 时间维度与模态引导类别维度的关系，
+不能写成“已经优于已有自适应 CFG 方法”。
+
+十 断点续跑和失败处理
+
+正常中断后，再次执行相同 workers 命令，已完成的生成数据集和分类器结果会验证后跳过。
+同一批结果不允许混入不同代码、库版本、权重、数据划分或协议。
+
+失败记录位于：
+  WORKDIR/runs/<name>/queue/*.failed.json
+其中包含完整 traceback 和硬件信息。
+
+先检查原因并停止有问题的进程，再将失败任务重新入队：
+  bash scripts/rebuttal.sh retry-failed final
+  bash scripts/rebuttal.sh workers final
+
+如果需要改 Python 代码或关键协议，应先备份并创建新计划，
+不能修改源代码后继续把新结果记到旧计划。旧计划中的同版本成功结果仍保留。
+
+kill -9 或机器掉线可能留下 .lock。status 会显示锁的主机、PID、时间。
+只有确认对应工作进程已经退出后，才能把该锁移到备份位置再续跑；
+脚本不会仅凭超时抢占仍可能在运行的任务。
+
+生成配对块和部分完成的分类配对块续跑时，需使用相同 GPU 型号。
+跨型号恢复会拒绝执行，避免把硬件变化混进同一配对比较。
+
+十一 验证范围与论文修订
+
+当前开发会话无法访问 NVIDIA GPU，已完成 CPU 单元测试和小型训练链路验证。
+真实 DiT/VAE、驱动和显存检查应先在您的 GPU 节点运行 smoke。
+CPU 测试验证了噪声流消耗一致、继承模态更新的数值兼容、数据划分不重叠、
+队列并发锁、生成层面的统计单位、固定最后一轮评估及计划不可混用。
+
+这些补实验回答对照与统计证据的问题，不会自动修复论文中不成立的数学命题。
+熵单调性、可分性无关引理、CFG 与模态引导定义、图注与表格来源仍须同步修订。
+所有真实测量均应保留；表间差异先用运行记录解释，不能仅凭不同数值推断数据不真实。
