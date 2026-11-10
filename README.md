@@ -71,7 +71,7 @@ ICLR2027_KD/
 
 ```bash
 # Clone this repository
-git clone https://github.com/llmnjust-afk/ICLR2027_KD.git
+git clone
 cd ICLR2027_KD
 
 # Create conda environment
