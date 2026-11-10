@@ -1,4 +1,0 @@
-\subsection{Generalization to Non-ImageNet Datasets}
-\label{sec:non-imagenet}
-
-To test generalization beyond ImageNet, we evaluate on Food-101~\cite{bossard2014food101} (101 categories) and CIFAR-10~\cite{krizhevsky2009learning} (10 categories) using Stable Diffusion~\cite{rombach2021highresolution} 1.5 as the generator (ConvNet-6, 3 seeds; full details in \Cref{tab:non-imagenet}, Appendix~\ref{sec:non-imagenet-table}). On Food-101, \cags{} achieves $4.17 \pm 0.12\%$ vs.\ $2.27 \pm 0.02\%$ unguided ($+83.8\%$ relative); the low absolute accuracy reflects SD~1.5's domain gap, not a \cags{} limitation. On CIFAR-10 (10 classes with narrow complexity variation), \cags{} is neutral ($-0.4\%$ relative), consistent with the scaling hypothesis.
