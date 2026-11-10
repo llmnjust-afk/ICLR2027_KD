@@ -1,6 +1,6 @@
-# AGS-DD: Adaptive Guidance Scheduling for Training-Free Diffusion Dataset Distillation
+# CAGS: Class-Adaptive Guidance Strength for Training-Free Diffusion-Based Dataset Distillation
 
-This repository implements **AGS-DD**, a novel framework for training-free diffusion-based dataset distillation that dynamically adjusts guidance strategies based on class complexity, IPC settings, and diffusion timesteps.
+This repository implements **CAGS**, a novel framework for training-free diffusion-based dataset distillation that dynamically adjusts guidance strategies based on class complexity, IPC settings, and diffusion timesteps.
 
 Built on top of [MGD³](https://github.com/jachansantiago/mode_guidance) (ICML 2025 Oral).
 
